@@ -1,0 +1,31 @@
+import {defineNuxtModule, addPlugin, createResolver, addComponent, addComponentsDir} from '@nuxt/kit'
+import {runtimeDir} from "@nuxt/devtools/dist/dirs";
+import {resolve} from "url";
+
+// Module options TypeScript interface definition
+export interface ModuleOptions {}
+
+export default defineNuxtModule<ModuleOptions>({
+  meta: {
+    name: 'nuxt3-ui-kit',
+    configKey: 'nuxt3UIKit'
+  },
+  // Default configuration options of the Nuxt module
+  defaults: {
+    theme: 'light'
+  },
+  setup (options, nuxt) {
+    console.log(options)
+    const resolver = createResolver(import.meta.url)
+
+    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
+    addPlugin(resolver.resolve('./runtime/plugin'))
+    addPlugin(resolver.resolve('./runtime/plugins/vuetify'))
+
+    // Components
+    addComponent({
+      name: 'pagesTestVuetify', // name of the component to be used in vue templates
+      filePath: resolver.resolve('runtime/components/Pages/testVuetify.vue')
+    })
+  },
+})
