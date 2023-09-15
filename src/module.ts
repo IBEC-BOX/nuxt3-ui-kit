@@ -1,6 +1,4 @@
-import {defineNuxtModule, addPlugin, createResolver, addComponent, addComponentsDir} from '@nuxt/kit'
-import {runtimeDir} from "@nuxt/devtools/dist/dirs";
-import {resolve} from "url";
+import {addComponent, addPlugin, createResolver, defineNuxtModule} from '@nuxt/kit'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
