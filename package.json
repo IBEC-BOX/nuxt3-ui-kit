@@ -1,8 +1,11 @@
 {
-  "name": "my-module",
-  "version": "1.0.0",
-  "description": "My new Nuxt module",
-  "repository": "your-org/my-module",
+  "name": "@ibecsystems/nuxt3-ui-kit",
+  "version": "0.0.1",
+  "description": "Ibec Nuxt3 UI components",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IBEC-BOX/nuxt3-ui-kit.git"
+  },
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -49,6 +52,7 @@
     "@storybook/vue3-vite": "^7.4.3",
     "@types/node": "^18.17.15",
     "changelogen": "^0.5.5",
+    "chromatic": "^7.2.0",
     "eslint": "^8.49.0",
     "eslint-plugin-storybook": "^0.6.14",
     "my-module": "^1.0.0",
@@ -63,5 +67,10 @@
     "extends": [
       "plugin:storybook/recommended"
     ]
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/IBEC-BOX/nuxt3-ui-kit/issues"
+  },
+  "homepage": "https://github.com/IBEC-BOX/nuxt3-ui-kit#readme",
+  "_id": "@ibecsystems/nuxt3-ui-kit@0.0.1"
 }

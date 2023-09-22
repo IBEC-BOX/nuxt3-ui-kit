@@ -24,7 +24,7 @@ export const First = {
   args: {
     firstStyleTop: {
       "logo": {
-        img: "/logo.png",
+        img: "https://avatars.githubusercontent.com/u/129746451?s=48&v=4",
         alt: "Логотип"
       },
       "text_top": [
