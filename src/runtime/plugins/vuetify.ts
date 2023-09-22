@@ -1,5 +1,5 @@
-import { defineNuxtPlugin } from '#app'
 import { createVuetify } from 'vuetify';
+import type { ThemeDefinition } from "vuetify";
 import 'vuetify/styles'; // pre-build css styles
 
 /* Add all components and directives, for dev & prototyping only. */
@@ -11,40 +11,48 @@ import * as directives from 'vuetify/directives';
 import { mdi, aliases as allAliases } from 'vuetify/iconsets/mdi-svg';
 const aliases = allAliases;
 
-export default defineNuxtPlugin((nuxtApp) => {
+const lightTheme: ThemeDefinition = {
+  dark: false,
+  colors: {
+    primary: "#d35400",
+    secondary: "#8e44ad",
+    background: "#ecf0f1",
+    error: "#c0392b",
+    info: "#2980b9",
+    success: "#27ae60",
+    warning: "#f1c40f",
+  },
+};
 
-  const myCustomLightTheme = {
-    dark: false,
-    colors: {
-      background: '#FFFFFF',
-      surface: '#FFFFFF',
-      primary: '#4D4E52',
-      secondary: '#03DAC6',
-      'secondary-darken-1': '#018786',
-      error: '#B00020',
-      info: '#2196F3',
-      success: '#4CAF50',
-      warning: '#FB8C00',
+const darkTheme: ThemeDefinition = {
+  dark: true,
+  colors: {
+    primary: "#d35400",
+    secondary: "#8e44ad",
+    background: "#2f3640",
+    error: "#c0392b",
+    info: "#2980b9",
+    success: "#27ae60",
+    warning: "#f1c40f",
+  },
+};
+
+const vuetify = createVuetify({
+  components,
+  directives,
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: { mdi }
+  },
+  theme: {
+    defaultTheme: "light",
+    themes: {
+      light: lightTheme,
+      dark: darkTheme,
     },
   }
-
-  const vuetify = createVuetify({
-    components,
-    directives,
-    icons: {
-      defaultSet: 'mdi',
-      aliases,
-      sets: { mdi }
-    },
-    theme: {
-      defaultTheme: 'myCustomLightTheme',
-      themes: {
-        myCustomLightTheme
-      }
-    }
-  });
-
-  nuxtApp.vueApp.use(vuetify);
-
-  if (!process.server) console.log('❤️ Initialized Vuetify 3', vuetify);
 });
+
+export default vuetify
+
