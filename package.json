@@ -39,6 +39,7 @@
     "@nuxt/module-builder": "^0.5.1",
     "@nuxt/schema": "^3.7.2",
     "@nuxt/test-utils": "^3.7.3",
+    "@storybook/addon-designs": "^7.0.5",
     "@storybook/addon-essentials": "^7.4.3",
     "@storybook/addon-interactions": "^7.4.3",
     "@storybook/addon-links": "^7.4.3",

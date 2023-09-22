@@ -373,6 +373,12 @@ export const First = {
       // ]
     }
   },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/UmrBZaCGhezw0qx9xuq7Xf/Дизайн-система?node-id=679%3A53571&mode=dev",
+    },
+  },
 };
 
 export const Second = {
