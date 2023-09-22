@@ -25,5 +25,10 @@ export default defineNuxtModule<ModuleOptions>({
       name: 'pagesTestVuetify', // name of the component to be used in vue templates
       filePath: resolver.resolve('runtime/components/Pages/testVuetify.vue')
     })
+
+    addComponent({
+      name: 'partsFooter', // name of the component to be used in vue templates
+      filePath: resolver.resolve('runtime/components/Parts/footer.vue')
+    })
   },
 })

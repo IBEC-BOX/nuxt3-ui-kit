@@ -40,7 +40,9 @@
     "@types/node": "^18.17.15",
     "changelogen": "^0.5.5",
     "eslint": "^8.49.0",
+    "my-module": "^1.0.0",
     "nuxt": "^3.7.3",
+    "sass": "^1.67.0",
     "vitest": "^0.33.0"
   }
 }
