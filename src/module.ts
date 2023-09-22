@@ -18,7 +18,6 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve('./runtime/plugin'))
-    addPlugin(resolver.resolve('./runtime/plugins/vuetify'))
 
     // Components
     addComponent({
