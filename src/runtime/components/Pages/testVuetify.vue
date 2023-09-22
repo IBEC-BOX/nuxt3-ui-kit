@@ -55,32 +55,28 @@ const showDrawer = ref(false);
 
 const firstStyleTop = {
   "logo": {
-    img: "/logo.png",
+    img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
     alt: "Логотип"
   },
-  "text_top": [
-    {
-      id: 1,
-      text: "Let’s get started on something great",
-    },
-    {
-      id: 2,
-      text: "Join over 4,000+ startups already growing with Untitled.",
-    }
-  ],
+  "text_top": {
+    title: "Let’s get started on something great",
+    subtitle: "Join over 4,000+ startups already growing with Untitled."
+  },
   "button_top": [
     {
       id: 1,
-      backgroundColor: "#fff",
-      borderRadius: 8,
+      backgroundColor: "",
+      rounded: "lg",
       leftIcon: "$vuetify",
       text: "Medium Button",
+      size: ""
     },
     {
       id: 2,
-      backgroundColor: "#4D4E52",
-      borderRadius: 8,
-      text: "Medium Button"
+      backgroundColor: "primary",
+      rounded: "lg",
+      text: "Medium Button",
+      size: ""
     }
   ]
 }
@@ -96,252 +92,237 @@ const secondMenu = {
     title: "Logotype",
     subtitle: "Design amazing digital experiences that create more happy in the world."
   },
-  "menu": [
-    {
-      id: 1,
-      menu: [
-        {
-          id: 1,
-          title: "Product"
-        },
-        {
-          id: 2,
-          text: "Overview",
-          link: "",
-        },
-        {
-          id: 3,
-          text: "Features",
-          link: "",
-        },
-        {
-          id: 4,
-          text: "Solutions",
-          link: "",
-        },
-        {
-          id: 5,
-          text: "Tutorials",
-          link: "",
-        },
-        {
-          id: 6,
-          text: "Pricing",
-          link: "",
-        },
-        {
-          id: 7,
-          text: "Releases",
-          link: "",
-        },
-      ]
-    },
-    {
-      id: 2,
-      menu: [
-        {
-          id: 1,
-          title: "Product"
-        },
-        {
-          id: 2,
-          text: "Overview",
-          link: "",
-        },
-        {
-          id: 3,
-          text: "Features",
-          link: "",
-        },
-        {
-          id: 4,
-          text: "Solutions",
-          link: "",
-        },
-        {
-          id: 5,
-          text: "Tutorials",
-          link: "",
-        },
-        {
-          id: 6,
-          text: "Pricing",
-          link: "",
-        },
-        {
-          id: 7,
-          text: "Releases",
-          link: "",
-        },
-      ]
-    },
-    {
-      id: 3,
-      menu: [
-        {
-          id: 1,
-          title: "Product"
-        },
-        {
-          id: 2,
-          text: "Overview",
-          link: "",
-        },
-        {
-          id: 3,
-          text: "Features",
-          link: "",
-        },
-        {
-          id: 4,
-          text: "Solutions",
-          link: "",
-        },
-        {
-          id: 5,
-          text: "Tutorials",
-          link: "",
-        },
-        {
-          id: 6,
-          text: "Pricing",
-          link: "",
-        },
-        {
-          id: 7,
-          text: "Releases",
-          link: "",
-        },
-      ]
-    },
-    {
-      id: 4,
-      menu: [
-        {
-          id: 1,
-          title: "Product"
-        },
-        {
-          id: 2,
-          text: "Overview",
-          link: "",
-        },
-        {
-          id: 3,
-          text: "Features",
-          link: "",
-        },
-        {
-          id: 4,
-          text: "Solutions",
-          link: "",
-        },
-        {
-          id: 5,
-          text: "Tutorials",
-          link: "",
-        },
-        {
-          id: 6,
-          text: "Pricing",
-          link: "",
-        },
-        {
-          id: 7,
-          text: "Releases",
-          link: "",
-        },
-      ]
-    },
-    {
-      id: 5,
-      menu: [
-        {
-          id: 1,
-          title: "Product"
-        },
-        {
-          id: 2,
-          text: "Overview",
-          link: "",
-        },
-        {
-          id: 3,
-          text: "Features",
-          link: "",
-        },
-        {
-          id: 4,
-          text: "Solutions",
-          link: "",
-        },
-        {
-          id: 5,
-          text: "Tutorials",
-          link: "",
-        },
-        {
-          id: 6,
-          text: "Pricing",
-          link: "",
-        },
-        {
-          id: 7,
-          text: "Releases",
-          link: "",
-        },
-      ]
-    },
-  ],
-  // "store": [
-  //   {
-  //     title: "Get the app"
-  //   },
+  // "menu": [
   //   {
   //     id: 1,
-  //     img: "/appstore.svg",
-  //     alt: "appstore",
-  //     link: "/"
+  //     title: "Product",
+  //     links: [
+  //       {
+  //         id: 1,
+  //         text: "Overview",
+  //         link: "/",
+  //       },
+  //       {
+  //         id: 2,
+  //         text: "Features",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 3,
+  //         text: "Solutions",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 4,
+  //         text: "Tutorials",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 5,
+  //         text: "Pricing",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 6,
+  //         text: "Releases",
+  //         link: "",
+  //       },
+  //     ]
   //   },
   //   {
   //     id: 2,
-  //     img: "googleplay.svg",
-  //     alt: "googleplay",
-  //     link: "/"
-  //   },
-  // ],
-  // "nav": [
-  //   {
-  //     id: 1,
-  //     text: "Overview",
-  //     link: "/",
-  //   },
-  //   {
-  //     id: 2,
-  //     text: "Features",
-  //     link: "/",
+  //     title: "Product",
+  //     links: [
+  //       {
+  //         id: 1,
+  //         text: "Overview",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 2,
+  //         text: "Features",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 3,
+  //         text: "Solutions",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 4,
+  //         text: "Tutorials",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 5,
+  //         text: "Pricing",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 6,
+  //         text: "Releases",
+  //         link: "",
+  //       },
+  //     ]
   //   },
   //   {
   //     id: 3,
-  //     text: "Pricing",
-  //     link: "/",
+  //     title: "Product",
+  //     links: [
+  //       {
+  //         id: 1,
+  //         text: "Overview",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 2,
+  //         text: "Features",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 3,
+  //         text: "Solutions",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 4,
+  //         text: "Tutorials",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 5,
+  //         text: "Pricing",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 6,
+  //         text: "Releases",
+  //         link: "",
+  //       },
+  //     ]
   //   },
   //   {
   //     id: 4,
-  //     text: "Careers",
-  //     link: "/",
+  //     title: "Product",
+  //     links: [
+  //       {
+  //         id: 1,
+  //         text: "Overview",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 2,
+  //         text: "Features",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 3,
+  //         text: "Solutions",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 4,
+  //         text: "Tutorials",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 5,
+  //         text: "Pricing",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 6,
+  //         text: "Releases",
+  //         link: "",
+  //       },
+  //     ]
   //   },
   //   {
   //     id: 5,
-  //     text: "Help centre",
-  //     link: "/",
+  //     title: "Product",
+  //     links: [
+  //       {
+  //         id: 1,
+  //         text: "Overview",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 2,
+  //         text: "Features",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 3,
+  //         text: "Solutions",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 4,
+  //         text: "Tutorials",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 5,
+  //         text: "Pricing",
+  //         link: "",
+  //       },
+  //       {
+  //         id: 6,
+  //         text: "Releases",
+  //         link: "",
+  //       },
+  //     ]
   //   },
-  //   {
-  //     id: 6,
-  //     text: "Privacy",
-  //     link: "/",
-  //   },
-  // ]
+  // ],
+  "store": [
+    // {
+    //   title: "Get the app"
+    // },
+    {
+      id: 1,
+      img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+      alt: "appstore",
+      link: "/"
+    },
+    {
+      id: 2,
+      img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+      alt: "googleplay",
+      link: "/"
+    },
+  ],
+  "nav": [
+    {
+      id: 1,
+      text: "Overview",
+      link: "/",
+    },
+    {
+      id: 2,
+      text: "Features",
+      link: "/",
+    },
+    {
+      id: 3,
+      text: "Pricing",
+      link: "/",
+    },
+    {
+      id: 4,
+      text: "Careers",
+      link: "/",
+    },
+    {
+      id: 5,
+      text: "Help centre",
+      link: "/",
+    },
+    {
+      id: 6,
+      text: "Privacy",
+      link: "/",
+    },
+  ]
 }
 
 const footerBottom = ref({

@@ -15,6 +15,7 @@ const lightTheme: ThemeDefinition = {
   dark: false,
   colors: {
     primary: "#d35400",
+    'primary-gray': '#74767A',
     secondary: "#8e44ad",
     background: "#ecf0f1",
     error: "#c0392b",
@@ -28,6 +29,7 @@ const darkTheme: ThemeDefinition = {
   dark: true,
   colors: {
     primary: "#d35400",
+    'primary-gray': '#74767A',
     secondary: "#8e44ad",
     background: "#2f3640",
     error: "#c0392b",
@@ -55,4 +57,5 @@ const vuetify = createVuetify({
 });
 
 export default vuetify
+
 
