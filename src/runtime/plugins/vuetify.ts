@@ -13,6 +13,21 @@ const aliases = allAliases;
 
 export default defineNuxtPlugin((nuxtApp) => {
 
+  const myCustomLightTheme = {
+    dark: false,
+    colors: {
+      background: '#FFFFFF',
+      surface: '#FFFFFF',
+      primary: '#4D4E52',
+      secondary: '#03DAC6',
+      'secondary-darken-1': '#018786',
+      error: '#B00020',
+      info: '#2196F3',
+      success: '#4CAF50',
+      warning: '#FB8C00',
+    },
+  }
+
   const vuetify = createVuetify({
     components,
     directives,
@@ -20,6 +35,12 @@ export default defineNuxtPlugin((nuxtApp) => {
       defaultSet: 'mdi',
       aliases,
       sets: { mdi }
+    },
+    theme: {
+      defaultTheme: 'myCustomLightTheme',
+      themes: {
+        myCustomLightTheme
+      }
     }
   });
 
