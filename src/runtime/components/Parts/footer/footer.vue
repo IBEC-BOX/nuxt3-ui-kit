@@ -1,6 +1,6 @@
 <template>
   <v-footer class="footer">
-    <v-container>
+    <v-container class="px-0">
       <div class="footer-top-first" v-if="Object.keys(firstStyleTop).length">
         <v-row class="px-0 py-10 py-sm-11">
           <v-col cols="12" align="center" justify="center" class="mb-4 mb-sm-6">
@@ -8,8 +8,7 @@
               aspect-ratio="1/1"
               cover
               :width="60"
-              :src="firstStyleTop.logo.img"
-              :alt="firstStyleTop.logo.alt"
+              :src="logo.img"
             />
           </v-col>
           <v-col cols="12" align="center" justify="center" class="mb-4 mb-sm-6 px-0">
@@ -20,9 +19,9 @@
               {{ firstStyleTop.text_top.subtitle }}
             </p>
           </v-col>
-          <v-col cols="12" class="d-flex justify-center align-center">
+          <v-col cols="12" class="d-flex justify-center align-center px-0 flex-wrap">
             <v-btn
-              class="mr-sm-2 mr-3 border text-body-1"
+              class="mr-sm-2 mr-3 border text-body-1 mb-4"
               elevation="0"
               v-for="(button, index) in firstStyleTop.button_top"
               :key="button.id"
@@ -50,28 +49,28 @@
           </v-col>
         </v-row>
       </div>
-      <div class="footer-menu" v-if="Object.keys(middleMenu).length">
+      <div class="footer-menu" v-if="menu.length || logoInBody === true || store.length">
         <v-row class="pb-10 py-sm-15">
           <v-col
             cols="12"
-            :md="middleMenu.menu ? '3' : '10'"
-            v-if="middleMenu.logo"
+            :md="menu.length ? '3' : '10'"
+            v-if="logoInBody === true"
           >
             <v-img
-              v-if="middleMenu.logo.img && middleMenu.logo.alt"
-              :src="middleMenu.logo.img"
-              :alt="middleMenu.logo.alt"
+              v-if="logo.img"
+              :src="logo.img"
               :width="60"
               :heigth="60"
+              :class="logo.title || logo.subtitle ? 'mb-7' : 'mb-10'"
             />
-            <p class="font-weight-medium mb-3 mb-sm-7 text-primary text-subtitle-1" v-if="middleMenu.logo.title">
-              {{ middleMenu.logo.title }}
+            <p class="font-weight-medium mb-3 mb-sm-7 text-primary text-subtitle-1" v-if="logo.title">
+              {{ logo.title }}
             </p>
-            <p class="mb-5 mb-sm-7 text-primary-gray text-body-2" style="max-width: 265px" v-if="middleMenu.logo.subtitle">
-              {{ middleMenu.logo.subtitle }}
+            <p class="mb-5 mb-sm-7 text-primary-gray text-body-2" style="max-width: 265px" v-if="logo.subtitle">
+              {{ logo.subtitle }}
             </p>
-            <ul class="d-flex flex-wrap" style="column-gap: 24px" v-if="middleMenu.nav">
-              <li class="mb-4 mb-sm-2" v-for="item in middleMenu.nav" :key="item.id">
+            <ul class="d-flex flex-wrap" style="column-gap: 24px" v-if="nav.length && navInBottom === false">
+              <li class="mb-4 mb-sm-2" v-for="item in nav" :key="item.id">
                 <nuxt-link class="text-primary text-body-1" :to="item.link">
                   {{ item.text }}
                 </nuxt-link>
@@ -80,76 +79,81 @@
           </v-col>
           <v-col
             cols="6"
-            :sm="middleMenu.logo ? '4' : '3'"
-            :md="middleMenu.logo ? (index === middleMenu.menu.length - 1 ? '1' : '2') : '2'"
-            v-for="(menu, index) in middleMenu.menu"
-            :key="menu.id"
+            :sm="logoInBody === true ? '4' : '3'"
+            :md="logoInBody === true ? (index === menu.length - 1 ? '1' : '2') : '2'"
+            v-for="(menuItem, index) in menu"
+            :key="menuItem.id"
           >
+            <p class="text-primary-gray mb-4 mb-sm-5 text-body-2">{{ menuItem.title }}</p>
             <ul>
-              <p class="text-primary-gray mb-4 mb-sm-5 text-body-2">{{ menu.title }}</p>
-              <li class="mb-2 text-body-1" v-for="item in menu.links" :key="item.id">
+              <li class="mb-2 text-body-1" v-for="item in menuItem.links" :key="item.id">
                 <nuxt-link class="text-primary" :to="item.link">{{ item.text }}</nuxt-link>
               </li>
             </ul>
           </v-col>
           <v-col
-            :cols="middleMenu.menu ? '6' : '12'"
-            sm="2"
-            v-if="middleMenu.store"
+            :cols="menu.length ? '6' : '12'"
+            :sm="menu.length ? '2' : '8' "
+            :md="menu.length ? '2' : '2'"
+            v-if="store.length"
+            :class="{'d-sm-none': storeOnlyMob}"
           >
-            <p v-if="middleMenu.store[0].title" class="text-primary mb-5">{{ middleMenu.store[0].title }}</p>
-            <ul class="d-flex justify-start flex-row justify-lg-end flex-lg-column">
+            <p v-if="store[0].title" class="text-primary mb-5">{{ store[0].title }}</p>
+            <ul class="d-flex justify-start flex-row justify-lg-end flex-lg-column flex-wrap" :class="{'flex-column': menu.length}">
               <li
-                v-for="item in middleMenu.store"
+                v-for="item in store"
                 :key="item.id"
                 class="mr-4"
               >
-                <nuxt-link :to="item.link" v-if="item.img && item.alt">
+                <a :href="item.link" v-if="item.img">
                   <v-img
                     class="mb-4"
                     :width="140"
                     aspect-ratio="16/9"
-                    v-if="item.img && item.alt"
+                    v-if="item.img"
                     :src="item.img"
-                    :alt="item.alt"
                   />
-                </nuxt-link>
+                </a>
               </li>
             </ul>
           </v-col>
         </v-row>
       </div>
-      <hr v-if="showBorder === true" style="color: #E6E7EB" />
-      <div class="footer-bottom" v-if="Object.keys(footerBottom).length">
-        <v-row class="pt-7 pb-sm-15">
-          <v-col cols="12" sm="6" v-if="footerBottom.logo">
+      <hr v-if="showBorder === true" class="text-primary-gray" />
+      <div class="footer-bottom">
+        <v-row class="pt-7 pb-sm-15 align-center">
+          <v-col cols="12" sm="6" v-if="logoInBottom === true">
             <v-img
               aspect-ratio="4/3"
               cover
-              :width="32"
-              :src="footerBottom.logo.img"
-              :alt="footerBottom.logo.alt"
+              :width="60"
+              :src="logo.img"
             />
-            <p class="font-weight-medium" style="color: #4D4E52; font-size: 24px">{{ footerBottom.logo.title }}</p>
+            <p class="font-weight-medium text-primary text-h5 font-weight-medium">{{ logo.title }}</p>
           </v-col>
-          <v-col cols="12" sm="6" v-if="footerBottom.copyright">
+          <v-col cols="12" sm="6" v-if="copyright.length">
             <p
-              :class="{ 'justify-end': footerBottom.logo, 'justify-start': !footerBottom.logo }"
+              :class="logoInBottom === true ? 'justify-end' : 'justify-start'"
               class="d-flex text-primary-gray"
-            >{{ footerBottom.copyright.title }}</p>
+            >{{ copyright }}</p>
           </v-col>
-          <v-col cols="12" sm="6" v-if="footerBottom.nav">
+          <v-col cols="12" sm="6" v-if="navInBottom === true">
             <ul class="d-flex flex-wrap justify-end" style="column-gap: 20px">
-              <li v-for="item in footerBottom.nav" :key="item.id">
+              <li v-for="item in nav" :key="item.id">
                 <nuxt-link class="text-primary-gray" :to="item.link">{{ item.text }}</nuxt-link>
               </li>
             </ul>
           </v-col>
-          <v-col cols="12" sm="6" v-if="footerBottom.social">
+          <v-col cols="12" sm="6" v-if="social.length">
             <ul class="d-flex flex-wrap justify-end" style="column-gap: 20px">
-              <li v-for="item in footerBottom.social" :key="item.id">
+              <li v-for="item in social" :key="item.id">
                 <a :href="item.link">
-                  <v-img class="cursor-pointer" :width="32" :src="item.img" :alt="item.alt" />
+                  <v-img
+                    aspect-ratio="1/1"
+                    class="cursor-pointer mb-4"
+                    :width="32"
+                    :src="item.img"
+                  />
                 </a>
               </li>
             </ul>
@@ -162,13 +166,22 @@
 
 <script setup>
 const props = defineProps({
-  firstStyleTop: {type: Object, default: () => ({}) },
+  logo: { type: Object, default: () => ({}) },
+  firstStyleTop: { type: Object, default: () => ({}) },
   secondStyleTop: { type: Object, default: () => ({}) },
 
-  middleMenu: { type: Object, default: () => ({}) },
+  menu: { type: Array, default: () => [] },
+  store: { type: Array, default: () => [] },
+  nav: { type: Array, default: () => [] },
+  social: { type: Array, default: () => [] },
 
-  footerBottom: { type: Object, default: () => ({}) },
-  showBorder: { type: Boolean, default: true}
+  showBorder: { type: Boolean, default: false },
+  logoInBody: { type: Boolean, default: false },
+  logoInBottom: { type: Boolean, default: false },
+  navInBottom: { type: Boolean, default: false },
+  storeOnlyMob: { type: Boolean, default: false },
+
+  copyright: { type: String, default: ""},
 })
 </script>
 
