@@ -7,10 +7,17 @@
       <p class="text-center"><b>I'm the drawer</b></p>
     </v-navigation-drawer>
 
-    <v-app-bar>
-      <v-app-bar-nav-icon @click="toggle" />
-      <v-toolbar-title>I'm the header</v-toolbar-title>
-    </v-app-bar>
+<!--    <v-app-bar>-->
+<!--      <v-app-bar-nav-icon @click="toggle" />-->
+<!--      <v-toolbar-title>I'm the header</v-toolbar-title>-->
+<!--    </v-app-bar>-->
+
+    <HeaderOne
+      sticky
+      :menu="header_menu"
+      header-active-link-variant="bottom_line"
+      :buttons="header_buttons"
+    />
 
     <v-main class="d-flex align-center">
       <v-container>
@@ -51,6 +58,8 @@
 <script setup>
 import { ref } from 'vue'
 import footerOne from "../Parts/footer/footer.vue";
+import HeaderOne from '../Parts/header/HeaderOne.vue'
+
 const showDrawer = ref(false);
 
 const firstStyleTop = {
@@ -84,6 +93,7 @@ const firstStyleTop = {
     }
   ]
 }
+
 const secondStyleTop = {
   title: "Join our newsletter",
   subtitle: "We’ll send you a nice letter once per week. No spam."
@@ -414,6 +424,70 @@ const toggle= () => {
   console.log('usedToggle()');
   showDrawer.value = !showDrawer.value;
 };
+
+const header_menu = [
+  {
+    id: 0,
+    title: 'Home',
+    link: '/',
+  },
+
+  {
+    id: 0,
+    title: 'About us',
+    link: '#',
+  },
+
+  {
+    id: 0,
+    title: 'Services',
+    link: '#',
+  },
+
+  {
+    id: 0,
+    title: 'Projects',
+    link: '#',
+  },
+
+  {
+    id: 0,
+    title: 'Team',
+    link: '#',
+  },
+
+  {
+    id: 0,
+    title: 'Career',
+    link: '#',
+  },
+]
+
+const func = function() {
+  console.log('Button function')
+}
+
+const header_buttons = [
+  {
+    id: 0,
+    text: 'Contact us',
+    color: '#4D4E52',
+    styles: {
+      borderRadius: '8px',
+      borderColor: '#4D4E52'
+    },
+    variant: 'outlined',
+    function: func,
+  },
+  {
+    id: 1,
+    text: 'Login',
+    color: '#4D4E52',
+    styles: {
+      borderRadius: '8px',
+    }
+  }
+]
 
 /* Redundant unused code to test treeshaking */
 const unusedFunction = () => console.log('unusedFunction');
