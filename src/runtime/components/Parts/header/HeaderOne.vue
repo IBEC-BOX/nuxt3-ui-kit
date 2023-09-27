@@ -1,30 +1,54 @@
 <template>
-  <header class="header" :class="[headerActiveLinkVariant, isSticky]">
-    <v-container class="d-flex py-0">
-      <!-- Logo -->
-      <div class="h-100 d-flex align-center flex-grow-1">
-        <BurgerMenu v-model="menu_open" class="d-flex d-md-none mr-2" />
-        <img :src="logo" height="28" alt="Logo">
-      </div>
-      <!-- Logo END -->
+  <div class="w-100">
+    <v-app-bar class="header" content="align-stretch" :elevation="menu_open ? 0 : 1" :class="[headerActiveLinkVariant]">
+      <v-container class="d-flex align-stretch py-0">
+        <!-- Burger -->
+        <v-app-bar-nav-icon class="d-block d-lg-none" @click="menu_open = !menu_open" />
+        <!-- Burger END -->
 
-      <!-- Menu -->
-      <ul class="header-menu ml-auto flex-grow-1 justify-center d-md-flex d-none">
-        <li v-for="menu_item in menu" :key="`header-menu-item-${menu_item.id}`">
-          <NuxtLink
-            class="header-menu-link"
-            active-class="header-menu-link-active"
-            :to="menu_item.link"
+        <!-- Logo -->
+        <div class="d-flex align-center flex-grow-1">
+          <v-img :src="logo" max-width="48" alt="Logo" />
+        </div>
+        <!-- Logo END -->
+
+        <!-- Menu -->
+        <ul class="header-menu ml-auto flex-grow-1 justify-center d-md-flex d-none">
+          <li v-for="menu_item in menu" :key="`header-menu-item-${menu_item.id}`">
+            <NuxtLink
+              class="header-menu-link"
+              active-class="header-menu-link-active"
+              :to="menu_item.link"
+            >
+              {{ menu_item.title }}
+            </NuxtLink>
+          </li>
+        </ul>
+        <!-- Menu END -->
+
+        <!-- Buttons -->
+        <div class="buttons-container d-flex align-center gap-1">
+          <v-btn
+            class="text-body-1"
+            :class="[button.class]"
+            v-for="button in buttons"
+            :key="`header-button-${button.id}`"
+            :elevation="'elevation' in button ? button.elevation : '0'"
+            :variant="button.variant"
+            :color="button.color"
+            @click="button.function"
           >
-            {{ menu_item.title }}
-          </NuxtLink>
-        </li>
-      </ul>
-      <!-- Menu END -->
+            {{ button.text }}
+          </v-btn>
+        </div>
+        <!-- Buttons END -->
+      </v-container>
+    </v-app-bar>
 
+    <v-navigation-drawer class="w-100 d-flex d-lg-none" v-model="menu_open" location="left">
       <!-- Menu -->
       <ul
-        class="header-menu header-menu-mobile position-fixed w-100 h-100 ml-auto bg-white d-md-none d-flex flex-column"
+        class="header-menu header-menu-mobile w-100 h-100 bg-white d-md-none d-flex flex-column"
         :class="{'open': menu_open}"
       >
         <li v-for="menu_item in menu" :key="`header-menu-item-${menu_item.id}`">
@@ -38,25 +62,8 @@
         </li>
       </ul>
       <!-- Menu END -->
-
-      <!-- Buttons -->
-      <div class="buttons-container d-flex align-center gap-1">
-        <v-btn
-          class="text-body-1"
-          v-for="button in buttons"
-          :key="`header-button-${button.id}`"
-          :elevation="'elevation' in button ? button.elevation : '0'"
-          :variant="button.variant"
-          :color="button.color"
-          :style="button.styles"
-          @click="button.function"
-        >
-          {{ button.text }}
-        </v-btn>
-      </div>
-      <!-- Buttons END -->
-    </v-container>
-  </header>
+    </v-navigation-drawer>
+  </div>
 </template>
 
 <script setup>
@@ -91,24 +98,12 @@
     }
   })
 
-  const isSticky = {
-    'position-sticky': props.sticky
-  }
-
   // Menu
   const menu_open = ref(false)
 </script>
 
 <style lang="scss">
   .header {
-    display: flex;
-    height: 78px;
-    box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.08);
-    background: #fff;
-    z-index: 1000;
-    width: 100%;
-    top: 0;
-
     &-menu {
       list-style: none;
       display: flex;
@@ -126,12 +121,9 @@
     }
 
     &-menu-mobile {
-      position: fixed;
-      top: 78px;
-      left: -100%;
       padding: 8px 18px;
       gap: 0;
-      transition: .3s ease;
+      //transition: .3s ease;
 
       & .header-menu-link {
         width: 100%;
@@ -140,10 +132,6 @@
         color: black;
         border-bottom: 1px solid #E6E7EB;
       }
-    }
-
-    &-menu-mobile.open {
-      left: 0;
     }
   }
 
