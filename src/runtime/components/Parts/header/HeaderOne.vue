@@ -67,8 +67,6 @@
 </template>
 
 <script setup>
-  import BurgerMenu from '../../BurgerMenu.vue'
-
   import { ref } from 'vue'
 
   const props = defineProps({
