@@ -471,21 +471,17 @@ const header_buttons = [
   {
     id: 0,
     text: 'Contact us',
-    color: '#4D4E52',
-    styles: {
-      borderRadius: '8px',
-      borderColor: '#4D4E52'
-    },
+    color: 'grey-darken-3',
     variant: 'outlined',
     function: func,
   },
+
   {
     id: 1,
     text: 'Login',
-    color: '#4D4E52',
-    styles: {
-      borderRadius: '8px',
-    }
+    color: 'grey-darken-3',
+    elevation: '1',
+    variant: 'flat',
   }
 ]
 
