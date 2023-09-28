@@ -13,8 +13,9 @@ export default defineNuxtModule<ModuleOptions>({
     theme: 'light'
   },
   setup (options, nuxt) {
-    console.log(options)
     const resolver = createResolver(import.meta.url)
+
+    nuxt.options.css.push(resolver.resolve('./runtime/style/vuetify.scss'))
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve('./runtime/plugin'))
@@ -29,5 +30,11 @@ export default defineNuxtModule<ModuleOptions>({
       name: 'partsFooter', // name of the component to be used in vue templates
       filePath: resolver.resolve('runtime/components/Parts/footer/footer.vue')
     })
-  },
+
+    // Headers
+    addComponent({
+      name: 'HeaderOne',
+      filePath: resolver.resolve('runtime/components/Parts/HeaderOne.vue')
+    })
+  }
 })

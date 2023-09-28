@@ -7,15 +7,22 @@
       <p class="text-center"><b>I'm the drawer</b></p>
     </v-navigation-drawer>
 
-    <v-app-bar>
-      <v-app-bar-nav-icon @click="toggle" />
-      <v-toolbar-title>I'm the header</v-toolbar-title>
-    </v-app-bar>
+<!--    <v-app-bar>-->
+<!--      <v-app-bar-nav-icon @click="toggle" />-->
+<!--      <v-toolbar-title>I'm the header</v-toolbar-title>-->
+<!--    </v-app-bar>-->
+
+    <HeaderOne
+      sticky
+      :menu="header_menu"
+      header-active-link-variant="bottom_line"
+      :buttons="header_buttons"
+    />
 
     <v-main class="d-flex align-center">
       <v-container>
         <v-sheet elevation="5" class="py-4 text-center">
-          <h1 class="text-h5">Built and styled with Vuetify 3</h1>
+          <h1 class="text-18">Built and styled with Vuetify 3</h1>
           <p>Minimized production bundle (70kB in tot)</p>
           <v-btn class="mt-4">press me to ripple</v-btn>
         </v-sheet>
@@ -56,6 +63,8 @@
 <script setup>
 import { ref } from 'vue'
 import footerOne from "../Parts/footer/footer.vue";
+import HeaderOne from '../Parts/header/HeaderOne.vue'
+
 const showDrawer = ref(false);
 
 const logo = {
@@ -88,6 +97,7 @@ const firstStyleTop = {
     }
   ]
 }
+
 const secondStyleTop = {
   title: "Join our newsletter",
   subtitle: "We’ll send you a nice letter once per week. No spam."
@@ -360,6 +370,66 @@ const toggle= () => {
   console.log('usedToggle()');
   showDrawer.value = !showDrawer.value;
 };
+
+const header_menu = [
+  {
+    id: 0,
+    title: 'Home',
+    link: '/',
+  },
+
+  {
+    id: 0,
+    title: 'About us',
+    link: '#',
+  },
+
+  {
+    id: 0,
+    title: 'Services',
+    link: '#',
+  },
+
+  {
+    id: 0,
+    title: 'Projects',
+    link: '#',
+  },
+
+  {
+    id: 0,
+    title: 'Team',
+    link: '#',
+  },
+
+  {
+    id: 0,
+    title: 'Career',
+    link: '#',
+  },
+]
+
+const func = function() {
+  console.log('Button function')
+}
+
+const header_buttons = [
+  {
+    id: 0,
+    text: 'Contact us',
+    color: 'grey-darken-3',
+    variant: 'outlined',
+    function: func,
+  },
+
+  {
+    id: 1,
+    text: 'Login',
+    color: 'grey-darken-3',
+    elevation: '1',
+    variant: 'flat',
+  }
+]
 
 /* Redundant unused code to test treeshaking */
 const unusedFunction = () => console.log('unusedFunction');
