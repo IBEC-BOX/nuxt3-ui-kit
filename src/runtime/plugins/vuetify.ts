@@ -19,8 +19,10 @@ const lightTheme: ThemeDefinition = {
     secondary: "#8e44ad",
     background: "#ecf0f1",
     error: "#c0392b",
+    'error-opacity': "#FFE2E4",
     info: "#2980b9",
     success: "#27ae60",
+    'success-opacity': "#C2FFE3",
     warning: "#f1c40f",
   },
 };

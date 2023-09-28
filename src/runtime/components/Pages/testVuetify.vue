@@ -20,341 +20,51 @@
           <v-btn class="mt-4">press me to ripple</v-btn>
         </v-sheet>
       </v-container>
+<!--      <Card-->
+<!--        :styleCard="'vacancy'"-->
+<!--        :max-width="350"-->
+<!--        :img-src="'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'"-->
+<!--        :img-alt="'Картинка'"-->
+<!--        :title="'Card Title'"-->
+<!--        :subtitle="'Card Title'"-->
+<!--        :text="'A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.'"-->
+<!--        :date="'02.04.2023'"-->
+<!--        :author="'by Tayler'"-->
+<!--        :price="'150 000 - 180 000 T'"-->
+<!--        :statusVacancy="statusVacancy"-->
+<!--        :city="'Almaty Kz'"-->
+<!--      >-->
+<!--        <template v-slot:button>-->
+<!--          <v-btn>-->
+<!--            sad-->
+<!--          </v-btn>-->
+<!--        </template>-->
+<!--      </Card>-->
     </v-main>
 
-<!--    <v-footer app elevation="5">-->
-<!--      <v-row no-gutters justify="center"-->
-<!--             class="text-overline font-weight-black">-->
-<!--        <p class="my-auto">I'm the footer</p>-->
-<!--        <v-spacer />-->
-<!--        <p class="my-auto">See how I was built</p>-->
-<!--        <v-btn icon variant="plain">-->
-<!--          <v-icon icon="$info" color="green-accent-4" />-->
-<!--        </v-btn>-->
-<!--      </v-row>-->
-<!--    </v-footer>-->
-    <footerOne
-      :logo="logo"
-      :firstStyleTop="firstStyleTop"
-      :showBorder="true"
-      :logoInBody="true"
-      :store="store"
-      :nav="nav"
-      :copyright="copyright"
-      :social="social"
-    >
-      <template v-slot:input>
-        <v-text-field placeholder="Enter your email"></v-text-field>
-        <v-btn size="large">
-          Medium Button
+    <v-footer app elevation="5">
+      <v-row no-gutters justify="center"
+             class="text-overline font-weight-black">
+        <p class="my-auto">I'm the footer</p>
+        <v-spacer />
+        <p class="my-auto">See how I was built</p>
+        <v-btn icon variant="plain">
+          <v-icon icon="$info" color="green-accent-4" />
         </v-btn>
-      </template>
-    </footerOne>
+      </v-row>
+    </v-footer>
   </v-app>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import footerOne from "../Parts/footer/footer.vue";
+import Card from "../Parts/Card.vue"
 const showDrawer = ref(false);
 
-const logo = {
-  img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
-  alt: "Логотип",
-  title: "",
-  subtitle: "",
+const statusVacancy = {
+  text: "Reply without resume",
+  status: "success"
 }
-
-const firstStyleTop = {
-  "text_top": {
-    title: "Let’s get started on something great",
-    subtitle: "Join over 4,000+ startups already growing with Untitled."
-  },
-  "button_top": [
-    {
-      id: 1,
-      backgroundColor: "",
-      rounded: "lg",
-      leftIcon: "$vuetify",
-      text: "Medium Button",
-      size: ""
-    },
-    {
-      id: 2,
-      backgroundColor: "primary",
-      rounded: "lg",
-      text: "Medium Button",
-      size: ""
-    }
-  ]
-}
-const secondStyleTop = {
-  title: "Join our newsletter",
-  subtitle: "We’ll send you a nice letter once per week. No spam."
-}
-
-const menu = [
-  {
-    id: 1,
-    title: "Product",
-    links: [
-      {
-        id: 1,
-        text: "Overview",
-        link: "/",
-      },
-      {
-        id: 2,
-        text: "Features",
-        link: "",
-      },
-      {
-        id: 3,
-        text: "Solutions",
-        link: "",
-      },
-      {
-        id: 4,
-        text: "Tutorials",
-        link: "",
-      },
-      {
-        id: 5,
-        text: "Pricing",
-        link: "",
-      },
-      {
-        id: 6,
-        text: "Releases",
-        link: "",
-      },
-    ]
-  },
-  {
-    id: 2,
-    title: "Product",
-    links: [
-      {
-        id: 1,
-        text: "Overview",
-        link: "",
-      },
-      {
-        id: 2,
-        text: "Features",
-        link: "",
-      },
-      {
-        id: 3,
-        text: "Solutions",
-        link: "",
-      },
-      {
-        id: 4,
-        text: "Tutorials",
-        link: "",
-      },
-      {
-        id: 5,
-        text: "Pricing",
-        link: "",
-      },
-      {
-        id: 6,
-        text: "Releases",
-        link: "",
-      },
-    ]
-  },
-  {
-    id: 3,
-    title: "Product",
-    links: [
-      {
-        id: 1,
-        text: "Overview",
-        link: "",
-      },
-      {
-        id: 2,
-        text: "Features",
-        link: "",
-      },
-      {
-        id: 3,
-        text: "Solutions",
-        link: "",
-      },
-      {
-        id: 4,
-        text: "Tutorials",
-        link: "",
-      },
-      {
-        id: 5,
-        text: "Pricing",
-        link: "",
-      },
-      {
-        id: 6,
-        text: "Releases",
-        link: "",
-      },
-    ]
-  },
-  {
-    id: 4,
-    title: "Product",
-    links: [
-      {
-        id: 1,
-        text: "Overview",
-        link: "",
-      },
-      {
-        id: 2,
-        text: "Features",
-        link: "",
-      },
-      {
-        id: 3,
-        text: "Solutions",
-        link: "",
-      },
-      {
-        id: 4,
-        text: "Tutorials",
-        link: "",
-      },
-      {
-        id: 5,
-        text: "Pricing",
-        link: "",
-      },
-      {
-        id: 6,
-        text: "Releases",
-        link: "",
-      },
-    ]
-  },
-  {
-    id: 5,
-    title: "Product",
-    links: [
-      {
-        id: 1,
-        text: "Overview",
-        link: "",
-      },
-      {
-        id: 2,
-        text: "Features",
-        link: "",
-      },
-      {
-        id: 3,
-        text: "Solutions",
-        link: "",
-      },
-      {
-        id: 4,
-        text: "Tutorials",
-        link: "",
-      },
-      {
-        id: 5,
-        text: "Pricing",
-        link: "",
-      },
-      {
-        id: 6,
-        text: "Releases",
-        link: "",
-      },
-    ]
-  },
-]
-const store = [
-  {
-    id: 1,
-    img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
-    alt: "appstore",
-    link: "/"
-  },
-  {
-    id: 2,
-    img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
-    alt: "googleplay",
-    link: "/"
-  },
-]
-const nav = [
-  {
-    id: 1,
-    text: "Overview",
-    link: "/",
-  },
-  {
-    id: 2,
-    text: "Features",
-    link: "/",
-  },
-  {
-    id: 3,
-    text: "Pricing",
-    link: "/",
-  },
-  {
-    id: 4,
-    text: "Careers",
-    link: "/",
-  },
-  {
-    id: 5,
-    text: "Help centre",
-    link: "/",
-  },
-  {
-    id: 6,
-    text: "Privacy",
-    link: "/",
-  },
-]
-
-const copyright = "2023 Untitled UI. All rights reserverd"
-const social = [
-  {
-    id: 1,
-    img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
-    link: ""
-  },
-  {
-    id: 2,
-    img: "",
-    link: ""
-  },
-  {
-    id: 3,
-    img: "",
-    link: ""
-  },
-  {
-    id: 4,
-    img: "",
-    link: ""
-  },
-  {
-    id: 5,
-    img: "",
-    link: ""
-  },
-  {
-    id: 6,
-    img: "",
-    link: ""
-  },
-]
 
 const toggle= () => {
   console.log('usedToggle()');
