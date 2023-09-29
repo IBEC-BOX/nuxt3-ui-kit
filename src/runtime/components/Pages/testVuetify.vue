@@ -7,11 +7,6 @@
       <p class="text-center"><b>I'm the drawer</b></p>
     </v-navigation-drawer>
 
-<!--    <v-app-bar>-->
-<!--      <v-app-bar-nav-icon @click="toggle" />-->
-<!--      <v-toolbar-title>I'm the header</v-toolbar-title>-->
-<!--    </v-app-bar>-->
-
     <HeaderOne
       sticky
       :menu="header_menu"
@@ -29,49 +24,31 @@
       </v-container>
     </v-main>
 
-<!--    <v-footer app elevation="5">-->
-<!--      <v-row no-gutters justify="center"-->
-<!--             class="text-overline font-weight-black">-->
-<!--        <p class="my-auto">I'm the footer</p>-->
-<!--        <v-spacer />-->
-<!--        <p class="my-auto">See how I was built</p>-->
-<!--        <v-btn icon variant="plain">-->
-<!--          <v-icon icon="$info" color="green-accent-4" />-->
-<!--        </v-btn>-->
-<!--      </v-row>-->
-<!--    </v-footer>-->
-    <footerOne
-      :logo="logo"
-      :firstStyleTop="firstStyleTop"
-      :showBorder="true"
-      :logoInBody="true"
-      :store="store"
-      :nav="nav"
-      :copyright="copyright"
-      :social="social"
-    >
-      <template v-slot:input>
-        <v-text-field placeholder="Enter your email"></v-text-field>
-        <v-btn size="large">
-          Medium Button
+    <v-footer app elevation="5">
+      <v-row no-gutters justify="center"
+             class="text-overline font-weight-black">
+        <p class="my-auto">I'm the footer</p>
+        <v-spacer />
+        <p class="my-auto">See how I was built</p>
+        <v-btn icon variant="plain">
+          <v-icon icon="$info" color="green-accent-4" />
         </v-btn>
-      </template>
-    </footerOne>
+      </v-row>
+    </v-footer>
   </v-app>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import Card from "../Parts/Card.vue"
 import footerOne from "../Parts/footer/footer.vue";
 import HeaderOne from '../Parts/header/HeaderOne.vue'
 
 const showDrawer = ref(false);
 
-const logo = {
-  img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
-  alt: "Логотип",
-  title: "",
-  subtitle: "",
+const statusVacancy = {
+  text: "Reply without resume",
+  status: "success"
 }
 
 const firstStyleTop = {
