@@ -1,4 +1,5 @@
 import Card from '../runtime/components/Parts/Card.vue'
+import Footer from "../runtime/components/Parts/footer/footer.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
@@ -31,19 +32,19 @@ export default {
   },
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { Card },
-  template: `
-    <Card>
+export const Standard = {
+  render: (args) => ({
+    components: { Card },
+    setup() {
+      console.log(args)
+      return { args };
+    },
+    template:`<Card v-bind="args">
       <template v-if="${'buttonSlot' in args}" v-slot:button>
         ${args.buttonSlot}
       </template>
-    </Card>
-  `
-});
-
-export const Standard = {
+      </Card>`
+  }),
   args: {
     buttonSlot: `<v-btn size="large">MEDIUM BUTTON</v-btn>`,
     dateAuthorRight: false,
@@ -57,10 +58,6 @@ export const Standard = {
     text: "A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.",
     date: "02.04.2023",
     author: "by Tyler, The Creator",
-    subtitle: "",
-    price: "",
-    city: "",
-    statusVacancy: {}
   },
   parameters: {
     design: {
@@ -71,6 +68,7 @@ export const Standard = {
 }
 
 export const StandardHorizontal = {
+  render: Standard.render,
   args: {
     dateAuthorRight: true,
     horizontalCard: true,
@@ -84,10 +82,6 @@ export const StandardHorizontal = {
     text: "A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.",
     date: "02.04.2023",
     author: "by Tyler, The Creator",
-    subtitle: "",
-    price: "",
-    city: "",
-    statusVacancy: {}
   },
   parameters: {
     design: {
@@ -98,6 +92,7 @@ export const StandardHorizontal = {
 }
 
 export const vacancyError = {
+  render: Standard.render,
   args: {
     buttonSlot: `<v-btn size="large">MEDIUM BUTTON</v-btn>`,
     width: 349,
@@ -123,7 +118,10 @@ export const vacancyError = {
   },
 }
 
+
+
 export const vacancySuccess = {
+  render: Standard.render,
   args: {
     buttonSlot: `<v-btn size="large">MEDIUM BUTTON</v-btn>`,
     width: 349,
@@ -132,8 +130,6 @@ export const vacancySuccess = {
     imgSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
     imgAlt: "Картинка",
     title: "Card Title",
-    subtitle: "",
-    price: "",
     positionImageVacancy: "start",
     text: "A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.",
     city: "Almaty, KZ",
