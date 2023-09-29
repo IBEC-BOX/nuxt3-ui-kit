@@ -1,9 +1,10 @@
 <template>
   <v-card
-    class="card-standard"
-    :width="+width + 'px'"
+    class="card-standard w-100"
+    :max-width="+maxWidth + 'px'"
+    :min-height="+minHeight == '' ? 100 + '%' : minHeight"
     :variant="variantCard"
-    :class="[horizontalCard === true ? 'd-flex pl-4 py-4' : 'd-block'], !imgSrc.length ? 'px-0 py-4' : 'pa-0 pb-4'"
+    :class="[horizontalCard === true ? 'd-flex pl-4 pt-4 pb-2' : 'd-block'], !imgSrc.length ? 'px-0 pt-4 pb-2' : 'pa-0 pb-2'"
     v-if="styleCard === 'standard'"
   >
     <v-img
@@ -27,16 +28,17 @@
         <span class="text-15">{{ author }}</span>
       </v-card-subtitle>
 
-      <v-card-action class="mt-auto mx-4" v-if="$slots.button">
+      <v-card-actions class="mt-auto" v-if="$slots.button">
         <slot name="button"></slot>
-      </v-card-action>
+      </v-card-actions>
     </div>
   </v-card>
   <v-card
-    :width="+width + 'px'"
+    :max-width="+maxWidth + 'px'"
+    :min-height="+minHeight == '' ? 100 + '%' : minHeight"
     :variant="variantCard"
     v-else-if="styleCard === 'vacancy'"
-    class="card-vacancy px-2 py-4"
+    class="card-vacancy px-2 py-4 w-100"
   >
     <v-card-title
       class="d-flex font-weight-regular mb-2"
@@ -53,29 +55,27 @@
     </v-card-title>
     <v-card-subtitle class="font-weight-semi-bold text-black" style="opacity: 1;" v-if="price"><span class="text-15">{{ price }}</span></v-card-subtitle>
     <v-card-text class="text-primary" v-if="text">{{ text }}</v-card-text>
-    <div class="px-4 pb-4" v-if="Object.keys(statusVacancy).length">
+    <div class="px-4 pb-4 d-flex" style="column-gap: 8px" v-if="statusVacancy.length">
       <v-chip
-        class="ma-2"
+        v-for="status in statusVacancy" :key="status.id"
         label
-        :color="statusVacancy.status === 'error' ? 'red' : 'green'"
+        :color="status.status === 'error' ? 'red' : 'green'"
         text-color="white"
       >
-        {{statusVacancy.text}}
+        {{status.text}}
       </v-chip>
     </div>
-    <div class="px-4 d-flex justify-space-between align-center" v-if="$slots.button || city">
-      <slot name="button"></slot>
-      <span class="text-primary">{{ city }}</span>
-    </div>
+    <slot name="button"></slot>
   </v-card>
 </template>
 
 <script setup>
 const props = defineProps({
-  width: { type: Number || String, default: 349 },
+  maxWidth: { type: Number || String, default: 349 },
+  minHeight: { type: Number || String, default: 0},
   styleCard: { type: String, default: "standard" },
   variantCard: { type: String, default: "elevated"},
-  horizontalCard: { type: String, default: false },
+  horizontalCard: { type: Boolean, default: false },
   horizontalWidthImage: { type: Number || String, default: 340 },
   dateAuthorRight: { type: Boolean, default: false },
   positionImageVacancy: { type: String, default: "start" },
@@ -89,6 +89,6 @@ const props = defineProps({
   date: { type: String, default: "" },
   author:{ type: String, default: "" },
   city: { type: String, default: "" },
-  statusVacancy: { type: Object, default: () => ({}) },
+  statusVacancy: { type: Array, default: () => [] },
 })
 </script>

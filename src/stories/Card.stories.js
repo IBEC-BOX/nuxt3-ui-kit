@@ -7,28 +7,29 @@ export default {
   component: Card,
   tags: ['autodocs'],
   argTypes: {
-    width: { control: "text"  },
+    maxWidth: { type: "text" },
+    minHeight: { type: "text" },
     styleCard: {
-      control: { type: "radio" },
+      control: { control: "radio" },
       options: ['standard', 'vacancy']
     },
     variantCard: {
-      control: { type: "select" },
+      control: { control: "select" },
       options: ['elevated', 'flat', 'tonal', 'outlined']
     },
-    horizontalCard: { control: "boolean"  },
-    horizontalWidthImage: { control: "text"  },
-    dateAuthorRight: { control: "boolean"  },
-    imgSrc: { control: "text"  },
-    imgAlt: { control: "text"  },
-    title: { control: "text"  },
-    subtitle: { control: "text"  },
-    price: { control: "text"  },
-    text: { control: "text"  },
-    date: { control: "text"  },
-    author: { control: "text"  },
-    city: { control: "text"  },
-    statusVacancy: { control: "object"  }
+    horizontalCard: { type: "boolean"  },
+    horizontalWidthImage: { type: "text"  },
+    dateAuthorRight: { type: "boolean"  },
+    imgSrc: { type: "text"  },
+    imgAlt: { type: "text"  },
+    title: { type: "text"  },
+    subtitle: { type: "text"  },
+    price: { type: "text"  },
+    text: { type: "text"  },
+    date: { type: "text"  },
+    author: { type: "text"  },
+    city: { type: "text"  },
+    statusVacancy: { type: "Array"  }
   },
 };
 
@@ -49,7 +50,7 @@ export const Standard = {
     buttonSlot: `<v-btn size="large">MEDIUM BUTTON</v-btn>`,
     dateAuthorRight: false,
     horizontalCard: false,
-    width: 349,
+    maxWidth: 349,
     variantCard: "elevated",
     styleCard: "standard",
     imgSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
@@ -68,11 +69,10 @@ export const Standard = {
 }
 
 export const StandardHorizontal = {
-  render: Standard.render,
   args: {
     dateAuthorRight: true,
     horizontalCard: true,
-    width: 700,
+    maxWidth: 700,
     horizontalWidthImage: 300,
     variantCard: "elevated",
     styleCard: "standard",
@@ -92,10 +92,25 @@ export const StandardHorizontal = {
 }
 
 export const vacancyError = {
-  render: Standard.render,
+  render: (args) => ({
+    components: { Card },
+    setup() {
+      console.log(args)
+      return { args };
+    },
+    template:`<Card v-bind="args">
+      <template v-if="${'buttonSlot' in args}" v-slot:button>
+        ${args.buttonSlot}
+      </template>
+      </Card>`
+  }),
   args: {
-    buttonSlot: `<v-btn size="large">MEDIUM BUTTON</v-btn>`,
-    width: 349,
+    buttonSlot: `
+    <div class="px-4 d-flex justify-space-between align-center">
+      <span class="text-15 text-primary">Almaty, KZ</span>
+      <v-btn size="large" color="primary">MEDIUM BUTTON</v-btn>
+    </div>`,
+    maxWidth: 349,
     variantCard: "elevated",
     styleCard: "vacancy",
     imgSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
@@ -105,10 +120,13 @@ export const vacancyError = {
     price: "150 000 - 180 000 ₸",
     text: "A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.",
     city: "Almaty, KZ",
-    statusVacancy: {
-      text: "Reply without resume",
-      status: "error"
-    }
+    statusVacancy: [
+      {
+        id: 1,
+        text: "Reply without resume",
+        status: "error"
+      }
+    ]
   },
   parameters: {
     design: {
@@ -121,10 +139,14 @@ export const vacancyError = {
 
 
 export const vacancySuccess = {
-  render: Standard.render,
+  render: vacancyError.render,
   args: {
-    buttonSlot: `<v-btn size="large">MEDIUM BUTTON</v-btn>`,
-    width: 349,
+    buttonSlot: `
+    <div class="px-4">
+      <p class="text-15 mb-5 text-primary">Almaty, KZ</p>
+      <v-btn block size="large" color="primary">MEDIUM BUTTON</v-btn>
+    </div>`,
+    maxWidth: 349,
     variantCard: "elevated",
     styleCard: "vacancy",
     imgSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
@@ -133,10 +155,18 @@ export const vacancySuccess = {
     positionImageVacancy: "start",
     text: "A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.",
     city: "Almaty, KZ",
-    statusVacancy: {
-      text: "Be the first",
-      status: "success"
-    }
+    statusVacancy: [
+      {
+        id: 1,
+        text: "Be the first",
+        status: "success"
+      },
+      {
+        id: 2,
+        text: "Be the first",
+        status: "success"
+      },
+    ]
   },
   parameters: {
     design: {
