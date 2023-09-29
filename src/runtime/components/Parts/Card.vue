@@ -54,12 +54,14 @@
     <v-card-subtitle class="font-weight-semi-bold text-black" style="opacity: 1;" v-if="price"><span class="text-15">{{ price }}</span></v-card-subtitle>
     <v-card-text class="text-primary" v-if="text">{{ text }}</v-card-text>
     <div class="px-4 pb-4" v-if="Object.keys(statusVacancy).length">
-      <span
-        class="py-1 px-4 rounded"
-        :class="statusVacancy.status === 'error' ? 'errorVacancy' : 'successVacancy'"
+      <v-chip
+        class="ma-2"
+        label
+        :color="statusVacancy.status === 'error' ? 'red' : 'green'"
+        text-color="white"
       >
-        {{ statusVacancy.text }}
-      </span>
+        {{statusVacancy.text}}
+      </v-chip>
     </div>
     <div class="px-4 d-flex justify-space-between align-center" v-if="$slots.button || city">
       <slot name="button"></slot>
@@ -90,16 +92,3 @@ const props = defineProps({
   statusVacancy: { type: Object, default: () => ({}) },
 })
 </script>
-
-<style lang="scss">
-.card-vacancy {
-  .errorVacancy {
-    background: rgb(var(--v-theme-error-opacity)) !important;
-    color: rgb(var(--v-theme-error)) !important;
-  }
-  .successVacancy {
-    background: rgb(var(--v-theme-success-opacity)) !important;
-    color: rgb(var(--v-theme-success)) !important;
-  }
-}
-</style>
