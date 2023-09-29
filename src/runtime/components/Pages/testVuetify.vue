@@ -41,9 +41,14 @@
 <!--      </v-row>-->
 <!--    </v-footer>-->
     <footerOne
+      :logo="logo"
       :firstStyleTop="firstStyleTop"
-      :middleMenu="secondMenu"
-      :footerBottom="footerBottom"
+      :showBorder="true"
+      :logoInBody="true"
+      :store="store"
+      :nav="nav"
+      :copyright="copyright"
+      :social="social"
     >
       <template v-slot:input>
         <v-text-field placeholder="Enter your email"></v-text-field>
@@ -62,34 +67,33 @@ import HeaderOne from '../Parts/header/HeaderOne.vue'
 
 const showDrawer = ref(false);
 
+const logo = {
+  img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+  alt: "Логотип",
+  title: "",
+  subtitle: "",
+}
+
 const firstStyleTop = {
-  "logo": {
-    img: "/logo.png",
-    alt: "Логотип"
+  "text_top": {
+    title: "Let’s get started on something great",
+    subtitle: "Join over 4,000+ startups already growing with Untitled."
   },
-  "text_top": [
-    {
-      id: 1,
-      text: "Let’s get started on something great",
-    },
-    {
-      id: 2,
-      text: "Join over 4,000+ startups already growing with Untitled.",
-    }
-  ],
   "button_top": [
     {
       id: 1,
-      backgroundColor: "#fff",
-      borderRadius: 8,
+      backgroundColor: "",
+      rounded: "lg",
       leftIcon: "$vuetify",
       text: "Medium Button",
+      size: ""
     },
     {
       id: 2,
-      backgroundColor: "#4D4E52",
-      borderRadius: 8,
-      text: "Medium Button"
+      backgroundColor: "primary",
+      rounded: "lg",
+      text: "Medium Button",
+      size: ""
     }
   ]
 }
@@ -99,326 +103,268 @@ const secondStyleTop = {
   subtitle: "We’ll send you a nice letter once per week. No spam."
 }
 
-const secondMenu = {
-  "logo": {
-    img: "",
-    alt: "",
-    title: "Logotype",
-    subtitle: "Design amazing digital experiences that create more happy in the world."
+const menu = [
+  {
+    id: 1,
+    title: "Product",
+    links: [
+      {
+        id: 1,
+        text: "Overview",
+        link: "/",
+      },
+      {
+        id: 2,
+        text: "Features",
+        link: "",
+      },
+      {
+        id: 3,
+        text: "Solutions",
+        link: "",
+      },
+      {
+        id: 4,
+        text: "Tutorials",
+        link: "",
+      },
+      {
+        id: 5,
+        text: "Pricing",
+        link: "",
+      },
+      {
+        id: 6,
+        text: "Releases",
+        link: "",
+      },
+    ]
   },
-  "menu": [
-    {
-      id: 1,
-      menu: [
-        {
-          id: 1,
-          title: "Product"
-        },
-        {
-          id: 2,
-          text: "Overview",
-          link: "",
-        },
-        {
-          id: 3,
-          text: "Features",
-          link: "",
-        },
-        {
-          id: 4,
-          text: "Solutions",
-          link: "",
-        },
-        {
-          id: 5,
-          text: "Tutorials",
-          link: "",
-        },
-        {
-          id: 6,
-          text: "Pricing",
-          link: "",
-        },
-        {
-          id: 7,
-          text: "Releases",
-          link: "",
-        },
-      ]
-    },
-    {
-      id: 2,
-      menu: [
-        {
-          id: 1,
-          title: "Product"
-        },
-        {
-          id: 2,
-          text: "Overview",
-          link: "",
-        },
-        {
-          id: 3,
-          text: "Features",
-          link: "",
-        },
-        {
-          id: 4,
-          text: "Solutions",
-          link: "",
-        },
-        {
-          id: 5,
-          text: "Tutorials",
-          link: "",
-        },
-        {
-          id: 6,
-          text: "Pricing",
-          link: "",
-        },
-        {
-          id: 7,
-          text: "Releases",
-          link: "",
-        },
-      ]
-    },
-    {
-      id: 3,
-      menu: [
-        {
-          id: 1,
-          title: "Product"
-        },
-        {
-          id: 2,
-          text: "Overview",
-          link: "",
-        },
-        {
-          id: 3,
-          text: "Features",
-          link: "",
-        },
-        {
-          id: 4,
-          text: "Solutions",
-          link: "",
-        },
-        {
-          id: 5,
-          text: "Tutorials",
-          link: "",
-        },
-        {
-          id: 6,
-          text: "Pricing",
-          link: "",
-        },
-        {
-          id: 7,
-          text: "Releases",
-          link: "",
-        },
-      ]
-    },
-    {
-      id: 4,
-      menu: [
-        {
-          id: 1,
-          title: "Product"
-        },
-        {
-          id: 2,
-          text: "Overview",
-          link: "",
-        },
-        {
-          id: 3,
-          text: "Features",
-          link: "",
-        },
-        {
-          id: 4,
-          text: "Solutions",
-          link: "",
-        },
-        {
-          id: 5,
-          text: "Tutorials",
-          link: "",
-        },
-        {
-          id: 6,
-          text: "Pricing",
-          link: "",
-        },
-        {
-          id: 7,
-          text: "Releases",
-          link: "",
-        },
-      ]
-    },
-    {
-      id: 5,
-      menu: [
-        {
-          id: 1,
-          title: "Product"
-        },
-        {
-          id: 2,
-          text: "Overview",
-          link: "",
-        },
-        {
-          id: 3,
-          text: "Features",
-          link: "",
-        },
-        {
-          id: 4,
-          text: "Solutions",
-          link: "",
-        },
-        {
-          id: 5,
-          text: "Tutorials",
-          link: "",
-        },
-        {
-          id: 6,
-          text: "Pricing",
-          link: "",
-        },
-        {
-          id: 7,
-          text: "Releases",
-          link: "",
-        },
-      ]
-    },
-  ],
-  // "store": [
-  //   {
-  //     title: "Get the app"
-  //   },
-  //   {
-  //     id: 1,
-  //     img: "/appstore.svg",
-  //     alt: "appstore",
-  //     link: "/"
-  //   },
-  //   {
-  //     id: 2,
-  //     img: "googleplay.svg",
-  //     alt: "googleplay",
-  //     link: "/"
-  //   },
-  // ],
-  // "nav": [
-  //   {
-  //     id: 1,
-  //     text: "Overview",
-  //     link: "/",
-  //   },
-  //   {
-  //     id: 2,
-  //     text: "Features",
-  //     link: "/",
-  //   },
-  //   {
-  //     id: 3,
-  //     text: "Pricing",
-  //     link: "/",
-  //   },
-  //   {
-  //     id: 4,
-  //     text: "Careers",
-  //     link: "/",
-  //   },
-  //   {
-  //     id: 5,
-  //     text: "Help centre",
-  //     link: "/",
-  //   },
-  //   {
-  //     id: 6,
-  //     text: "Privacy",
-  //     link: "/",
-  //   },
-  // ]
-}
+  {
+    id: 2,
+    title: "Product",
+    links: [
+      {
+        id: 1,
+        text: "Overview",
+        link: "",
+      },
+      {
+        id: 2,
+        text: "Features",
+        link: "",
+      },
+      {
+        id: 3,
+        text: "Solutions",
+        link: "",
+      },
+      {
+        id: 4,
+        text: "Tutorials",
+        link: "",
+      },
+      {
+        id: 5,
+        text: "Pricing",
+        link: "",
+      },
+      {
+        id: 6,
+        text: "Releases",
+        link: "",
+      },
+    ]
+  },
+  {
+    id: 3,
+    title: "Product",
+    links: [
+      {
+        id: 1,
+        text: "Overview",
+        link: "",
+      },
+      {
+        id: 2,
+        text: "Features",
+        link: "",
+      },
+      {
+        id: 3,
+        text: "Solutions",
+        link: "",
+      },
+      {
+        id: 4,
+        text: "Tutorials",
+        link: "",
+      },
+      {
+        id: 5,
+        text: "Pricing",
+        link: "",
+      },
+      {
+        id: 6,
+        text: "Releases",
+        link: "",
+      },
+    ]
+  },
+  {
+    id: 4,
+    title: "Product",
+    links: [
+      {
+        id: 1,
+        text: "Overview",
+        link: "",
+      },
+      {
+        id: 2,
+        text: "Features",
+        link: "",
+      },
+      {
+        id: 3,
+        text: "Solutions",
+        link: "",
+      },
+      {
+        id: 4,
+        text: "Tutorials",
+        link: "",
+      },
+      {
+        id: 5,
+        text: "Pricing",
+        link: "",
+      },
+      {
+        id: 6,
+        text: "Releases",
+        link: "",
+      },
+    ]
+  },
+  {
+    id: 5,
+    title: "Product",
+    links: [
+      {
+        id: 1,
+        text: "Overview",
+        link: "",
+      },
+      {
+        id: 2,
+        text: "Features",
+        link: "",
+      },
+      {
+        id: 3,
+        text: "Solutions",
+        link: "",
+      },
+      {
+        id: 4,
+        text: "Tutorials",
+        link: "",
+      },
+      {
+        id: 5,
+        text: "Pricing",
+        link: "",
+      },
+      {
+        id: 6,
+        text: "Releases",
+        link: "",
+      },
+    ]
+  },
+]
+const store = [
+  {
+    id: 1,
+    img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+    alt: "appstore",
+    link: "/"
+  },
+  {
+    id: 2,
+    img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+    alt: "googleplay",
+    link: "/"
+  },
+]
+const nav = [
+  {
+    id: 1,
+    text: "Overview",
+    link: "/",
+  },
+  {
+    id: 2,
+    text: "Features",
+    link: "/",
+  },
+  {
+    id: 3,
+    text: "Pricing",
+    link: "/",
+  },
+  {
+    id: 4,
+    text: "Careers",
+    link: "/",
+  },
+  {
+    id: 5,
+    text: "Help centre",
+    link: "/",
+  },
+  {
+    id: 6,
+    text: "Privacy",
+    link: "/",
+  },
+]
 
-const footerBottom = ref({
-  "logo": {
+const copyright = "2023 Untitled UI. All rights reserverd"
+const social = [
+  {
+    id: 1,
+    img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+    link: ""
+  },
+  {
+    id: 2,
     img: "",
-    alt: "",
-    title: "Logotype",
+    link: ""
   },
-  "copyright": {
-    title: "2023 Untitled UI. All rights reserverd"
+  {
+    id: 3,
+    img: "",
+    link: ""
   },
-  // "nav": [
-  //   {
-  //     id: 1,
-  //     text: "Tems",
-  //     link: ""
-  //   },
-  //   {
-  //     id: 2,
-  //     text: "Privacy",
-  //     link: ""
-  //   },
-  //   {
-  //     id: 3,
-  //     text: "Cookies",
-  //     link: ""
-  //   },
-  // ]
-  // "social": [
-  //   {
-  //     id: 1,
-  //     img: "",
-  //     alt: "1",
-  //     href: ""
-  //   },
-  //   {
-  //     id: 2,
-  //     img: "",
-  //     alt: "2",
-  //     href: ""
-  //   },
-  //   {
-  //     id: 3,
-  //     img: "",
-  //     alt: "3",
-  //     href: ""
-  //   },
-  //   {
-  //     id: 4,
-  //     img: "",
-  //     alt: "4",
-  //     href: ""
-  //   },
-  //   {
-  //     id: 5,
-  //     img: "",
-  //     alt: "5",
-  //     href: ""
-  //   },
-  //   {
-  //     id: 6,
-  //     img: "",
-  //     alt: "6",
-  //     href: ""
-  //   },
-  // ]
-})
+  {
+    id: 4,
+    img: "",
+    link: ""
+  },
+  {
+    id: 5,
+    img: "",
+    link: ""
+  },
+  {
+    id: 6,
+    img: "",
+    link: ""
+  },
+]
 
 const toggle= () => {
   console.log('usedToggle()');
