@@ -19,8 +19,10 @@ const lightTheme: ThemeDefinition = {
     secondary: "#8e44ad",
     background: "#ecf0f1",
     error: "#c0392b",
+    'red': "#FB2424",
     info: "#2980b9",
     success: "#27ae60",
+    'green': "#44AE76",
     warning: "#f1c40f",
   },
 };
@@ -28,6 +30,7 @@ const lightTheme: ThemeDefinition = {
 const darkTheme: ThemeDefinition = {
   dark: true,
   colors: {
+    'black': '#fff',
     primary: "#d35400",
     'primary-gray': '#74767A',
     secondary: "#8e44ad",
