@@ -35,5 +35,11 @@ export default defineNuxtModule<ModuleOptions>({
       name: 'partsCard', // name of the component to be used in vue templates
       filePath: resolver.resolve('runtime/components/Parts/Card.vue')
     })
+    
+    // Headers
+    addComponent({
+      name: 'HeaderOne',
+      filePath: resolver.resolve('runtime/components/Parts/HeaderOne.vue')
+    })
   }
 })
