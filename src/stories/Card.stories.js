@@ -106,7 +106,7 @@ export const vacancyError = {
   }),
   args: {
     buttonSlot: `
-    <div class="px-4 d-flex justify-space-between align-center">
+    <div class="d-flex justify-space-between align-center">
       <span class="text-15 text-primary">Almaty, KZ</span>
       <v-btn size="large" color="primary">MEDIUM BUTTON</v-btn>
     </div>`,
@@ -142,7 +142,7 @@ export const vacancySuccess = {
   render: vacancyError.render,
   args: {
     buttonSlot: `
-    <div class="px-4">
+    <div>
       <p class="text-15 mb-5 text-primary">Almaty, KZ</p>
       <v-btn block size="large" color="primary">MEDIUM BUTTON</v-btn>
     </div>`,

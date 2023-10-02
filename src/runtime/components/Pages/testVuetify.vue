@@ -172,9 +172,9 @@ const settingsCol = {
   xxl: "",
 }
 const settingsButton = {
-  variant: "",
+  variant: "text",
   stacked: false,
-  density: "",
+  density: "compact",
   size: "",
   block: false,
   rounded: "",

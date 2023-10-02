@@ -7,17 +7,12 @@
       <v-col
         v-for="card in cards"
         :key="card.id"
-        :cols="settingsCol.cols == '' ? 12 : settingsCol.cols"
-        :sm="settingsCol.sm == '' ? 6 : settingsCol.sm"
-        :md="settingsCol.md == '' ? 4 : settingsCol.md"
-        :lg="settingsCol.lg == '' ? 4 : settingsCol.lg"
-        :xl="settingsCol.xl == '' ? 4 : settingsCol.xl"
-        :xxl="settingsCol.xxl == '' ? 4 : settingsCol.xxl"
+        v-bind="settingsCol"
         class="mb-8 d-flex justify-center"
       >
         <Card
           :width="card.width"
-          :min-height="card.minHeight == '' ? 414 + 'px' : card.minHeight"
+          :min-height="card.minHeight"
           :style-card="card.styleCard"
           :variant-card="card.variantCard"
           :horizontal-card="card.horizontalCard"
@@ -37,18 +32,12 @@
         >
           <template v-slot:button>
             <v-btn
-              :icon="card.iconButton === '' ? false : card.iconButton"
+              :icon="card.iconButton"
               :append-icon="card.appendIconButton"
-              :variant="settingsButton.variant === '' ? 'text' : settingsButton.variant"
-              :stacked="settingsButton.stacked"
-              :size="settingsButton.size === '' ? 'large' : settingsButton.size"
-              :block="settingsButton.block"
-              :density="settingsButton.density === '' ? 'compact' : settingsButton.density"
-              :rounded="settingsButton.rounded === '' ? '0' : settingsButton.rounded"
-              :elevation="settingsButton.elevation === '' ? '2' : settingsButton.elevation"
-              :ripple="settingsButton.ripple"
-              :color="settingsButton.color === '' ? 'primary' : settingsButton.color"
+              v-bind="settingsButton"
               @click="card.functionButton()"
+              class="d-flex"
+              style="column-gap: 6px"
             >
               {{ card.textButton }}
             </v-btn>
@@ -64,8 +53,54 @@
 import Card from "../Parts/Card.vue"
 
 const props = defineProps({
-  cards: { type: Array, default: () => [] },
-  settingsButton: { type: Object, default: () => ({}) },
-  settingsCol: { type: Object, default: () => ({}) }
+  cards: {
+    type: Array,
+    default: () => ([
+      {
+        width: '',
+        minHeight: '414px',
+        styleCard: {},
+        variantCard: '',
+        horizontalCard: false,
+        horizontalWidthImage: '',
+        dateAuthorRight: false,
+        positionImageVacancy: '',
+        imgSrc: '',
+        imgAlt: '',
+        title: '',
+        subtitle: '',
+        price: '',
+        text: '',
+        date: '',
+        author: '',
+        city: '',
+        statusVacancy: '',
+        iconButton: false,
+        appendIconButton: ''
+      }
+    ])
+  },
+  settingsButton: {
+    type: Object,
+    default: () => ({
+      variant: 'text',
+      size: 'large',
+      density: 'compact',
+      rounded: '0',
+      elevation: '2',
+      color: 'primary',
+    })
+  },
+  settingsCol: {
+    type: Object,
+    default: () => ({
+      cols: 12,
+      sm: 6,
+      md: 4,
+      lg: 4,
+      xl: 4,
+      xxl: 4
+    })
+  }
 })
 </script>

@@ -65,7 +65,9 @@
         {{status.text}}
       </v-chip>
     </div>
-    <slot name="button"></slot>
+    <v-card-actions>
+      <slot name="button"></slot>
+    </v-card-actions>
   </v-card>
 </template>
 
