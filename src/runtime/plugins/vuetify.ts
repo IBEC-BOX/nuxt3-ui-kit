@@ -8,8 +8,10 @@ import * as directives from 'vuetify/directives';
 
 /* Add build-in icon used internally in various components */
 /* Described in https://next.vuetifyjs.com/en/features/icon-fonts/ */
-import { mdi, aliases as allAliases } from 'vuetify/iconsets/mdi-svg';
+import { mdi, aliases as allAliases } from 'vuetify/iconsets/mdi';
 const aliases = allAliases;
+import "@mdi/font/css/materialdesignicons.css"; // Ensure you are using css-loader
+import "@fortawesome/fontawesome-free/css/all.css"; // Ensure your project is capable of handling css files
 
 const lightTheme: ThemeDefinition = {
   dark: false,
