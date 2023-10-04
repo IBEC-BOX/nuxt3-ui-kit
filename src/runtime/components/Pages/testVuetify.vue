@@ -22,15 +22,18 @@
 <!--          <v-btn class="mt-4">press me to ripple</v-btn>-->
 <!--        </v-sheet>-->
 <!--      </v-container>-->
-      <News
-        :cards="cards"
-        :settingsButton="settingsButton"
-        :settingsCol="settingsCol"
-      >
-        <template v-slot:buttonNews>
-          <v-btn>Все новости</v-btn>
-        </template>
-      </News>
+<!--      <News-->
+<!--        :cards="cards"-->
+<!--        :settingsButton="settingsButton"-->
+<!--        :settingsCol="settingsCol"-->
+<!--      >-->
+<!--        <template v-slot:buttonNews>-->
+<!--          <v-btn>Все новости</v-btn>-->
+<!--        </template>-->
+<!--      </News>-->
+      <downloadFiles
+        :title="'О нас'"
+        :files="[{title: 'Политика обработки персональных данных ',download: '../Parts/Card.vue',img: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',alt: '',date: '20.02.22'}]"/>
     </v-main>
 
     <v-footer app elevation="5">
@@ -53,6 +56,7 @@ import Card from "../Parts/Card.vue"
 import footerOne from "../Parts/footer/footer.vue";
 import HeaderOne from '../Parts/header/HeaderOne.vue'
 import partsNews from "../Parts/News.vue";
+import downloadFiles from "../Parts/files/downloadFiles.vue"
 const showDrawer = ref(false);
 
 
