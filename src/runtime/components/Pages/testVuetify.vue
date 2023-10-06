@@ -7,12 +7,135 @@
       <p class="text-center"><b>I'm the drawer</b></p>
     </v-navigation-drawer>
 
+    <!-- Header first variant -->
     <HeaderOne
-      sticky
-      :menu="header_menu"
       header-active-link-variant="bottom_line"
+      top-background="grey-lighten-2"
+      :menu="header_menu"
       :buttons="header_buttons"
     />
+    <!-- Header first variant END -->
+
+    <!-- Header second variant -->
+    <HeaderTwo
+      header-active-link-variant="bottom_line"
+      top-background="grey-lighten-3"
+      top-class="border-bottom"
+      :top-menu="header_top_menu"
+      :menu="header_menu"
+      :top-links="header_top_links"
+      :buttons="header_buttons_second"
+    >
+      <template #append-top>
+        <v-menu>
+          <template #activator="{ props }">
+            <v-btn v-bind="props">
+              <v-img width="20" height="20" class="rounded-circle mr-1" cover :src="selected_lang.image" />
+              <span class="text-body-2 text-grey-darken-2">
+                {{ selected_lang.title }}
+              </span>
+            </v-btn>
+          </template>
+
+          <v-list>
+            <v-list-item
+              v-for="(item, i) in langs"
+              :key="i"
+            >
+              <v-list-item-title class="cursor-pointer p-0">
+                <v-btn variant="text" @click="selected_lang = item">
+                  <v-img width="20" height="20" class="rounded-circle mr-1" cover :src="item.image" />
+                  <span class="text-body-2 text-grey-darken-3">
+                    {{ item.title }}
+                  </span>
+                </v-btn>
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
+        <v-btn icon="mdi-magnify" size="small" class="text-grey-darken-1" />
+      </template>
+    </HeaderTwo>
+    <!-- Header second variant END -->
+
+    <!-- Header third variant -->
+    <HeaderThree
+      :tabs="header_tabs"
+      :buttons="header_buttons"
+      :top-links="header_top_links"
+    >
+      <template #append-top>
+        <v-menu>
+          <template #activator="{ props }">
+            <v-btn v-bind="props">
+              <v-img width="20" height="20" class="rounded-circle mr-1" cover :src="selected_lang.image" />
+              <span class="text-body-2 text-grey-darken-2">
+                {{ selected_lang.title }}
+              </span>
+            </v-btn>
+          </template>
+
+          <v-list>
+            <v-list-item
+              v-for="(item, i) in langs"
+              :key="i"
+            >
+              <v-list-item-title class="cursor-pointer p-0">
+                <v-btn variant="text" @click="selected_lang = item">
+                  <v-img width="20" height="20" class="rounded-circle mr-1" cover :src="item.image" />
+                  <span class="text-body-2 text-grey-darken-3">
+                    {{ item.title }}
+                  </span>
+                </v-btn>
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </template>
+    </HeaderThree>
+    <!-- Header third variant END -->
+
+    <!-- Header fourth variant -->
+    <HeaderFour
+      header-active-link-variant="bottom_line"
+      header-height="88"
+      top-background="grey-lighten-2"
+      :menu="header_menu"
+      :menu-top-links="header_top_menu_links"
+    >
+      <template #buttons>
+        <v-menu>
+          <template #activator="{ props }">
+            <v-btn v-bind="props">
+              <v-img width="20" height="20" class="rounded-circle mr-1" cover :src="selected_lang.image" />
+              <span class="text-body-2 text-grey-darken-2">
+                {{ selected_lang.title }}
+              </span>
+            </v-btn>
+          </template>
+
+          <v-list>
+            <v-list-item
+              v-for="(item, i) in langs"
+              :key="i"
+            >
+              <v-list-item-title class="cursor-pointer p-0">
+                <v-btn variant="text" @click="selected_lang = item">
+                  <v-img width="20" height="20" class="rounded-circle mr-1" cover :src="item.image" />
+                  <span class="text-body-2 text-grey-darken-3">
+                    {{ item.title }}
+                  </span>
+                </v-btn>
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
+        <v-btn variant="icon" icon="mdi-magnify" class="text-grey-darken-1" />
+      </template>
+    </HeaderFour>
+    <!-- Header fourth variant END -->
 
     <v-main class="d-flex align-center">
       <v-container>
@@ -43,6 +166,9 @@ import { ref } from 'vue'
 import Card from "../Parts/Card.vue"
 import footerOne from "../Parts/footer/footer.vue";
 import HeaderOne from '../Parts/header/HeaderOne.vue'
+import HeaderTwo from '../Parts/header/HeaderTwo.vue'
+import HeaderThree from '../Parts/header/HeaderThree.vue'
+import HeaderFour from '../Parts/header/HeaderFour.vue'
 
 const showDrawer = ref(false);
 
@@ -262,6 +388,7 @@ const menu = [
     ]
   },
 ]
+
 const store = [
   {
     id: 1,
@@ -276,6 +403,7 @@ const store = [
     link: "/"
   },
 ]
+
 const nav = [
   {
     id: 1,
@@ -394,7 +522,7 @@ const header_buttons = [
   {
     id: 0,
     text: 'Contact us',
-    color: 'grey-darken-3',
+    color: 'primary',
     variant: 'outlined',
     function: func,
   },
@@ -402,11 +530,401 @@ const header_buttons = [
   {
     id: 1,
     text: 'Login',
-    color: 'grey-darken-3',
+    color: 'primary',
     elevation: '1',
     variant: 'flat',
   }
 ]
+
+const header_top_menu = [
+  {
+    id: 0,
+    title: 'Company 1',
+    url: '#'
+  },
+
+  {
+    id: 1,
+    title: 'Company 2',
+    url: '#'
+  },
+
+  {
+    id: 2,
+    title: 'Company 3',
+    url: '#'
+  }
+]
+
+const header_top_links = [
+  {
+    id: 0,
+    title: 'Город',
+    url: '#',
+  },
+
+  {
+    id: 1,
+    title: '7888',
+    prepend_icon: 'mdi-phone-outline',
+    url: '#',
+  },
+
+  {
+    id: 2,
+    title: 'Адреса',
+    prepend_icon: 'mdi-map-marker-outline',
+    url: '#',
+  }
+]
+
+const header_top_menu_links = [
+  {
+    id: 0,
+    title: 'Company 1',
+    url: '#'
+  },
+  {
+    id: 1,
+    title: 'Company 2',
+    url: '#'
+  },
+  {
+    id: 2,
+    title: 'Company 3',
+    url: '#'
+  }
+]
+
+const header_buttons_second = [
+  {
+    id: 0,
+    text: 'Call to action',
+    color: 'primary',
+    variant: 'flat',
+  },
+]
+
+const header_tabs = [
+  {
+    id: 0,
+    title: 'Bank',
+    list: [
+      {
+        id: '0',
+        title: 'Credit cards',
+        link: '#'
+      },
+
+      {
+        id: '2',
+        title: 'Debit cards',
+        link: '#'
+      },
+
+      {
+        id: '3',
+        title: 'Services',
+        link: '#'
+      },
+
+      {
+        id: '4',
+        title: 'Projects',
+        link: '#'
+      },
+
+      {
+        id: '5',
+        title: 'Team',
+        link: '#'
+      },
+
+      {
+        id: '1',
+        title: 'Career',
+        link: '#'
+      },
+    ]
+  },
+
+  {
+    id: 1,
+    title: 'Business',
+    list: [
+      {
+        id: '0',
+        title: 'Credit cards',
+        link: '#'
+      },
+
+      {
+        id: '2',
+        title: 'Debit cards',
+        link: '#'
+      },
+
+      {
+        id: '3',
+        title: 'Services',
+        link: '#'
+      },
+
+      {
+        id: '4',
+        title: 'Projects',
+        link: '#'
+      },
+
+      {
+        id: '5',
+        title: 'Team',
+        link: '#'
+      },
+
+      {
+        id: '1',
+        title: 'Career',
+        link: '#'
+      },
+    ]
+  },
+
+  {
+    id: 2,
+    title: 'Checkout',
+    list: [
+      {
+        id: '0',
+        title: 'Credit cards',
+        link: '#'
+      },
+
+      {
+        id: '2',
+        title: 'Debit cards',
+        link: '#'
+      },
+
+      {
+        id: '3',
+        title: 'Services',
+        link: '#'
+      },
+
+      {
+        id: '4',
+        title: 'Projects',
+        link: '#'
+      },
+
+      {
+        id: '5',
+        title: 'Team',
+        link: '#'
+      },
+
+      {
+        id: '1',
+        title: 'Career',
+        link: '#'
+      },
+    ]
+  },
+
+  {
+    id: 3,
+    title: 'Investment',
+    list: [
+      {
+        id: '0',
+        title: 'Credit cards',
+        link: '#'
+      },
+
+      {
+        id: '2',
+        title: 'Debit cards',
+        link: '#'
+      },
+
+      {
+        id: '3',
+        title: 'Services',
+        link: '#'
+      },
+
+      {
+        id: '4',
+        title: 'Projects',
+        link: '#'
+      },
+
+      {
+        id: '5',
+        title: 'Team',
+        link: '#'
+      },
+
+      {
+        id: '1',
+        title: 'Career',
+        link: '#'
+      },
+    ]
+  },
+
+  {
+    id: 4,
+    title: 'Insurance',
+    list: [
+      {
+        id: '0',
+        title: 'Credit cards',
+        link: '#'
+      },
+
+      {
+        id: '2',
+        title: 'Debit cards',
+        link: '#'
+      },
+
+      {
+        id: '3',
+        title: 'Services',
+        link: '#'
+      },
+
+      {
+        id: '4',
+        title: 'Projects',
+        link: '#'
+      },
+
+      {
+        id: '5',
+        title: 'Team',
+        link: '#'
+      },
+
+      {
+        id: '1',
+        title: 'Career',
+        link: '#'
+      },
+    ]
+  },
+
+  {
+    id: 5,
+    title: 'Travel',
+    list: [
+      {
+        id: '0',
+        title: 'Credit cards',
+        link: '#'
+      },
+
+      {
+        id: '2',
+        title: 'Debit cards',
+        link: '#'
+      },
+
+      {
+        id: '3',
+        title: 'Services',
+        link: '#'
+      },
+
+      {
+        id: '4',
+        title: 'Projects',
+        link: '#'
+      },
+
+      {
+        id: '5',
+        title: 'Team',
+        link: '#'
+      },
+
+      {
+        id: '1',
+        title: 'Career',
+        link: '#'
+      },
+    ]
+  },
+
+  {
+    id: 6,
+    title: 'City',
+    list: [
+      {
+        id: '0',
+        title: 'Credit cards',
+        link: '#'
+      },
+
+      {
+        id: '2',
+        title: 'Debit cards',
+        link: '#'
+      },
+
+      {
+        id: '3',
+        title: 'Services',
+        link: '#'
+      },
+
+      {
+        id: '4',
+        title: 'Projects',
+        link: '#'
+      },
+
+      {
+        id: '5',
+        title: 'Team',
+        link: '#'
+      },
+
+      {
+        id: '1',
+        title: 'Career',
+        link: '#'
+      },
+    ]
+  },
+]
+
+const selected_lang = ref({
+  title: 'Қазақша',
+  image: 'https://flagcdn.com/w20/kz.png'
+})
+
+const langs = ref([
+  {
+    id: 0,
+    title: 'Қазақша',
+    image: 'https://flagcdn.com/w20/kz.png'
+  },
+
+  {
+    id: 1,
+    title: 'Русский',
+    image: 'https://flagcdn.com/w20/ru.png'
+  },
+
+  {
+    id: 3,
+    title: 'English',
+    image: 'https://flagcdn.com/w20/us.png'
+  }
+])
 
 /* Redundant unused code to test treeshaking */
 const unusedFunction = () => console.log('unusedFunction');
