@@ -42,6 +42,7 @@ export default defineNuxtModule<ModuleOptions>({
       filePath: resolver.resolve('runtime/components/Parts/header.vue')
     })
 
+
     addComponent({
       name: 'News',
       filePath: resolver.resolve('runtime/components/Parts/News.vue')

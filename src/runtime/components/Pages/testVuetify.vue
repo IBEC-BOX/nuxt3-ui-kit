@@ -39,8 +39,11 @@
 <script setup>
 import { ref } from 'vue'
 import partsHeader from '../Parts/header/header.vue'
+import Card from "../Parts/Card.vue"
+import footerOne from "../Parts/footer/footer.vue";
+import partsNews from "../Parts/News.vue";
 
-const showDrawer = ref(false);
+const showDrawer = ref(false)
 
 const testButtonNews = () => console.log(cards[1].id)
 const cards = [
@@ -205,6 +208,7 @@ const nav = [
     functionButton: "",
     textButton: "Читать",
   },
+
   {
     id: 6,
     dateAuthorRight: false,
@@ -224,6 +228,7 @@ const nav = [
     appendIconButton: "$vuetify",
   }
 ]
+
 const settingsCol = {
   cols: "",
   sm: "",
@@ -243,6 +248,11 @@ const settingsButton = {
   ripple: false,
   color: ""
 }
+
+// <<<<<<< HEAD
+// =======
+
+// >>>>>>> master
 
 const toggle= () => {
   console.log('usedToggle()');
