@@ -36,25 +36,15 @@ export default defineNuxtModule<ModuleOptions>({
       filePath: resolver.resolve('runtime/components/Parts/Card.vue')
     })
 
-    // Headers
-    addComponent({
-      name: 'HeaderOne',
-      filePath: resolver.resolve('runtime/components/Parts/HeaderOne.vue')
+    // Header
+    addComponent( {
+      name: 'partsHeader',
+      filePath: resolver.resolve('runtime/components/Parts/header.vue')
     })
 
     addComponent({
-      name: 'HeaderTwo',
-      filePath: resolver.resolve('runtime/components/Parts/HeaderTwo.vue')
-    })
-
-    addComponent({
-      name: 'HeaderThree',
-      filePath: resolver.resolve('runtime/components/Parts/HeaderThree.vue')
-    })
-
-    addComponent({
-      name: 'HeaderFour',
-      filePath: resolver.resolve('runtime/components/Parts/HeaderFour.vue')
+      name: 'News',
+      filePath: resolver.resolve('runtime/components/Parts/News.vue')
     })
   }
 })
