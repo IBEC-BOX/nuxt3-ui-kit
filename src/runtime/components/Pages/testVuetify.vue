@@ -26,12 +26,13 @@
         :title="'Заполните контактные данные и оставьте заявку на консультацию'"
         :inputs="inputs"
         @form-data="formData"
-        :style-form="'call'"
-        :socials="socials"
+        :style-form="'standard'"
         :small-image="'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'"
+        :socials="socials"
         :alt-image="'sad'"
         :info-company="infoCompany"
         :checkbox-setting="checkboxSetting"
+        :commentary="commentary"
       />
     </v-main>
 
@@ -112,18 +113,18 @@ const inputs = [
     value: ''
   },
   // {
-  //   sm: 6,
-  //   md: 6,
-  //   lg: 6,
-  //   xl: 6,
-  //   xxl: 6,
-  //   label: "ФИО",
-  //   rules: [
-  //     v => !!v || 'ФИО обязательно к заполнению',
-  //     v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-  //   ],
-  //   placeholder: "Аче Ачевович",
-  //   value: ''
+    // sm: 6,
+    // md: 6,
+    // lg: 6,
+    // xl: 6,
+    // xxl: 6,
+    // label: "ФИО",
+    // rules: [
+    //   v => !!v || 'ФИО обязательно к заполнению',
+    //   v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+    // ],
+    // placeholder: "Аче Ачевович",
+    // value: ''
   // },
 ]
 const infoCompany = [
@@ -146,6 +147,13 @@ const checkboxSetting = {
     v => !!v || 'Нажми на флажок!'
   ],
   label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
+}
+const commentary = {
+  label: "комментарий",
+  rules: [
+    v => !!v || 'ФИО обязательно к заполнению',
+  ],
+  rows: 3,
 }
 
 const testButtonNews = () => console.log(cards[1].id)

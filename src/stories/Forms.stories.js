@@ -8,7 +8,7 @@ export default {
   argTypes: {
     title: { control: "text" },
     subtitle: { control: 'text' },
-    commentary: { control: "Boolean" },
+    commentary: { type: "Object" },
     styleForm: {
       control: { control: "radio" },
       options: ['standard', 'call'],
@@ -63,6 +63,20 @@ export const StandardFirst = {
         value: ''
       },
     ],
+    commentary: {
+      label: "комментарий",
+      rules: [
+        v => !!v || 'Комментарий обязателен к заполнению',
+      ],
+      rows: 8,
+    },
+    checkboxSetting: {
+      color: 'primary',
+      rules: [
+        v => !!v || 'Нажми на флажок!'
+      ],
+      label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
+    }
   },
   parameters: {
     design: {
@@ -115,6 +129,13 @@ export const StandardSecond = {
         value: ''
       },
     ],
+    checkboxSetting: {
+      color: 'primary',
+      rules: [
+        v => !!v || 'Нажми на флажок!'
+      ],
+      label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
+    }
   }
 }
 
@@ -167,7 +188,21 @@ export const BigImage = {
       clearable: true,
       multiple: true,
       items: ['a', 'b', 'c', 'd', 'e', 'ab', 'bc', 'de']
-    }
+    },
+    checkboxSetting: {
+      color: 'primary',
+      rules: [
+        v => !!v || 'Нажми на флажок!'
+      ],
+      label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
+    },
+    commentary: {
+      label: "комментарий",
+      rules: [
+        v => !!v || 'Комментарий обязателен к заполнению',
+      ],
+      rows: 4,
+    },
   }
 }
 
@@ -226,7 +261,21 @@ export const SmallImage = {
         sizeIcon: "large",
         text: "Номер телефона компании"
       },
-    ]
+    ],
+    checkboxSetting: {
+      color: 'primary',
+      rules: [
+        v => !!v || 'Нажми на флажок!'
+      ],
+      label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
+    },
+    commentary: {
+      label: "комментарий",
+      rules: [
+        v => !!v || 'Комментарий обязателен к заполнению',
+      ],
+      rows: 4,
+    },
   }
 }
 
@@ -272,6 +321,13 @@ export const Call = {
         img: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
         alt: '321',
       },
-    ]
+    ],
+    checkboxSetting: {
+      color: 'primary',
+      rules: [
+        v => !!v || 'Нажми на флажок!'
+      ],
+      label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
+    }
   }
 }
