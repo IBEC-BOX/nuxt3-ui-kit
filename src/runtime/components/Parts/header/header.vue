@@ -237,15 +237,17 @@ const props = defineProps({
 const topClass = ref([`bg-${props.topBackground}`, props.topClass])
 
 // Calculate header height
-let headerHeight = 78
+const getHeight = (variant) => {
+  const heights = {
+    'top-bar': 110,
+    'menu-top-bar': 88,
+    'tabs': 130
+  }
 
-if (props.variant === 'top-bar') {
-  headerHeight = 110
-} else if (props.variant === 'menu-top-bar') {
-  headerHeight = 88
-} else if(props.variant === 'tabs') {
-  headerHeight = 130
+  return heights[variant]
 }
+
+let headerHeight = getHeight(props.variant)
 
 // Init screen width
 let screen_width
