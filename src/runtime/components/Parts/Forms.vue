@@ -128,8 +128,8 @@
         <v-col cols="12">
           <ul class="d-flex justify-center align-center" style="list-style: none; column-gap: 8px">
             <li v-for="(social, index) in socials" :key="`social-${index}`">
-              <a :href="social.link" target="_blank">
-                <v-img :src="social.img" :alt="social.alt" width="32"/>
+              <a :href="social.link" target="_blank" rel="noopener noreferrer">
+              <v-img :src="social.img" :alt="social.alt" width="32"/>
               </a>
             </li>
           </ul>
@@ -231,7 +231,7 @@
             <v-col cols="12" v-if="socials.length">
               <ul class="d-flex" style="column-gap: 8px; list-style: none">
                 <li v-for="(social, index) in socials" :key="`social-${index}`">
-                  <a :href="social.link" target="_blank">
+                  <a :href="social.link" target="_blank" rel="noopener noreferrer">
                     <v-img :src="social.img" :alt="social.alt" :width="35"/>
                   </a>
                 </li>
@@ -292,7 +292,7 @@ const dataForm = (validForm) => {
       }
     }
   } else {
-    console.log('валидацию так то пройти надо')
+    console.log('validate not confirm')
   }
 }
 </script>
