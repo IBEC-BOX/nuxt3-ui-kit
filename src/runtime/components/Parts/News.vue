@@ -1,7 +1,7 @@
 <template>
   <v-container class="d-flex flex-column align-center justify-center">
     <div class="parts__news-title mb-5">
-      <h2 class="text-32 font-weight-regular">Новости</h2>
+      <h2 class="text-32 font-weight-regular" :class="`justify-${positionTitle}`">{{ title }}</h2>
     </div>
     <v-row>
       <v-col
@@ -101,6 +101,8 @@ const props = defineProps({
       xl: 4,
       xxl: 4
     })
-  }
+  },
+  title: { type: String, default: 'Новости' },
+  positionTitle: { type: String, default: 'center' },
 })
 </script>

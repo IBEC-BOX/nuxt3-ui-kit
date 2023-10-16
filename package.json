@@ -33,10 +33,12 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@mdi/font": "^7.2.96",
     "@nuxt/kit": "^3.7.2",
     "vuetify": "3.3.16"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.2",
     "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxt/module-builder": "^0.5.1",

@@ -9,6 +9,7 @@ export default {
     settingsCol: { type: 'object' },
     settingsButton: { type: 'object'},
     cards: { control: 'array' },
+    title: { control: 'text' }
   },
 };
 
@@ -26,6 +27,8 @@ export const First = {
       </partsNews>`
   }),
   args: {
+    text: "Новости о нас",
+    positionTitle: "start",
     cards: [
       {
         id: 1,
