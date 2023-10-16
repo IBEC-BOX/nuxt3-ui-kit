@@ -1,37 +1,26 @@
 <template>
   <v-app>
-    <v-navigation-drawer temporary v-model="showDrawer" location="right">
-      <div class="w-100 text-right">
-        <v-btn flat icon="$close" size="x-large" @click="toggle" />
-      </div>
-      <p class="text-center"><b>I'm the drawer</b></p>
-    </v-navigation-drawer>
-
-    <HeaderOne
-      sticky
-      :menu="header_menu"
-      header-active-link-variant="bottom_line"
+    <!-- Header first variant -->
+    <partsHeader
+      header-active-link-variant="bottom_line black"
+      variant="tabs"
       :buttons="header_buttons"
-    />
+      :menu="header_menu"
+      :top-menu="header_top_menu_links"
+      :top-links="header_top_links"
+      :tabs="header_tabs"
+    >
+      <template #append-top>
+        append top slot
+      </template>
 
-    <v-main class="d-flex align-center">
-<!--      <v-container>-->
-<!--        <v-sheet elevation="5" class="py-4 text-center">-->
-<!--          <h1 class="text-18">Built and styled with Vuetify 3</h1>-->
-<!--          <p>Minimized production bundle (70kB in tot)</p>-->
-<!--          <v-btn class="mt-4">press me to ripple</v-btn>-->
-<!--        </v-sheet>-->
-<!--      </v-container>-->
-      <News
-        :cards="cards"
-        :settingsButton="settingsButton"
-        :settingsCol="settingsCol"
-      >
-        <template v-slot:buttonNews>
-          <v-btn>Все новости</v-btn>
-        </template>
-      </News>
-    </v-main>
+      <template #buttons>
+        buttons slot
+      </template>
+    </partsHeader>
+    <!-- Header first variant END -->
+
+    <NuxtPage />
 
     <v-footer app elevation="5">
       <v-row no-gutters justify="center"
@@ -49,12 +38,12 @@
 
 <script setup>
 import { ref } from 'vue'
+import partsHeader from '../Parts/header/header.vue'
 import Card from "../Parts/Card.vue"
 import footerOne from "../Parts/footer/footer.vue";
-import HeaderOne from '../Parts/header/HeaderOne.vue'
 import partsNews from "../Parts/News.vue";
-const showDrawer = ref(false);
 
+const showDrawer = ref(false)
 
 const testButtonNews = () => console.log(cards[1].id)
 const cards = [
@@ -129,6 +118,81 @@ const cards = [
   },
   {
     id: 5,
+    title: "Product",
+    links: [
+      {
+        id: 1,
+        text: "Overview",
+        link: "",
+      },
+      {
+        id: 2,
+        text: "Features",
+        link: "",
+      },
+      {
+        id: 3,
+        text: "Solutions",
+        link: "",
+      },
+      {
+        id: 4,
+        text: "Tutorials",
+        link: "",
+      },
+      {
+        id: 5,
+        text: "Pricing",
+        link: "",
+      },
+      {
+        id: 6,
+        text: "Releases",
+        link: "",
+      },
+    ]
+  },
+]
+
+const store = [
+  {
+    id: 1,
+    img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+    alt: "appstore",
+    link: "/"
+  },
+  {
+    id: 2,
+    img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+    alt: "googleplay",
+    link: "/"
+  },
+]
+
+const nav = [
+  {
+    id: 1,
+    text: "Overview",
+    link: "/",
+  },
+  {
+    id: 2,
+    text: "Features",
+    link: "/",
+  },
+  {
+    id: 3,
+    text: "Pricing",
+    link: "/",
+  },
+  {
+    id: 4,
+    text: "Careers",
+    link: "/",
+  },
+  {
+    id: 5,
+    link: "/",
     dateAuthorRight: false,
     horizontalCard: false,
     width: 349,
@@ -144,6 +208,7 @@ const cards = [
     functionButton: "",
     textButton: "Читать",
   },
+
   {
     id: 6,
     dateAuthorRight: false,
@@ -163,6 +228,7 @@ const cards = [
     appendIconButton: "$vuetify",
   }
 ]
+
 const settingsCol = {
   cols: "",
   sm: "",
@@ -183,6 +249,10 @@ const settingsButton = {
   color: ""
 }
 
+// <<<<<<< HEAD
+// =======
+
+// >>>>>>> master
 
 const toggle= () => {
   console.log('usedToggle()');
@@ -193,37 +263,37 @@ const header_menu = [
   {
     id: 0,
     title: 'Home',
-    link: '/',
+    url: '/',
   },
 
   {
-    id: 0,
+    id: 1,
     title: 'About us',
-    link: '#',
+    url: '/about',
   },
 
   {
-    id: 0,
+    id: 2,
     title: 'Services',
-    link: '#',
+    url: '',
   },
 
   {
-    id: 0,
+    id: 3,
     title: 'Projects',
-    link: '#',
+    url: '',
   },
 
   {
-    id: 0,
+    id: 4,
     title: 'Team',
-    link: '#',
+    url: '',
   },
 
   {
-    id: 0,
+    id: 5,
     title: 'Career',
-    link: '#',
+    url: '',
   },
 ]
 
@@ -235,7 +305,7 @@ const header_buttons = [
   {
     id: 0,
     text: 'Contact us',
-    color: 'grey-darken-3',
+    color: 'primary',
     variant: 'outlined',
     function: func,
   },
@@ -243,11 +313,148 @@ const header_buttons = [
   {
     id: 1,
     text: 'Login',
-    color: 'grey-darken-3',
+    color: 'primary',
     elevation: '1',
     variant: 'flat',
   }
 ]
+
+const header_top_menu = [
+  {
+    id: 0,
+    title: 'Company 1',
+    url: '#'
+  },
+
+  {
+    id: 1,
+    title: 'Company 2',
+    url: '#'
+  },
+
+  {
+    id: 2,
+    title: 'Company 3',
+    url: '#'
+  }
+]
+
+const header_top_links = [
+  {
+    id: 0,
+    title: 'Город',
+    url: '#',
+  },
+
+  {
+    id: 1,
+    title: '7888',
+    prepend_icon: 'mdi-phone-outline',
+    url: '#',
+  },
+
+  {
+    id: 2,
+    title: 'Адреса',
+    prepend_icon: 'mdi-map-marker-outline',
+    url: '#',
+  }
+]
+
+const header_top_menu_links = [
+  {
+    id: 0,
+    title: 'Company 1',
+    url: '#'
+  },
+  {
+    id: 1,
+    title: 'Company 2',
+    url: '#'
+  },
+  {
+    id: 2,
+    title: 'Company 3',
+    url: '#'
+  }
+]
+
+const header_buttons_second = [
+  {
+    id: 0,
+    text: 'Call to action',
+    color: 'primary',
+    variant: 'flat',
+  },
+]
+
+const header_tabs = [
+  {
+    id: 0,
+    title: 'Bank',
+    url: '/',
+  },
+
+  {
+    id: 1,
+    title: 'Business',
+    url: 'about',
+  },
+
+  {
+    id: 2,
+    title: 'Checkout',
+    url: '',
+  },
+
+  {
+    id: 3,
+    title: 'Investment',
+    url: '',
+  },
+  {
+    id: 4,
+    title: 'Insurance',
+    url: '',
+  },
+
+  {
+    id: 5,
+    title: 'Travel',
+    url: '',
+  },
+
+  {
+    id: 6,
+    title: 'City',
+    url: '',
+  }
+]
+
+const selected_lang = ref({
+  title: 'Қазақша',
+  image: 'https://flagcdn.com/w20/kz.png'
+})
+
+const langs = ref([
+  {
+    id: 0,
+    title: 'Қазақша',
+    image: 'https://flagcdn.com/w20/kz.png'
+  },
+
+  {
+    id: 1,
+    title: 'Русский',
+    image: 'https://flagcdn.com/w20/ru.png'
+  },
+
+  {
+    id: 3,
+    title: 'English',
+    image: 'https://flagcdn.com/w20/us.png'
+  }
+])
 
 /* Redundant unused code to test treeshaking */
 const unusedFunction = () => console.log('unusedFunction');
