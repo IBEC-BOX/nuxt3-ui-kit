@@ -15,8 +15,6 @@ export default defineNuxtModule<ModuleOptions>({
   setup (options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
-    nuxt.options.css.push(resolver.resolve('./runtime/style/vuetify.scss'))
-
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve('./runtime/plugin'))
 
