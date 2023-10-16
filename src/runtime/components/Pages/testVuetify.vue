@@ -18,6 +18,21 @@
         buttons slot
       </template>
     </partsHeader>
+
+    <v-main class="d-flex align-center">
+      <Forms
+        :title="'Заполните контактные данные и оставьте заявку на консультацию'"
+        :inputs="inputs"
+        @form-data="formData"
+        :style-form="'standard'"
+        :small-image="'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'"
+        :socials="socials"
+        :alt-image="'sad'"
+        :info-company="infoCompany"
+        :checkbox-setting="checkboxSetting"
+        :commentary="commentary"
+      />
+    </v-main>
     <!-- Header first variant END -->
 
     <v-main class="d-flex align-center">
@@ -49,7 +64,105 @@ import Card from "../Parts/Card.vue"
 import footerOne from "../Parts/footer/footer.vue";
 import partsNews from "../Parts/News.vue";
 import downloadFiles from "../Parts/files/downloadFiles.vue"
-const showDrawer = ref(false)
+import Forms from "../Parts/Forms.vue"
+const showDrawer = ref(false);
+
+const formData = (data) => {
+  console.log(data)
+}
+const socials = [
+  {
+    link: '321',
+    img: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+    alt: '321',
+  },
+  {
+    link: '321',
+    img: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+    alt: '321',
+  },
+  {
+    link: '321',
+    img: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+    alt: '321',
+  },
+]
+const combobox = {
+  label: "выбери пункт",
+  rules: [
+    v => !!v || 'ФИО обязательно к заполнению',
+  ],
+  clearable: true,
+  multiple: true,
+  items: ['a', 'b', 'c', 'd', 'e', 'ab', 'bc', 'de']
+}
+const inputs = [
+  {
+    label: "ФИО",
+    rules: [
+      v => !!v || 'ФИО обязательно к заполнению',
+      v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+    ],
+    placeholder: "Аче Ачевович",
+    value: ''
+  },
+  {
+    // sm: 6,
+    // md: 6,
+    // lg: 6,
+    // xl: 6,
+    // xxl: 6,
+    label: "ФИО",
+    rules: [
+      v => !!v || 'ФИО обязательно к заполнению',
+      v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+    ],
+    placeholder: "Аче Ачевович",
+    value: ''
+  },
+  // {
+  // sm: 6,
+  // md: 6,
+  // lg: 6,
+  // xl: 6,
+  // xxl: 6,
+  // label: "ФИО",
+  // rules: [
+  //   v => !!v || 'ФИО обязательно к заполнению',
+  //   v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+  // ],
+  // placeholder: "Аче Ачевович",
+  // value: ''
+  // },
+]
+const infoCompany = [
+  {
+    icon: "mdi-phone",
+    colorIcon: "primary",
+    sizeIcon: "large",
+    text: "Номер телефона компании"
+  },
+  {
+    icon: "mdi-information",
+    colorIcon: "primary",
+    sizeIcon: "large",
+    text: "Номер телефона компании"
+  },
+]
+const checkboxSetting = {
+  color: 'primary',
+  rules: [
+    v => !!v || 'Нажми на флажок!'
+  ],
+  label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
+}
+const commentary = {
+  label: "комментарий",
+  rules: [
+    v => !!v || 'ФИО обязательно к заполнению',
+  ],
+  rows: 3,
+}
 
 const testButtonNews = () => console.log(cards[1].id)
 const cards = [
