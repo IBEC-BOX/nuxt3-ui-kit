@@ -668,7 +668,7 @@ export const Fourth = {
     store: [
       {
         id: 1,
-        img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+        img: "/appstore.svg",
         alt: "appstore",
         link: "/"
       },

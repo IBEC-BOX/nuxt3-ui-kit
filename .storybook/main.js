@@ -14,5 +14,7 @@ const config = {
   docs: {
     autodocs: "tag",
   },
+  // Добавьте следующую строку для указания папки static
+  staticDirs: [{ from: '../playground/public/', to: '/' }],
 };
 export default config;
