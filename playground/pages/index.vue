@@ -34,7 +34,7 @@ const cards = [
     minHeight: 414,
     variantCard: "elevated",
     styleCard: "vacancy",
-    imgSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+    imgSrc: "/appstore.svg",
     imgAlt: "Картинка",
     title: "Card Title",
     text: "A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.",
