@@ -35,6 +35,16 @@
     </v-main>
     <!-- Header first variant END -->
 
+    <v-main class="d-flex align-center">
+      <downloadFiles
+        :title="'О нас'"
+        :files="[
+          {title: 'Политика обработки персональных данных ', img: 'logo.svg', download: '1.png', size: '123 KB', alt: '', date: '20.02.22'},
+          {title: 'Политика обработки персональных данных ', download: '2.docx', alt: '', date: '20.02.22'}
+        ]"
+      />
+    </v-main>
+
     <NuxtPage />
 
     <v-footer app elevation="5">
@@ -57,6 +67,7 @@ import partsHeader from '../Parts/header/header.vue'
 import Card from "../Parts/Card.vue"
 import footerOne from "../Parts/footer/footer.vue";
 import partsNews from "../Parts/News.vue";
+import downloadFiles from "../Parts/files/downloadFiles.vue"
 import Forms from "../Parts/Forms.vue"
 const showDrawer = ref(false);
 
