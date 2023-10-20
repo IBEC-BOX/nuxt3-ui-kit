@@ -38,7 +38,11 @@
     <v-main class="d-flex align-center">
       <downloadFiles
         :title="'О нас'"
-        :files="[{title: 'Политика обработки персональных данных ',download: '../Parts/Card.vue',img: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',alt: '',date: '20.02.22'}]"/>
+        :files="[
+          {title: 'Политика обработки персональных данных ', img: 'logo.svg', download: '1.png', size: '123 KB', alt: '', date: '20.02.22'},
+          {title: 'Политика обработки персональных данных ', download: '2.docx', alt: '', date: '20.02.22'}
+        ]"
+      />
     </v-main>
 
     <NuxtPage />
