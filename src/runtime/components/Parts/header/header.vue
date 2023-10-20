@@ -252,8 +252,8 @@ let headerHeight = getHeight(props.variant)
 // Init screen width
 let screen_width
 
-if (process.client) {
-  screen_width = window.innerWidth
+if (typeof window !== 'undefined') {
+  screen_width = window.innerWidth;
 }
 
 // Menu
