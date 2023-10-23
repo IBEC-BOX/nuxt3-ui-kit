@@ -3,7 +3,7 @@
     <!-- Header first variant -->
     <partsHeader
       header-active-link-variant="bottom_line black"
-      variant="tabs"
+      variant="top-bar"
       :buttons="header_buttons"
       :menu="header_menu"
       :top-menu="header_top_menu_links"
@@ -18,21 +18,6 @@
         buttons slot
       </template>
     </partsHeader>
-
-    <v-main class="d-flex align-center">
-      <Forms
-        :title="'Заполните контактные данные и оставьте заявку на консультацию'"
-        :inputs="inputs"
-        @form-data="formData"
-        :style-form="'standard'"
-        :small-image="'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'"
-        :socials="socials"
-        :alt-image="'sad'"
-        :info-company="infoCompany"
-        :checkbox-setting="checkboxSetting"
-        :commentary="commentary"
-      />
-    </v-main>
     <!-- Header first variant END -->
 
     <v-main class="d-flex align-center">
@@ -398,8 +383,8 @@ const header_menu = [
 
   {
     id: 3,
-    title: 'Projects',
-    url: '',
+    title: 'Vacancies',
+    url: '/vacancies',
   },
 
   {
