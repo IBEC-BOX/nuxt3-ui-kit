@@ -1,11 +1,15 @@
 import { setup } from "@storybook/vue3";
 import { withVuetifyTheme, DEFAULT_THEME } from "./withVuetifyTheme.decorator";
+import { createPinia } from 'pinia';
+
+const pinia = createPinia();
 
 import vuetify from '../src/runtime/plugins/vuetify'
 
 setup((app) => {
   // Registers your app's plugins into Storybook
   app.use(vuetify)
+  app.use(pinia)
 });
 
 export const globalTypes = {
