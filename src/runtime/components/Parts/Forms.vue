@@ -137,7 +137,7 @@
       </v-row>
     </v-form>
   </v-sheet>
-  <v-sheet v-if="bigImage.length || smallImage.length" :width="1110" class="mx-auto custom-ui-form">
+  <v-sheet v-if="bigImage.length || smallImage.length" class="mx-auto custom-ui-form">
     <v-form ref="form" @submit.prevent="dataForm($refs.form.isValid)" class="pa-6 px-sm-10 pt-sm-10 pb-sm-5">
       <v-row>
         <v-col cols="12" class="text-center mb-7 text-sm-32 text-h5" v-if="smallImage.length">{{ title }}</v-col>
