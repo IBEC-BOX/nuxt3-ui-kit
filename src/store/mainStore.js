@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
 
-export const useStore = defineStore('store', {
+export const useMainStore = defineStore('mainStore', {
   getters: {
     getObjectPropertiesWithPrefix: () => {
       return (obj, prefix) => {

@@ -53,39 +53,9 @@
 
 <script setup>
   import { defineProps, useAttrs, computed, ref } from 'vue'
+  import { useMainStore } from "../../../store/mainStore.js";
 
-  const attrs = useAttrs()
-
-  const getObjectPropertiesWithPrefix = (obj, prefix) => {
-    const iconProperties = {};
-
-    for (const key in obj) {
-      if (key.startsWith(`${prefix}-`)) {
-        iconProperties[key.split(`${prefix}-`)[1]] = obj[key];
-      }
-    }
-
-    return iconProperties;
-  };
-
-  const iconAttrs = ref({
-    size: 'large',
-    color: 'white',
-    ...getObjectPropertiesWithPrefix(attrs, 'icon')
-  })
-
-  const imageAttrs = ref({
-    height: 199,
-    ...getObjectPropertiesWithPrefix(attrs, 'img')
-  })
-
-  const closeButtonAttrs = ref({
-    elevation: 0,
-    size: 'small',
-    icon: 'mdi-window-close',
-    ...getObjectPropertiesWithPrefix(attrs, 'close-button')
-  })
-
+  const mainStore  = useMainStore()
   const props = defineProps({
     modelValue: {
       type: Boolean,
@@ -135,6 +105,25 @@
       type: Boolean,
       default: false,
     },
+  })
+  const attrs = useAttrs()
+
+  const iconAttrs = ref({
+    size: 'large',
+    color: 'white',
+    ...mainStore.getObjectPropertiesWithPrefix(attrs, 'icon')
+  })
+
+  const imageAttrs = ref({
+    height: 199,
+    ...mainStore.getObjectPropertiesWithPrefix(attrs, 'img')
+  })
+
+  const closeButtonAttrs = ref({
+    elevation: 0,
+    size: 'small',
+    icon: 'mdi-window-close',
+    ...mainStore.getObjectPropertiesWithPrefix(attrs, 'close-button')
   })
 
   // Init v-model

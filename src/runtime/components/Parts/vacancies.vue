@@ -42,9 +42,11 @@
   import Card from './Card.vue'
   import Forms from './Forms.vue'
   import {defineProps, defineEmits, useAttrs} from 'vue'
+  import { useMainStore } from "../../../store/mainStore.js";
 
   const attrs = useAttrs()
   const emit = defineEmits(['form-data'])
+  const mainStore = useMainStore()
   const props = defineProps({
     cards: {
       type: Array,
@@ -57,21 +59,9 @@
     }
   })
 
-  const getObjectPropertiesWithPrefix = (obj, prefix) => {
-    const properties = {};
-    for (const key in obj) {
-      if (key.startsWith(`${prefix}-`)) {
-        properties[key.split(`${prefix}-`)[1]] = obj[key];
-      }
-    }
-    return properties;
-  }
-
   const formAttrs = {
-    ...getObjectPropertiesWithPrefix(attrs, 'form')
+    ...mainStore.getObjectPropertiesWithPrefix(attrs, 'form')
   }
-
-  console.log(formAttrs)
 
   const formData = (data) => {
     emit('form-data', data )
