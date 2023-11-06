@@ -1,8 +1,8 @@
 <template>
-  <div class="position-relative">
+  <div class="position-relative text-white">
     <swiper-container
       v-bind="sliderAttrs"
-      :ref="(el) => { defineSlider(el) }"
+      ref="slider"
       @swiperslidechange="updatePagination"
       :slides-per-view="sliderPeeking ? '1.3' : '1'"
       class="overflow-hidden w-100"
@@ -27,10 +27,9 @@
           <!-- Image END -->
         </div>
 
-        <component
-          :is="sliderContainer ? 'v-container': 'div'"
+        <div
           class="d-flex flex-column justify-center align-start h-100"
-          :class="{'px-12': !sliderContainer}"
+          :class="[{'px-12': !sliderContainer}, {'v-container' : sliderContainer}]"
         >
           <div>
             <!-- Slide title -->
@@ -38,12 +37,12 @@
             <component
               :is="slide.titleTag ? slide.titleTag: 'p'"
               v-bind="slide.titleAttrs"
-              class="mb-0 text-h3 mb-4 font-weight-medium"
+              class="mb-0 text-md-h3 text-h4 mb-4 font-weight-medium"
             >
               {{ slide.title }}
             </component>
 
-            <p class="mb-4" v-bind="slide.subTitleAttrs">
+            <p class="mb-4 text-md-h6 text-body-1" v-bind="slide.subTitleAttrs">
               {{ slide.subtitle }}
             </p>
             <!-- Slide title -->
@@ -64,32 +63,30 @@
             </v-btn>
           </div>
           <!-- Slider buttons END -->
-        </component>
+        </div>
       </swiper-slide>
     </swiper-container>
 
     <div class="control-buttons-center-container" v-if="controlButtonsAlign === 'center'">
-      <v-container class="d-flex justify-space-between px-0">
+      <div
+        class="d-flex justify-space-between px-0">
         <v-btn
-          style="margin-left: -86px"
           v-bind="controlButtonPrevAttrs"
           icon="mdi-chevron-left"
           @click="slidePrev"
         />
 
         <v-btn
-          style="margin-right: -86px"
           v-bind="controlButtonNextAttrs"
           icon="mdi-chevron-right"
           @click="slideNext"
         />
-      </v-container>
+      </div>
     </div>
 
     <div class="control-buttons-right-container" v-if="controlButtonsAlign === 'right'">
-      <component
-        :is="sliderContainer ? 'v-container' : 'div'"
-        :class="{'px-12' : !sliderContainer}"
+      <div
+        :class="[{'px-12' : !sliderContainer}, {'v-container' : sliderContainer}]"
         class="d-flex flex-column align-end"
       >
         <v-btn
@@ -104,15 +101,14 @@
           icon="mdi-chevron-down"
           @click="slideNext"
         />
-      </component>
+      </div>
     </div>
 
     <!-- Slider control -->
     <div class="slider_pagination_container">
-      <component
-        :is="sliderContainer ? 'v-container': 'div'"
+      <div
         class="w-100 d-flex align-end"
-        :class="{'px-12': !sliderContainer}"
+        :class="[{'px-12': !sliderContainer}, {'v-container' : sliderContainer}]"
       >
         <!-- Pagination -->
         <div class="slider_pagination" :class="{'mx-auto': sliderPaginationCenter}" v-if="sliderPagination">
@@ -129,7 +125,7 @@
         </div>
         <!-- Pagination END -->
 
-        <div class="ml-auto" v-if="controlButtonsAlign === 'right' && swiper !== null">
+        <div class="ml-auto" v-if="controlButtonsAlign === 'right' && swiper !== null && !sliderPagination">
           {{ activeSlide + 1 }} / {{ slides.length }}
         </div>
 
@@ -149,7 +145,7 @@
           />
         </div>
         <!-- Control buttons END-->
-      </component>
+      </div>
     </div>
     <!-- Slider control END -->
   </div>
@@ -159,7 +155,7 @@
 import { register } from 'swiper/element/bundle';
 register()
 
-import { defineProps, useAttrs, ref } from 'vue'
+import { defineProps, useAttrs, ref, onMounted } from 'vue'
 import { useMainStore } from "../../../store/mainStore.js";
 const mainStore = useMainStore()
 
@@ -238,34 +234,43 @@ const props = defineProps({
 })
 
 // Slider ref
-const slider = ref({})
-const swiper = ref({})
+const slider = ref(null)
+
 const activeSlide = ref(0)
 const pagination = ref(props.slides)
-pagination.value[0].active = true
 
-async function defineSlider(el) {
-  if(el !== null) {
-    swiper.value = el.swiper
-    activeSlide.value = swiper.value.realIndex
-    console.log(swiper)
+const slideTo = (index) => {
+  if(slider.value !== null) {
+    slider.value.swiper.slideTo(index)
+  }
+}
+
+const slidePrev = () => {
+  if(slider.value !== null) {
+    slider.value.swiper.slidePrev(500)
+  }
+}
+
+const slideNext = () => {
+  if(slider.value !== null) {
+    slider.value.swiper.slideNext(500)
   }
 }
 
 const updatePagination = () => {
-  if('swiper' in slider.value) {
+  if(slider.value !== null) {
     props.slides.forEach((slide, index) => {
       pagination.value[index].active = false
     })
-    pagination.value[activeSlide.value].active = true
-
-    console.log(activeSlide.value)
+    pagination.value[slider.value.swiper.realIndex].active = true
   }
 }
 
-const slideTo = (index) => swiper.value.slideTo(index)
-const slidePrev = () => swiper.value.slidePrev(500)
-const slideNext = () => swiper.value.slideNext(500)
+onMounted(() => {
+  console.log(slider.value.swiper)
+  activeSlide.value = slider.value.swiper.realIndex
+  pagination.value[0].active = true
+})
 </script>
 
 <style lang="scss">
@@ -323,23 +328,9 @@ const slideNext = () => swiper.value.slideNext(500)
     position: absolute;
     width: 100%;
     top: 50%;
+    padding: 0 32px 0 32px;
     transform: translateY(-50%);
     z-index: 1;
-  }
-
-  .control-buttons-center {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-
-    &.control-button-prev {
-      left: 32px;
-    }
-
-    &.control-button-next {
-      right: 32px;
-    }
   }
 
   .control-buttons-right-container {
