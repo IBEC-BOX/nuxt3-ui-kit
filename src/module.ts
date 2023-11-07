@@ -46,6 +46,11 @@ export default defineNuxtModule<ModuleOptions>({
       filePath: resolver.resolve('runtime/components/Parts/modal.vue')
     })
 
+    //Slider
+    addComponent({
+      name: 'Slider',
+      filePath: resolver.resolve('runtime/components/Parts/slider.vue')
+    })
 
     addComponent({
       name: 'News',
