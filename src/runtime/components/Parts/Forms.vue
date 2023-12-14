@@ -1,12 +1,37 @@
 <template>
-  <v-sheet v-if="styleForm === 'standard' && (bigImage === '' && smallImage === '')" :max-width="Object.keys(commentary).length ? 825 : 1100" class="mx-auto custom-ui-form">
-    <v-form ref="form" @submit.prevent="dataForm($refs.form.isValid)">
+  <v-sheet
+    v-if="styleForm === 'standard' && (bigImage === '' && smallImage === '')"
+    :max-width="Object.keys(commentary).length ? 825 : 1100"
+    class="mx-auto custom-ui-form"
+  >
+    <v-form
+      ref="form"
+      @submit.prevent="dataForm($refs.form.isValid)"
+    >
       <v-row class="px-sm-10 pb-sm-8 pa-6">
-        <v-col cols="12" :sm="Object.keys(commentary).length ? 12 : 6" v-if="title.length">
-          <p class="text-sm-32 text-h5" :class="subtitle === '' ? 'mb-sm-5' : 'mb-sm-3'" v-if="title.length">{{ title }}</p>
-          <p class="text-sm-18 text-15 mb-4" v-if="subtitle.length">{{ subtitle }}</p>
+        <v-col
+          v-if="title.length"
+          cols="12"
+          :sm="Object.keys(commentary).length ? 12 : 6"
+        >
+          <p
+            v-if="title.length"
+            class="text-sm-32 text-h5"
+            :class="subtitle === '' ? 'mb-sm-5' : 'mb-sm-3'"
+          >
+            {{ title }}
+          </p>
+          <p
+            v-if="subtitle.length"
+            class="text-sm-18 text-15 mb-4"
+          >
+            {{ subtitle }}
+          </p>
         </v-col>
-        <v-col cols="12" sm="6">
+        <v-col
+          cols="12"
+          sm="6"
+        >
           <v-row :class="Object.keys(commentary).length ? 'pa-0' : 'pt-4'">
             <v-col
               v-for="(input, index) in inputs"
@@ -38,8 +63,14 @@
             </v-col>
           </v-row>
         </v-col>
-        <v-col cols="12" sm="6" class="pt-3 pb-0 py-sm-0" v-if="Object.keys(commentary).length">
+        <v-col
+          v-if="Object.keys(commentary).length"
+          cols="12"
+          sm="6"
+          class="pt-3 pb-0 py-sm-0"
+        >
           <v-textarea
+            v-model="comValue"
             :variant="commentary.variant || 'outlined'"
             :label="commentary.label || 'Комментарий'"
             :rules="commentary.rules"
@@ -54,22 +85,46 @@
             :append-inner-icon="commentary.appendInnerIcon"
             :no-resize="commentary.noResize || false"
             :rows="commentary.rows || 8"
-            v-model="comValue"
           />
         </v-col>
-        <v-col cols="12" sm="6" class="pl-1 py-0">
-          <v-checkbox :color="checkboxSetting.color" v-model="checked" :rules="checkboxSetting.rules"  v-if="Object.keys(commentary).length">
-            <template v-slot:label>
+        <v-col
+          cols="12"
+          sm="6"
+          class="pl-1 py-0"
+        >
+          <v-checkbox
+            v-if="Object.keys(commentary).length"
+            v-model="checked"
+            :color="checkboxSetting.color"
+            :rules="checkboxSetting.rules"
+          >
+            <template #label>
               <span class="text-13">{{ checkboxSetting.label }}</span>
             </template>
           </v-checkbox>
         </v-col>
-        <v-col cols="12" sm="6" class="d-flex flex-column justify-end" :class="!Object.keys(commentary).length ? 'py-0' : ''">
-          <v-btn type="submit" size="x-large" block :class="!Object.keys(commentary).length ? 'mb-3' : ''" color="primary">
+        <v-col
+          cols="12"
+          sm="6"
+          class="d-flex flex-column justify-end"
+          :class="!Object.keys(commentary).length ? 'py-0' : ''"
+        >
+          <v-btn
+            type="submit"
+            size="x-large"
+            block
+            :class="!Object.keys(commentary).length ? 'mb-3' : ''"
+            color="primary"
+          >
             {{ textButton }}
           </v-btn>
-          <v-checkbox :color="checkboxSetting.color" v-model="checked" :rules="checkboxSetting.rules" v-if="!Object.keys(commentary).length">
-            <template v-slot:label>
+          <v-checkbox
+            v-if="!Object.keys(commentary).length"
+            v-model="checked"
+            :color="checkboxSetting.color"
+            :rules="checkboxSetting.rules"
+          >
+            <template #label>
               <span class="text-13">{{ checkboxSetting.label }}</span>
             </template>
           </v-checkbox>
@@ -77,12 +132,33 @@
       </v-row>
     </v-form>
   </v-sheet>
-  <v-sheet v-if="styleForm === 'call' && (bigImage === '' && smallImage === '')" :max-width="456" class="mx-auto pa-4 custom-ui-form">
-    <v-form ref="form" @submit.prevent="dataForm($refs.form.isValid)">
+  <v-sheet
+    v-if="styleForm === 'call' && (bigImage === '' && smallImage === '')"
+    :max-width="456"
+    class="mx-auto pa-4 custom-ui-form"
+  >
+    <v-form
+      ref="form"
+      @submit.prevent="dataForm($refs.form.isValid)"
+    >
       <v-row>
-        <v-col cols="12" class="text-center mb-3" v-if="title.length || subtitle.length">
-          <p class="text-h5 text-sm-32 mb-3" v-if="title">{{ title }}</p>
-          <p class="text-sm-18 text-15 " v-if="subtitle">{{ subtitle }}</p>
+        <v-col
+          v-if="title.length || subtitle.length"
+          cols="12"
+          class="text-center mb-3"
+        >
+          <p
+            v-if="title"
+            class="text-h5 text-sm-32 mb-3"
+          >
+            {{ title }}
+          </p>
+          <p
+            v-if="subtitle"
+            class="text-sm-18 text-15 "
+          >
+            {{ subtitle }}
+          </p>
         </v-col>
         <v-col
           v-for="(input, index) in inputs"
@@ -113,23 +189,53 @@
             class="mb-2"
           />
         </v-col>
-        <v-col cols="12" class="py-0 pl-1">
-          <v-checkbox :color="checkboxSetting.color" v-model="checked" :rules="checkboxSetting.rules"  v-if="Object.keys(commentary).length">
-            <template v-slot:label>
+        <v-col
+          cols="12"
+          class="py-0 pl-1"
+        >
+          <v-checkbox
+            v-if="Object.keys(commentary).length"
+            v-model="checked"
+            :color="checkboxSetting.color"
+            :rules="checkboxSetting.rules"
+          >
+            <template #label>
               <span class="text-13">{{ checkboxSetting.label }}</span>
             </template>
           </v-checkbox>
         </v-col>
-        <v-col cols="12" class="pt-0 pb-4">
-          <v-btn type="submit" block size="x-large" color="primary">
+        <v-col
+          cols="12"
+          class="pt-0 pb-4"
+        >
+          <v-btn
+            type="submit"
+            block
+            size="x-large"
+            color="primary"
+          >
             {{ textButton }}
           </v-btn>
         </v-col>
         <v-col cols="12">
-          <ul class="d-flex justify-center align-center" style="list-style: none; column-gap: 8px">
-            <li v-for="(social, index) in socials" :key="`social-${index}`">
-              <a :href="social.link" target="_blank" rel="noopener noreferrer">
-              <v-img :src="social.img" :alt="social.alt" width="32"/>
+          <ul
+            class="d-flex justify-center align-center"
+            style="list-style: none; column-gap: 8px"
+          >
+            <li
+              v-for="(social, index) in socials"
+              :key="`social-${index}`"
+            >
+              <a
+                :href="social.link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <v-img
+                  :src="social.img"
+                  :alt="social.alt"
+                  width="32"
+                />
               </a>
             </li>
           </ul>
@@ -137,15 +243,46 @@
       </v-row>
     </v-form>
   </v-sheet>
-  <v-sheet v-if="bigImage.length || smallImage.length" class="mx-auto custom-ui-form">
-    <v-form ref="form" @submit.prevent="dataForm($refs.form.isValid)" class="pa-6 px-sm-10 pt-sm-10 pb-sm-5">
+  <v-sheet
+    v-if="bigImage.length || smallImage.length"
+    class="mx-auto custom-ui-form"
+  >
+    <v-form
+      ref="form"
+      class="pa-6 px-sm-10 pt-sm-10 pb-sm-5"
+      @submit.prevent="dataForm($refs.form.isValid)"
+    >
       <v-row>
-        <v-col cols="12" class="text-center mb-7 text-sm-32 text-h5" v-if="smallImage.length">{{ title }}</v-col>
-        <v-col cols="6" v-if="bigImage.length" class="d-none d-sm-block"><v-img :src="bigImage" :alt="altImage" cover /></v-col>
-        <v-col cols="12" sm="6">
+        <v-col
+          v-if="smallImage.length"
+          cols="12"
+          class="text-center mb-7 text-sm-32 text-h5"
+        >
+          {{ title }}
+        </v-col>
+        <v-col
+          v-if="bigImage.length"
+          cols="6"
+          class="d-none d-sm-block"
+        >
+          <v-img
+            :src="bigImage"
+            :alt="altImage"
+            cover
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
           <v-row>
-            <v-col cols="12" v-if="bigImage.length">
-              <p class="text-sm-32 text-h5 mb-5">{{ title }}</p>
+            <v-col
+              v-if="bigImage.length"
+              cols="12"
+            >
+              <p class="text-sm-32 text-h5 mb-5">
+                {{ title }}
+              </p>
             </v-col>
             <v-col
               v-for="(input, index) in inputs"
@@ -176,8 +313,13 @@
                 class="mb-2"
               />
             </v-col>
-            <v-col cols="12" class="pb-2 pt-0" v-if="Object.keys(combobox).length">
+            <v-col
+              v-if="Object.keys(combobox).length"
+              cols="12"
+              class="pb-2 pt-0"
+            >
               <v-combobox
+                v-model="comboboxValue"
                 :variant="combobox.variant || 'outlined'"
                 :label="combobox.label || 'Выбери пункт'"
                 :rules="combobox.rules"
@@ -186,11 +328,15 @@
                 :multiple="combobox.multiple"
                 :items="combobox.items"
                 :value="combobox.value"
-                v-model="comboboxValue"
               />
             </v-col>
-            <v-col cols="12" class="py-0" v-if="Object.keys(commentary).length">
+            <v-col
+              v-if="Object.keys(commentary).length"
+              cols="12"
+              class="py-0"
+            >
               <v-textarea
+                v-model="comValue"
                 :variant="commentary.variant || 'outlined'"
                 :label="commentary.label || 'Комментарий'"
                 :rules="commentary.rules"
@@ -205,40 +351,94 @@
                 :append-inner-icon="commentary.appendInnerIcon"
                 :no-resize="commentary.noResize || false"
                 :rows="commentary.rows || 8"
-                v-model="comValue"
               />
             </v-col>
-            <v-col cols="12" class="pa-0 px-3 pt-1">
-              <v-btn type="submit" block size="x-large" color="primary" class="mb-3">
+            <v-col
+              cols="12"
+              class="pa-0 px-3 pt-1"
+            >
+              <v-btn
+                type="submit"
+                block
+                size="x-large"
+                color="primary"
+                class="mb-3"
+              >
                 {{ textButton }}
               </v-btn>
             </v-col>
-            <v-col cols="12" class="pb-5 pa-sm-0 pl-1">
-              <v-checkbox :color="checkboxSetting.color" v-model="checked" :rules="checkboxSetting.rules">
-                <template v-slot:label>
+            <v-col
+              cols="12"
+              class="pb-5 pa-sm-0 pl-1"
+            >
+              <v-checkbox
+                v-model="checked"
+                :color="checkboxSetting.color"
+                :rules="checkboxSetting.rules"
+              >
+                <template #label>
                   <span class="text-13">{{ checkboxSetting.label }}</span>
                 </template>
               </v-checkbox>
             </v-col>
           </v-row>
         </v-col>
-        <v-col cols="12" sm="6" v-if="smallImage.length">
+        <v-col
+          v-if="smallImage.length"
+          cols="12"
+          sm="6"
+        >
           <v-row>
-            <v-col cols="12" v-for="(info, index) in infoCompany" :key="`info-${index}`" class="d-flex align-center pt-0 pb-5" style="column-gap: 12px">
-              <v-icon :icon="info.icon" :color="info.colorIcon" :size="info.sizeIcon" />
+            <v-col
+              v-for="(info, index) in infoCompany"
+              :key="`info-${index}`"
+              cols="12"
+              class="d-flex align-center pt-0 pb-5"
+              style="column-gap: 12px"
+            >
+              <v-icon
+                :icon="info.icon"
+                :color="info.colorIcon"
+                :size="info.sizeIcon"
+              />
               <span>{{ info.text }}</span>
             </v-col>
-            <v-col cols="12" v-if="socials.length">
-              <ul class="d-flex" style="column-gap: 8px; list-style: none">
-                <li v-for="(social, index) in socials" :key="`social-${index}`">
-                  <a :href="social.link" target="_blank" rel="noopener noreferrer">
-                    <v-img :src="social.img" :alt="social.alt" :width="35"/>
+            <v-col
+              v-if="socials.length"
+              cols="12"
+            >
+              <ul
+                class="d-flex"
+                style="column-gap: 8px; list-style: none"
+              >
+                <li
+                  v-for="(social, index) in socials"
+                  :key="`social-${index}`"
+                >
+                  <a
+                    :href="social.link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <v-img
+                      :src="social.img"
+                      :alt="social.alt"
+                      :width="35"
+                    />
                   </a>
                 </li>
               </ul>
             </v-col>
-            <v-col cols="12" v-if="smallImage.length">
-              <v-img :src="smallImage" :alt="altImage" style="width: 100%" cover></v-img>
+            <v-col
+              v-if="smallImage.length"
+              cols="12"
+            >
+              <v-img
+                :src="smallImage"
+                :alt="altImage"
+                style="width: 100%"
+                cover
+              />
             </v-col>
           </v-row>
         </v-col>
@@ -280,15 +480,15 @@ const dataForm = (validForm) => {
   if(validForm) {
     if(Object.keys(props.combobox).length) {
       if(comboboxValue.value.length && inputValues.value.every(value => value) && checked.value && comValue.value) {
-        emit('form-data', [inputValues._rawValue, comboboxValue._rawValue, comValue._rawValue] )
+        emit('form-data', [inputValues.value._rawValue, comboboxValue.value._rawValue, comValue.value._rawValue] )
       }
     } else if(Object.keys(props.commentary).length) {
       if(inputValues.value.every(value => value) && checked.value && comValue.value) {
-        emit('form-data', [inputValues._rawValue, comValue._rawValue] )
+        emit('form-data', [inputValues.value._rawValue, comValue.value._rawValue] )
       }
     } else {
       if(inputValues.value.every(value => value) && checked.value) {
-        emit('form-data', [inputValues._rawValue] )
+        emit('form-data', [inputValues.value._rawValue] )
       }
     }
   } else {

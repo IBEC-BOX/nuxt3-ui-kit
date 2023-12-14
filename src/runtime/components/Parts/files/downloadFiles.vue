@@ -1,7 +1,18 @@
 <template>
   <v-container>
-    <h2 class="d-flex text-primary mb-6" :class="`justify-${positionTitle}`">{{ title }}</h2>
-    <div v-for="(file, index) in files" :key="`file-${index}`" class="d-flex align-center py-3" @click="downloadFile(file)" style="cursor: pointer; column-gap: 12px">
+    <h2
+      class="d-flex text-primary mb-6"
+      :class="`justify-${positionTitle}`"
+    >
+      {{ title }}
+    </h2>
+    <div
+      v-for="(file, index) in files"
+      :key="`file-${index}`"
+      class="d-flex align-center py-3"
+      style="cursor: pointer; column-gap: 12px"
+      @click="downloadFile(file)"
+    >
       <v-img
         max-width="44"
         class="w-100"
@@ -10,7 +21,9 @@
         :alt="file.alt || getFileExtension(file.download)"
       />
       <div>
-        <p class="text-body-1 text-sm-18 text-black mb-1">{{ file.title }}</p>
+        <p class="text-body-1 text-sm-18 text-black mb-1">
+          {{ file.title }}
+        </p>
         <p class="text-body-2 text-primary-gray">
           {{ getFileExtension(file.download).toUpperCase() }}<span v-if="file.size || file.date">,</span>
           {{ file.size }}<span v-if="file.size && file.date">,</span>
@@ -18,7 +31,7 @@
         </p>
       </div>
     </div>
-    <slot name="button"></slot>
+    <slot name="button" />
   </v-container>
 </template>
 

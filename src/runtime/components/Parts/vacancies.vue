@@ -1,8 +1,14 @@
 <template>
   <v-main>
     <v-container>
-      <v-breadcrumbs class="px-0" :items="breadcrumbs" divider=">"></v-breadcrumbs>
-      <h1 class="mb-10 text-h4">Вакансии</h1>
+      <v-breadcrumbs
+        class="px-0"
+        :items="breadcrumbs"
+        divider=">"
+      />
+      <h1 class="mb-10 text-h4">
+        Вакансии
+      </h1>
 
       <v-row class="mb-16">
         <v-col
@@ -17,11 +23,22 @@
             :max-width="500"
             v-bind="card"
           >
-            <template v-if="'button' in card || 'city' in card" #button>
+            <template
+              v-if="'button' in card || 'city' in card"
+              #button
+            >
               <div class="d-flex align-center w-100">
-                <v-btn v-if="'button' in card" class="mr-auto" v-bind="{...defaultButton, ...card.button}" @click="'function' in card.button ? card.button.function() : null" />
+                <v-btn
+                  v-if="'button' in card"
+                  class="mr-auto"
+                  v-bind="{...defaultButton, ...card.button}"
+                  @click="'function' in card.button ? card.button.function() : null"
+                />
 
-                <span v-if="'city' in card" class="text-15 text-primary">
+                <span
+                  v-if="'city' in card"
+                  class="text-15 text-primary"
+                >
                   {{ card.city }}
                 </span>
               </div>

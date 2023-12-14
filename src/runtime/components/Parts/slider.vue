@@ -3,11 +3,11 @@
     <swiper-container
       v-bind="sliderAttrs"
       ref="slider"
-      @swiperslidechange="updatePagination"
       :slides-per-view="sliderPeeking ? '1.3' : '1'"
       class="overflow-hidden w-100"
       :class="[`rounded-${rounded}`]"
       :style="{'height': height}"
+      @swiperslidechange="updatePagination"
     >
       <swiper-slide
         v-for="slide in slides"
@@ -16,7 +16,10 @@
         v-bind="slidesAttrs"
         :class="`rounded-${slidesRounded}`"
       >
-        <div v-if="slide.img" class="image-backdrop">
+        <div
+          v-if="slide.img"
+          class="image-backdrop"
+        >
           <!-- Image -->
           <v-img
             class="slider-img position-absolute h-100 w-100"
@@ -42,7 +45,10 @@
               {{ slide.title }}
             </component>
 
-            <p class="mb-4 text-md-h6 text-body-1" v-bind="slide.subTitleAttrs">
+            <p
+              class="mb-4 text-md-h6 text-body-1"
+              v-bind="slide.subTitleAttrs"
+            >
               {{ slide.subtitle }}
             </p>
             <!-- Slide title -->
@@ -67,9 +73,13 @@
       </swiper-slide>
     </swiper-container>
 
-    <div class="control-buttons-center-container" v-if="controlButtonsAlign === 'center'">
+    <div
+      v-if="controlButtonsAlign === 'center'"
+      class="control-buttons-center-container"
+    >
       <div
-        class="d-flex justify-space-between px-0">
+        class="d-flex justify-space-between px-0"
+      >
         <v-btn
           v-bind="controlButtonPrevAttrs"
           icon="mdi-chevron-left"
@@ -84,7 +94,10 @@
       </div>
     </div>
 
-    <div class="control-buttons-right-container" v-if="controlButtonsAlign === 'right'">
+    <div
+      v-if="controlButtonsAlign === 'right'"
+      class="control-buttons-right-container"
+    >
       <div
         :class="[{'px-12' : !sliderContainer}, {'v-container' : sliderContainer}]"
         class="d-flex flex-column align-end"
@@ -111,7 +124,11 @@
         :class="[{'px-12': !sliderContainer}, {'v-container' : sliderContainer}]"
       >
         <!-- Pagination -->
-        <div class="slider_pagination" :class="{'mx-auto': sliderPaginationCenter}" v-if="sliderPagination">
+        <div
+          v-if="sliderPagination"
+          class="slider_pagination"
+          :class="{'mx-auto': sliderPaginationCenter}"
+        >
           <span
             v-for="(slide, index) in pagination"
             :key="slide.id"
@@ -120,17 +137,22 @@
               sliderPaginationType === 'bullet' ? 'slider-pagination-bullet' :
               sliderPaginationType === 'dot' ? 'slider-pagination-dot' : '', ]"
             @click="slideTo(index)"
-          >
-          </span>
+          />
         </div>
         <!-- Pagination END -->
 
-        <div class="ml-auto" v-if="controlButtonsAlign === 'right' && swiper !== null && !sliderPagination">
+        <div
+          v-if="controlButtonsAlign === 'right' && swiper !== null && !sliderPagination"
+          class="ml-auto"
+        >
           {{ activeSlide + 1 }} / {{ slides.length }}
         </div>
 
         <!-- Control buttons -->
-        <div class="d-flex ml-auto" v-if="controlButtonsAlign === 'bottom'">
+        <div
+          v-if="controlButtonsAlign === 'bottom'"
+          class="d-flex ml-auto"
+        >
           <v-btn
             v-bind="controlButtonPrevAttrs"
             class="ml-4"

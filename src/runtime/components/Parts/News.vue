@@ -1,7 +1,12 @@
 <template>
   <v-container class="d-flex flex-column align-center justify-center">
     <div class="parts__news-title mb-5">
-      <h2 class="text-32 font-weight-regular" :class="`justify-${positionTitle}`">{{ title }}</h2>
+      <h2
+        class="text-32 font-weight-regular"
+        :class="`justify-${positionTitle}`"
+      >
+        {{ title }}
+      </h2>
     </div>
     <v-row>
       <v-col
@@ -30,14 +35,14 @@
           :city="card.city"
           :status-vacancy="card.statusVacancy"
         >
-          <template v-slot:button>
+          <template #button>
             <v-btn
               :icon="card.iconButton"
               :append-icon="card.appendIconButton"
               v-bind="settingsButton"
-              @click="card.functionButton()"
               class="d-flex"
               style="column-gap: 6px"
+              @click="card.functionButton()"
             >
               {{ card.textButton }}
             </v-btn>
@@ -45,7 +50,7 @@
         </Card>
       </v-col>
     </v-row>
-    <slot name="buttonNews"></slot>
+    <slot name="buttonNews" />
   </v-container>
 </template>
 

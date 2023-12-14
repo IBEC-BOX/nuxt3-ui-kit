@@ -87,7 +87,10 @@
         Что даем
       </h2>
 
-      <ol class="mb-16" style="list-style-position: inside;">
+      <ol
+        class="mb-16"
+        style="list-style-position: inside;"
+      >
         <li
           v-for="condition in conditions"
           :key="condition.id"

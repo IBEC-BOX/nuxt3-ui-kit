@@ -20,26 +20,42 @@
     </partsHeader>
     <!-- Header first variant END -->
 
-<!--    <v-main class="d-flex align-center">-->
-<!--      <downloadFiles-->
-<!--        :title="'О нас'"-->
-<!--        :files="[-->
-<!--          {title: 'Политика обработки персональных данных ', img: 'logo.svg', download: '1.png', size: '123 KB', alt: '', date: '20.02.22'},-->
-<!--          {title: 'Политика обработки персональных данных ', download: '2.docx', alt: '', date: '20.02.22'}-->
-<!--        ]"-->
-<!--      />-->
-<!--    </v-main>-->
+    <!--    <v-main class="d-flex align-center">-->
+    <!--      <downloadFiles-->
+    <!--        :title="'О нас'"-->
+    <!--        :files="[-->
+    <!--          {title: 'Политика обработки персональных данных ', img: 'logo.svg', download: '1.png', size: '123 KB', alt: '', date: '20.02.22'},-->
+    <!--          {title: 'Политика обработки персональных данных ', download: '2.docx', alt: '', date: '20.02.22'}-->
+    <!--        ]"-->
+    <!--      />-->
+    <!--    </v-main>-->
 
     <NuxtPage />
 
-    <v-footer app elevation="5">
-      <v-row no-gutters justify="center"
-             class="text-overline font-weight-black">
-        <p class="my-auto">I'm the footer</p>
+    <v-footer
+      app
+      elevation="5"
+    >
+      <v-row
+        no-gutters
+        justify="center"
+        class="text-overline font-weight-black"
+      >
+        <p class="my-auto">
+          I'm the footer
+        </p>
         <v-spacer />
-        <p class="my-auto">See how I was built</p>
-        <v-btn icon variant="plain">
-          <v-icon icon="$info" color="green-accent-4" />
+        <p class="my-auto">
+          See how I was built
+        </p>
+        <v-btn
+          icon
+          variant="plain"
+        >
+          <v-icon
+            icon="$info"
+            color="green-accent-4"
+          />
         </v-btn>
       </v-row>
     </v-footer>

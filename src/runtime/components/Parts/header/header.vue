@@ -15,20 +15,32 @@
         >
           <v-container class="py-0 d-flex h-100">
             <div class="d-flex w-100 border-b border-grey-darken-1">
-              <ul class="header-menu h-100" v-if="variant === 'top-bar'">
-                <li v-for="menu_item in topMenu" :key="`header-top-menu-item-${menu_item.id}`">
-                  <nuxt-link :to="menu_item.url" class="header-menu-link text-subtitle-2">
+              <ul
+                v-if="variant === 'top-bar'"
+                class="header-menu h-100"
+              >
+                <li
+                  v-for="menu_item in topMenu"
+                  :key="`header-top-menu-item-${menu_item.id}`"
+                >
+                  <nuxt-link
+                    :to="menu_item.url"
+                    class="header-menu-link text-subtitle-2"
+                  >
                     {{ menu_item.title }}
                   </nuxt-link>
                 </li>
               </ul>
 
-              <div class="d-flex mx-n4" v-if="variant === 'tabs'">
+              <div
+                v-if="variant === 'tabs'"
+                class="d-flex mx-n4"
+              >
                 <nuxt-link
-                  class="mx-4 py-5 position-relative text-decoration-none text-grey-darken-2"
-                  active-class="tab-link-active"
                   v-for="tab in tabs"
                   :key="tab.id"
+                  class="mx-4 py-5 position-relative text-decoration-none text-grey-darken-2"
+                  active-class="tab-link-active"
                   :to="tab.url"
                 >
                   {{ tab.title }}
@@ -44,7 +56,8 @@
                   color="grey-darken-2"
                   :prepend-icon="link.prepend_icon"
                   :append-icon="link.append_icon"
-                  :href="link.url">
+                  :href="link.url"
+                >
                   {{ link.title }}
                 </v-btn>
 
@@ -58,7 +71,10 @@
         <!-- Header main -->
         <v-container class="d-flex align-stretch py-0 flex-grow-1">
           <!-- Burger -->
-          <v-app-bar-nav-icon class="d-block d-md-none my-auto" @click="menu_open = !menu_open" />
+          <v-app-bar-nav-icon
+            class="d-block d-md-none my-auto"
+            @click="menu_open = !menu_open"
+          />
           <!-- Burger END -->
 
           <!-- Logo -->
@@ -73,7 +89,10 @@
 
           <!-- Menu -->
           <div class="ml-auto flex-grow-1 justify-center d-md-flex d-none flex-column">
-            <div class="d-flex mx-n3 pt-5 mb-2" v-if="variant === 'menu-top-bar'">
+            <div
+              v-if="variant === 'menu-top-bar'"
+              class="d-flex mx-n3 pt-5 mb-2"
+            >
               <nuxt-link
                 v-for="menu_top_link in topMenu"
                 :key="menu_top_link"
@@ -87,7 +106,10 @@
 
             <slot name="menu">
               <ul class="header-menu flex-grow-1">
-                <li v-for="menu_item in menu" :key="`header-menu-item-${menu_item.id}`">
+                <li
+                  v-for="menu_item in menu"
+                  :key="`header-menu-item-${menu_item.id}`"
+                >
                   <NuxtLink
                     class="header-menu-link"
                     :class="{'align-start' : variant === 'menu-top-bar'} "
@@ -105,10 +127,10 @@
           <!-- Buttons -->
           <div class="mx-n2 d-flex align-center gap-1">
             <v-btn
-              class="text-body-1 mx-2"
-              :class="[button.class]"
               v-for="button in buttons"
               :key="`header-button-${button.id}`"
+              class="text-body-1 mx-2"
+              :class="[button.class]"
               :elevation="'elevation' in button ? button.elevation : '0'"
               :variant="button.variant"
               :color="button.color"
@@ -125,13 +147,20 @@
       </div>
     </v-app-bar>
 
-    <v-navigation-drawer class="w-100 d-flex d-md-none" v-model="menu_open" location="left">
+    <v-navigation-drawer
+      v-model="menu_open"
+      class="w-100 d-flex d-md-none"
+      location="left"
+    >
       <!-- Menu -->
       <ul
         class="header-menu header-menu-mobile w-100 bg-white d-md-none d-flex flex-column"
         :class="{'open': menu_open}"
       >
-        <li v-for="menu_item in menu" :key="`header-menu-item-${menu_item.id}`">
+        <li
+          v-for="menu_item in menu"
+          :key="`header-menu-item-${menu_item.id}`"
+        >
           <NuxtLink
             class="header-menu-link"
             active-class="header-menu-link-active"
@@ -143,11 +172,14 @@
       </ul>
       <!-- Menu END -->
 
-      <div class="d-flex flex-column px-4" v-if="variant === 'top-bar' || variant === 'menu-top-bar'">
+      <div
+        v-if="variant === 'top-bar' || variant === 'menu-top-bar'"
+        class="d-flex flex-column px-4"
+      >
         <nuxt-link
-          class="text-decoration-none text-grey-darken-2 text-subtitle-2 py-3"
           v-for="link in topMenu"
           :key="link.id"
+          class="text-decoration-none text-grey-darken-2 text-subtitle-2 py-3"
           :to="link.url"
         >
           {{ link.title }}
@@ -247,7 +279,7 @@ const getHeight = (variant) => {
   return heights[variant]
 }
 
-let headerHeight = getHeight(props.variant)
+const headerHeight = getHeight(props.variant)
 
 // Init screen width
 let screen_width

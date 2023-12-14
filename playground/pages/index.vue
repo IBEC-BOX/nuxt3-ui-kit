@@ -9,10 +9,10 @@
     <!--      </v-container>-->
     <News
       :cards="cards"
-      :settingsButton="settingsButton"
-      :settingsCol="settingsCol"
+      :settings-button="settingsButton"
+      :settings-col="settingsCol"
     >
-      <template v-slot:buttonNews>
+      <template #buttonNews>
         <v-btn>Все новости</v-btn>
       </template>
     </News>
