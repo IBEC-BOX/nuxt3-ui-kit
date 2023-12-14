@@ -269,7 +269,9 @@ const updatePagination = () => {
 onMounted(() => {
   console.log(slider.value.swiper)
   activeSlide.value = slider.value.swiper.realIndex
-  pagination.value[0].active = true
+  if(pagination.value.length > 0) {
+    pagination.value[0].active = true
+  }
 })
 </script>
 
