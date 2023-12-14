@@ -19,6 +19,7 @@ const slides = [
         }
       }
     ],
+    active: true
   },
 
   {
@@ -38,14 +39,16 @@ const slides = [
           class: 'text-body-1'
         }
       }
-    ]
+    ],
+    active: true
   },
 
   {
     id: 2,
     title: 'Кредитная карта с целым годом без %',
     subtitle: 'Подзаголовок маленький, в две строки',
-    img: 'https://images.unsplash.com/photo-1516298773066-c48f8e9bd92b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    img: 'https://images.unsplash.com/photo-1516298773066-c48f8e9bd92b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    active: false
   },
 
   {
@@ -65,7 +68,8 @@ const slides = [
           class: 'text-body-1'
         }
       }
-    ]
+    ],
+    active: true
   },
 
   {
@@ -87,13 +91,15 @@ const slides = [
         }
       }
     ],
+    active: true
   },
 
   {
     id: 5,
     title: 'Кредитная карта с целым годом без %',
     subtitle: 'Подзаголовок маленький, в две строки',
-    img: 'https://images.unsplash.com/photo-1516298773066-c48f8e9bd92b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    img: 'https://images.unsplash.com/photo-1516298773066-c48f8e9bd92b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    active: false
   },
 ]
 
