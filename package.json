@@ -1,6 +1,6 @@
 {
   "name": "@ibecsystems/nuxt3-ui-kit",
-  "version": "0.0.2",
+  "version": "1.0.2",
   "description": "Ibec Nuxt3 UI components",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
-    "release": "npm run lint && npm run dev:prepare && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "npm run lint && npm run dev:prepare && npm run prepack",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest watch",
