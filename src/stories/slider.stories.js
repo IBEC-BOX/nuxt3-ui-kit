@@ -1,4 +1,4 @@
-import Slider from '../runtime/components/Parts/slider.vue'
+import Slider from '../runtime/components/Parts/Slider.vue'
 const slides = [
   {
     id: 0,

@@ -1,4 +1,4 @@
-import Modal from '../runtime/components/Parts/modal.vue'
+import Modal from '../runtime/components/Parts/Modal.vue'
 
 const modal_buttons = [
   {

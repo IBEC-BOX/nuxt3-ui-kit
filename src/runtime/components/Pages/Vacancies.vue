@@ -19,7 +19,7 @@
           lg="4"
           xl="3"
         >
-          <Card
+          <partsCard
             :max-width="500"
             v-bind="card"
           >
@@ -43,11 +43,11 @@
                 </span>
               </div>
             </template>
-          </Card>
+          </partsCard>
         </v-col>
       </v-row>
 
-      <Forms
+      <partsForms
         v-bind="formAttrs"
         @form-data="formData"
       />
@@ -56,8 +56,6 @@
 </template>
 
 <script setup>
-  import Card from './Card.vue'
-  import Forms from './Forms.vue'
   import {defineProps, defineEmits, useAttrs} from 'vue'
   import { useMainStore } from "../../../store/mainStore.js";
 

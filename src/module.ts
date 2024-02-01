@@ -34,6 +34,11 @@ export default defineNuxtModule<ModuleOptions>({
       filePath: resolver.resolve('runtime/components/Parts/Card.vue')
     })
 
+    addComponent({
+      name: 'partsForms', // name of the component to be used in vue templates
+      filePath: resolver.resolve('runtime/components/Parts/Forms.vue')
+    })
+
     // Header
     addComponent( {
       name: 'partsHeaderDefault',
@@ -54,7 +59,7 @@ export default defineNuxtModule<ModuleOptions>({
     //Slider
     addComponent({
       name: 'partsSlider',
-      filePath: resolver.resolve('runtime/components/Parts/slider.vue')
+      filePath: resolver.resolve('runtime/components/Parts/Slider.vue')
     })
 
     addComponent({

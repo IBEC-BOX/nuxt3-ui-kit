@@ -1,5 +1,5 @@
 // import { within, userEvent } from '@storybook/testing-library';
-import MyPage from '../runtime/components/Pages/testVuetify.vue';
+import MyPage from '../runtime/components/Pages/TestVuetify.vue';
 
 export default {
   title: 'Example/Page',
