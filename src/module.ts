@@ -12,7 +12,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     theme: 'light'
   },
-  setup (options, nuxt) {
+  setup () {
     const resolver = createResolver(import.meta.url)
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
@@ -21,12 +21,12 @@ export default defineNuxtModule<ModuleOptions>({
     // Components
     addComponent({
       name: 'pagesTestVuetify', // name of the component to be used in vue templates
-      filePath: resolver.resolve('runtime/components/Pages/testVuetify.vue')
+      filePath: resolver.resolve('runtime/components/Pages/TestVuetify.vue')
     })
 
     addComponent({
-      name: 'partsFooter', // name of the component to be used in vue templates
-      filePath: resolver.resolve('runtime/components/Parts/footer/footer.vue')
+      name: 'partsFooterDefault', // name of the component to be used in vue templates
+      filePath: resolver.resolve('runtime/components/Parts/Footer/Default.vue')
     })
 
     addComponent({
@@ -36,30 +36,35 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Header
     addComponent( {
-      name: 'partsHeader',
-      filePath: resolver.resolve('runtime/components/Parts/header.vue')
+      name: 'partsHeaderDefault',
+      filePath: resolver.resolve('runtime/components/Parts/Header/Default.vue')
+    })
+
+    addComponent( {
+      name: 'partsHeaderErg',
+      filePath: resolver.resolve('runtime/components/Parts/Header/Erg.vue')
     })
 
     // Modal
     addComponent( {
       name: 'partsModal',
-      filePath: resolver.resolve('runtime/components/Parts/modal.vue')
+      filePath: resolver.resolve('runtime/components/Parts/Modal.vue')
     })
 
     //Slider
     addComponent({
-      name: 'Slider',
+      name: 'partsSlider',
       filePath: resolver.resolve('runtime/components/Parts/slider.vue')
     })
 
     addComponent({
-      name: 'News',
+      name: 'partsNews',
       filePath: resolver.resolve('runtime/components/Parts/News.vue')
     })
 
     addComponent({
-      name: 'downloadFiles',
-      filePath: resolver.resolve('runtime/components/Parts/files/downloadFiles.vue')
+      name: 'partsFilesDownloadFiles',
+      filePath: resolver.resolve('runtime/components/Parts/Files/DownloadFiles.vue')
     })
   }
 })

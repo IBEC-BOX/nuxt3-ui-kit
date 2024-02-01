@@ -31,7 +31,7 @@
     </v-container>
 
     <!-- Standart -->
-    <modal
+    <partsModal
       v-model="modal1"
       width="580"
       heading="Sure you want to accept?"
@@ -49,11 +49,11 @@
           placeholder="Text"
         />
       </template>
-    </modal>
+    </partsModal>
     <!-- Standart END -->
 
     <!-- No icon -->
-    <modal
+    <partsModal
       v-model="modal2"
       width="580"
       heading="Sure you want to accept?"
@@ -65,7 +65,7 @@
     <!-- No icon END -->
 
     <!-- Icon center -->
-    <modal
+    <partsModal
       v-model="modal3"
       width="580"
       heading="Successfully accepted !"
@@ -82,7 +82,7 @@
     <!-- Icon center -->
 
     <!-- Image -->
-    <modal
+    <partsModal
       v-model="modal4"
       width="580"
       heading="Subscribe to our newsletter"
@@ -104,11 +104,11 @@
           hide-details
         />
       </template>
-    </modal>
+    </partsModal>
     <!-- Image END -->
 
     <!-- Image fluid -->
-    <modal
+    <partsModal
       v-model="modal5"
       width="580"
       heading="Subscribe to our newsletter"
@@ -127,7 +127,6 @@
 
 <script setup>
   import { ref } from 'vue'
-  import modal from '../../src/runtime/components/Parts/modal.vue'
 
   const modal1 = ref(false)
 

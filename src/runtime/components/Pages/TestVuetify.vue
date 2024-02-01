@@ -1,0 +1,17 @@
+<template>
+  <v-app>
+    <partsHeaderErg />
+
+    <NuxtPage />
+  </v-app>
+</template>
+
+<script setup>
+</script>
+
+<style>
+/* Redundant unused code to test treeshaking */
+.unused-selector-app {
+  color: orange;
+}
+</style>

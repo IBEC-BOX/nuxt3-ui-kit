@@ -7,7 +7,7 @@
     <!--          <v-btn class="mt-4">press me to ripple</v-btn>-->
     <!--        </v-sheet>-->
     <!--      </v-container>-->
-    <News
+    <partsNews
       :cards="cards"
       :settings-button="settingsButton"
       :settings-col="settingsCol"
@@ -15,14 +15,11 @@
       <template #buttonNews>
         <v-btn>Все новости</v-btn>
       </template>
-    </News>
+    </partsNews>
   </v-main>
 </template>
 
 <script setup>
-import partsNews from "../../src/runtime/components/Parts/News.vue";
-import Card from "../../src/runtime/components/Parts/Card.vue"
-
 
 const testButtonNews = () => console.log(cards[1].id)
 const cards = [

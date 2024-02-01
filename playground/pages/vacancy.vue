@@ -118,15 +118,7 @@
       alt: '321',
     },
   ]
-  const combobox = {
-    label: "выбери пункт",
-    rules: [
-      v => !!v || 'ФИО обязательно к заполнению',
-    ],
-    clearable: true,
-    multiple: true,
-    items: ['a', 'b', 'c', 'd', 'e', 'ab', 'bc', 'de']
-  }
+
   const inputs = [
     {
       label: "ФИО",

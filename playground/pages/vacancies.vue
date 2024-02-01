@@ -1,6 +1,6 @@
 <template>
   <div>
-    <partVacancies
+    <pagesVacancies
       :cards="cards"
       :form-title="'Заполните контактные данные и оставьте заявку на консультацию'"
       :form-inputs="inputs"
@@ -17,11 +17,6 @@
 </template>
 
 <script setup>
-  import partVacancies from '../../src/runtime/components/Parts/vacancies.vue'
-
-  const test = () => {
-    console.log('test')
-  }
 
   const cards = [
     {
@@ -181,15 +176,7 @@
       alt: '321',
     },
   ]
-  const combobox = {
-    label: "выбери пункт",
-    rules: [
-      v => !!v || 'ФИО обязательно к заполнению',
-    ],
-    clearable: true,
-    multiple: true,
-    items: ['a', 'b', 'c', 'd', 'e', 'ab', 'bc', 'de']
-  }
+
   const inputs = [
     {
       label: "ФИО",

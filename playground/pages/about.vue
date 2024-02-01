@@ -53,7 +53,6 @@
 </template>
 
 <script setup>
-import partSlider from '../../src/runtime/components/Parts/slider.vue'
 
 const slides = [
   {
