@@ -42,7 +42,7 @@
             variant="solo"
             class="mr-4"
           />
-          <v-btn class="bg-white text-none text-body-1 d-none d-md-block" rounded="xl">
+          <v-btn class="bg-white text-none text-body-1 d-none d-md-block" rounded="xl" @click="buttonClick">
             {{ textBtn || 'Связаться с нами' }}
           </v-btn>
         </div>
@@ -78,7 +78,7 @@
         </li>
       </ul>
 
-      <v-btn class="bg-white text-none text-body-1 d-block d-md-none" block size="large" rounded="xl">
+      <v-btn class="bg-white text-none text-body-1 d-block d-md-none" block size="large" rounded="xl" @click="buttonClick">
         {{ textBtn || 'Связаться с нами' }}
       </v-btn>
     </v-navigation-drawer>
@@ -86,7 +86,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue"
+import { ref } from "vue"
 const props = defineProps({
   logo: {
     type: String,
@@ -125,14 +125,18 @@ const props = defineProps({
   textBtn: String,
 })
 
-const emits = defineEmits(['update:selectLang'])
+const emits = defineEmits(['select-lang', 'button-click'])
 
 const menu_open = ref(false)
 const selectLang = ref('Ru')
 
 function updateSelectLang(value: string) {
   selectLang.value = value
-  emits('update:selectLang', value)
+  emits('select-lang', value)
+}
+
+function buttonClick() {
+  emits('button-click')
 }
 </script>
 
