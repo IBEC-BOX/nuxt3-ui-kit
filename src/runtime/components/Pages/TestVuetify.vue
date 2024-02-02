@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <partsHeaderErg />
+    <partsHeaderErg>
+    </partsHeaderErg>
 
     <NuxtPage />
   </v-app>
