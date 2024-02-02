@@ -1,6 +1,6 @@
 import { defineNuxtPlugin } from '#app'
 
-import vuetify from './plugins/vuetify'
+import vuetify from './plugins/vuetify/index'
 
 export default defineNuxtPlugin((nuxtApp) => {
   console.log('Plugin injected by NUXT3-UI-KIT!')
