@@ -47,6 +47,8 @@
               <v-text-field
                 v-model="inputValues[index]"
                 :variant="input.variant || 'outlined'"
+                v-maska
+                data-maska="#-#"
                 :label="input.label"
                 :rules="input.rules"
                 :placeholder="input.placeholder"
