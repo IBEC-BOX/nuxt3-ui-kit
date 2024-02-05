@@ -3,6 +3,7 @@
     v-if="styleForm === 'standard' && (bigImage === '' && smallImage === '')"
     :max-width="Object.keys(commentary).length ? 825 : 1100"
     class="mx-auto custom-ui-form"
+    :class="bgClass"
   >
     <v-form
       ref="form"
@@ -47,7 +48,7 @@
               <v-text-field
                 v-model="inputValues[index]"
                 :variant="input.variant || 'outlined'"
-                v-maska:[maskaOptions]
+                v-maska:[input.maska]
                 :label="input.label"
                 :rules="input.rules"
                 :placeholder="input.placeholder"
@@ -112,12 +113,13 @@
         >
           <v-btn
             type="submit"
-            size="x-large"
-            block
-            :class="!Object.keys(commentary).length ? 'mb-3' : ''"
-            color="primary"
+            :block="settingButton.block || true"
+            :size="settingButton.size"
+            :color="settingButton.color"
+            :rounded="settingButton.rounded || 'xl-large'"
+            class="mt-6"
           >
-            {{ textButton }}
+            {{ settingButton.text }}
           </v-btn>
           <v-checkbox
             v-if="!Object.keys(commentary).length"
@@ -137,6 +139,7 @@
     v-if="styleForm === 'call' && (bigImage === '' && smallImage === '')"
     :max-width="456"
     class="mx-auto pa-4 custom-ui-form"
+    :class="bgClass"
   >
     <v-form
       ref="form"
@@ -175,6 +178,7 @@
           <v-text-field
             v-model="inputValues[index]"
             :variant="input.variant || 'outlined'"
+            v-maska:[input.maska]
             :label="input.label"
             :rules="input.rules"
             :placeholder="input.placeholder"
@@ -211,11 +215,13 @@
         >
           <v-btn
             type="submit"
-            block
-            size="x-large"
-            color="primary"
+            :block="settingButton.block || true"
+            :size="settingButton.size"
+            :color="settingButton.color"
+            :rounded="settingButton.rounded || 'xl-large'"
+            class="mt-6"
           >
-            {{ textButton }}
+            {{ settingButton.text }}
           </v-btn>
         </v-col>
         <v-col cols="12">
@@ -247,6 +253,7 @@
   <v-sheet
     v-if="bigImage.length || smallImage.length"
     class="mx-auto custom-ui-form"
+    :class="bgClass"
   >
     <v-form
       ref="form"
@@ -301,6 +308,7 @@
                 :variant="input.variant || 'outlined'"
                 :label="input.label"
                 :rules="input.rules"
+                v-maska:[input.maska]
                 :placeholder="input.placeholder"
                 :clearable="input.clearable || false"
                 :type="input.type || 'text'"
@@ -360,12 +368,13 @@
             >
               <v-btn
                 type="submit"
-                block
-                size="x-large"
-                color="primary"
-                class="mb-3"
+                :block="settingButton.block || true"
+                :size="settingButton.size"
+                :color="settingButton.color"
+                :rounded="settingButton.rounded || 'xl'"
+                class="mt-6"
               >
-                {{ textButton }}
+                {{ settingButton.text }}
               </v-btn>
             </v-col>
             <v-col
@@ -446,12 +455,76 @@
       </v-row>
     </v-form>
   </v-sheet>
+  <v-sheet
+    v-if="styleForm === 'onlyForm' && (bigImage === '' && smallImage === '')"
+    class="mx-auto custom-ui-form w-100"
+    :class="bgClass"
+  >
+    <v-form
+      ref="form"
+      @submit.prevent="dataForm($refs.form.isValid)"
+    >
+      <h2 class="mb-10 text-36">{{ title }}</h2>
+      <v-row>
+        <v-col
+          v-for="(input, index) in inputs"
+          :key="`input-${index}`"
+          :cols="input.cols || 12 "
+          :sm="input.sm || 12 "
+          :md="input.md || 12 "
+          :lg="input.lg || 12 "
+          :xl="input.xl || 12 "
+          :xxl="input.xxl || 12 "
+          class="mb-1 pa-0 px-3"
+        >
+          <v-text-field
+            v-model="inputValues[index]"
+            :variant="input.variant || 'outlined'"
+            :label="input.label"
+            :rules="input.rules"
+            v-maska:[input.maska]
+            :placeholder="input.placeholder"
+            :clearable="input.clearable || false"
+            :type="input.type || 'text'"
+            :hint="input.hint"
+            :prepend-icon="input.prependIcon"
+            :prepend-inner-icon="input.prependInnerIcon"
+            :append-icon="input.appendIcon"
+            :append-inner-icon="input.appendInnerIcon"
+            :prefix="input.prefix"
+            :suffix="input.suffix"
+            :rounded="'xl'"
+          >
+          </v-text-field>
+        </v-col>
+      </v-row>
+      <v-btn
+        type="submit"
+        :block="settingButton.block || true"
+        :size="settingButton.size"
+        :color="settingButton.color"
+        :rounded="settingButton.rounded || 'xl'"
+        class="mt-6"
+      >
+        {{ settingButton.text }}
+      </v-btn>
+      <v-checkbox
+        v-model="checked"
+        :color="checkboxSetting.color"
+        :rules="checkboxSetting.rules"
+        v-if="Object.keys(checkboxSetting).length"
+      >
+        <template #label>
+          <span class="text-13">{{ checkboxSetting.label }}</span>
+        </template>
+      </v-checkbox>
+    </v-form>
+  </v-sheet>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
-const maskaOptions = { mask: '#-#' };
 const checked = ref(false)
 const comboboxValue = ref([])
 const comValue = ref("")
@@ -467,8 +540,9 @@ const props = defineProps({
   bigImage: { type: String, default: "" },
   smallImage: { type: String, default: "" },
   altImage: { type: String, default: "" },
-  textButton: { type: String, default: "отправить" },
+  bgClass: { type: String, default: 'bg-none'},
 
+  settingButton: { type: Object, default: () => ({color: 'primary-gray', size: 'x-large', text: 'Отправить'}) },
   checkboxSetting: { type: Object, default: () => ({}) },
   inputs: { type: Array, default: () => [] },
   combobox: { type: Object, default: () => ({}) },
@@ -487,6 +561,10 @@ const dataForm = (validForm) => {
     } else if(Object.keys(props.commentary).length) {
       if(inputValues.value.every(value => value) && checked.value && comValue.value) {
         emit('form-data', [inputValues.value._rawValue, comValue.value._rawValue] )
+      }
+    } else if(!Object.keys(props.checkboxSetting).length) {
+      if(inputValues.value.every(value => value)) {
+        emit('form-data', [inputValues.value._rawValue] )
       }
     } else {
       if(inputValues.value.every(value => value) && checked.value) {

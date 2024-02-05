@@ -1,16 +1,22 @@
 <template>
   <div class="w-100 erg-header">
-    <v-app-bar class="py-2" :class="menu_open ? 'position-fixed' : 'position-relative'" :elevation="elevation || 0">
-      <v-container class="d-flex align-stretch py-0">
+    <v-app-bar
+      class="py-2"
+      :class="[menu_open ? 'position-fixed bg-white' : 'position-relative', bgClassHeader || 'bg-none']"
+      :elevation="elevation || 0"
+    >
+      <v-container class="d-flex align-center py-0">
         <div class="d-flex align-center flex-grow-1">
           <v-img
-            :src="logo"
-            max-width="70"
-            alt="Logo"
+            :src="logo.url"
+            :max-width="logo.max_width"
+            :width="logo.width"
+            :height="logo.height"
+            :alt="logo.alt || 'Logo'"
           />
         </div>
 
-        <div class="ml-auto flex-grow-1 justify-center align-start d-md-flex d-none flex-column">
+        <div class="ml-auto flex-grow-1 justify-center align-start d-lg-flex d-none flex-column">
           <slot name="menu">
             <ul class="d-flex align-center" style="column-gap: 32px">
               <li
@@ -21,6 +27,7 @@
                 <NuxtLink
                   class="erg-header-link"
                   :to="menu_item.url"
+                  :class="colorClassMenu || 'text-black'"
                 >
                   {{ menu_item.title }}
                 </NuxtLink>
@@ -40,15 +47,15 @@
             @change="updateSelectLang"
             hide-details="true"
             variant="solo"
-            class="mr-4"
+            class="mr-4 bg-none"
           />
-          <v-btn class="bg-white text-none text-body-1 d-none d-md-block" rounded="xl" @click="buttonClick">
+          <v-btn class="bg-white text-none text-body-1 d-none d-lg-block" rounded="xl" @click="buttonClick">
             {{ textBtn || 'Связаться с нами' }}
           </v-btn>
         </div>
 
         <v-app-bar-nav-icon
-          class="d-block d-md-none my-auto"
+          class="d-block d-lg-none my-auto"
           @click="menu_open = !menu_open"
         />
 
@@ -57,11 +64,11 @@
     </v-app-bar>
     <v-navigation-drawer
       v-model="menu_open"
-      class="w-100 h-100 d-flex d-md-none py-5 px-4"
+      class="w-100 h-100 d-flex d-lg-none py-5 px-4"
       location="left"
     >
       <ul
-        class="header-menu-mobile w-100 d-md-none d-flex flex-column"
+        class="header-menu-mobile w-100 d-flex flex-column"
         :class="{'open': menu_open}"
       >
         <li
@@ -78,7 +85,7 @@
         </li>
       </ul>
 
-      <v-btn class="bg-white text-none text-body-1 d-block d-md-none" block size="large" rounded="xl" @click="buttonClick">
+      <v-btn class="bg-white text-none text-body-1" block size="large" rounded="xl" @click="buttonClick">
         {{ textBtn || 'Связаться с нами' }}
       </v-btn>
     </v-navigation-drawer>
@@ -86,11 +93,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, watch } from "vue"
 const props = defineProps({
   logo: {
-    type: String,
-    default: 'https://s3-alpha-sig.figma.com/img/222c/02bf/df2277b790ec617d5a2f748736bfdc5a?Expires=1707696000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BjEYx20siAJOsNnjkamNkI-f35Bqi8qtCAvaJ4Oxthy2my4acTfctcKVovI2Yp6v2KugOl61Oat9sQjS0violwagFG2Gie8a48IvmcxllwmkVOESFSBVwWx1D3eP0t5bQit2x3qDF~nfdHh-kMBUSdgwzS1UojssqLJ0NCo6WuUQDz2cbyVZl2RLsSZSgbrLz3agCXXACVU7XH6eTJmE0ZVskZhSgx53dxt~s6Jqrr8l7mcp2C03PxkUbXy1A3bvGxQFdVyVmpx0YSk2PXWwnJZFoX85JHFKzxvLJKWXH7rA1GY~Cx3L8ZI48mB1ybzaIZFXs1KakjD-hDzzyDPITw__'
+    type: Object,
+    default: {
+      url: 'https://s3-alpha-sig.figma.com/img/222c/02bf/df2277b790ec617d5a2f748736bfdc5a?Expires=1707696000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BjEYx20siAJOsNnjkamNkI-f35Bqi8qtCAvaJ4Oxthy2my4acTfctcKVovI2Yp6v2KugOl61Oat9sQjS0violwagFG2Gie8a48IvmcxllwmkVOESFSBVwWx1D3eP0t5bQit2x3qDF~nfdHh-kMBUSdgwzS1UojssqLJ0NCo6WuUQDz2cbyVZl2RLsSZSgbrLz3agCXXACVU7XH6eTJmE0ZVskZhSgx53dxt~s6Jqrr8l7mcp2C03PxkUbXy1A3bvGxQFdVyVmpx0YSk2PXWwnJZFoX85JHFKzxvLJKWXH7rA1GY~Cx3L8ZI48mB1ybzaIZFXs1KakjD-hDzzyDPITw__',
+      max_width: 70,
+    }
   },
   elevation: Number,
   menu: {
@@ -123,6 +133,8 @@ const props = defineProps({
     ]
   },
   textBtn: String,
+  bgClassHeader: String,
+  colorClassMenu: String,
 })
 
 const emits = defineEmits(['select-lang', 'button-click'])
@@ -135,6 +147,20 @@ function updateSelectLang(value: string) {
   emits('select-lang', value)
 }
 
+function toggleBodyScroll(isOpen) {
+  if (isOpen) {
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+  } else {
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+  }
+}
+
+watch(menu_open, (newValue) => {
+  toggleBodyScroll(newValue);
+});
+
 function buttonClick() {
   emits('button-click')
 }
@@ -145,7 +171,6 @@ function buttonClick() {
   ul {
     list-style: none;
   }
-
   a {
     text-decoration: none;
     color: inherit;
@@ -160,6 +185,7 @@ function buttonClick() {
     }
   }
   .v-field--variant-solo {
+    background: none;
     box-shadow: 0 0 0 0;
     transition: background 0.3s ease;
     border-radius: 50px;
@@ -179,7 +205,8 @@ function buttonClick() {
   }
   .header-menu-mobile {
     padding: 8px 0px;
-    & .header-menu-link {
+    .header-menu-link {
+      display: block;
       width: 100%;
       padding: 20px 0;
       font-weight: 400;
