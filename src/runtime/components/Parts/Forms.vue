@@ -47,8 +47,7 @@
               <v-text-field
                 v-model="inputValues[index]"
                 :variant="input.variant || 'outlined'"
-                v-maska
-                data-maska="#-#"
+                v-maska:[maskaOptions]
                 :label="input.label"
                 :rules="input.rules"
                 :placeholder="input.placeholder"
@@ -452,6 +451,7 @@
 <script setup>
 import { ref } from 'vue'
 
+const maskaOptions = { mask: '#-#' };
 const checked = ref(false)
 const comboboxValue = ref([])
 const comValue = ref("")
