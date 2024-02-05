@@ -83,7 +83,7 @@
         v-if="menu.length || logoInBody === true || store.length"
         class="footer-menu"
       >
-        <v-row class="pb-10 py-sm-15">
+        <v-row :class="Object.keys(firstStyleTop).length ? 'pb-10 py-sm-15' : ''">
           <v-col
             v-if="logoInBody === true"
             cols="12"
@@ -98,7 +98,8 @@
             />
             <p
               v-if="logo.title"
-              class="font-weight-medium mb-3 mb-sm-7 text-primary text-subtitle-1"
+              class="font-weight-medium mb-3 mb-sm-7 text-subtitle-1"
+              :class="logo.colorText || 'text-white'"
             >
               {{ logo.title }}
             </p>
@@ -120,7 +121,8 @@
                 class="mb-4 mb-sm-2"
               >
                 <nuxt-link
-                  class="text-primary text-body-1"
+                  class="text-body-1"
+                  :class="colorNav || 'text-primary'"
                   :to="item.link"
                 >
                   {{ item.text }}
@@ -197,7 +199,7 @@
         class="text-primary-gray"
       >
       <div class="footer-bottom">
-        <v-row class="pt-7 pb-sm-15 align-center">
+        <v-row class="align-center" :class="Object.keys(firstStyleTop).length ? 'pt-7 pb-sm-15' : 'py-3'">
           <v-col
             v-if="logoInBottom === true"
             cols="12"
@@ -286,6 +288,7 @@ const props = defineProps({
   menu: { type: Array, default: () => [] },
   store: { type: Array, default: () => [] },
   nav: { type: Array, default: () => [] },
+  colorNav: { type: String, default: () => 'text-white' },
   social: { type: Array, default: () => [] },
 
   showBorder: { type: Boolean, default: false },
