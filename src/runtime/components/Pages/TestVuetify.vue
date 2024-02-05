@@ -2,7 +2,41 @@
   <v-app>
     <partsHeaderErg>
     </partsHeaderErg>
+    <v-container>
+      <v-row>
+        <v-col cols="6">
+          <partsForms
+            title="Ответим на все ваши вопросы"
+            :inputs="[
+              {
+                variant: 'solo',
+                rounded: 'xl',
+                rules: [
+                  u => !!u || 'Имя обязательно к заполнению',
+                  u => !u || u.length <= 50 || 'Имя не должно быть длиннее 50 символов'
+                ],
+                placeholder: 'Укажите ваше имя',
+                maska: {mask: '###-###-x'},
+                value: '',
+              },
+              {
+                variant: 'solo',
+                rounded: 'xl',
+                placeholder: '+7',
+                rules: [
+                  u => !!u || 'ФИО обязательно к заполнению',
+                  u => !u || u.length <= 2 || 'Имя не должно быть длиннее 50 символов'
+                ],
+                maska: {mask: '###-###-x'},
+                value: '',
+              }
+            ]"
+            :style-form="'onlyForm'"
+          />
+        </v-col>
+      </v-row>
 
+    </v-container>
     <NuxtPage />
 
     <partsFooterDefault

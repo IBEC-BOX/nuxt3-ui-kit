@@ -20,7 +20,9 @@ export default {
     inputs: { type: "Array" },
     combobox: { type: "Object" },
     socials: { type: "Array" },
-    infoCompany: { type: "Array" }
+    infoCompany: { type: "Array" },
+    bgClass: { type: "String" },
+    settingButton: { type: "Object" },
   },
   events: {
     'form-data': {
@@ -329,5 +331,32 @@ export const Call = {
       ],
       label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
     }
+  }
+}
+
+export const OnlyForm = {
+  args: {
+    title: "Ответим на все ваши вопросы",
+    styleForm: 'onlyForm',
+    inputs: [
+      {
+        label: "ФИО",
+        rules: [
+          v => !!v || 'ФИО обязательно к заполнению',
+          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+        ],
+        placeholder: "ФИО",
+        value: ''
+      },
+      {
+        label: "ФИО",
+        rules: [
+          v => !!v || 'ФИО обязательно к заполнению',
+          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+        ],
+        placeholder: "ФИО",
+        value: ''
+      },
+    ],
   }
 }

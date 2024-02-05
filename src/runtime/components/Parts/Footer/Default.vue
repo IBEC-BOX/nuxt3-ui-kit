@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="footer">
+  <v-footer class="footer" :class="bgClass">
     <v-container class="px-0">
       <div
         v-if="Object.keys(firstStyleTop).length"
@@ -289,6 +289,7 @@ const props = defineProps({
   store: { type: Array, default: () => [] },
   nav: { type: Array, default: () => [] },
   colorNav: { type: String, default: () => 'text-white' },
+  bgClass: { type: String, default: () => 'bg-none' },
   social: { type: Array, default: () => [] },
 
   showBorder: { type: Boolean, default: false },
