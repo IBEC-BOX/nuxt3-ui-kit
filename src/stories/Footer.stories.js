@@ -720,3 +720,79 @@ export const Fourth = {
     },
   },
 };
+
+export const Fifth = {
+  args: {
+    logoInBody: true,
+    showBorder: false,
+    logo: {
+      title: "title"
+    },
+    nav: [
+      {
+        id: 1,
+        text: "Overview",
+        link: "/",
+      },
+      {
+        id: 2,
+        text: "Features",
+        link: "/",
+      },
+      {
+        id: 3,
+        text: "Pricing",
+        link: "/",
+      },
+      {
+        id: 4,
+        text: "Careers",
+        link: "/",
+      },
+      {
+        id: 5,
+        text: "Help centre",
+        link: "/",
+      },
+      {
+        id: 6,
+        text: "Privacy",
+        link: "/",
+      },
+    ],
+    copyright: "2023 Untitled UI. All rights reserverd",
+    social: [
+      {
+        id: 1,
+        img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+        link: ""
+      },
+      {
+        id: 2,
+        img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+        link: ""
+      },
+      {
+        id: 3,
+        img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+        link: ""
+      },
+      {
+        id: 4,
+        img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+        link: ""
+      },
+      {
+        id: 5,
+        img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+        link: ""
+      },
+      {
+        id: 6,
+        img: "https://cdn.vuetifyjs.com/images/parallax/material.jpg",
+        link: ""
+      },
+    ]
+  },
+
+}

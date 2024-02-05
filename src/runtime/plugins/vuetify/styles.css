@@ -1,0 +1,40 @@
+.text-32 {
+  font-size: 2rem !important;
+}
+
+@media (min-width: 600px) {
+  .text-sm-32 {
+    font-size: 2rem !important;
+  }
+}
+.text-18 {
+  font-size: 1.125rem !important;
+}
+
+@media (min-width: 600px) {
+  .text-sm-18 {
+    font-size: 1.125rem !important;
+  }
+}
+.text-17 {
+  font-size: 1.0625rem !important;
+}
+
+.text-15 {
+  font-size: 0.9375rem !important;
+}
+
+@media (min-width: 600px) {
+  .text-sm-15 {
+    font-size: 0.9375rem !important;
+  }
+}
+.text-13 {
+  font-size: 0.8125rem !important;
+}
+
+.font-weight-semi-bold {
+  font-weight: 600 !important;
+}
+
+/*# sourceMappingURL=styles.css.map */
