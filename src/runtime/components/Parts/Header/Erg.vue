@@ -37,12 +37,8 @@
         <div class="mx-n2 d-flex align-center">
           <v-select
             v-model="selectLang"
-            :items="setLang"
-            label="Select"
-            persistent-hint
-            return-object
-            single-line
-            @change="updateSelectLang"
+            :items="filteredLangs"
+            @update:modelValue="updateSelectLang"
             hide-details="true"
             variant="solo"
             class="mr-4 bg-none"
@@ -91,7 +87,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue"
+import { ref, watch, computed } from "vue"
+
 const props = defineProps({
   logo: {
     type: Object,
@@ -140,9 +137,14 @@ const emits = defineEmits(['select-lang', 'button-click'])
 const menu_open = ref(false)
 const selectLang = ref('Ru')
 
-function updateSelectLang(value: string) {
-  selectLang.value = value
-  emits('select-lang', value)
+const filteredLangs = computed(() => {
+  if (!selectLang.value) return props.setLang;
+  return props.setLang.filter(lang => lang !== selectLang.value);
+})
+
+function updateSelectLang(selectedLang: string) {
+  selectLang.value = selectedLang;
+  emits('select-lang', selectedLang);
 }
 
 function toggleBodyScroll(isOpen: boolean) {
@@ -187,6 +189,7 @@ function buttonClick() {
     box-shadow: 0 0 0 0;
     transition: background 0.3s ease;
     border-radius: 50px;
+    color: #fff;
     &:hover {
       background: rgba(255, 255, 255, 0.39);
     }

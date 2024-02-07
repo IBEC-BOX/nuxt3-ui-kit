@@ -199,7 +199,7 @@
         class="text-primary-gray"
       >
       <div class="footer-bottom">
-        <v-row class="align-center" :class="Object.keys(firstStyleTop).length ? 'pt-7 pb-sm-15' : 'py-3'">
+        <v-row class="d-flex align-center" :class="Object.keys(firstStyleTop).length ? 'pt-7 pb-sm-15' : 'py-3'">
           <v-col
             v-if="logoInBottom === true"
             cols="12"
@@ -265,7 +265,7 @@
                 <a :href="item.link">
                   <v-img
                     aspect-ratio="1/1"
-                    class="cursor-pointer mb-4"
+                    class="cursor-pointer mb-4 mb-sm-0"
                     :width="32"
                     :src="item.img"
                   />
