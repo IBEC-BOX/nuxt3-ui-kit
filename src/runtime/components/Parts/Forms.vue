@@ -61,6 +61,7 @@
                 :append-inner-icon="input.appendInnerIcon"
                 :prefix="input.prefix"
                 :suffix="input.suffix"
+                :class="input.class"
               />
             </v-col>
           </v-row>
@@ -87,6 +88,7 @@
             :append-inner-icon="commentary.appendInnerIcon"
             :no-resize="commentary.noResize || false"
             :rows="commentary.rows || 8"
+            :class="commentary.class"
           />
         </v-col>
         <v-col
@@ -99,6 +101,7 @@
             v-model="checked"
             :color="checkboxSetting.color"
             :rules="checkboxSetting.rules"
+            :class="checkboxSetting.class"
           >
             <template #label>
               <span class="text-13">{{ checkboxSetting.label }}</span>
@@ -117,6 +120,7 @@
             :size="settingButton.size"
             :color="settingButton.color"
             :rounded="settingButton.rounded || 'xl-large'"
+            :class="settingButton.class"
             class="mt-6"
           >
             {{ settingButton.text }}
@@ -126,6 +130,7 @@
             v-model="checked"
             :color="checkboxSetting.color"
             :rules="checkboxSetting.rules"
+            :Class="checkboxSetting.class"
           >
             <template #label>
               <span class="text-13">{{ checkboxSetting.label }}</span>
@@ -191,6 +196,7 @@
             :append-inner-icon="input.appendInnerIcon"
             :prefix="input.prefix"
             :suffix="input.suffix"
+            :class="input.class"
             class="mb-2"
           />
         </v-col>
@@ -203,6 +209,7 @@
             v-model="checked"
             :color="checkboxSetting.color"
             :rules="checkboxSetting.rules"
+            :class="checkboxSetting.class"
           >
             <template #label>
               <span class="text-13">{{ checkboxSetting.label }}</span>
@@ -220,6 +227,7 @@
             :color="settingButton.color"
             :rounded="settingButton.rounded || 'xl-large'"
             class="mt-6"
+            :class="settingButton.class"
           >
             {{ settingButton.text }}
           </v-btn>
@@ -319,6 +327,7 @@
                 :append-inner-icon="input.appendInnerIcon"
                 :prefix="input.prefix"
                 :suffix="input.suffix"
+                :class="input.class"
                 class="mb-2"
               />
             </v-col>
@@ -337,6 +346,7 @@
                 :multiple="combobox.multiple"
                 :items="combobox.items"
                 :value="combobox.value"
+                :class="combobox.class"
               />
             </v-col>
             <v-col
@@ -360,6 +370,7 @@
                 :append-inner-icon="commentary.appendInnerIcon"
                 :no-resize="commentary.noResize || false"
                 :rows="commentary.rows || 8"
+                :class="commentary.class"
               />
             </v-col>
             <v-col
@@ -373,6 +384,7 @@
                 :color="settingButton.color"
                 :rounded="settingButton.rounded || 'xl'"
                 class="mt-6"
+                :class="settingButton.class"
               >
                 {{ settingButton.text }}
               </v-btn>
@@ -494,6 +506,7 @@
             :prefix="input.prefix"
             :suffix="input.suffix"
             :rounded="'xl'"
+            :class="input.class"
           >
           </v-text-field>
         </v-col>
@@ -505,6 +518,7 @@
         :color="settingButton.color"
         :rounded="settingButton.rounded || 'xl'"
         class="mt-6"
+        :class="settingButton.class"
       >
         {{ settingButton.text }}
       </v-btn>
@@ -556,19 +570,20 @@ const dataForm = (validForm) => {
   if(validForm) {
     if(Object.keys(props.combobox).length) {
       if(comboboxValue.value.length && inputValues.value.every(value => value) && checked.value && comValue.value) {
-        emit('form-data', [inputValues.value._rawValue, comboboxValue.value._rawValue, comValue.value._rawValue] )
+        emit('form-data', [inputValues.value, comboboxValue.value, comValue.value] )
       }
     } else if(Object.keys(props.commentary).length) {
       if(inputValues.value.every(value => value) && checked.value && comValue.value) {
-        emit('form-data', [inputValues.value._rawValue, comValue.value._rawValue] )
+        emit('form-data', [inputValues.value, comValue.value] )
       }
     } else if(!Object.keys(props.checkboxSetting).length) {
       if(inputValues.value.every(value => value)) {
-        emit('form-data', [inputValues.value._rawValue] )
+        console.log(inputValues.value)
+        emit('form-data', [inputValues.value] )
       }
     } else {
       if(inputValues.value.every(value => value) && checked.value) {
-        emit('form-data', [inputValues.value._rawValue] )
+        emit('form-data', [inputValues.value] )
       }
     }
   } else {

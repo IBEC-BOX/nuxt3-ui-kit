@@ -17,7 +17,7 @@
         :class="`rounded-${slidesRounded}`"
       >
         <div
-          v-if="slide.img"
+          v-if="slide.backgroundImg"
           class="image-backdrop"
         >
           <!-- Image -->
@@ -25,51 +25,77 @@
             class="slider-img position-absolute h-100 w-100"
             style="z-index: -1;"
             cover
-            :src="slide.img"
+            :src="slide.backgroundImg"
           />
           <!-- Image END -->
         </div>
-
-        <div
-          class="d-flex flex-column justify-center align-start h-100"
-          :class="[{'px-12': !sliderContainer}, {'v-container' : sliderContainer}]"
-        >
-          <div>
-            <!-- Slide title -->
-            <!-- Добавил возможность указывать тег чтобы была возможность для настройки SEO -->
-            <component
-              :is="slide.titleTag ? slide.titleTag: 'p'"
-              v-bind="slide.titleAttrs"
-              class="mb-0 text-md-h3 text-h4 mb-4 font-weight-medium"
+        <v-row :style="slide.img ? '' : 'display: contents'">
+          <v-col cols="12" lg="6" class="px-0" :style="slide.img ? '' : 'display: contents'">
+            <div
+              class=" h-100"
+              :class="[
+                {'px-12': !sliderContainer},
+                {'v-container' : sliderContainer},
+                {'d-flex flex-column justify-center align-start': !slide.textBlockAttrs}
+                ]"
             >
-              {{ slide.title }}
-            </component>
+              <div>
+                <!-- Slide title -->
+                <!-- Добавил возможность указывать тег чтобы была возможность для настройки SEO -->
+                <v-chip v-if="slide.chip" v-bind="slide.chip.attrs">
+                  {{ slide.chip.text }}
+                </v-chip>
+                <component
+                  :is="slide.titleTag ? slide.titleTag: 'p'"
+                  v-bind="slide.titleAttrs"
+                >
+                  {{ slide.title }}
+                </component>
 
-            <p
-              class="mb-4 text-md-h6 text-body-1"
-              v-bind="slide.subTitleAttrs"
+                <p
+                  v-bind="slide.subTitleAttrs"
+                >
+                  {{ slide.subtitle }}
+                </p>
+                <!-- Slide title -->
+              </div>
+
+              <!-- body slot -->
+              <div v-html="slide.bodySlot" />
+              <!-- body slot end -->
+
+              <!-- Slider buttons -->
+              <div class="mb-15">
+                <v-btn
+                  v-for="button in slide.buttons"
+                  :key="button.id"
+                  v-bind="button.attrs"
+                >
+                  {{ button.text }}
+                </v-btn>
+              </div>
+              <!-- Slider buttons END -->
+            </div>
+          </v-col>
+          <v-col cols="12" lg="6" class="px-0" :style="slide.img ? '' : 'display: contents'">
+            <div
+              v-if="slide.img"
+              class=""
             >
-              {{ slide.subtitle }}
-            </p>
-            <!-- Slide title -->
-          </div>
+              <!-- Image -->
+              <v-img
+                class="slider-img h-100 w-100"
+                style="z-index: -1;"
+                cover
+                :src="slide.img.src"
+                v-bind="slide.img.attrs"
+              />
+              <!-- Image END -->
+            </div>
+          </v-col>
+        </v-row>
 
-          <!-- body slot -->
-          <div v-html="slide.bodySlot" />
-          <!-- body slot end -->
 
-          <!-- Slider buttons -->
-          <div class="mb-15">
-            <v-btn
-              v-for="button in slide.buttons"
-              :key="button.id"
-              v-bind="button.attrs"
-            >
-              {{ button.text }}
-            </v-btn>
-          </div>
-          <!-- Slider buttons END -->
-        </div>
       </swiper-slide>
     </swiper-container>
 
@@ -112,6 +138,30 @@
         <v-btn
           v-bind="controlButtonNextAttrs"
           icon="mdi-chevron-down"
+          @click="slideNext"
+        />
+      </div>
+    </div>
+
+    <div
+      v-if="controlButtonsAlign === 'left-bottom'"
+      class="control-buttons-left-bottom-container"
+      :class="[
+        {'px-9': !sliderContainer},
+      ]"
+    >
+      <div
+        class="d-flex px-0"
+      >
+        <v-btn
+          v-bind="controlButtonPrevAttrs"
+          icon="mdi-chevron-left"
+          @click="slidePrev"
+        />
+
+        <v-btn
+          v-bind="controlButtonNextAttrs"
+          icon="mdi-chevron-right"
           @click="slideNext"
         />
       </div>
@@ -362,6 +412,13 @@ onMounted(() => {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  .control-buttons-left-bottom-container {
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
     z-index: 1;
   }
 </style>
