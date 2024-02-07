@@ -93,14 +93,6 @@ const slides = [
     ],
     active: true
   },
-
-  {
-    id: 5,
-    title: 'Кредитная карта с целым годом без %',
-    subtitle: 'Подзаголовок маленький, в две строки',
-    backgroundImg: 'https://images.unsplash.com/photo-1516298773066-c48f8e9bd92b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    active: false
-  },
 ]
 const slides2 = [
     {
@@ -291,7 +283,7 @@ export const Peeking = {
   }),
 
   args: {
-    'slider-loop': true,
+    'slider-loop': false,
     'slider-peeking': true,
     'slider-space-between':"16",
     'slider-pagination': true,
@@ -300,6 +292,7 @@ export const Peeking = {
     'slides-rounded':"xl",
     'control-buttons-align':"center",
     'control-buttons-size':"small",
+    'slider-direction': "row",
   },
   parameters: {
     design: {
