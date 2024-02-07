@@ -15,13 +15,13 @@
           cols="12"
           :sm="Object.keys(commentary).length ? 12 : 6"
         >
-          <p
+          <h5
             v-if="title.length"
             class="text-sm-32 text-h5"
             :class="subtitle === '' ? 'mb-sm-5' : 'mb-sm-3'"
           >
             {{ title }}
-          </p>
+          </h5>
           <p
             v-if="subtitle.length"
             class="text-sm-18 text-15 mb-4"
@@ -37,31 +37,13 @@
             <v-col
               v-for="(input, index) in inputs"
               :key="`input-${index}`"
-              :cols="input.cols || 12 "
-              :sm="input.sm || 12 "
-              :md="input.md || 12 "
-              :lg="input.lg || 12 "
-              :xl="input.xl || 12 "
-              :xxl="input.xxl || 12 "
+              v-bind="input.colsAttrs"
               class="pa-0 px-3 mb-2"
             >
               <v-text-field
                 v-model="inputValues[index]"
-                :variant="input.variant || 'outlined'"
+                v-bind="input.attrs"
                 v-maska:[input.maska]
-                :label="input.label"
-                :rules="input.rules"
-                :placeholder="input.placeholder"
-                :clearable="input.clearable || false"
-                :type="input.type || 'text'"
-                :hint="input.hint"
-                :prepend-icon="input.prependIcon"
-                :prepend-inner-icon="input.prependInnerIcon"
-                :append-icon="input.appendIcon"
-                :append-inner-icon="input.appendInnerIcon"
-                :prefix="input.prefix"
-                :suffix="input.suffix"
-                :class="input.class"
               />
             </v-col>
           </v-row>
@@ -74,21 +56,7 @@
         >
           <v-textarea
             v-model="comValue"
-            :variant="commentary.variant || 'outlined'"
-            :label="commentary.label || 'Комментарий'"
-            :rules="commentary.rules"
-            :counter="commentary.counter || false"
-            :auto-grow="commentary.autoGrow || false"
-            :bg-color="commentary.bgColor"
-            :color="commentary.color"
-            :clearable="commentary.clearable || true"
-            :prepend-icon="commentary.prependIcon"
-            :append-icon="commentary.appendIcon"
-            :prepend-inner-icon="commentary.prependInnerIcon"
-            :append-inner-icon="commentary.appendInnerIcon"
-            :no-resize="commentary.noResize || false"
-            :rows="commentary.rows || 8"
-            :class="commentary.class"
+            v-bind="commentary.attrs"
           />
         </v-col>
         <v-col
@@ -99,9 +67,7 @@
           <v-checkbox
             v-if="Object.keys(commentary).length"
             v-model="checked"
-            :color="checkboxSetting.color"
-            :rules="checkboxSetting.rules"
-            :class="checkboxSetting.class"
+            v-bind="checkboxSetting.attrs"
           >
             <template #label>
               <span class="text-13">{{ checkboxSetting.label }}</span>
@@ -111,26 +77,20 @@
         <v-col
           cols="12"
           sm="6"
-          class="d-flex flex-column justify-end"
+          class="d-flex flex-column justify-start"
           :class="!Object.keys(commentary).length ? 'py-0' : ''"
         >
           <v-btn
             type="submit"
-            :block="settingButton.block || true"
-            :size="settingButton.size"
-            :color="settingButton.color"
-            :rounded="settingButton.rounded || 'xl-large'"
-            :class="settingButton.class"
-            class="mt-6"
+            v-bind="buttonSetting.attrs"
+            class=""
           >
-            {{ settingButton.text }}
+            {{ buttonSetting.text }}
           </v-btn>
           <v-checkbox
             v-if="!Object.keys(commentary).length"
             v-model="checked"
-            :color="checkboxSetting.color"
-            :rules="checkboxSetting.rules"
-            :Class="checkboxSetting.class"
+            v-bind="checkboxSetting.attrs"
           >
             <template #label>
               <span class="text-13">{{ checkboxSetting.label }}</span>
@@ -156,12 +116,12 @@
           cols="12"
           class="text-center mb-3"
         >
-          <p
+          <h5
             v-if="title"
             class="text-h5 text-sm-32 mb-3"
           >
             {{ title }}
-          </p>
+          </h5>
           <p
             v-if="subtitle"
             class="text-sm-18 text-15 "
@@ -172,31 +132,13 @@
         <v-col
           v-for="(input, index) in inputs"
           :key="`input-${index}`"
-          :cols="input.cols || 12 "
-          :sm="input.sm || 12 "
-          :md="input.md || 12 "
-          :lg="input.lg || 12 "
-          :xl="input.xl || 12 "
-          :xxl="input.xxl || 12 "
+          v-bind="input.colsAttrs"
           class="pa-0 px-3"
         >
           <v-text-field
             v-model="inputValues[index]"
-            :variant="input.variant || 'outlined'"
+            v-bind="input.attrs"
             v-maska:[input.maska]
-            :label="input.label"
-            :rules="input.rules"
-            :placeholder="input.placeholder"
-            :clearable="input.clearable || false"
-            :type="input.type || 'text'"
-            :hint="input.hint"
-            :prepend-icon="input.prependIcon"
-            :prepend-inner-icon="input.prependInnerIcon"
-            :append-icon="input.appendIcon"
-            :append-inner-icon="input.appendInnerIcon"
-            :prefix="input.prefix"
-            :suffix="input.suffix"
-            :class="input.class"
             class="mb-2"
           />
         </v-col>
@@ -207,9 +149,7 @@
           <v-checkbox
             v-if="Object.keys(commentary).length"
             v-model="checked"
-            :color="checkboxSetting.color"
-            :rules="checkboxSetting.rules"
-            :class="checkboxSetting.class"
+            v-bind="checkboxSetting.attrs"
           >
             <template #label>
               <span class="text-13">{{ checkboxSetting.label }}</span>
@@ -222,14 +162,10 @@
         >
           <v-btn
             type="submit"
-            :block="settingButton.block || true"
-            :size="settingButton.size"
-            :color="settingButton.color"
-            :rounded="settingButton.rounded || 'xl-large'"
+            v-bind="buttonSetting.attrs"
             class="mt-6"
-            :class="settingButton.class"
           >
-            {{ settingButton.text }}
+            {{ buttonSetting.text }}
           </v-btn>
         </v-col>
         <v-col cols="12">
@@ -272,9 +208,9 @@
         <v-col
           v-if="smallImage.length"
           cols="12"
-          class="text-center mb-7 text-sm-32 text-h5"
+          class="text-center mb-7"
         >
-          {{ title }}
+          <h5 class="text-sm-32 text-h5">{{ title }}</h5>
         </v-col>
         <v-col
           v-if="bigImage.length"
@@ -296,38 +232,20 @@
               v-if="bigImage.length"
               cols="12"
             >
-              <p class="text-sm-32 text-h5 mb-5">
+              <h5 class="text-sm-32 text-h5 mb-5">
                 {{ title }}
-              </p>
+              </h5>
             </v-col>
             <v-col
               v-for="(input, index) in inputs"
               :key="`input-${index}`"
-              :cols="input.cols || 12 "
-              :sm="input.sm || 12 "
-              :md="input.md || 12 "
-              :lg="input.lg || 12 "
-              :xl="input.xl || 12 "
-              :xxl="input.xxl || 12 "
+              v-bind="input.colsAttrs"
               class="pa-0 px-3"
             >
               <v-text-field
                 v-model="inputValues[index]"
-                :variant="input.variant || 'outlined'"
-                :label="input.label"
-                :rules="input.rules"
+                v-bind="input.attrs"
                 v-maska:[input.maska]
-                :placeholder="input.placeholder"
-                :clearable="input.clearable || false"
-                :type="input.type || 'text'"
-                :hint="input.hint"
-                :prepend-icon="input.prependIcon"
-                :prepend-inner-icon="input.prependInnerIcon"
-                :append-icon="input.appendIcon"
-                :append-inner-icon="input.appendInnerIcon"
-                :prefix="input.prefix"
-                :suffix="input.suffix"
-                :class="input.class"
                 class="mb-2"
               />
             </v-col>
@@ -338,15 +256,7 @@
             >
               <v-combobox
                 v-model="comboboxValue"
-                :variant="combobox.variant || 'outlined'"
-                :label="combobox.label || 'Выбери пункт'"
-                :rules="combobox.rules"
-                :clearable="combobox.clearable"
-                :chips="combobox.chips"
-                :multiple="combobox.multiple"
-                :items="combobox.items"
-                :value="combobox.value"
-                :class="combobox.class"
+                v-bind="combobox.attrs"
               />
             </v-col>
             <v-col
@@ -356,21 +266,7 @@
             >
               <v-textarea
                 v-model="comValue"
-                :variant="commentary.variant || 'outlined'"
-                :label="commentary.label || 'Комментарий'"
-                :rules="commentary.rules"
-                :counter="commentary.counter || false"
-                :auto-grow="commentary.autoGrow || false"
-                :bg-color="commentary.bgColor"
-                :color="commentary.color"
-                :clearable="commentary.clearable || true"
-                :prepend-icon="commentary.prependIcon"
-                :append-icon="commentary.appendIcon"
-                :prepend-inner-icon="commentary.prependInnerIcon"
-                :append-inner-icon="commentary.appendInnerIcon"
-                :no-resize="commentary.noResize || false"
-                :rows="commentary.rows || 8"
-                :class="commentary.class"
+                v-bind="commentary.attrs"
               />
             </v-col>
             <v-col
@@ -379,14 +275,10 @@
             >
               <v-btn
                 type="submit"
-                :block="settingButton.block || true"
-                :size="settingButton.size"
-                :color="settingButton.color"
-                :rounded="settingButton.rounded || 'xl'"
+                v-bind="buttonSetting.attrs"
                 class="mt-6"
-                :class="settingButton.class"
               >
-                {{ settingButton.text }}
+                {{ buttonSetting.text }}
               </v-btn>
             </v-col>
             <v-col
@@ -395,8 +287,7 @@
             >
               <v-checkbox
                 v-model="checked"
-                :color="checkboxSetting.color"
-                :rules="checkboxSetting.rules"
+                v-bind="checkboxSetting.attrs"
               >
                 <template #label>
                   <span class="text-13">{{ checkboxSetting.label }}</span>
@@ -481,51 +372,27 @@
         <v-col
           v-for="(input, index) in inputs"
           :key="`input-${index}`"
-          :cols="input.cols || 12 "
-          :sm="input.sm || 12 "
-          :md="input.md || 12 "
-          :lg="input.lg || 12 "
-          :xl="input.xl || 12 "
-          :xxl="input.xxl || 12 "
+          v-bind="input.colsAttrs"
           class="mb-1 pa-0 px-3"
         >
           <v-text-field
             v-model="inputValues[index]"
-            :variant="input.variant || 'outlined'"
-            :label="input.label"
-            :rules="input.rules"
+            v-bind="input.attrs"
             v-maska:[input.maska]
-            :placeholder="input.placeholder"
-            :clearable="input.clearable || false"
-            :type="input.type || 'text'"
-            :hint="input.hint"
-            :prepend-icon="input.prependIcon"
-            :prepend-inner-icon="input.prependInnerIcon"
-            :append-icon="input.appendIcon"
-            :append-inner-icon="input.appendInnerIcon"
-            :prefix="input.prefix"
-            :suffix="input.suffix"
-            :rounded="'xl'"
-            :class="input.class"
-          >
-          </v-text-field>
+            class="mb-2"
+          />
         </v-col>
       </v-row>
       <v-btn
         type="submit"
-        :block="settingButton.block || true"
-        :size="settingButton.size"
-        :color="settingButton.color"
-        :rounded="settingButton.rounded || 'xl'"
+        v-bind="buttonSetting.attrs"
         class="mt-6"
-        :class="settingButton.class"
       >
-        {{ settingButton.text }}
+        {{ buttonSetting.text }}
       </v-btn>
       <v-checkbox
         v-model="checked"
-        :color="checkboxSetting.color"
-        :rules="checkboxSetting.rules"
+        v-bind="checkboxSetting.attrs"
         v-if="Object.keys(checkboxSetting).length"
       >
         <template #label>
@@ -537,7 +404,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, useAttrs } from 'vue'
+import { useMainStore } from "../../../store/mainStore.js";
+const mainStore = useMainStore()
 
 const checked = ref(false)
 const comboboxValue = ref([])
@@ -556,7 +425,7 @@ const props = defineProps({
   altImage: { type: String, default: "" },
   bgClass: { type: String, default: 'bg-none'},
 
-  settingButton: { type: Object, default: () => ({color: 'primary-gray', size: 'x-large', text: 'Отправить'}) },
+  buttonSetting: { type: Object, default: () => ({ attrs: {color: 'primary-gray', size: 'x-large', text: 'Отправить'}}) },
   checkboxSetting: { type: Object, default: () => ({}) },
   inputs: { type: Array, default: () => [] },
   combobox: { type: Object, default: () => ({}) },

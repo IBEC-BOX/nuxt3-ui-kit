@@ -4,132 +4,36 @@
     </partsHeaderErg>
     <NuxtPage />
     <v-container style="background: #F8F8F8">
-      <partsSlider
-        :slider-loop="true"
-        :height="'388px'"
-        :slides="[
-        {
-          id: 0,
-          chip: {
-            text: 'abvgd',
+      <partsForms
+        title="asd"
+        :inputs='[
+          {
+            label: "ФИО",
+            rules: [
+            v => !!v || "ФИО обязательно к заполнению",
+            v => (v && v.length <= 10) || "Имя не должно быть длиннее 10 символов",
+            ],
+            placeholder: "ФИО",
+            value: ""
+          },
+          {
+            label: "ФИО",
+            rules: [
+            v => !!v || "ФИО обязательно к заполнению",
+            v => (v && v.length <= 10) || "Имя не должно быть длиннее 10 символов",
+            ],
+            placeholder: "ФИО",
+            maska: {mask: "###-###-x"},
+            value: "",
+            colsAttrs: {
+              cols: 12,
+            },
             attrs: {
-              color: 'primary'
+              type: "text",
+              variant: "outlined"
             }
           },
-          title: 'Кредитная карта с целым годом без %',
-          subtitle: 'Подзаголовок маленький, в две строки',
-          titleAttrs: {
-            class: 'text-white w-75'
-          },
-          backgroundImg: 'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-          buttons: [
-            {
-              id: 0,
-              text: 'Large button',
-                attrs: {
-                  size: 'large',
-                  color: 'primary',
-                  class: 'text-body-1',
-                }
-            }
-          ],
-          active: true,
-        },
-        {
-          id: 1,
-          chip: {
-            text: 'abvgd',
-            attrs: {
-              color: 'primary'
-            }
-          },
-          title: 'Экологические акции',
-          subtitle: 'Команда АО “ССГПО” активно принимает участие в мероприятиях, направленных на помощь экологии',
-          textBlockAttrs: {
-            class: ''
-          },
-          subTitleAttrs: {
-            class: 'text-primary'
-          },
-          titleAttrs: {
-            class: 'text-primary text-h5 w-75'
-          },
-          img: {
-            src: 'https://s3-alpha-sig.figma.com/img/555c/6876/cb9c4c93facc41f9da4145fa73aca28f?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GuQUtcWbVrWRn1GfwukhEdmCQ9ZxpWBc8-kYGxqc~kInBXYg7QiQUdnC11N6CBJyNYPhZmkMoCyqJLchOvtrizsQiSWQytj96hkeDbtlODJe60UxBq9LQqLWuzCoq8~9-IL~oKeji3ECSklL1VCqbv5NQ-Lxi~ItwX-sunBEXVsx9g9oxZIZrkuIVOfBA9vqYz1PVaG9FrIP7zL5R73ahu0m2V-MLPBe8OUFEQSWbDw9xUPIUKyXOfbm9En80I9oV8k55cLvyNaid-2qCCPtXrm26v7ohCeXQILx1-9j8xBHjy0cLploNutzmGMC0uiPQnr115gYHEhBXaJk2Ez8zA__',
-            attrs: {
-              'max-height': 400,
-              'max-width': '98%',
-              class: 'rounded-xl'
-            }
-          },
-          active: true,
-        },
-                {
-          id: 1,
-          chip: {
-            text: 'abvgd',
-            attrs: {
-              color: 'primary'
-            }
-          },
-          title: 'Экологические акции',
-          subtitle: 'Команда АО “ССГПО” активно принимает участие в мероприятиях, направленных на помощь экологии',
-          textBlockAttrs: {
-            class: ''
-          },
-          subTitleAttrs: {
-            class: 'text-primary'
-          },
-          titleAttrs: {
-            class: 'text-primary text-h5 w-75'
-          },
-          img: {
-            src: 'https://s3-alpha-sig.figma.com/img/555c/6876/cb9c4c93facc41f9da4145fa73aca28f?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GuQUtcWbVrWRn1GfwukhEdmCQ9ZxpWBc8-kYGxqc~kInBXYg7QiQUdnC11N6CBJyNYPhZmkMoCyqJLchOvtrizsQiSWQytj96hkeDbtlODJe60UxBq9LQqLWuzCoq8~9-IL~oKeji3ECSklL1VCqbv5NQ-Lxi~ItwX-sunBEXVsx9g9oxZIZrkuIVOfBA9vqYz1PVaG9FrIP7zL5R73ahu0m2V-MLPBe8OUFEQSWbDw9xUPIUKyXOfbm9En80I9oV8k55cLvyNaid-2qCCPtXrm26v7ohCeXQILx1-9j8xBHjy0cLploNutzmGMC0uiPQnr115gYHEhBXaJk2Ez8zA__',
-            attrs: {
-              'max-height': 400,
-              'max-width': '98%',
-              class: 'rounded-xl'
-            }
-          },
-          active: true,
-        },
-                {
-          id: 1,
-          chip: {
-            text: 'abvgd',
-            attrs: {
-              color: 'primary'
-            }
-          },
-          title: 'Экологические акции',
-          subtitle: 'Команда АО “ССГПО” активно принимает участие в мероприятиях, направленных на помощь экологии',
-          textBlockAttrs: {
-            class: ''
-          },
-          subTitleAttrs: {
-            class: 'text-primary'
-          },
-          titleAttrs: {
-            class: 'text-primary text-h5 w-75'
-          },
-          img: {
-            src: 'https://s3-alpha-sig.figma.com/img/555c/6876/cb9c4c93facc41f9da4145fa73aca28f?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GuQUtcWbVrWRn1GfwukhEdmCQ9ZxpWBc8-kYGxqc~kInBXYg7QiQUdnC11N6CBJyNYPhZmkMoCyqJLchOvtrizsQiSWQytj96hkeDbtlODJe60UxBq9LQqLWuzCoq8~9-IL~oKeji3ECSklL1VCqbv5NQ-Lxi~ItwX-sunBEXVsx9g9oxZIZrkuIVOfBA9vqYz1PVaG9FrIP7zL5R73ahu0m2V-MLPBe8OUFEQSWbDw9xUPIUKyXOfbm9En80I9oV8k55cLvyNaid-2qCCPtXrm26v7ohCeXQILx1-9j8xBHjy0cLploNutzmGMC0uiPQnr115gYHEhBXaJk2Ez8zA__',
-            attrs: {
-              'max-height': 400,
-              'max-width': '98%',
-              class: 'rounded-xl'
-            }
-          },
-          active: true,
-        },
-      ]"
-        :slider-container="true"
-        :control-buttons-align="'left-bottom'"
-        control-buttons-color="white"
-        control-buttons-rounded='lg'
-        control-buttons-class='mr-2'
-        control-buttons-elevation='0'
-
+        ]'
       />
     </v-container>
 

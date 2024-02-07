@@ -38,46 +38,79 @@ export const StandardFirst = {
     title: "Заполните контактные данные и оставьте заявку на консультацию",
     inputs: [
       {
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 12,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
       {
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 12,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
       {
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 12,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
     ],
     commentary: {
-      label: "комментарий",
-      rules: [
-        v => !!v || 'Комментарий обязателен к заполнению',
-      ],
-      rows: 8,
+      attrs: {
+        variant: 'outlined',
+        label: "комментарий",
+        rules: [
+          v => !!v || 'Комментарий обязателен к заполнению',
+        ],
+        rows: 8,
+      }
     },
     checkboxSetting: {
-      color: 'primary',
-      rules: [
-        v => !!v || 'Нажми на флажок!'
-      ],
+      attrs: {
+        color: 'primary',
+        rules: [
+          v => !!v || 'Нажми на флажок!'
+        ],
+      },
       label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
+    },
+    buttonSetting: {
+      attrs: {
+        size: 'x-large',
+        color: 'primary'
+      },
+      text: "Отправить"
     }
   },
   parameters: {
@@ -94,49 +127,69 @@ export const StandardSecond = {
     commentary: false,
     inputs: [
       {
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 12,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
       {
-        sm: 6,
-        md: 6,
-        lg: 6,
-        xl: 6,
-        xxl: 6,
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 6,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
       {
-        sm: 6,
-        md: 6,
-        lg: 6,
-        xl: 6,
-        xxl: 6,
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 6,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
     ],
     checkboxSetting: {
-      color: 'primary',
-      rules: [
-        v => !!v || 'Нажми на флажок!'
-      ],
+      attrs: {
+        color: 'primary',
+        rules: [
+          v => !!v || 'Нажми на флажок!'
+        ],
+      },
       label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
+    },
+    buttonSetting: {
+      attrs: {
+        size: 'x-large',
+        color: 'primary'
+      },
+      text: "Отправить"
     }
   }
 }
@@ -148,62 +201,90 @@ export const BigImage = {
     altImage: "Kartinka",
     inputs: [
       {
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 12,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
       {
-        sm: 6,
-        md: 6,
-        lg: 6,
-        xl: 6,
-        xxl: 6,
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 6,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
       {
-        sm: 6,
-        md: 6,
-        lg: 6,
-        xl: 6,
-        xxl: 6,
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 6,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
     ],
-    combobox: {
-      label: "выбери пункт",
-      clearable: true,
-      multiple: true,
-      items: ['a', 'b', 'c', 'd', 'e', 'ab', 'bc', 'de']
-    },
     checkboxSetting: {
-      color: 'primary',
-      rules: [
-        v => !!v || 'Нажми на флажок!'
-      ],
+      attrs: {
+        color: 'primary',
+        rules: [
+          v => !!v || 'Нажми на флажок!'
+        ],
+      },
       label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
     },
+    buttonSetting: {
+      attrs: {
+        block: true,
+        rounded: 'xl',
+        size: 'x-large',
+        color: 'primary'
+      },
+      text: "Отправить"
+    },
     commentary: {
-      label: "комментарий",
-      rules: [
-        v => !!v || 'Комментарий обязателен к заполнению',
-      ],
-      rows: 4,
+      attrs: {
+        variant: 'outlined',
+        label: "комментарий",
+        rules: [
+          v => !!v || 'Комментарий обязателен к заполнению',
+        ],
+        rows: 4,
+      }
+    },
+    combobox: {
+      attrs: {
+        variant: 'outlined',
+        label: "выбери пункт",
+        clearable: true,
+        multiple: true,
+        items: ['a', 'b', 'c', 'd', 'e', 'ab', 'bc', 'de']
+      }
     },
   }
 }
@@ -215,22 +296,52 @@ export const SmallImage = {
     altImage: "Kartinka",
     inputs: [
       {
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 12,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
       {
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 6,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
+      },
+      {
+        value: '',
+        colsAttrs: {
+          cols: 6,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
     ],
     socials: [
@@ -265,18 +376,32 @@ export const SmallImage = {
       },
     ],
     checkboxSetting: {
-      color: 'primary',
-      rules: [
-        v => !!v || 'Нажми на флажок!'
-      ],
+      attrs: {
+        color: 'primary',
+        rules: [
+          v => !!v || 'Нажми на флажок!'
+        ],
+      },
       label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
     },
     commentary: {
-      label: "комментарий",
-      rules: [
-        v => !!v || 'Комментарий обязателен к заполнению',
-      ],
-      rows: 4,
+      attrs: {
+        variant: 'outlined',
+        label: "комментарий",
+        rules: [
+          v => !!v || 'Комментарий обязателен к заполнению',
+        ],
+        rows: 4,
+      }
+    },
+    buttonSetting: {
+      attrs: {
+        block: true,
+        rounded: 'xl',
+        size: 'x-large',
+        color: 'primary'
+      },
+      text: "Отправить"
     },
   }
 }
@@ -289,22 +414,36 @@ export const Call = {
     styleForm: 'call',
     inputs: [
       {
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 12,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
       {
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 12,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
     ],
     socials: [
@@ -325,12 +464,21 @@ export const Call = {
       },
     ],
     checkboxSetting: {
-      color: 'primary',
-      rules: [
-        v => !!v || 'Нажми на флажок!'
-      ],
+      attrs: {
+        color: 'primary',
+        rules: [
+          v => !!v || 'Нажми на флажок!'
+        ],
+      },
       label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
-    }
+    },
+    buttonSetting: {
+      attrs: {
+        block: true,
+        size: 'x-large',
+      },
+      text: "Отправить"
+    },
   }
 }
 
@@ -340,23 +488,44 @@ export const OnlyForm = {
     styleForm: 'onlyForm',
     inputs: [
       {
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 12,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
       {
-        label: "ФИО",
-        rules: [
-          v => !!v || 'ФИО обязательно к заполнению',
-          v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-        ],
-        placeholder: "ФИО",
-        value: ''
+        value: '',
+        colsAttrs: {
+          cols: 12,
+        },
+        attrs: {
+          variant: 'outlined',
+          label: "Номер телефона",
+          rules: [
+            v => !!v || 'ФИО обязательно к заполнению',
+            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+          ],
+          placeholder: "ФИО",
+        },
+        maska: {mask: "###-####-###"},
       },
     ],
+    buttonSetting: {
+      attrs: {
+        block: true,
+        size: 'x-large',
+      },
+      text: "Отправить"
+    },
   }
 }
