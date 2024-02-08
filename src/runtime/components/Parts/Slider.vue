@@ -65,7 +65,7 @@
               <!-- body slot end -->
 
               <!-- Slider buttons -->
-              <div class="mb-15">
+              <div class="mb-15" v-if="slide.buttons">
                 <v-btn
                   v-for="button in slide.buttons"
                   :key="button.id"

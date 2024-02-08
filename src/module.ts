@@ -46,6 +46,11 @@ export default defineNuxtModule<ModuleOptions>({
       filePath: resolver.resolve('runtime/components/Parts/Forms.vue')
     })
 
+    addComponent({
+      name: 'partsErgVacancies', // name of the component to be used in vue templates
+      filePath: resolver.resolve('runtime/components/Parts/ErgVacancies.vue')
+    })
+
     // Header
     addComponent( {
       name: 'partsHeaderDefault',
