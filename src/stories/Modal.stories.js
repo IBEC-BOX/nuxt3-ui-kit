@@ -65,7 +65,7 @@ export const Standard = {
     </Modal>`
   }),
   args: {
-    modelValue: true,
+    modelValue: false,
     width:"580",
     heading:"Sure you want to accept?",
     text:"A sure you want to accept this?",
@@ -99,7 +99,7 @@ export const body_slot = {
     bodySlot:
        `<v-text-field variant="solo-filled" flat hide-details placeholder="Email" />
         <v-checkbox label="Don't show this again" hide-details></v-checkbox>`,
-    modelValue: true,
+    modelValue: false,
     width:"580",
     heading:"Sure you want to accept?",
     text:"A sure you want to accept this?",
@@ -127,7 +127,7 @@ export const No_icon = {
     </Modal>`
   }),
   args: {
-    modelValue: true,
+    modelValue: false,
     width:"580",
     heading:"Sure you want to accept?",
     text:"A sure you want to accept this?",
@@ -177,7 +177,7 @@ export const Icon_center = {
     </Modal>`
   }),
   args: {
-    modelValue: true,
+    modelValue: false,
     width:"580",
     heading:"Sure you want to accept?",
     text:"A sure you want to accept this?",
@@ -209,7 +209,7 @@ export const Image = {
     </Modal>`
   }),
   args: {
-    modelValue: true,
+    modelValue: false,
     width: "580",
     heading: "Subscribe to our newsletter",
     text: "A sure you want to accept this?",
@@ -238,14 +238,13 @@ export const Image_fluid = {
     </Modal>`
   }),
   args: {
-    modelValue: true,
+    modelValue: false,
     width: "580",
     heading: "Subscribe to our newsletter",
     text: "A sure you want to accept this?",
     rounded: "lg",
     'close-button-variant': "tonal",
     'close-button-color': "grey-lighten-3",
-    buttons: modal_buttons,
     'img-height': "300",
     'img-fluid': true,
     img: "https://images.unsplash.com/photo-1684252408280-737200626f2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2788&q=80",

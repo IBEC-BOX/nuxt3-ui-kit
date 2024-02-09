@@ -49,14 +49,14 @@
         </v-col>
       </v-row>
     </v-sheet>
-    <v-row v-if="gallery">
+    <v-row style="flex-wrap: nowrap" v-if="gallery" class="overflow-x-auto">
       <v-col
         cols="3"
         v-for="img in galleryImages"
         :key="img.src"
         class="gallery-col rounded-xl"
       >
-        <div :class="galleryHoverEffect? 'gallery-item' : 'position-relative'" >
+        <div :class="galleryHoverEffect ? 'gallery-item' : 'position-relative'">
           <v-img :src="img.src" class="gallery-image rounded-xl" width="100%" cover :height="280"/>
           <span class="gallery-title text-h5" v-if="galleryHoverEffect">{{ img.text }}</span>
           <v-chip v-if="!galleryHoverEffect" v-bind="img.chip.attrs" class="gallery-chip">
@@ -118,6 +118,20 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 1280px) {
+  .gallery-col {
+    width: 330px !important;
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+}
+@media (max-width: 330px) {
+  .gallery-col {
+    width: 295px !important;
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+}
 .gallery-chip {
   position: absolute;
   bottom: 5%;

@@ -4,92 +4,45 @@
     </partsHeaderErg>
     <NuxtPage />
     <v-container >
-      <partsErgVacancies
-        :sheet-color="'primary'"
-        :sheet-width="100 + '%'"
-        :sheet-height="710"
-        :background-image="'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XPOgN9cWiL5lNQKNQpEWyYKNUfdcufsLMvRSBXfg5tryvP2T9GyIh-BycwK2gfla1o1G3ufvC6KxW64biT8r~GV63AFYFIzdkohh7Ya5wYLKv3eHBBzqAZdrV0PtKWJil3HFkSa0TuwRmriW~rf1nuPJx-W~qkkVu1A~sZTvid6G9sIblyijcKz2YRHoDiWxLc4iKJyyK1~FTzj75P3z8szwQzH08A6LG97a5lawt2uAH1f1R-3htFf7xEi5W86IWC4s4byN94KFewoJ9Qki-174MHHVq24BgUkZ7cLPHNvQthXJ5brtbR~4xM83ns~hEjcIJpHdCDGj2~YuTvcrmQ__'"
-        :chip="{
-          text: 'Вакансии',
-          attrs: {
-            color: 'primary'
-          }
-        }"
-        :title="'Станьте частью команды'"
-        :sub-title="'Мы предлагаем конкурентные зарплаты, социальные гарантии'"
-        :title-color="'#7613da'"
-        class="mb-10"
-      />
 
-
-      <partsErgVacancies
-        :sheet-color="'primary'"
-        :sheet-rounded="'xl'"
-        :left-image="{
-          src: 'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XPOgN9cWiL5lNQKNQpEWyYKNUfdcufsLMvRSBXfg5tryvP2T9GyIh-BycwK2gfla1o1G3ufvC6KxW64biT8r~GV63AFYFIzdkohh7Ya5wYLKv3eHBBzqAZdrV0PtKWJil3HFkSa0TuwRmriW~rf1nuPJx-W~qkkVu1A~sZTvid6G9sIblyijcKz2YRHoDiWxLc4iKJyyK1~FTzj75P3z8szwQzH08A6LG97a5lawt2uAH1f1R-3htFf7xEi5W86IWC4s4byN94KFewoJ9Qki-174MHHVq24BgUkZ7cLPHNvQthXJ5brtbR~4xM83ns~hEjcIJpHdCDGj2~YuTvcrmQ__',
+      <partsCard
+        :date-author-right="true"
+        :horizontal-card="true"
+        :max-width="700"
+        :horizontal-width-image="300"
+        :image="{
+          src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
           attrs: {
-            width: 100 + '%',
-            cover: true,
-            class: 'rounded-s-xl'
+            class: 'rounded-circle',
+            'max-width': 86,
+            height: 86,
+            cover: true
           }
         }"
-        :chip="{
-          text: 'Вакансии',
+        variant-card="elevated"
+        style-card="standard"
+        title="Железнорудные окатыши"
+        text="СТ АО ССГПО-11402-2022"
+        title-class="text-h4"
+        title-style="width: 280px"
+        text-style="cursor: pointer"
+        text-class="text-black"
+        :gap="24"
+        card-class="px-12 py-13"
+        card-color="primary"
+        card-rounded="xl"
+        :hover-text="true"
+        :text-image="{
+          src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
           attrs: {
-            color: 'primary'
+            class: 'rounded-circle',
+            'max-width': 20,
+            height: 20,
+            cover: true
           }
         }"
-        :title="'Станьте частью команды'"
-        :sub-title="'Мы предлагаем конкурентные зарплаты, социальные гарантии'"
-        :title-color="'#7613da'"
-        :gallery="true"
-        :gallery-hover-effect="false"
-        :galleryImages="[
-          {
-            chip: {
-              attrs: {
-                variant: 'flat',
-                color: 'green'
-              },
-              text: 'asd',
-            },
-            src: 'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XPOgN9cWiL5lNQKNQpEWyYKNUfdcufsLMvRSBXfg5tryvP2T9GyIh-BycwK2gfla1o1G3ufvC6KxW64biT8r~GV63AFYFIzdkohh7Ya5wYLKv3eHBBzqAZdrV0PtKWJil3HFkSa0TuwRmriW~rf1nuPJx-W~qkkVu1A~sZTvid6G9sIblyijcKz2YRHoDiWxLc4iKJyyK1~FTzj75P3z8szwQzH08A6LG97a5lawt2uAH1f1R-3htFf7xEi5W86IWC4s4byN94KFewoJ9Qki-174MHHVq24BgUkZ7cLPHNvQthXJ5brtbR~4xM83ns~hEjcIJpHdCDGj2~YuTvcrmQ__',
-            text: 'absdffdsfdsfsdfdsds'
-          },
-          {
-            chip: {
-              attrs: {
-                variant: 'flat',
-                color: 'green'
-              },
-              text: 'asd',
-            },
-            src: 'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XPOgN9cWiL5lNQKNQpEWyYKNUfdcufsLMvRSBXfg5tryvP2T9GyIh-BycwK2gfla1o1G3ufvC6KxW64biT8r~GV63AFYFIzdkohh7Ya5wYLKv3eHBBzqAZdrV0PtKWJil3HFkSa0TuwRmriW~rf1nuPJx-W~qkkVu1A~sZTvid6G9sIblyijcKz2YRHoDiWxLc4iKJyyK1~FTzj75P3z8szwQzH08A6LG97a5lawt2uAH1f1R-3htFf7xEi5W86IWC4s4byN94KFewoJ9Qki-174MHHVq24BgUkZ7cLPHNvQthXJ5brtbR~4xM83ns~hEjcIJpHdCDGj2~YuTvcrmQ__',
-            text: 'absdffdsfdsfsdfdsds'
-          },
-          {
-            chip: {
-              attrs: {
-                variant: 'flat',
-                color: 'green'
-              },
-              text: 'asd',
-            },
-            src: 'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XPOgN9cWiL5lNQKNQpEWyYKNUfdcufsLMvRSBXfg5tryvP2T9GyIh-BycwK2gfla1o1G3ufvC6KxW64biT8r~GV63AFYFIzdkohh7Ya5wYLKv3eHBBzqAZdrV0PtKWJil3HFkSa0TuwRmriW~rf1nuPJx-W~qkkVu1A~sZTvid6G9sIblyijcKz2YRHoDiWxLc4iKJyyK1~FTzj75P3z8szwQzH08A6LG97a5lawt2uAH1f1R-3htFf7xEi5W86IWC4s4byN94KFewoJ9Qki-174MHHVq24BgUkZ7cLPHNvQthXJ5brtbR~4xM83ns~hEjcIJpHdCDGj2~YuTvcrmQ__',
-            text: 'absdffdsfdsfsdfdsds'
-          },
-          {
-            chip: {
-              attrs: {
-                variant: 'flat',
-                color: 'green'
-              },
-              text: 'asd',
-            },
-            src: 'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XPOgN9cWiL5lNQKNQpEWyYKNUfdcufsLMvRSBXfg5tryvP2T9GyIh-BycwK2gfla1o1G3ufvC6KxW64biT8r~GV63AFYFIzdkohh7Ya5wYLKv3eHBBzqAZdrV0PtKWJil3HFkSa0TuwRmriW~rf1nuPJx-W~qkkVu1A~sZTvid6G9sIblyijcKz2YRHoDiWxLc4iKJyyK1~FTzj75P3z8szwQzH08A6LG97a5lawt2uAH1f1R-3htFf7xEi5W86IWC4s4byN94KFewoJ9Qki-174MHHVq24BgUkZ7cLPHNvQthXJ5brtbR~4xM83ns~hEjcIJpHdCDGj2~YuTvcrmQ__',
-            text: 'absdffdsfdsfsdfdsds'
-          },
-        ]"
+        :modal="true"
+        :modal-img="'https://www.figma.com/file/4olLWc8CXyZmkwje9SuEah/image/2d13c92b16b427ccd0b154544ab7922d50edb16c'"
       />
 
     </v-container>
