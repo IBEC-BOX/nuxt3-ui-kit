@@ -17,7 +17,10 @@
         </div>
 
         <div class="ml-auto flex-grow-1 justify-center align-start d-lg-flex d-none flex-column">
-          <ul class="d-flex align-center" style="column-gap: 32px">
+          <ul
+            class="d-flex align-center"
+            style="column-gap: 32px"
+          >
             <li
               v-for="menu_item in menu"
               :key="`header-menu-item-${menu_item.id}`"
@@ -38,12 +41,16 @@
           <v-select
             v-model="selectLang"
             :items="filteredLangs"
-            @update:modelValue="updateSelectLang"
             hide-details="true"
             variant="solo"
             class="mr-4 bg-none"
+            @update:modelValue="updateSelectLang"
           />
-          <v-btn class="bg-white text-none text-body-1 d-none d-lg-block" rounded="xl" @click="buttonClick">
+          <v-btn
+            class="bg-white text-none text-body-1 d-none d-lg-block"
+            rounded="xl"
+            @click="buttonClick"
+          >
             {{ textBtn || 'Связаться с нами' }}
           </v-btn>
         </div>
@@ -52,9 +59,7 @@
           class="d-block d-lg-none my-auto"
           @click="menu_open = !menu_open"
         />
-
       </v-container>
-
     </v-app-bar>
     <v-navigation-drawer
       v-model="menu_open"
@@ -79,7 +84,13 @@
         </li>
       </ul>
 
-      <v-btn class="bg-white text-none text-body-1" block size="large" rounded="xl" @click="buttonClick">
+      <v-btn
+        class="bg-white text-none text-body-1"
+        block
+        size="large"
+        rounded="xl"
+        @click="buttonClick"
+      >
         {{ textBtn || 'Связаться с нами' }}
       </v-btn>
     </v-navigation-drawer>

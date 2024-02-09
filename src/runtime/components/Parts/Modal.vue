@@ -2,10 +2,10 @@
   <v-dialog v-model="value">
     <v-card :rounded="rounded">
       <div
+        v-if="!imgOnly"
         class="w-100 d-flex"
         :class="{'position-absolute pt-5 px-5': imgFluid}"
         style="z-index: 1000"
-        v-if="!imgOnly"
       >
         <v-btn
           v-bind="closeButtonAttrs"
@@ -32,9 +32,9 @@
       </div>
 
       <v-card-text
+        v-if="!imgOnly"
         class="pt-0 pb-4 d-flex align-center"
         :class="{'flex-column': iconCenter}"
-        v-if="!imgOnly"
       >
         <div
           v-if="icon.length"

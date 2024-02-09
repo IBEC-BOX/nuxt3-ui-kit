@@ -6,7 +6,7 @@
       :slides-per-view="sliderPeeking ? '1.3' : '1'"
       class="overflow-hidden w-100"
       :class="[`rounded-${rounded}`]"
-      :style="{'height': height}"
+      :style="{ height: height }"
       @swiperslidechange="updatePagination"
     >
       <swiper-slide
@@ -23,38 +23,47 @@
           <!-- Image -->
           <v-img
             class="slider-img position-absolute h-100 w-100"
-            style="z-index: -1;"
+            style="z-index: -1"
             cover
             :src="slide.backgroundImg"
           />
           <!-- Image END -->
         </div>
         <v-row :style="slide.img ? '' : 'display: contents'">
-          <v-col cols="12" lg="6" class="px-0" :style="slide.img ? '' : 'display: contents'">
+          <v-col
+            cols="12"
+            lg="6"
+            class="px-0"
+            :style="slide.img ? '' : 'display: contents'"
+          >
             <div
-              class=" h-100"
+              class="h-100"
               :class="[
-                {'px-12': !sliderContainer},
-                {'v-container' : sliderContainer},
-                {'d-flex flex-column justify-center align-start': !slide.textBlockAttrs}
-                ]"
+                { 'px-12': !sliderContainer },
+                { 'v-container': sliderContainer },
+                {
+                  'd-flex flex-column justify-center align-start':
+                    !slide.textBlockAttrs,
+                },
+              ]"
             >
               <div>
                 <!-- Slide title -->
                 <!-- Добавил возможность указывать тег чтобы была возможность для настройки SEO -->
-                <v-chip v-if="slide.chip" v-bind="slide.chip.attrs">
+                <v-chip
+                  v-if="slide.chip"
+                  v-bind="slide.chip.attrs"
+                >
                   {{ slide.chip.text }}
                 </v-chip>
                 <component
-                  :is="slide.titleTag ? slide.titleTag: 'p'"
+                  :is="slide.titleTag ? slide.titleTag : 'p'"
                   v-bind="slide.titleAttrs"
                 >
                   {{ slide.title }}
                 </component>
 
-                <p
-                  v-bind="slide.subTitleAttrs"
-                >
+                <p v-bind="slide.subTitleAttrs">
                   {{ slide.subtitle }}
                 </p>
                 <!-- Slide title -->
@@ -65,7 +74,10 @@
               <!-- body slot end -->
 
               <!-- Slider buttons -->
-              <div class="mb-15" v-if="slide.buttons">
+              <div
+                v-if="slide.buttons"
+                class="mb-15"
+              >
                 <v-btn
                   v-for="button in slide.buttons"
                   :key="button.id"
@@ -77,7 +89,12 @@
               <!-- Slider buttons END -->
             </div>
           </v-col>
-          <v-col cols="12" lg="6" class="px-0" :style="slide.img ? '' : 'display: contents'">
+          <v-col
+            cols="12"
+            lg="6"
+            class="px-0"
+            :style="slide.img ? '' : 'display: contents'"
+          >
             <div
               v-if="slide.img"
               class=""
@@ -85,7 +102,7 @@
               <!-- Image -->
               <v-img
                 class="slider-img h-100 w-100"
-                style="z-index: -1;"
+                style="z-index: -1"
                 cover
                 :src="slide.img.src"
                 v-bind="slide.img.attrs"
@@ -94,8 +111,6 @@
             </div>
           </v-col>
         </v-row>
-
-
       </swiper-slide>
     </swiper-container>
 
@@ -103,9 +118,7 @@
       v-if="controlButtonsAlign === 'center'"
       class="control-buttons-center-container"
     >
-      <div
-        class="d-flex justify-space-between px-0"
-      >
+      <div class="d-flex justify-space-between px-0">
         <v-btn
           v-bind="controlButtonPrevAttrs"
           icon="mdi-chevron-left"
@@ -125,7 +138,10 @@
       class="control-buttons-right-container"
     >
       <div
-        :class="[{'px-12' : !sliderContainer}, {'v-container' : sliderContainer}]"
+        :class="[
+          { 'px-12': !sliderContainer },
+          { 'v-container': sliderContainer },
+        ]"
         class="d-flex flex-column align-end"
       >
         <v-btn
@@ -146,13 +162,9 @@
     <div
       v-if="controlButtonsAlign === 'left-bottom'"
       class="control-buttons-left-bottom-container"
-      :class="[
-        {'px-9': !sliderContainer},
-      ]"
+      :class="[{ 'px-9': !sliderContainer }]"
     >
-      <div
-        class="d-flex px-0"
-      >
+      <div class="d-flex px-0">
         <v-btn
           v-bind="controlButtonPrevAttrs"
           icon="mdi-chevron-left"
@@ -171,28 +183,39 @@
     <div class="slider_pagination_container">
       <div
         class="w-100 d-flex align-end"
-        :class="[{'px-12': !sliderContainer}, {'v-container' : sliderContainer}]"
+        :class="[
+          { 'px-12': !sliderContainer },
+          { 'v-container': sliderContainer },
+        ]"
       >
         <!-- Pagination -->
         <div
           v-if="sliderPagination"
           class="slider_pagination"
-          :class="{'mx-auto': sliderPaginationCenter}"
+          :class="{ 'mx-auto': sliderPaginationCenter }"
         >
           <span
             v-for="(slide, index) in pagination"
             :key="slide.id"
             :class="[
               slide.active ? `bg-${props.sliderPaginationActiveVariant}` : '',
-              sliderPaginationType === 'bullet' ? 'slider-pagination-bullet' :
-              sliderPaginationType === 'dot' ? 'slider-pagination-dot' : '', ]"
+              sliderPaginationType === 'bullet'
+                ? 'slider-pagination-bullet'
+                : sliderPaginationType === 'dot'
+                  ? 'slider-pagination-dot'
+                  : '',
+            ]"
             @click="slideTo(index)"
           />
         </div>
         <!-- Pagination END -->
 
         <div
-          v-if="controlButtonsAlign === 'right' && swiper !== null && !sliderPagination"
+          v-if="
+            controlButtonsAlign === 'right' &&
+              swiper !== null &&
+              !sliderPagination
+          "
           class="ml-auto"
         >
           {{ activeSlide + 1 }} / {{ slides.length }}
@@ -224,49 +247,49 @@
 </template>
 
 <script setup>
-import { register } from 'swiper/element/bundle';
-register()
+import { register } from "swiper/element/bundle";
+register();
 
-import { defineProps, useAttrs, ref, onMounted } from 'vue'
+import { defineProps, useAttrs, ref, onMounted } from "vue";
 import { useMainStore } from "../../../store/mainStore.js";
-const mainStore = useMainStore()
+const mainStore = useMainStore();
 
 //Attributes
-const attrs = useAttrs()
+const attrs = useAttrs();
 const sliderAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'slider')
-}
-const slidesAttrs = mainStore.getObjectPropertiesWithPrefix(attrs, 'slides')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "slider"),
+};
+const slidesAttrs = mainStore.getObjectPropertiesWithPrefix(attrs, "slides");
 const controlButtonsAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'control-buttons')
-}
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "control-buttons"),
+};
 const controlButtonPrevAttrs = {
   ...controlButtonsAttrs,
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'control-button-prev')
-}
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "control-button-prev"),
+};
 const controlButtonNextAttrs = {
   ...controlButtonsAttrs,
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'control-button-next')
-}
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "control-button-next"),
+};
 const props = defineProps({
   rounded: {
     type: String,
-    default: '',
+    default: "",
   },
 
   height: {
     type: String,
-    default: '534px'
+    default: "534px",
   },
 
   slides: {
     type: Array,
-    default: () => []
+    default: () => [],
   },
 
   slidesRounded: {
     type: String,
-    default: '0'
+    default: "0",
   },
 
   sliderContainer: {
@@ -281,17 +304,17 @@ const props = defineProps({
 
   sliderPaginationCenter: {
     type: Boolean,
-    default: false
+    default: false,
   },
 
   sliderPaginationType: {
     type: String,
-    default: 'bullet',
+    default: "bullet",
   },
 
   sliderPaginationActiveVariant: {
     type: String,
-    default: 'primary',
+    default: "primary",
   },
 
   sliderPeeking: {
@@ -301,124 +324,125 @@ const props = defineProps({
 
   controlButtonsAlign: {
     type: String,
-    default: 'bottom',
+    default: "bottom",
   },
-})
+});
 
 // Slider ref
-const slider = ref(null)
+const slider = ref(null);
 
-const activeSlide = ref(0)
-const pagination = ref(props.slides)
+const activeSlide = ref(0);
+const pagination = ref(props.slides);
 
 const slideTo = (index) => {
-  if(slider.value !== null) {
-    slider.value.swiper.slideTo(index)
+  if (slider.value !== null) {
+    slider.value.swiper.slideTo(index);
   }
-}
+};
 
 const slidePrev = () => {
-  if(slider.value !== null) {
-    slider.value.swiper.slidePrev(500)
+  if (slider.value !== null) {
+    slider.value.swiper.slidePrev(500);
   }
-}
+};
 
 const slideNext = () => {
-  if(slider.value !== null) {
-    slider.value.swiper.slideNext(500)
+  if (slider.value !== null) {
+    slider.value.swiper.slideNext(500);
   }
-}
+};
 
 const updatePagination = () => {
-  if(slider.value !== null) {
+  if (slider.value !== null) {
     props.slides.forEach((slide, index) => {
-      pagination.value[index].active = false
-    })
-    pagination.value[slider.value.swiper.realIndex].active = true
+      pagination.value[index].active = false;
+    });
+    pagination.value[slider.value.swiper.realIndex].active = true;
   }
-}
+};
 
 onMounted(() => {
-  console.log(slider.value.swiper)
-  activeSlide.value = slider.value.swiper.realIndex
-  if(pagination.value.length > 0) {
-    pagination.value[0].active = true
+  console.log(slider.value.swiper);
+  activeSlide.value = slider.value.swiper.realIndex;
+  if (pagination.value.length > 0) {
+    pagination.value[0].active = true;
   }
-})
+});
 </script>
 
 <style lang="scss">
-  .image-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-  }
+.image-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
 
-  //.image-backdrop::after {
-  //  content: '';
-  //  position: absolute;
-  //  top: 0;
-  //  left: 0;
-  //  width: 100%;
-  //  height: 100%;
-  //  background: rgba(#000, .5);
-  //}
+//.image-backdrop::after {
+//  content: '';
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  width: 100%;
+//  height: 100%;
+//  background: rgba(#000, .5);
+//}
 
-  .slider_pagination_container{
-    width: 100%;
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    bottom: 60px;
-  }
+.slider_pagination_container {
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  bottom: 60px;
+}
 
-  .slider_pagination {
-    display: flex;
-    gap: 16px;
-  }
+.slider_pagination {
+  display: flex;
+  gap: 16px;
+}
 
-  .slider-pagination-bullet, .slider-pagination-dot {
-    display: block;
-    border-radius: 80px;
-    background: #fff;
-    transition: .3s;
-    cursor: pointer;
-  }
+.slider-pagination-bullet,
+.slider-pagination-dot {
+  display: block;
+  border-radius: 80px;
+  background: #fff;
+  transition: 0.3s;
+  cursor: pointer;
+}
 
-  .slider-pagination-bullet {
-    width: 40px;
-    height: 6px;
-  }
+.slider-pagination-bullet {
+  width: 40px;
+  height: 6px;
+}
 
-  .slider-pagination-dot{
-    height: 8px;
-    width: 8px;
-  }
+.slider-pagination-dot {
+  height: 8px;
+  width: 8px;
+}
 
-  .control-buttons-center-container {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    padding: 0 32px 0 32px;
-    transform: translateY(-50%);
-    z-index: 1;
-  }
+.control-buttons-center-container {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  padding: 0 32px 0 32px;
+  transform: translateY(-50%);
+  z-index: 1;
+}
 
-  .control-buttons-right-container {
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-  }
+.control-buttons-right-container {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
 
-  .control-buttons-left-bottom-container {
-    width: 100%;
-    position: absolute;
-    bottom: 0%;
-    z-index: 1;
-  }
+.control-buttons-left-bottom-container {
+  width: 100%;
+  position: absolute;
+  bottom: 0%;
+  z-index: 1;
+}
 </style>

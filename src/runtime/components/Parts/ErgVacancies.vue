@@ -12,13 +12,16 @@
     >
       <v-row :style="leftImage || rightImage ? '' : 'display: contents'">
         <v-col
+          v-if="leftImage"
           cols="12"
           md="6"
-          v-if="leftImage"
           :style="leftImage ? '' : 'display: contents'"
           class="py-0"
         >
-          <v-img :src="leftImage.src" v-bind="leftImage.attrs" />
+          <v-img
+            :src="leftImage.src"
+            v-bind="leftImage.attrs"
+          />
         </v-col>
         <v-col
           cols="12"
@@ -26,40 +29,73 @@
           :style="[leftImage || rightImage ? '' : 'display: contents', bodyAttrs]"
           class="py-0 px-5"
         >
-          <v-chip v-bind="chip.attrs"
-          >
+          <v-chip v-bind="chip.attrs">
             {{ chip.text }}
           </v-chip>
           <div class="vacancies__body">
-            <h2 class="mb-2" :style="titleAttrs">{{ title || 'Станьте частью команды' }}</h2>
-            <p class="mb-4" :style="subTitleAttrs">{{ subTitle || 'Мы предлагаем конкурентные зарплаты, социальные гарантии' }}</p>
+            <h2
+              class="mb-2"
+              :style="titleAttrs"
+            >
+              {{ title || 'Станьте частью команды' }}
+            </h2>
+            <p
+              class="mb-4"
+              :style="subTitleAttrs"
+            >
+              {{ subTitle || 'Мы предлагаем конкурентные зарплаты, социальные гарантии' }}
+            </p>
           </div>
-          <v-btn v-bind="buttonAttrs" class="text-none" color="white">
+          <v-btn
+            v-bind="buttonAttrs"
+            class="text-none"
+            color="white"
+          >
             {{ buttonText || 'Связаться с нами' }}
           </v-btn>
         </v-col>
         <v-col
+          v-if="rightImage"
           cols="12"
           md="6"
-          v-if="rightImage"
           :style="rightImage ? '' : 'display: contents'"
           class="py-0"
         >
-          <v-img :src="rightImage.src" v-bind="rightImage.attrs" />
+          <v-img
+            :src="rightImage.src"
+            v-bind="rightImage.attrs"
+          />
         </v-col>
       </v-row>
     </v-sheet>
-    <v-row style="flex-wrap: nowrap" v-if="gallery" class="overflow-x-auto">
+    <v-row
+      v-if="gallery"
+      style="flex-wrap: nowrap"
+      class="overflow-x-auto"
+    >
       <v-col
-        cols="3"
         v-for="img in galleryImages"
         :key="img.src"
+        cols="3"
         class="gallery-col rounded-xl"
       >
         <div :class="galleryHoverEffect ? 'gallery-item' : 'position-relative'">
-          <v-img :src="img.src" class="gallery-image rounded-xl" width="100%" cover :height="280"/>
-          <span class="gallery-title text-h5" v-if="galleryHoverEffect">{{ img.text }}</span>
-          <v-chip v-if="!galleryHoverEffect" v-bind="img.chip.attrs" class="gallery-chip">
+          <v-img
+            :src="img.src"
+            class="gallery-image rounded-xl"
+            width="100%"
+            cover
+            :height="280"
+          />
+          <span
+            v-if="galleryHoverEffect"
+            class="gallery-title text-h5"
+          >{{ img.text }}</span>
+          <v-chip
+            v-if="!galleryHoverEffect"
+            v-bind="img.chip.attrs"
+            class="gallery-chip"
+          >
             {{ img.chip.text }}
           </v-chip>
         </div>
