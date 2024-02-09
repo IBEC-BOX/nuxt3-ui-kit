@@ -1,10 +1,8 @@
 <template>
   <v-app>
-    <partsHeaderErg>
-    </partsHeaderErg>
+    <partsHeaderErg />
     <NuxtPage />
-    <v-container >
-
+    <v-container>
       <partsCard
         :date-author-right="true"
         :horizontal-card="true"
@@ -16,8 +14,8 @@
             class: 'rounded-circle',
             'max-width': 86,
             height: 86,
-            cover: true
-          }
+            cover: true,
+          },
         }"
         variant-card="elevated"
         style-card="standard"
@@ -38,28 +36,31 @@
             class: 'rounded-circle',
             'max-width': 20,
             height: 20,
-            cover: true
-          }
+            cover: true,
+          },
         }"
         :modal="true"
         :modal-img="'https://www.figma.com/file/4olLWc8CXyZmkwje9SuEah/image/2d13c92b16b427ccd0b154544ab7922d50edb16c'"
       />
-
     </v-container>
 
     <partsFooterDefault
       :logo-in-body="true"
-      :logo="{title: 'АО', colorClass: 'text-white'}"
-      :nav="[{id:1,text:'Overview',link:'/'},{id:2,text:'Features',link:'/'},{id:3,text:'Pricing',link:'/'},{id:4,text:'Careers',link:'/'},{id:5,text:'Help centre',link:'/'}, {id:6,text:'Privacy',link:'/'}]"
+      :logo="{ title: 'АО', colorClass: 'text-white' }"
+      :nav="[
+        { id: 1, text: 'Overview', link: '/' },
+        { id: 2, text: 'Features', link: '/' },
+        { id: 3, text: 'Pricing', link: '/' },
+        { id: 4, text: 'Careers', link: '/' },
+        { id: 5, text: 'Help centre', link: '/' },
+        { id: 6, text: 'Privacy', link: '/' },
+      ]"
       copyright="2023 Untitled UI. All rights reserverd"
-    >
-
-    </partsFooterDefault>
+    />
   </v-app>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style>
 /* Redundant unused code to test treeshaking */

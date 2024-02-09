@@ -210,7 +210,9 @@
           cols="12"
           class="text-center mb-7"
         >
-          <h5 class="text-sm-32 text-h5">{{ title }}</h5>
+          <h5 class="text-sm-32 text-h5">
+            {{ title }}
+          </h5>
         </v-col>
         <v-col
           v-if="bigImage.length"
@@ -367,7 +369,9 @@
       ref="form"
       @submit.prevent="dataForm($refs.form.isValid)"
     >
-      <h2 class="mb-10 text-36">{{ title }}</h2>
+      <h2 class="mb-10 text-36">
+        {{ title }}
+      </h2>
       <v-row>
         <v-col
           v-for="(input, index) in inputs"
@@ -391,9 +395,9 @@
         {{ buttonSetting.text }}
       </v-btn>
       <v-checkbox
+        v-if="Object.keys(checkboxSetting).length"
         v-model="checked"
         v-bind="checkboxSetting.attrs"
-        v-if="Object.keys(checkboxSetting).length"
       >
         <template #label>
           <span class="text-13">{{ checkboxSetting.label }}</span>

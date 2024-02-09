@@ -25,7 +25,12 @@
         :class="hoverText ? 'card__text-hover' : ''"
         class="d-flex align-center"
       >
-        <v-img v-if="textImage" :src="textImage.src" v-bind="textImage.attrs" class="mr-2"/>
+        <v-img
+          v-if="textImage"
+          :src="textImage.src"
+          v-bind="textImage.attrs"
+          class="mr-2"
+        />
         <span>{{ text }}</span>
       </v-card-text>
 
@@ -36,7 +41,12 @@
         class="d-flex align-center"
         @click="openModal = true"
       >
-        <v-img v-if="textImage" :src="textImage.src" v-bind="textImage.attrs" class="mr-2"/>
+        <v-img
+          v-if="textImage"
+          :src="textImage.src"
+          v-bind="textImage.attrs"
+          class="mr-2"
+        />
         <span class="text-15">{{ text }}</span>
       </v-card-text>
 
@@ -172,7 +182,7 @@ const imageModalAttrs = ref({
   ...mainStore.getObjectPropertiesWithPrefix(attrs, 'modal-image')
 })
 
-let openModal = ref(false)
+const openModal = ref(false)
 
 const props = defineProps({
   styleCard: { type: String, default: "standard" },

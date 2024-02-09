@@ -1,5 +1,8 @@
 <template>
-  <v-footer class="footer" :class="bgClass">
+  <v-footer
+    class="footer"
+    :class="bgClass"
+  >
     <v-container class="px-0">
       <div
         v-if="Object.keys(firstStyleTop).length"
@@ -199,7 +202,10 @@
         class="text-primary-gray"
       >
       <div class="footer-bottom">
-        <v-row class="d-flex align-center" :class="Object.keys(firstStyleTop).length ? 'pt-7 pb-sm-15' : 'py-3'">
+        <v-row
+          class="d-flex align-center"
+          :class="Object.keys(firstStyleTop).length ? 'pt-7 pb-sm-15' : 'py-3'"
+        >
           <v-col
             v-if="logoInBottom === true"
             cols="12"
