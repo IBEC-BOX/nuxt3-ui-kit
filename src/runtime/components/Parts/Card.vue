@@ -1,32 +1,42 @@
 <template>
   <v-card
     v-if="styleCard === 'standard'"
-    class="card-standard w-100"
-    :max-width="+maxWidth + 'px'"
-    :min-height="+minHeight == '' ? 100 + '%' : minHeight"
+    class="card-standard"
     :variant="variantCard"
-    :class="[`${horizontalCard === true ? 'd-flex pl-4 pt-4 pb-2' : 'd-block'} ${!imgSrc.length ? 'px-0 pt-4 pb-2' : 'pa-0 pb-2'}`]"
+    :class="[`${horizontalCard === true ? 'd-flex align-center' : 'd-block'} ${!image ? 'px-0 pt-4 pb-2' : ''}`]"
+    :style="{'column-gap': gap + 'px' }"
+    v-bind="cardAttrs"
   >
     <v-img
-      v-if="imgSrc.length"
-      :src="imgSrc"
-      :alt="imgAlt"
-      :width="horizontalCard === true ? +horizontalWidthImage + 'px' : 90 + '%'"
-      class="rounded-lg"
-      object-cover
-      :class="horizontalCard === true ? 'ma-0' : 'ma-4'"
+      v-if="image"
+      :src="image.src"
+      v-bind="image.attrs"
     />
     <div class="d-flex flex-column">
       <v-card-title
-        v-if="title.length"
-        class="text-h5 text-primary-black font-weight-regular pt-0"
+        v-if="title"
+        v-bind="titleAttrs"
       >
         {{ title }}
       </v-card-title>
       <v-card-text
-        v-if="text"
-        class="text-primary px-4 flex-0-1"
+        v-if="text && !modal"
+        v-bind="textAttrs"
+        :class="hoverText ? 'card__text-hover' : ''"
+        class="d-flex align-center"
       >
+        <v-img v-if="textImage" :src="textImage.src" v-bind="textImage.attrs" class="mr-2"/>
+        <span>{{ text }}</span>
+      </v-card-text>
+
+      <v-card-text
+        v-if="text && modal"
+        v-bind="textAttrs"
+        :class="hoverText ? 'card__text-hover' : ''"
+        class="d-flex align-center"
+        @click="openModal = true"
+      >
+        <v-img v-if="textImage" :src="textImage.src" v-bind="textImage.attrs" class="mr-2"/>
         <span class="text-15">{{ text }}</span>
       </v-card-text>
 
@@ -71,7 +81,7 @@
     class="card-vacancy px-2 py-4 w-100"
   >
     <v-card-title
-      v-if="title || subtitle || imgSrc"
+      v-if="title || subtitle || image"
       class="d-flex font-weight-regular mb-2"
       :class="positionImageVacancy === 'start' ? 'flex-row-reverse justify-end' : 'justify-space-between'"
     >
@@ -90,14 +100,12 @@
         </p>
       </div>
       <div
-        v-if="imgSrc"
+        v-if="image"
         :class="positionImageVacancy === 'start' ? 'mr-4' : ''"
       >
         <v-img
-          :width="100"
-          :src="imgSrc"
-          :alt="imgAlt"
-          class="rounded"
+          :src="image.src"
+          v-bind="image.attrs"
         />
       </div>
     </v-card-title>
@@ -133,12 +141,40 @@
       <slot name="button" />
     </v-card-actions>
   </v-card>
+  <partsModal
+    v-if="modal"
+    v-model="openModal"
+    :img="modalImg"
+    :img-fluid="true"
+    :img-only="true"
+    :width="modalWidth"
+    img-height="100%"
+  />
 </template>
 
 <script setup>
+import { useMainStore } from "../../../store/mainStore.js";
+import {useAttrs, ref} from "vue";
+const mainStore = useMainStore()
+
+const attrs = useAttrs()
+const cardAttrs = {
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'card')
+}
+const titleAttrs = {
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title')
+}
+const textAttrs = {
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'text')
+}
+const imageModalAttrs = ref({
+  height: 100 + '%',
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'modal-image')
+})
+
+let openModal = ref(false)
+
 const props = defineProps({
-  maxWidth: { type: Number || String, default: 349 },
-  minHeight: { type: Number || String, default: 0},
   styleCard: { type: String, default: "standard" },
   variantCard: { type: String, default: "elevated"},
   horizontalCard: { type: Boolean, default: false },
@@ -146,15 +182,39 @@ const props = defineProps({
   dateAuthorRight: { type: Boolean, default: false },
   positionImageVacancy: { type: String, default: "start" },
 
-  imgSrc: { type: String, default: ""},
-  imgAlt: { type: String, default: ""},
+  image: Object,
+  gap: Number,
   title: { type: String, default: "" },
   subtitle: { type: String, default: "" },
   price: { type: String, default: "" },
   text: { type: String, default: "" },
+  textImage: Object,
+  hoverText: { type: Boolean, default: false },
   date: { type: String, default: "" },
   author:{ type: String, default: "" },
   city: { type: String, default: "" },
   statusVacancy: { type: Array, default: () => [] },
+
+  modal: { type: Boolean, default: false },
+  modalImg: { type: String, default: '' },
+  modalWidth: { type: Number, default: 583 }
 })
 </script>
+
+<style lang="scss" scoped>
+.v-card-title {
+  overflow: unset;
+  white-space: normal;
+  word-break: normal;
+  word-wrap: normal;
+}
+.card__text-hover {
+  transition: color .3s ease, filter .3s ease;
+  &:hover {
+    color: #fff;
+    filter: brightness(0) saturate(100%) invert(98%) sepia(100%) saturate(8%) hue-rotate(148deg) brightness(102%) contrast(102%);
+  }
+}
+
+
+</style>

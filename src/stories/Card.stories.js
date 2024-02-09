@@ -5,31 +5,6 @@ export default {
   title: 'Parts/Card',
   component: Card,
   tags: ['autodocs'],
-  argTypes: {
-    maxWidth: { type: "text" },
-    minHeight: { type: "text" },
-    styleCard: {
-      control: { control: "radio" },
-      options: ['standard', 'vacancy']
-    },
-    variantCard: {
-      control: { control: "select" },
-      options: ['elevated', 'flat', 'tonal', 'outlined']
-    },
-    horizontalCard: { type: "boolean"  },
-    horizontalWidthImage: { type: "text"  },
-    dateAuthorRight: { type: "boolean"  },
-    imgSrc: { type: "text"  },
-    imgAlt: { type: "text"  },
-    title: { type: "text"  },
-    subtitle: { type: "text"  },
-    price: { type: "text"  },
-    text: { type: "text"  },
-    date: { type: "text"  },
-    author: { type: "text"  },
-    city: { type: "text"  },
-    statusVacancy: { type: "Array"  }
-  },
 };
 
 export const Standard = {
@@ -52,8 +27,12 @@ export const Standard = {
     maxWidth: 349,
     variantCard: "elevated",
     styleCard: "standard",
-    imgSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-    imgAlt: "Картинка",
+    image: {
+      src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+      attrs: {
+        cover: true
+      }
+    },
     title: "Card Title",
     text: "A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.",
     date: "02.04.2023",
@@ -71,12 +50,16 @@ export const StandardHorizontal = {
   args: {
     dateAuthorRight: true,
     horizontalCard: true,
-    maxWidth: 700,
+    maxWidth: '100%',
     horizontalWidthImage: 300,
     variantCard: "elevated",
     styleCard: "standard",
-    imgSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-    imgAlt: "Картинка",
+    image: {
+      src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+      attrs: {
+        cover: true
+      }
+    },
     title: "Card Title",
     text: "A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.",
     date: "02.04.2023",
@@ -112,8 +95,12 @@ export const vacancyError = {
     maxWidth: 349,
     variantCard: "elevated",
     styleCard: "vacancy",
-    imgSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-    imgAlt: "Картинка",
+    image: {
+      src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+      attrs: {
+        cover: true
+      }
+    },
     title: "Card Title",
     subtitle: "Card Title",
     price: "150 000 - 180 000 ₸",
@@ -173,4 +160,46 @@ export const vacancySuccess = {
       url: "https://www.figma.com/file/UmrBZaCGhezw0qx9xuq7Xf/Дизайн-система?node-id=1%3A3&mode=dev",
     },
   },
+}
+
+export const modalAndCard = {
+  args: {
+    'card-width': 700,
+    'horizontal-card': true,
+    image:{
+      src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        attrs: {
+        class: 'rounded-circle',
+          'max-width': 86,
+          height: 86,
+          cover: true
+      }
+    },
+    'variant-card': "elevated",
+    'style-card': "standard",
+    'title': "Железнорудные окатыши",
+    'text': "СТ АО ССГПО-11402-2022",
+    'title-class': "text-h4",
+    'title-style': "width: 280px",
+    'text-style': "cursor: pointer",
+    'text-class': "text-black",
+    gap: 24,
+    'card-class': "px-12 py-13",
+    'card-color': "primary",
+    'card-rounded': "xl",
+    'hover-text': true,
+    'text-image': {
+      src: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        attrs: {
+        class: 'rounded-circle',
+          'max-width': 20,
+          height: 20,
+          cover: true
+      }
+    },
+    modal: true,
+    'modal-width': 600,
+    'modal-img': "https://www.figma.com/file/4olLWc8CXyZmkwje9SuEah/image/2d13c92b16b427ccd0b154544ab7922d50edb16c",
+  },
+
 }

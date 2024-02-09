@@ -5,6 +5,7 @@
         class="w-100 d-flex"
         :class="{'position-absolute pt-5 px-5': imgFluid}"
         style="z-index: 1000"
+        v-if="!imgOnly"
       >
         <v-btn
           v-bind="closeButtonAttrs"
@@ -15,8 +16,8 @@
 
       <div
         v-if="img.length"
-        class="flex-grow-1 px-0 d-flex mb-4"
-        :class="{'px-5': !imgFluid}"
+        class="flex-grow-1 px-0 d-flex"
+        :class="[{'px-5': !imgFluid}, {'mb-4': !imgOnly}]"
       >
         <div
           class="overflow-hidden h-100 w-100"
@@ -33,6 +34,7 @@
       <v-card-text
         class="pt-0 pb-4 d-flex align-center"
         :class="{'flex-column': iconCenter}"
+        v-if="!imgOnly"
       >
         <div
           v-if="icon.length"
@@ -130,6 +132,10 @@
     img: {
       type: String,
       default: ''
+    },
+    imgOnly: {
+      type: Boolean,
+      default: false,
     },
     imgRounded: {
       type: String,
