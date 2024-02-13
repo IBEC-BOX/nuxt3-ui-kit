@@ -162,7 +162,7 @@
 </template>
 
 <script setup>
-import { useMainStore } from "../../store/mainStore.js";
+import { useMainStore } from "../../store/mainStore";
 import {useAttrs, ref} from "vue";
 const mainStore = useMainStore()
 
