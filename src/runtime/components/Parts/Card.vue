@@ -85,9 +85,8 @@
   </v-card>
   <v-card
     v-else-if="styleCard === 'vacancy'"
-    :max-width="+maxWidth + 'px'"
-    :min-height="+minHeight == '' ? 100 + '%' : minHeight"
     :variant="variantCard"
+    v-bind="cardAttrs"
     class="card-vacancy px-2 py-4 w-100"
   >
     <v-card-title

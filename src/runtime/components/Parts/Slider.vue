@@ -223,7 +223,7 @@
 
         <!-- Control buttons -->
         <div
-          v-if="controlButtonsAlign === 'bottom'"
+          v-if="controlButtonsAlign === 'bottom' && showButtons"
           class="d-flex ml-auto"
         >
           <v-btn
@@ -326,6 +326,11 @@ const props = defineProps({
     type: String,
     default: "bottom",
   },
+
+  showButtons: {
+    type: Boolean,
+    default: true
+  }
 });
 
 // Slider ref
