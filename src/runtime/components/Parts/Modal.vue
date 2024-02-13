@@ -89,7 +89,7 @@
 
 <script setup>
   import { defineProps, useAttrs, computed, ref } from 'vue'
-  import { useMainStore } from "../../store/mainStore.js"
+  import { useMainStore } from "../../store/mainStore"
 
   const mainStore  = useMainStore()
   const props = defineProps({
