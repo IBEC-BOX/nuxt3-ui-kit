@@ -5,13 +5,11 @@
     <v-container>
       <partsSlider
         :slides="sliders"
-        :sliderPagination="true"
-        :showButtons="false"
+        :slider-pagination="true"
+        :show-buttons="false"
         slider-direction="vertical"
-        :sliderPaginationActiveVariant="'white'"
-      >
-
-      </partsSlider>
+        :slider-pagination-active-variant="'white'"
+      />
     </v-container>
 
     <partsFooterDefault

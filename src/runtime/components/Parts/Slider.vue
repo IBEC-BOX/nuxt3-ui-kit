@@ -251,7 +251,7 @@ import { register } from "swiper/element/bundle";
 register();
 
 import { defineProps, useAttrs, ref, onMounted } from "vue";
-import { useMainStore } from "../../../store/mainStore.js";
+import { useMainStore } from "../../store/mainStore.js";
 const mainStore = useMainStore();
 
 //Attributes
