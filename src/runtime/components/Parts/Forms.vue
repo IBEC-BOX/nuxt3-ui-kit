@@ -409,7 +409,7 @@
 
 <script setup>
 import { ref, useAttrs } from 'vue'
-import { useMainStore } from "../../../store/mainStore.js";
+import { useMainStore } from "../../store/mainStore.js";
 const mainStore = useMainStore()
 
 const checked = ref(false)

@@ -57,7 +57,7 @@
 
 <script setup>
   import {defineProps, defineEmits, useAttrs} from 'vue'
-  import { useMainStore } from "../../../store/mainStore.js";
+  import { useMainStore } from "../../store/mainStore.js";
 
   const attrs = useAttrs()
   const emit = defineEmits(['form-data'])
