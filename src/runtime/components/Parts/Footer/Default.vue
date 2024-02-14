@@ -49,6 +49,7 @@
               :append-icon="button.rightIcon"
               :size="button.size ? button.size : 'large'"
               :rounded="button.rounded ? button.rounded : 'lg'"
+              v-bind="button.attrs"
             >
               {{ button.text }}
             </v-btn>
@@ -98,11 +99,13 @@
               :width="60"
               :heigth="60"
               :class="logo.title || logo.subtitle ? 'mb-7' : 'mb-10'"
+              v-bind="logo.attrs"
             />
             <p
               v-if="logo.title"
               class="font-weight-medium mb-3 mb-sm-7 text-subtitle-1"
               :class="logo.colorText || 'text-white'"
+              v-bind="logo.attrs"
             >
               {{ logo.title }}
             </p>
@@ -183,6 +186,7 @@
                 <a
                   v-if="item.img"
                   :href="item.link"
+                  v-bind="item.linkAttrs"
                 >
                   <v-img
                     v-if="item.img"
@@ -190,6 +194,7 @@
                     :width="140"
                     aspect-ratio="16/9"
                     :src="item.img"
+                    v-bind="item.imgAttrs"
                   />
                 </a>
               </li>
@@ -216,19 +221,21 @@
               cover
               :width="60"
               :src="logo.img"
+              v-bind="logo.attrs"
             />
-            <p class="font-weight-medium text-primary text-h5 font-weight-medium">
+            <p class="font-weight-medium text-primary text-h5 font-weight-medium" v-bind="logo.attrs">
               {{ logo.title }}
             </p>
           </v-col>
           <v-col
-            v-if="copyright.length"
+            v-if="copyright"
             cols="12"
             sm="6"
           >
             <p
               :class="logoInBottom === true ? 'justify-end' : 'justify-start'"
               class="d-flex text-primary-gray"
+              v-bind="copyright.attrs"
             >
               {{ copyright }}
             </p>
@@ -304,7 +311,12 @@ const props = defineProps({
   navInBottom: { type: Boolean, default: false },
   storeOnlyMob: { type: Boolean, default: false },
 
-  copyright: { type: String, default: ""},
+  copyright: { type: Object, default: {
+    text: '2023 Untitled UI. All rights reserverd',
+    attrs: {
+
+    }
+  }},
 })
 </script>
 

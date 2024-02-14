@@ -2,46 +2,36 @@
   <v-app>
     <partsHeaderErg />
     <NuxtPage />
-    <v-container>
-      <partsCard
-        :card-width="700"
-        :horizontal-card="true"
-        :image="{
-          src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          attrs:{
-            class:'rounded-circle',
-            'max-width':86,
-            height:86,
-            cover:true
-          }
-        }"
-        variant-card="elevated"
-        style-card="standard"
-        title="Железнорудные окатыши"
-        text="СТ АО ССГПО-11402-2022"
-        title-class="text-h4"
-        title-style="width: 280px"
-        text-style="cursor: pointer"
-        text-class="text-black"
-        :gap="24"
-        card-class="px-12 py-13"
-        card-color="primary"
-        card-rounded="xl"
-        :hover-text="true"
-        :text-image="{
-          src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          attrs:{
-            class:'rounded-circle',
-            'max-width':20,
-            height:20,
-            cover:true
-          }
-        }"
-        :modal="true"
-        :modal-width="600"
-        modal-img="https://www.figma.com/file/4olLWc8CXyZmkwje9SuEah/image/2d13c92b16b427ccd0b154544ab7922d50edb16c"
-      />
-    </v-container>
+      <section class="h-100">
+          <partsErgVacancies
+            sheet-rounded="xl"
+            sheet-class="py-12 px-8 h-100"
+            title="Станьте частью команды"
+            sub-title="Мы предлагаем конкурентные зарплаты, социальные гарантии"
+            title-font-size="40px"
+            title-color="#fff"
+            title-font-weight="600"
+            sub-title-font-size="24px"
+            sub-title-color="#fff"
+            sub-title-max-width="521px"
+            sub-title-line-height="28px"
+            button-rounded="xl"
+            button-class="text-body-1 font-weight-regular mt-13"
+            :button-image="'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708905600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=g7EhfQACZT85bZGANQJmhBUgX7KHl9MVIHs8uvYxovf1~mMGheRUpQe4etAQ6EnrUd77Pj9k~JyXNKHx9G9GtdGM8~H6EDQeBXcXz9xZ1PhDjDfXQAUijJ1JN4XNnMWuXIHCqBPPekxCexn3huHy~G3d-WjDd63cPcZek-GtH6QEgck6bYG-HyNnx6QBKVdvynqZS8WMDjTQwMpKUCvYTb59s4eLt-aD4-fc2cZ1qcOqYg4bzzoiJah2DkFTTFI12q-vWdWuwYTmTk2U9QiAAQ0NQOnE3agSmB0ABr2DjObMiMr4SBuDqWKqEXOZT3AC8yYhtHBTC-oH0P9dAxIFxw__'"
+            :gallery="true"
+            :gallery-hover-effect="true"
+            :gallery-images="{0:{chip:{attrs:{variant:'flat',color:'green'},text:'asd'},src:'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XPOgN9cWiL5lNQKNQpEWyYKNUfdcufsLMvRSBXfg5tryvP2T9GyIh-BycwK2gfla1o1G3ufvC6KxW64biT8r~GV63AFYFIzdkohh7Ya5wYLKv3eHBBzqAZdrV0PtKWJil3HFkSa0TuwRmriW~rf1nuPJx-W~qkkVu1A~sZTvid6G9sIblyijcKz2YRHoDiWxLc4iKJyyK1~FTzj75P3z8szwQzH08A6LG97a5lawt2uAH1f1R-3htFf7xEi5W86IWC4s4byN94KFewoJ9Qki-174MHHVq24BgUkZ7cLPHNvQthXJ5brtbR~4xM83ns~hEjcIJpHdCDGj2~YuTvcrmQ__',text:'absdffdsfdsfsdfdsds'},1:{chip:{attrs:{variant:'flat',color:'green'},text:'asd'},src:'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XPOgN9cWiL5lNQKNQpEWyYKNUfdcufsLMvRSBXfg5tryvP2T9GyIh-BycwK2gfla1o1G3ufvC6KxW64biT8r~GV63AFYFIzdkohh7Ya5wYLKv3eHBBzqAZdrV0PtKWJil3HFkSa0TuwRmriW~rf1nuPJx-W~qkkVu1A~sZTvid6G9sIblyijcKz2YRHoDiWxLc4iKJyyK1~FTzj75P3z8szwQzH08A6LG97a5lawt2uAH1f1R-3htFf7xEi5W86IWC4s4byN94KFewoJ9Qki-174MHHVq24BgUkZ7cLPHNvQthXJ5brtbR~4xM83ns~hEjcIJpHdCDGj2~YuTvcrmQ__',text:'absdffdsfdsfsdfdsds'},2:{chip:{attrs:{variant:'flat',color:'green'},text:'asd'},src:'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XPOgN9cWiL5lNQKNQpEWyYKNUfdcufsLMvRSBXfg5tryvP2T9GyIh-BycwK2gfla1o1G3ufvC6KxW64biT8r~GV63AFYFIzdkohh7Ya5wYLKv3eHBBzqAZdrV0PtKWJil3HFkSa0TuwRmriW~rf1nuPJx-W~qkkVu1A~sZTvid6G9sIblyijcKz2YRHoDiWxLc4iKJyyK1~FTzj75P3z8szwQzH08A6LG97a5lawt2uAH1f1R-3htFf7xEi5W86IWC4s4byN94KFewoJ9Qki-174MHHVq24BgUkZ7cLPHNvQthXJ5brtbR~4xM83ns~hEjcIJpHdCDGj2~YuTvcrmQ__',text:'absdffdsfdsfsdfdsds'},3:{chip:{attrs:{variant:'flat',color:'green'},text:'asd'},src:'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XPOgN9cWiL5lNQKNQpEWyYKNUfdcufsLMvRSBXfg5tryvP2T9GyIh-BycwK2gfla1o1G3ufvC6KxW64biT8r~GV63AFYFIzdkohh7Ya5wYLKv3eHBBzqAZdrV0PtKWJil3HFkSa0TuwRmriW~rf1nuPJx-W~qkkVu1A~sZTvid6G9sIblyijcKz2YRHoDiWxLc4iKJyyK1~FTzj75P3z8szwQzH08A6LG97a5lawt2uAH1f1R-3htFf7xEi5W86IWC4s4byN94KFewoJ9Qki-174MHHVq24BgUkZ7cLPHNvQthXJ5brtbR~4xM83ns~hEjcIJpHdCDGj2~YuTvcrmQ__',text:'absdffdsfdsfsdfdsds'}}"
+            :backgroundImage="'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb?Expires=1708905600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=g7EhfQACZT85bZGANQJmhBUgX7KHl9MVIHs8uvYxovf1~mMGheRUpQe4etAQ6EnrUd77Pj9k~JyXNKHx9G9GtdGM8~H6EDQeBXcXz9xZ1PhDjDfXQAUijJ1JN4XNnMWuXIHCqBPPekxCexn3huHy~G3d-WjDd63cPcZek-GtH6QEgck6bYG-HyNnx6QBKVdvynqZS8WMDjTQwMpKUCvYTb59s4eLt-aD4-fc2cZ1qcOqYg4bzzoiJah2DkFTTFI12q-vWdWuwYTmTk2U9QiAAQ0NQOnE3agSmB0ABr2DjObMiMr4SBuDqWKqEXOZT3AC8yYhtHBTC-oH0P9dAxIFxw__'"
+            :chip="{
+              text: 'Вакансии',
+              attrs: {
+                color: 'white',
+                class: 'text-uppercase mb-8',
+                variant: 'outlined'
+              }
+            }"
+          />
+      </section>
 
     <partsFooterDefault
       :logo-in-body="true"
@@ -60,121 +50,11 @@
 </template>
 
 <script setup>
-const sliders = [
-  {
-    id: 0,
-    chip: {
-      text: 'abvgd',
-      attrs: {
-        class: 'mt-12 mb-8',
-        color: 'primary'
-      }
-    },
-    title: 'АО «ССГПО» — крупнейшее градообразующее предприятие\n' +
-      'страны по переработке железных руд, доломита, известняка, строительного щебня',
-    subtitle: 'Рынки сбыта: Казахстан, Россия, Китай ',
-    titleAttrs: {
-      class: 'text-white mb-4 text-h4'
-    },
-    textBlockAttrs: {
-      class: 'justify-start'
-    },
-    backgroundImg: 'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    buttons: [
-      {
-        id: 0,
-        text: 'Large button',
-        attrs: {
-          size: 'large',
-          color: 'primary',
-          class: 'text-body-1',
-        }
-      }
-    ],
-    active: true,
-  },
-  {
-    id: 1,
-    chip: {
-      text: 'abvgd',
-      attrs: {
-        color: 'primary'
-      }
-    },
-    title: 'Экологические акции',
-    subtitle: 'Команда АО “ССГПО” активно принимает участие в мероприятиях, направленных на помощь экологии',
-    textBlockAttrs: {
-      class: ''
-    },
-    subTitleAttrs: {
-      class: 'text-primary'
-    },
-    titleAttrs: {
-      class: 'text-primary text-h5 w-75'
-    },
-    img: {
-      src: 'https://s3-alpha-sig.figma.com/img/555c/6876/cb9c4c93facc41f9da4145fa73aca28f?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GuQUtcWbVrWRn1GfwukhEdmCQ9ZxpWBc8-kYGxqc~kInBXYg7QiQUdnC11N6CBJyNYPhZmkMoCyqJLchOvtrizsQiSWQytj96hkeDbtlODJe60UxBq9LQqLWuzCoq8~9-IL~oKeji3ECSklL1VCqbv5NQ-Lxi~ItwX-sunBEXVsx9g9oxZIZrkuIVOfBA9vqYz1PVaG9FrIP7zL5R73ahu0m2V-MLPBe8OUFEQSWbDw9xUPIUKyXOfbm9En80I9oV8k55cLvyNaid-2qCCPtXrm26v7ohCeXQILx1-9j8xBHjy0cLploNutzmGMC0uiPQnr115gYHEhBXaJk2Ez8zA__',
-      attrs: {
-        'max-height': 400,
-        'max-width': '98%',
-        class: 'rounded-xl'
-      }
-    },
-    active: false,
-  },
-  {
-    id: 2,
-    chip: {
-      text: 'abvgd',
-      attrs: {
-        color: 'primary'
-      }
-    },
-    title: 'Экологические акции',
-    subtitle: 'Команда АО “ССГПО” активно принимает участие в мероприятиях, направленных на помощь экологии',
-    textBlockAttrs: {
-      class: ''
-    },
-    subTitleAttrs: {
-      class: 'text-primary'
-    },
-    titleAttrs: {
-      class: 'text-primary text-h5 w-75'
-    },
-    img: {
-      src: 'https://s3-alpha-sig.figma.com/img/555c/6876/cb9c4c93facc41f9da4145fa73aca28f?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GuQUtcWbVrWRn1GfwukhEdmCQ9ZxpWBc8-kYGxqc~kInBXYg7QiQUdnC11N6CBJyNYPhZmkMoCyqJLchOvtrizsQiSWQytj96hkeDbtlODJe60UxBq9LQqLWuzCoq8~9-IL~oKeji3ECSklL1VCqbv5NQ-Lxi~ItwX-sunBEXVsx9g9oxZIZrkuIVOfBA9vqYz1PVaG9FrIP7zL5R73ahu0m2V-MLPBe8OUFEQSWbDw9xUPIUKyXOfbm9En80I9oV8k55cLvyNaid-2qCCPtXrm26v7ohCeXQILx1-9j8xBHjy0cLploNutzmGMC0uiPQnr115gYHEhBXaJk2Ez8zA__',
-      attrs: {
-        'max-height': 400,
-        'max-width': '98%',
-        class: 'rounded-xl'
-      }
-    },
-    active: false,
-  },
-]
 </script>
 
 <style lang="scss">
 /* Redundant unused code to test treeshaking */
 .unused-selector-app {
   color: orange;
-}
-.slider_pagination_container {
-  top: 116px;
-  left: -30px;
-  .slider_pagination {
-    flex-direction: column;
-    gap: 0;
-    background: #ffffff61;
-    border-radius: 50px;
-    .slider-pagination-bullet {
-      width: 6px;
-      height: 66px;
-    }
-    .slider-pagination-bullet, .slider-pagination-dot {
-      border-radius: 50px;
-      background: none;
-    }
-  }
 }
 </style>
