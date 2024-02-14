@@ -310,12 +310,12 @@ const props = defineProps({
   navInBottom: { type: Boolean, default: false },
   storeOnlyMob: { type: Boolean, default: false },
 
-  copyright: { type: Object, default: {
+  copyright: { type: Object, default: () => ({
     text: '2023 Untitled UI. All rights reserverd',
     attrs: {
 
     }
-  }},
+  })},
 })
 </script>
 

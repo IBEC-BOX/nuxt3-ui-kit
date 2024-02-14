@@ -44,7 +44,9 @@
         { id: 5, text: 'Help centre', link: '/' },
         { id: 6, text: 'Privacy', link: '/' },
       ]"
-      copyright="2023 Untitled UI. All rights reserverd"
+      :copyright="{
+        text: '2023 Untitled UI. All rights reserverd'
+      }"
     />
   </v-app>
 </template>
