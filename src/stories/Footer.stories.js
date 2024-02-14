@@ -47,7 +47,9 @@ export const First = {
         }
       ]
     },
-    copyright: "2023 Untitled UI. All rights reserverd",
+    copyright: {
+      text: "2023 Untitled UI. All rights reserverd"
+    },
     nav: [
       {
         id: 1,
@@ -297,7 +299,9 @@ export const Second = {
         ]
       },
     ],
-    copyright: "2023 Untitled UI. All rights reserverd",
+    copyright: {
+      text: "2023 Untitled UI. All rights reserverd"
+    },
     social: [
       {
         id: 1,
@@ -561,7 +565,9 @@ export const Third = {
         link: "/"
       },
     ],
-    copyright: "2023 Untitled UI. All rights reserverd",
+    copyright: {
+      text: "2023 Untitled UI. All rights reserverd"
+    },
     nav: [
       {
         id: 1,
@@ -679,7 +685,9 @@ export const Fourth = {
         link: "/"
       },
     ],
-    copyright: "2023 Untitled UI. All rights reserverd",
+    copyright: {
+      text: "2023 Untitled UI. All rights reserverd"
+    },
     social: [
       {
         id: 1,
@@ -760,7 +768,9 @@ export const Fifth = {
         link: "/",
       },
     ],
-    copyright: "2023 Untitled UI. All rights reserverd",
+    copyright: {
+      text: "2023 Untitled UI. All rights reserverd"
+    },
     social: [
       {
         id: 1,
