@@ -49,7 +49,6 @@
               :append-icon="button.rightIcon"
               :size="button.size ? button.size : 'large'"
               :rounded="button.rounded ? button.rounded : 'lg'"
-              v-bind="button.attrs"
             >
               {{ button.text }}
             </v-btn>
