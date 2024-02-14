@@ -3,12 +3,43 @@
     <partsHeaderErg />
     <NuxtPage />
     <v-container>
-      <partsSlider
-        :slides="sliders"
-        :slider-pagination="true"
-        :show-buttons="false"
-        slider-direction="vertical"
-        :slider-pagination-active-variant="'white'"
+      <partsCard
+        :card-width="700"
+        :horizontal-card="true"
+        :image="{
+          src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+          attrs:{
+            class:'rounded-circle',
+            'max-width':86,
+            height:86,
+            cover:true
+          }
+        }"
+        variant-card="elevated"
+        style-card="standard"
+        title="Железнорудные окатыши"
+        text="СТ АО ССГПО-11402-2022"
+        title-class="text-h4"
+        title-style="width: 280px"
+        text-style="cursor: pointer"
+        text-class="text-black"
+        :gap="24"
+        card-class="px-12 py-13"
+        card-color="primary"
+        card-rounded="xl"
+        :hover-text="true"
+        :text-image="{
+          src:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+          attrs:{
+            class:'rounded-circle',
+            'max-width':20,
+            height:20,
+            cover:true
+          }
+        }"
+        :modal="true"
+        :modal-width="600"
+        modal-img="https://www.figma.com/file/4olLWc8CXyZmkwje9SuEah/image/2d13c92b16b427ccd0b154544ab7922d50edb16c"
       />
     </v-container>
 
