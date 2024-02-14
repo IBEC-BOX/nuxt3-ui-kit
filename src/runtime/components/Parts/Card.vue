@@ -218,9 +218,10 @@ const props = defineProps({
   word-wrap: normal;
 }
 .card__text-hover {
-  transition: color .3s ease, filter .3s ease;
+  transition: opacity .3s ease;
+  opacity: .5;
   &:hover {
-    color: #fff;
+    opacity: 1;
     filter: brightness(0) saturate(100%) invert(98%) sepia(100%) saturate(8%) hue-rotate(148deg) brightness(102%) contrast(102%);
   }
 }
