@@ -1,11 +1,10 @@
 <template>
-  <section>
+  <v-container>
     <v-sheet
       v-bind="sheetAttrs"
       :style="{
         backgroundImage: 'url(' + backgroundImage + ')',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
         backgroundSize: 'cover'
       }"
       class="mb-6"
@@ -52,6 +51,7 @@
             color="white"
           >
             {{ buttonText || 'Связаться с нами' }}
+            <v-img v-if="buttonImage" :src="buttonImage" :width="16" :height="16" class="ml-2" />
           </v-btn>
         </v-col>
         <v-col
@@ -101,7 +101,7 @@
         </div>
       </v-col>
     </v-row>
-  </section>
+  </v-container>
 </template>
 
 <script setup>
@@ -143,6 +143,7 @@ const props = defineProps({
   title: String,
   subTitle: String,
   buttonText: String,
+  buttonImage: String,
   leftImage: Object,
   rightImage: Object,
   gallery: Boolean,
