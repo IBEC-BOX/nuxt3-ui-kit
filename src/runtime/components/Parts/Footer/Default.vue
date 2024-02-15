@@ -236,7 +236,7 @@
               class="d-flex text-primary-gray"
               v-bind="copyright.attrs"
             >
-              {{ copyright }}
+              {{ copyright.text }}
             </p>
           </v-col>
           <v-col

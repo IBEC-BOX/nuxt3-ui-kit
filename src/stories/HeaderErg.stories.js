@@ -36,7 +36,8 @@ export const Default = {
       {
         id: 0,
         title: "О компании",
-        url: "/about"
+        url: "#footer",
+        type: 'anchor'
       },
       {
         id: 1,

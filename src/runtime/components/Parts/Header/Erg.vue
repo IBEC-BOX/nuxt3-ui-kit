@@ -7,13 +7,15 @@
     >
       <v-container class="d-flex align-center py-0">
         <div class="d-flex align-center flex-grow-1">
-          <v-img
-            :src="logo.url"
-            :max-width="logo.max_width"
-            :width="logo.width"
-            :height="logo.height"
-            :alt="logo.alt || 'Logo'"
-          />
+          <nuxt-link to="/">
+            <v-img
+              :src="logo.url"
+              :max-width="logo.max_width"
+              :width="logo.width"
+              :height="logo.height"
+              :alt="logo.alt || 'Logo'"
+            />
+          </nuxt-link>
         </div>
 
         <div class="ml-auto flex-grow-1 justify-center align-start d-lg-flex d-none flex-column">
@@ -27,9 +29,18 @@
               class=""
             >
               <NuxtLink
-                class="erg-header-link"
+                v-if="menu_item.type !== 'anchor'"
                 :to="menu_item.url"
+                class="erg-header-link"
                 :class="colorClassMenu || 'text-primary'"
+              >
+                {{ menu_item.title }}
+              </NuxtLink>
+              <NuxtLink
+                v-else
+                class="erg-header-link"
+                :class="colorClassMenu || 'text-primary'"
+                @click.prevent="scrollToElement(menu_item.url)"
               >
                 {{ menu_item.title }}
               </NuxtLink>
@@ -117,7 +128,8 @@ const props = defineProps({
         url: "/about"
       },
       {
-        title: "Продукты и услуги"
+        title: "Продукты и услуги",
+        url: '#footer'
       },
       {
         title: "Преимущества"
@@ -156,6 +168,13 @@ const filteredLangs = computed(() => {
 function updateSelectLang(selectedLang: string) {
   selectLang.value = selectedLang;
   emits('select-lang', selectedLang);
+}
+
+const scrollToElement = (selector) => {
+  const element = document.querySelector( selector);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
 function toggleBodyScroll(isOpen: boolean) {
