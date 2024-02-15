@@ -46,9 +46,8 @@
             <div
               class="mb-4"
               v-if="textBody"
-              v-html="textBody"
             >
-              {{ textBody || 'Мы предлагаем конкурентные зарплаты, социальные гарантии' }}
+              <div v-html="textBody"></div>
             </div>
           </div>
           <v-btn
