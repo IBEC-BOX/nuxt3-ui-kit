@@ -25,22 +25,31 @@
           :style="[leftImage || rightImage ? '' : 'display: contents', bodyAttrs]"
           class="py-0 px-5"
         >
-          <v-chip v-bind="chip.attrs" class="z-index-2">
+          <v-chip v-bind="chip.attrs" class="z-index-2" v-if="chip">
             {{ chip.text }}
           </v-chip>
           <div class="vacancies__body position-relative z-index-2">
             <h2
               class="mb-2"
               v-bind="titleAttrs"
+              v-if="title"
             >
               {{ title || 'Станьте частью команды' }}
             </h2>
             <p
               class="mb-4"
               v-bind="subTitleAttrs"
+              v-if="subTitle"
             >
               {{ subTitle || 'Мы предлагаем конкурентные зарплаты, социальные гарантии' }}
             </p>
+            <div
+              class="mb-4"
+              v-if="textBody"
+              v-html="textBody"
+            >
+              {{ textBody || 'Мы предлагаем конкурентные зарплаты, социальные гарантии' }}
+            </div>
           </div>
           <v-btn
             v-bind="button.attrs"
@@ -144,6 +153,7 @@ const props = defineProps({
   button: { type: Object, default: () => ({
     text: ''
   })},
+  textBody: String,
   leftImage: Object,
   rightImage: Object,
   gallery: Boolean,

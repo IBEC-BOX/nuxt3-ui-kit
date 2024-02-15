@@ -47,7 +47,23 @@
           v-bind="textImage.attrs"
           class="mr-2"
         />
-        <span class="text-15">{{ text }}</span>
+        <span>{{ text }}</span>
+      </v-card-text>
+
+      <v-card-text
+        v-if="textBody && modal"
+        v-bind="textAttrs"
+        :class="hoverText ? 'card__text-hover' : ''"
+        class="d-flex align-center"
+        @click="openModal = true"
+      >
+        <v-img
+          v-if="textImage"
+          :src="textImage.src"
+          v-bind="textImage.attrs"
+          class="mr-2"
+        />
+        <div v-html="textBody"></div>
       </v-card-text>
 
       <v-card-subtitle
@@ -197,6 +213,7 @@ const props = defineProps({
   subtitle: { type: String, default: "" },
   price: { type: String, default: "" },
   text: { type: String, default: "" },
+  textBody: { type: String, default: "" },
   textImage: Object,
   hoverText: { type: Boolean, default: false },
   date: { type: String, default: "" },
