@@ -1,13 +1,10 @@
 <template>
-  <v-container>
+  <v-container class="erg-vacancies position-relative">
+    <v-img :src="backgroundImage.image" cover class="h-100 w-100" v-bind="backgroundImage.attrs" />
     <v-sheet
       v-bind="sheetAttrs"
-      :style="{
-        backgroundImage: 'url(' + backgroundImage + ')',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover'
-      }"
-      class="mb-6"
+      class="mb-6 sheet position-absolute bg-none"
+      :class="backgroundImage ? 'position-absolute' : ''"
     >
       <v-row :style="leftImage || rightImage ? '' : 'display: contents'">
         <v-col
@@ -28,30 +25,33 @@
           :style="[leftImage || rightImage ? '' : 'display: contents', bodyAttrs]"
           class="py-0 px-5"
         >
-          <v-chip v-bind="chip.attrs">
+          <v-chip v-bind="chip.attrs" class="z-index-2">
             {{ chip.text }}
           </v-chip>
-          <div class="vacancies__body">
+          <div class="vacancies__body position-relative z-index-2">
             <h2
               class="mb-2"
-              :style="titleAttrs"
+              v-bind="titleAttrs"
             >
               {{ title || 'Станьте частью команды' }}
             </h2>
             <p
               class="mb-4"
-              :style="subTitleAttrs"
+              v-bind="subTitleAttrs"
             >
               {{ subTitle || 'Мы предлагаем конкурентные зарплаты, социальные гарантии' }}
             </p>
           </div>
           <v-btn
-            v-bind="buttonAttrs"
-            class="text-none"
+            v-bind="button.attrs"
+            class="text-none z-index-2"
             color="white"
           >
-            {{ buttonText || 'Связаться с нами' }}
-            <v-img v-if="buttonImage" :src="buttonImage" :width="16" :height="16" class="ml-2" />
+            <nuxt-link v-if="button.link" :to="button.link" class="text-decoration-none text-black">
+              {{ button.text || 'Связаться с нами'}}
+            </nuxt-link>
+            <span v-else>{{ button.text || 'Связаться с нами' }}</span>
+            <v-img v-if="button.image" :src="button.image" :width="16" :height="16" class="ml-2" />
           </v-btn>
         </v-col>
         <v-col
@@ -122,14 +122,13 @@ const subTitleAttrs = {
 const bodyAttrs = {
   ...mainStore.getObjectPropertiesWithPrefix(attrs, 'body')
 }
-const buttonAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'button')
-}
 
 const props = defineProps({
   backgroundImage: {
-    type: String,
-    default: ''
+    type: Object,
+    default: () => ({
+      image: ''
+    })
   },
   chip: {
     type: Object,
@@ -142,8 +141,9 @@ const props = defineProps({
   },
   title: String,
   subTitle: String,
-  buttonText: String,
-  buttonImage: String,
+  button: { type: Object, default: () => ({
+    text: ''
+  })},
   leftImage: Object,
   rightImage: Object,
   gallery: Boolean,
@@ -155,50 +155,67 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-@media (max-width: 1280px) {
-  .gallery-col {
-    width: 330px !important;
-    flex: 0 0 auto;
-    max-width: 100%;
+.erg-vacancies {
+  .sheet {
+    top: 0;
   }
-}
-@media (max-width: 330px) {
-  .gallery-col {
-    width: 295px !important;
-    flex: 0 0 auto;
-    max-width: 100%;
+  .z-index-2 {
+    z-index: 2;
   }
-}
-.gallery-chip {
-  position: absolute;
-  bottom: 5%;
-  left: 5%;
-}
-.gallery-item {
-  overflow: hidden;
-  max-width: 100%;
-  border-radius: 24px;
-  position: relative;
-
-  .gallery-image {
-    transition: transform 0.2s ease;
+  @media (max-width: 1280px) {
+    .gallery-col {
+      width: 330px !important;
+      flex: 0 0 auto;
+      max-width: 100%;
+    }
   }
-
-  .gallery-title {
+  @media (max-width: 330px) {
+    .gallery-col {
+      width: 295px !important;
+      flex: 0 0 auto;
+      max-width: 100%;
+    }
+  }
+  .sheet-img-bg {
     position: absolute;
-    bottom: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  .gallery-chip {
+    position: absolute;
+    bottom: 5%;
     left: 5%;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    color: #fff;
   }
+  .gallery-item {
+    overflow: hidden;
+    max-width: 100%;
+    border-radius: 24px;
+    position: relative;
 
-  &:hover .gallery-image {
-    transform: scale(2);
-  }
+    .gallery-image {
+      transition: transform 0.2s ease;
+    }
 
-  &:hover .gallery-title {
-    opacity: 1;
+    .gallery-title {
+      position: absolute;
+      bottom: 20px;
+      left: 5%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      color: #fff;
+    }
+
+    &:hover .gallery-image {
+      transform: scale(2);
+    }
+
+    &:hover .gallery-title {
+      opacity: 1;
+    }
   }
 }
 </style>
