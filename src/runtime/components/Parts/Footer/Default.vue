@@ -102,15 +102,13 @@
             />
             <p
               v-if="logo.title"
-              class="font-weight-medium mb-3 mb-sm-7 text-subtitle-1"
-              :class="logo.colorText || 'text-white'"
-              v-bind="logo.attrs"
+              v-bind="logo.titleAttrs"
             >
               {{ logo.title }}
             </p>
             <p
               v-if="logo.subtitle"
-              class="mb-5 mb-sm-7 text-primary-gray text-body-2"
+              v-bind="logo.subtitleAttrs"
               style="max-width: 265px"
             >
               {{ logo.subtitle }}
@@ -123,11 +121,9 @@
               <li
                 v-for="item in nav"
                 :key="item.id"
-                class="mb-4 mb-sm-2"
+                v-bind="navAttrs"
               >
                 <nuxt-link
-                  class="text-body-1"
-                  :class="colorNav || 'text-primary'"
                   :to="item.link"
                 >
                   {{ item.text }}
@@ -222,7 +218,7 @@
               :src="logo.img"
               v-bind="logo.attrs"
             />
-            <p class="font-weight-medium text-primary text-h5 font-weight-medium" v-bind="logo.attrs">
+            <p v-bind="logo.attrs">
               {{ logo.title }}
             </p>
           </v-col>
@@ -233,7 +229,7 @@
           >
             <p
               :class="logoInBottom === true ? 'justify-end' : 'justify-start'"
-              class="d-flex text-primary-gray"
+              class="d-flex"
               v-bind="copyright.attrs"
             >
               {{ copyright.text }}
@@ -251,9 +247,9 @@
               <li
                 v-for="item in nav"
                 :key="item.id"
+                v-bind="navAttrs"
               >
                 <nuxt-link
-                  class="text-primary-gray"
                   :to="item.link"
                 >
                   {{ item.text }}
@@ -268,7 +264,7 @@
           >
             <ul
               class="d-flex flex-wrap justify-end"
-              style="column-gap: 20px"
+              style="column-gap: 10px"
             >
               <li
                 v-for="item in social"
@@ -292,6 +288,15 @@
 </template>
 
 <script setup>
+import { useMainStore } from "../../../store/mainStore.js";
+import {useAttrs} from "vue";
+const mainStore = useMainStore();
+
+const attrs = useAttrs();
+const navAttrs = {
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "nav"),
+};
+
 const props = defineProps({
   logo: { type: Object, default: () => ({}) },
   firstStyleTop: { type: Object, default: () => ({}) },
@@ -300,7 +305,6 @@ const props = defineProps({
   menu: { type: Array, default: () => [] },
   store: { type: Array, default: () => [] },
   nav: { type: Array, default: () => [] },
-  colorNav: { type: String, default: () => 'text-white' },
   bgClass: { type: String, default: () => 'bg-none' },
   social: { type: Array, default: () => [] },
 
