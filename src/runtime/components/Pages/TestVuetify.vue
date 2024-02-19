@@ -23,14 +23,14 @@
       id="footer"
       :logo-in-body="true"
       :logo="{ title: 'АО', titleAttrs: {class: 'mb-4 text-h6'} }"
-      nav-class="text-h6 text-white"
+      nav-class="text-h6 text-black"
       :nav="[
         { id: 1, text: 'Overview', link: '/' },
         { id: 2, text: 'Features', link: '/' },
         { id: 3, text: 'Pricing', link: '/' },
         { id: 4, text: 'Careers', link: '/' },
         { id: 5, text: 'Help centre', link: '/' },
-        { id: 6, text: 'Privacy', link: '/' },
+        { id: 6, text: 'Privacy', link: '/', image: '/arrow.png' },
       ]"
       :copyright="{
         text: '2023 Untitled UI. All rights reserverd'
@@ -90,10 +90,10 @@ const sliderAbout = [
     },
     title: 'АО «ССГПО» — крупнейшее градообразующее предприятие\n' +
       'страны по переработке железных руд, доломита, известняка, строительного щебня',
-    subtitle: 'Рынки сбыта: Казахстан, Россия, Китай ',
     titleAttrs: {
       class: 'text-white mb-4 text-36'
     },
+    backgroundImg: 'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     textBlockAttrs: {
       class: 'justify-start'
     },
@@ -109,6 +109,35 @@ const sliderAbout = [
       }
     ],
     active: false,
+    numbers: [
+      {
+        number: 5.5,
+        postfix: [
+          'mln'
+        ],
+        subtitle: [
+          'fdsfsdfds'
+        ]
+      },
+      {
+        number: 5.5,
+        postfix: [
+          'mln'
+        ],
+        subtitle: [
+          'fdsfsdfds'
+        ]
+      },
+      {
+        number: 5.5,
+        postfix: [
+          'mln'
+        ],
+        subtitle: [
+          'fdsfsdfds'
+        ]
+      }
+    ]
   },
 
 ]

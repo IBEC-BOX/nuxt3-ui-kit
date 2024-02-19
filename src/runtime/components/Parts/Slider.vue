@@ -48,14 +48,14 @@
               ]"
             >
               <div>
-                <!-- Slide title -->
-                <!-- Добавил возможность указывать тег чтобы была возможность для настройки SEO -->
                 <v-chip
                   v-if="slide.chip"
                   v-bind="slide.chip.attrs"
                 >
                   {{ slide.chip.text }}
                 </v-chip>
+                <!-- Slide title -->
+                <!-- Добавил возможность указывать тег чтобы была возможность для настройки SEO -->
                 <component
                   :is="slide.titleTag ? slide.titleTag : 'p'"
                   v-bind="slide.titleAttrs"
@@ -63,12 +63,19 @@
                   {{ slide.title }}
                 </component>
 
-                <p v-bind="slide.subTitleAttrs">
+                <p v-bind="slide.subTitleAttrs" v-if="slide.subtitle">
                   {{ slide.subtitle }}
                 </p>
                 <!-- Slide title -->
               </div>
 
+
+              <div v-if="slide.numbers" v-bind="slide.numbers.attrs" class="d-flex flex-column flex-md-row">
+                <div v-for="number in slide.numbers" v-bind="slide.numbers.itemAttrs" class="d-flex flex-column">
+                  <span v-bind="slide.numbers.numAttrs"> {{ number.number }} {{ number.postfix}} </span>
+                  <span v-bind="slide.numbers.subtitleAttrs"> {{ number.subtitle }}</span>
+                </div>
+              </div>
               <!-- body slot -->
               <div v-html="slide.bodySlot" />
               <!-- body slot end -->

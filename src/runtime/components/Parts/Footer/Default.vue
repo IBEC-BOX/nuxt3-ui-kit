@@ -121,12 +121,14 @@
               <li
                 v-for="item in nav"
                 :key="item.id"
-                v-bind="navAttrs"
               >
                 <nuxt-link
                   :to="item.link"
+                  class="d-flex align-center"
+                  v-bind="navAttrs"
                 >
                   {{ item.text }}
+                  <v-img :src="item.image" :width="13" :height="13" class="ml-2" v-bind="item.imageAttrs" />
                 </nuxt-link>
               </li>
             </ul>
@@ -145,7 +147,7 @@
               <li
                 v-for="item in menuItem.links"
                 :key="item.id"
-                class="mb-2 text-body-1"
+                class="mb-2"
               >
                 <nuxt-link
                   class="text-primary"
@@ -288,8 +290,8 @@
 </template>
 
 <script setup>
-import { useMainStore } from "../../../store/mainStore.js";
-import {useAttrs} from "vue";
+import { useMainStore } from "../../../store/mainStore";
+import { useAttrs } from "vue";
 const mainStore = useMainStore();
 
 const attrs = useAttrs();
