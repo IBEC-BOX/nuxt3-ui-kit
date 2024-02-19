@@ -39,7 +39,7 @@
             <div
               class="h-100"
               :class="[
-                { 'px-12': !sliderContainer },
+                { 'px-4 px-md-8 px-lg-12': !sliderContainer },
                 { 'v-container': sliderContainer },
                 {
                   'd-flex flex-column justify-center align-start':
@@ -94,6 +94,7 @@
             lg="6"
             class="px-0"
             :style="slide.img ? '' : 'display: contents'"
+            :class="[{ 'px-4 px-md-8 px-lg-0': !sliderContainer }]"
           >
             <div
               v-if="slide.img"
@@ -139,7 +140,7 @@
     >
       <div
         :class="[
-          { 'px-12': !sliderContainer },
+          { 'px-4 px-md-8 px-lg-12': !sliderContainer },
           { 'v-container': sliderContainer },
         ]"
         class="d-flex flex-column align-end"
@@ -162,7 +163,7 @@
     <div
       v-if="controlButtonsAlign === 'left-bottom'"
       class="control-buttons-left-bottom-container"
-      :class="[{ 'px-9': !sliderContainer }]"
+      :class="[{ 'px-4 px-md-5 px-lg-9': !sliderContainer }]"
     >
       <div class="d-flex px-0">
         <v-btn
@@ -247,10 +248,11 @@
 </template>
 
 <script setup>
+
 import { register } from "swiper/element/bundle";
 register();
 
-import { defineProps, useAttrs, ref, onMounted } from "vue";
+import { defineProps, useAttrs, ref, onMounted, onUnmounted, watch } from "vue";
 import { useMainStore } from "../../store/mainStore";
 const mainStore = useMainStore();
 
@@ -330,6 +332,11 @@ const props = defineProps({
   showButtons: {
     type: Boolean,
     default: true
+  },
+
+  controlScroll: {
+    type: Boolean,
+    default: false,
   }
 });
 
@@ -366,11 +373,55 @@ const updatePagination = () => {
   }
 };
 
+const handleWheel = (event) => {
+  if (!slider.value) return;
+
+  if (event.deltaY > 0) {
+    slider.value.swiper.slideNext();
+  } else {
+    slider.value.swiper.slidePrev();
+  }
+};
+
+let lastScrollPosition = window.pageYOffset;
+const handleScroll = () => {
+  if (!slider.value) return;
+
+  const currentScrollPosition = window.pageYOffset;
+  const direction = currentScrollPosition > lastScrollPosition ? 'down' : 'up';
+
+  if (direction === 'down') {
+    slider.value.swiper.slideNext();
+  } else {
+    slider.value.swiper.slidePrev();
+  }
+
+  lastScrollPosition = currentScrollPosition;
+};
+
+watch(() => props.controlScroll, (newValue) => {
+  if(props.controlScroll) {
+    if (newValue) {
+      window.addEventListener('wheel', handleWheel, { passive: false });
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    } else {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }
+}, { immediate: true });
+
+
 onMounted(() => {
-  console.log(slider.value.swiper);
   activeSlide.value = slider.value.swiper.realIndex;
   if (pagination.value.length > 0) {
     pagination.value[0].active = true;
+  }
+});
+
+onUnmounted(() => {
+  if (props.controlScroll) {
+    window.removeEventListener('wheel', handleScroll);
   }
 });
 </script>
