@@ -71,7 +71,7 @@
 
 
               <div v-if="slide.numbers" v-bind="slide.numbers.attrs" class="d-flex flex-column flex-md-row">
-                <div v-for="number in slide.numbers" v-bind="slide.numbers.itemAttrs" class="d-flex flex-column">
+                <div v-for="(number, index) in slide.numbers" :key="`numbers-${index}`" v-bind="slide.numbers.itemAttrs" class="d-flex flex-column">
                   <span v-bind="slide.numbers.numAttrs"> {{ number.number }} {{ number.postfix}} </span>
                   <span v-bind="slide.numbers.subtitleAttrs"> {{ number.subtitle }}</span>
                 </div>
