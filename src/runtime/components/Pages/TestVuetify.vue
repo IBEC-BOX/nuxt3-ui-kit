@@ -11,6 +11,7 @@
               :show-buttons="false"
               slider-direction="vertical"
               :height="'600px'"
+              :control-scroll="controlScroll"
             />
           </client-only>
 

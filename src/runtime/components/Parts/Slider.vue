@@ -390,9 +390,14 @@ const handleWheel = (event) => {
   }
 };
 
-let lastScrollPosition = window.pageYOffset;
+let lastScrollPosition = 0;
+
+if(typeof window !== 'undefined') {
+  lastScrollPosition = window.pageYOffset
+}
+
 const handleScroll = () => {
-  if (!slider.value) return;
+  if (!slider.value || typeof window === 'undefined') return;
 
   const currentScrollPosition = window.pageYOffset;
   const direction = currentScrollPosition > lastScrollPosition ? 'down' : 'up';
