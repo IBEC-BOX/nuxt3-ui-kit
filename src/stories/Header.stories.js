@@ -24,37 +24,37 @@ export const First = {
       {
         id: 0,
         title: 'Home',
-        url: '/',
+        to: '/',
       },
 
       {
         id: 1,
         title: 'About us',
-        url: '/about',
+        to: '/about',
       },
 
       {
         id: 2,
         title: 'Services',
-        url: '',
+        to: '',
       },
 
       {
         id: 3,
         title: 'Projects',
-        url: '',
+        to: '',
       },
 
       {
         id: 4,
         title: 'Team',
-        url: '',
+        to: '',
       },
 
       {
         id: 5,
         title: 'Career',
-        url: '',
+        to: '',
       },
     ],
 
@@ -85,19 +85,19 @@ export const First = {
       {
         id: 0,
         title: 'Company 1',
-        url: '#'
+        to: '#'
       },
 
       {
         id: 1,
         title: 'Company 2',
-        url: '#'
+        to: '#'
       },
 
       {
         id: 2,
         title: 'Company 3',
-        url: '#'
+        to: '#'
       }
     ],
 

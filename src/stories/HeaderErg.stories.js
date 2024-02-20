@@ -36,31 +36,31 @@ export const Default = {
       {
         id: 0,
         title: "О компании",
-        url: "#footer",
+        to: "#footer",
         type: 'anchor'
       },
       {
         id: 1,
         title: "Продукты и услуги",
-        url: "/about"
+        to: "/"
 
       },
       {
         id: 2,
         title: "Преимущества",
-        url: "/about"
+        to: "/"
 
       },
       {
         id: 3,
         title: "Вакансии",
-        url: "/about"
+        to: "/"
 
       },
       {
         id: 4,
         title: "Контакты",
-        url: "/about"
+        to: "/"
 
       }
     ],

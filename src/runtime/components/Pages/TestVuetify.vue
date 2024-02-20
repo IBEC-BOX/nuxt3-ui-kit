@@ -1,24 +1,22 @@
 <template>
   <v-app>
     <partsHeaderErg
+      :burger="false"
     />
     <NuxtPage />
-      <section class="h-100">
-        <v-container id="slider">
-          <client-only>
-            <partsSlider
-              :slides="sliderAbout"
-              :show-buttons="false"
-              slider-direction="vertical"
-              :height="'600px'"
-              :control-scroll="controlScroll"
-            />
-          </client-only>
-
-
-        </v-container>
-
-      </section>
+    <section class="h-100">
+      <v-container id="slider">
+        <client-only>
+          <partsSlider
+            :slides="sliderAbout"
+            :show-buttons="false"
+            slider-direction="vertical"
+            :height="'600px'"
+            :control-scroll="controlScroll"
+          />
+        </client-only>
+      </v-container>
+    </section>
 
     <partsFooterDefault
       id="footer"
@@ -26,12 +24,12 @@
       :logo="{ title: 'АО', titleAttrs: {class: 'mb-4 text-h6'} }"
       nav-class="text-h6 text-black"
       :nav="[
-        { id: 1, text: 'Overview', link: '/' },
-        { id: 2, text: 'Features', link: '/' },
-        { id: 3, text: 'Pricing', link: '/' },
-        { id: 4, text: 'Careers', link: '/' },
-        { id: 5, text: 'Help centre', link: '/' },
-        { id: 6, text: 'Privacy', link: '/', image: '/arrow.png' },
+        { id: 1, text: 'Overview', to: '/' },
+        { id: 2, text: 'Features', to: '/' },
+        { id: 3, text: 'Pricing', to: '/' },
+        { id: 4, text: 'Careers', to: '/' },
+        { id: 5, text: 'Help centre', to: '/' },
+        { id: 6, text: 'Privacy', to: '/', image: '/arrow.png' },
       ]"
       :copyright="{
         text: '2023 Untitled UI. All rights reserverd'

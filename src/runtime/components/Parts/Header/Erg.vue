@@ -5,9 +5,12 @@
       :class="[menu_open ? 'position-fixed bg-white' : 'position-relative', bgClassHeader || 'bg-none']"
       :elevation="elevation || 0"
     >
-      <v-container class="d-flex align-center justify-lg-space-between py-0">
-        <div class="d-flex flex-grow-1 flex-lg-grow-0 align-center" :style="'width: ' + logo.width * 1.1 + 'px'">
-          <nuxt-link to="/">
+      <v-container class="d-flex align-center justify-space-between  py-0">
+        <div class="d-flex flex-grow-1 flex-lg-grow-0 align-center">
+          <nuxt-link
+            to="/"
+            :style="'width: ' + logo.width * 1.46 + 'px'"
+          >
             <v-img
               :src="logo.url"
               :max-width="logo.max_width"
@@ -16,37 +19,37 @@
               :alt="logo.alt || 'Logo'"
             />
           </nuxt-link>
+          <div class="justify-center align-start d-lg-flex d-none flex-column">
+            <ul
+              class="d-flex align-center"
+              style="column-gap: 32px"
+            >
+              <li
+                v-for="menu_item in menu"
+                :key="`header-menu-item-${menu_item.id}`"
+                class=""
+              >
+                <NuxtLink
+                  v-if="menu_item.type !== 'anchor'"
+                  :to="menu_item.to"
+                  class="erg-header-link"
+                  :class="colorClassMenu || 'text-primary'"
+                >
+                  {{ menu_item.title }}
+                </NuxtLink>
+                <NuxtLink
+                  v-else
+                  class="erg-header-link"
+                  :class="colorClassMenu || 'text-primary'"
+                  @click.prevent="scrollToElement(menu_item.to)"
+                >
+                  {{ menu_item.title }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="mr-auto justify-center align-start d-lg-flex d-none flex-column">
-          <ul
-            class="d-flex align-center"
-            style="column-gap: 32px"
-          >
-            <li
-              v-for="menu_item in menu"
-              :key="`header-menu-item-${menu_item.id}`"
-              class=""
-            >
-              <NuxtLink
-                v-if="menu_item.type !== 'anchor'"
-                :to="menu_item.url"
-                class="erg-header-link"
-                :class="colorClassMenu || 'text-primary'"
-              >
-                {{ menu_item.title }}
-              </NuxtLink>
-              <NuxtLink
-                v-else
-                class="erg-header-link"
-                :class="colorClassMenu || 'text-primary'"
-                @click.prevent="scrollToElement(menu_item.url)"
-              >
-                {{ menu_item.title }}
-              </NuxtLink>
-            </li>
-          </ul>
-        </div>
 
         <div class="d-flex align-center">
           <v-select
@@ -55,24 +58,26 @@
             hide-details="true"
             variant="solo"
             class="mr-4 bg-none"
-            @update:modelValue="updateSelectLang"
+            @update:model-value="updateSelectLang"
           />
           <v-btn
-            class="bg-white text-none text-body-1 d-none d-lg-block"
+            class="bg-white text-none text-body-1"
             rounded="xl"
+            :class="burger === true ? 'd-none d-lg-block' : ''"
             @click="buttonClick"
           >
             {{ textBtn || 'Связаться с нами' }}
           </v-btn>
+          <v-app-bar-nav-icon
+            v-if="burger"
+            class="d-block d-lg-none my-auto"
+            @click="menu_open = !menu_open"
+          />
         </div>
-
-        <v-app-bar-nav-icon
-          class="d-block d-lg-none my-auto"
-          @click="menu_open = !menu_open"
-        />
       </v-container>
     </v-app-bar>
     <v-navigation-drawer
+      v-if="burger"
       v-model="menu_open"
       class="w-100 h-100 d-flex d-lg-none py-5 px-4"
       location="left"
@@ -88,7 +93,7 @@
           <NuxtLink
             class="header-menu-link"
             active-class="header-menu-link-active"
-            :to="menu_item.url"
+            :to="menu_item.to"
           >
             {{ menu_item.title }}
           </NuxtLink>
@@ -116,11 +121,11 @@ const props = defineProps({
     type: Object,
     default: () => ({
       url: 'https://s3-alpha-sig.figma.com/img/222c/02bf/df2277b790ec617d5a2f748736bfdc5a?Expires=1707696000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BjEYx20siAJOsNnjkamNkI-f35Bqi8qtCAvaJ4Oxthy2my4acTfctcKVovI2Yp6v2KugOl61Oat9sQjS0violwagFG2Gie8a48IvmcxllwmkVOESFSBVwWx1D3eP0t5bQit2x3qDF~nfdHh-kMBUSdgwzS1UojssqLJ0NCo6WuUQDz2cbyVZl2RLsSZSgbrLz3agCXXACVU7XH6eTJmE0ZVskZhSgx53dxt~s6Jqrr8l7mcp2C03PxkUbXy1A3bvGxQFdVyVmpx0YSk2PXWwnJZFoX85JHFKzxvLJKWXH7rA1GY~Cx3L8ZI48mB1ybzaIZFXs1KakjD-hDzzyDPITw__',
-      width: 174,
-      height: 70,
+      width: 125,
+      height: 78,
     })
   },
-  elevation: Number,
+  elevation: { type: Number, default: 0},
   menu: {
     type: Array,
     default: () => [
@@ -151,9 +156,10 @@ const props = defineProps({
       'En'
     ]
   },
-  textBtn: String,
-  bgClassHeader: String,
-  colorClassMenu: String,
+  textBtn: { type: String, default: () => '' },
+  bgClassHeader: { type: String, default: () => '' },
+  colorClassMenu: { type: String, default: () => '' },
+  burger: { type: Boolean, default: true}
 })
 
 const emits = defineEmits(['select-lang', 'button-click'])
@@ -211,6 +217,7 @@ function buttonClick() {
     transition: background 0.3s ease;
     border-radius: 50px;
     padding: 8px 10px;
+    cursor: pointer;
     &:hover {
       background: rgba(255, 255, 255, 0.39);
     }

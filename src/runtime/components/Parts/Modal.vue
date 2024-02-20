@@ -88,7 +88,7 @@
 </template>
 
 <script setup>
-  import { defineProps, useAttrs, computed, ref } from 'vue'
+  import { useAttrs, computed, ref } from 'vue'
   import { useMainStore } from "../../store/mainStore"
 
   const mainStore  = useMainStore()

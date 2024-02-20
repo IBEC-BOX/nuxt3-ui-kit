@@ -408,9 +408,7 @@
 </template>
 
 <script setup>
-import { ref, useAttrs } from 'vue'
-import { useMainStore } from "../../store/mainStore";
-const mainStore = useMainStore()
+import { ref } from 'vue'
 
 const checked = ref(false)
 const comboboxValue = ref([])
