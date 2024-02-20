@@ -21,7 +21,6 @@
           :style-card="card.styleCard"
           :variant-card="card.variantCard"
           :horizontal-card="card.horizontalCard"
-          :horizontal-width-image="card.horizontalWidthImage"
           :date-author-right="card.dateAuthorRight"
           :position-image-vacancy="card.positionImageVacancy"
           :img-src="card.imgSrc"
@@ -67,7 +66,6 @@ const props = defineProps({
         styleCard: {},
         variantCard: '',
         horizontalCard: false,
-        horizontalWidthImage: '',
         dateAuthorRight: false,
         positionImageVacancy: '',
         imgSrc: '',

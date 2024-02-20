@@ -24,7 +24,7 @@
                   :key="`header-top-menu-item-${menu_item.id}`"
                 >
                   <nuxt-link
-                    :to="menu_item.url"
+                    :to="menu_item.to"
                     class="header-menu-link text-subtitle-2"
                   >
                     {{ menu_item.title }}
@@ -41,7 +41,7 @@
                   :key="tab.id"
                   class="mx-4 py-5 position-relative text-decoration-none text-grey-darken-2"
                   active-class="tab-link-active"
-                  :to="tab.url"
+                  :to="tab.to"
                 >
                   {{ tab.title }}
                 </nuxt-link>
@@ -98,7 +98,7 @@
                 :key="menu_top_link"
                 class="d-inline-block px-3 text-body-2 text-decoration-none"
                 :class="[`text-${menuTopLinksColor}`]"
-                :to="menu_top_link.url"
+                :to="menu_top_link.to"
               >
                 {{ menu_top_link.title }}
               </nuxt-link>
@@ -114,7 +114,7 @@
                     class="header-menu-link"
                     :class="{'align-start' : variant === 'menu-top-bar'} "
                     active-class="header-menu-link-active"
-                    :to="menu_item.url"
+                    :to="menu_item.to"
                   >
                     {{ menu_item.title }}
                   </NuxtLink>

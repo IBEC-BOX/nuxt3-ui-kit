@@ -1,6 +1,11 @@
 <template>
   <v-container class="erg-vacancies position-relative">
-    <v-img :src="backgroundImage.image" cover class="h-100 w-100" v-bind="backgroundImage.attrs" />
+    <v-img
+      :src="backgroundImage.image"
+      cover
+      class="h-100 w-100"
+      v-bind="backgroundImage.attrs"
+    />
     <v-sheet
       v-bind="sheetAttrs"
       class="mb-6 sheet position-absolute bg-none"
@@ -25,29 +30,33 @@
           :style="[leftImage || rightImage ? '' : 'display: contents', bodyAttrs]"
           class="py-0 px-5"
         >
-          <v-chip v-bind="chip.attrs" class="z-index-2" v-if="chip">
+          <v-chip
+            v-if="chip"
+            v-bind="chip.attrs"
+            class="z-index-2"
+          >
             {{ chip.text }}
           </v-chip>
           <div class="vacancies__body position-relative z-index-2">
             <h2
+              v-if="title"
               class="mb-2"
               v-bind="titleAttrs"
-              v-if="title"
             >
               {{ title || 'Станьте частью команды' }}
             </h2>
             <p
+              v-if="subTitle"
               class="mb-4"
               v-bind="subTitleAttrs"
-              v-if="subTitle"
             >
               {{ subTitle || 'Мы предлагаем конкурентные зарплаты, социальные гарантии' }}
             </p>
             <div
-              class="mb-4"
               v-if="textBody"
+              class="mb-4"
             >
-              <div v-html="textBody"></div>
+              <div v-html="textBody" />
             </div>
           </div>
           <v-btn
@@ -55,11 +64,27 @@
             class="text-none z-index-2"
             color="white"
           >
-            <nuxt-link v-if="button.link" :to="button.link" class="text-decoration-none text-black">
-              {{ button.text || 'Связаться с нами'}}
+            <nuxt-link
+              v-if="button.to"
+              :to="button.to"
+              class="text-decoration-none text-black"
+            >
+              {{ button.text || 'Связаться с нами' }}
             </nuxt-link>
-            <span v-else>{{ button.text || 'Связаться с нами' }}</span>
-            <v-img v-if="button.image" :src="button.image" :width="16" :height="16" class="ml-2" />
+            <a
+              v-else-if="button.href"
+              :href="button.href"
+              class="text-decoration-none text-black"
+            >
+              {{ button.text || 'Связаться с нами' }}
+            </a>
+            <v-img
+              v-if="button.image"
+              :src="button.image"
+              :width="16"
+              :height="16"
+              class="ml-2"
+            />
           </v-btn>
         </v-col>
         <v-col
@@ -147,17 +172,15 @@ const props = defineProps({
       }
     })
   },
-  title: String,
-  subTitle: String,
-  button: { type: Object, default: () => ({
-    text: ''
-  })},
-  textBody: String,
-  leftImage: Object,
-  rightImage: Object,
-  gallery: Boolean,
-  galleryImages: Array,
-  galleryHoverEffect: Boolean,
+  title: { type: String, default: '' },
+  subTitle: { type: String, default: '' },
+  button: { type: Object, default: () => ({}) },
+  textBody: { type: String, default: '' },
+  leftImage: { type: Object, default: () => ({}) },
+  rightImage: { type: Object, default: () => ({}) },
+  gallery: { type: Boolean, default: false },
+  galleryImages: { type: Array, default: () => ([]) },
+  galleryHoverEffect: { type: Boolean, default: false },
 })
 
 

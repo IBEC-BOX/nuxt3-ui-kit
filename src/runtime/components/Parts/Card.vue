@@ -63,7 +63,7 @@
           v-bind="textImage.attrs"
           class="mr-2"
         />
-        <div v-html="textBody"></div>
+        <div v-html="textBody" />
       </v-card-text>
 
       <v-card-subtitle
@@ -192,10 +192,6 @@ const titleAttrs = {
 const textAttrs = {
   ...mainStore.getObjectPropertiesWithPrefix(attrs, 'text')
 }
-const imageModalAttrs = ref({
-  height: 100 + '%',
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'modal-image')
-})
 
 const openModal = ref(false)
 
@@ -203,18 +199,17 @@ const props = defineProps({
   styleCard: { type: String, default: "standard" },
   variantCard: { type: String, default: "elevated"},
   horizontalCard: { type: Boolean, default: false },
-  horizontalWidthImage: { type: Number || String, default: 340 },
   dateAuthorRight: { type: Boolean, default: false },
   positionImageVacancy: { type: String, default: "start" },
 
-  image: Object,
-  gap: Number,
+  image: { type: Object, default: () => ({}) },
+  gap: { type: Number, default: 0 },
   title: { type: String, default: "" },
   subtitle: { type: String, default: "" },
   price: { type: String, default: "" },
   text: { type: String, default: "" },
   textBody: { type: String, default: "" },
-  textImage: Object,
+  textImage: { type: Object, default: () => ({}) },
   hoverText: { type: Boolean, default: false },
   date: { type: String, default: "" },
   author:{ type: String, default: "" },

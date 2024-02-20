@@ -123,13 +123,35 @@
                 :key="item.id"
               >
                 <nuxt-link
-                  :to="item.link"
+                  v-if="item.to"
+                  :to="item.to"
                   class="d-flex align-center"
                   v-bind="navAttrs"
                 >
                   {{ item.text }}
-                  <v-img :src="item.image" :width="13" :height="13" class="ml-2" v-bind="item.imageAttrs" />
+                  <v-img
+                    :src="item.image"
+                    :width="13"
+                    :height="13"
+                    class="ml-2"
+                    v-bind="item.imageAttrs"
+                  />
                 </nuxt-link>
+                <a
+                  v-if="item.href"
+                  :href="item.href"
+                  class="d-flex align-center"
+                  v-bind="navAttrs"
+                >
+                  {{ item.text }}
+                  <v-img
+                    :src="item.image"
+                    :width="13"
+                    :height="13"
+                    class="ml-2"
+                    v-bind="item.imageAttrs"
+                  />
+                </a>
               </li>
             </ul>
           </v-col>
@@ -150,11 +172,19 @@
                 class="mb-2"
               >
                 <nuxt-link
+                  v-if="item.to"
                   class="text-primary"
-                  :to="item.link"
+                  :to="item.to"
                 >
                   {{ item.text }}
                 </nuxt-link>
+                <a
+                  v-else-if="item.href"
+                  class="text-primary"
+                  :href="item.href"
+                >
+                  {{ item.text }}
+                </a>
               </li>
             </ul>
           </v-col>
@@ -252,10 +282,17 @@
                 v-bind="navAttrs"
               >
                 <nuxt-link
-                  :to="item.link"
+                  v-if="item.to"
+                  :to="item.to"
                 >
                   {{ item.text }}
                 </nuxt-link>
+                <a
+                  v-if="item.href"
+                  :href="item.href"
+                >
+                  {{ item.text }}
+                </a>
               </li>
             </ul>
           </v-col>

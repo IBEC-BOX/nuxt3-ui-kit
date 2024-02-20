@@ -63,17 +63,34 @@
                   {{ slide.title }}
                 </component>
 
-                <p v-bind="slide.subTitleAttrs" v-if="slide.subtitle">
+                <p
+                  v-if="slide.subtitle"
+                  v-bind="slide.subTitleAttrs"
+                >
                   {{ slide.subtitle }}
                 </p>
                 <!-- Slide title -->
               </div>
 
 
-              <div v-if="slide.numbers" v-bind="slide.numbers.attrs" class="d-flex flex-column flex-md-row">
-                <div v-for="(number, index) in slide.numbers" :key="`numbers-${index}`" v-bind="slide.numbers.itemAttrs" class="d-flex flex-column">
-                  <span v-bind="slide.numbers.numAttrs"> {{ number.number }} {{ number.postfix}} </span>
-                  <span v-bind="slide.numbers.subtitleAttrs"> {{ number.subtitle }}</span>
+              <div
+                v-if="slide.numbers"
+                class="d-flex flex-column flex-md-row slider__numbers"
+              >
+                <div
+                  v-for="(number, index) in slide.numbers"
+                  :key="`numbers-${index}`"
+                  v-bind="number.itemAttrs"
+                  class="d-flex flex-column slider__numbers-item"
+                >
+                  <span
+                    v-bind="number.numAttrs"
+                    class="slider__numbers-title"
+                  > {{ number.number }} {{ number.postfix }} </span>
+                  <span
+                    v-bind="number.subtitleAttrs"
+                    class="slider__numbers-subtitle"
+                  > {{ number.subtitle }}</span>
                 </div>
               </div>
               <!-- body slot -->
@@ -259,7 +276,7 @@
 import { register } from "swiper/element/bundle";
 register();
 
-import { defineProps, useAttrs, ref, onMounted, onUnmounted, watch } from "vue";
+import { useAttrs, ref, onMounted, onUnmounted, watch } from "vue";
 import { useMainStore } from "../../store/mainStore";
 const mainStore = useMainStore();
 
