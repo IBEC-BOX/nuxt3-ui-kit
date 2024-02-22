@@ -3,21 +3,21 @@
     <v-img
       :src="backgroundImage.image"
       cover
-      class="h-100 w-100"
+      class="h-100 w-100 erg-vacancies-bg"
       v-bind="backgroundImage.attrs"
+      :min-height="536"
     />
     <v-sheet
       v-bind="sheetAttrs"
-      class="mb-6 sheet position-absolute bg-none"
+      class="sheet position-absolute bg-none"
       :class="backgroundImage ? 'position-absolute' : ''"
     >
-      <v-row :style="leftImage || rightImage ? '' : 'display: contents'">
+      <v-row class="h-100">
         <v-col
-          v-if="leftImage"
+          v-if="Object.keys(leftImage).length"
           cols="12"
           md="6"
           :style="leftImage ? '' : 'display: contents'"
-          class="py-0"
         >
           <v-img
             :src="leftImage.src"
@@ -26,9 +26,10 @@
         </v-col>
         <v-col
           cols="12"
-          md="6"
-          :style="[leftImage || rightImage ? '' : 'display: contents', bodyAttrs]"
-          class="py-0 px-5"
+          :md="Object.keys(leftImage).length || Object.keys(rightImage).length ? 6 : 12"
+          v-bind="bodyAttrs"
+          class="py-0  "
+          :class="Object.keys(leftImage).length || Object.keys(rightImage).length ? 'px-5' : ''"
         >
           <v-chip
             v-if="chip"
@@ -37,58 +38,48 @@
           >
             {{ chip.text }}
           </v-chip>
-          <div class="vacancies__body position-relative z-index-2">
-            <h2
-              v-if="title"
-              class="mb-2"
-              v-bind="titleAttrs"
-            >
-              {{ title || 'Станьте частью команды' }}
-            </h2>
-            <p
-              v-if="subTitle"
-              class="mb-4"
-              v-bind="subTitleAttrs"
-            >
-              {{ subTitle || 'Мы предлагаем конкурентные зарплаты, социальные гарантии' }}
-            </p>
-            <div
-              v-if="textBody"
-              class="mb-4"
-            >
-              <div v-html="textBody" />
+          <div class=" d-flex flex-column justify-end justify-sm-start flex-grow-1 h-100">
+            <div class="vacancies__body position-relative z-index-2">
+              <h2
+                v-if="title"
+                class="mb-2"
+                v-bind="titleAttrs"
+              >
+                {{ title || 'Станьте частью команды' }}
+              </h2>
+              <p
+                v-if="subTitle"
+                class="mb-4"
+                v-bind="subTitleAttrs"
+              >
+                {{ subTitle || 'Мы предлагаем конкурентные зарплаты, социальные гарантии' }}
+              </p>
+              <div
+                v-if="textBody"
+                class="mb-4"
+              >
+                <div v-html="textBody" />
+              </div>
             </div>
+            <v-btn
+              v-bind="button.attrs"
+              class="text-none z-index-2 mr-auto"
+              color="white"
+            >
+              {{ button.text || 'Связаться с нами' }}
+              <v-img
+                v-if="button.image"
+                :src="button.image"
+                :width="16"
+                :height="16"
+                class="ml-2"
+              />
+            </v-btn>
           </div>
-          <v-btn
-            v-bind="button.attrs"
-            class="text-none z-index-2"
-            color="white"
-          >
-            <nuxt-link
-              v-if="button.to"
-              :to="button.to"
-              class="text-decoration-none text-black"
-            >
-              {{ button.text || 'Связаться с нами' }}
-            </nuxt-link>
-            <a
-              v-else-if="button.href"
-              :href="button.href"
-              class="text-decoration-none text-black"
-            >
-              {{ button.text || 'Связаться с нами' }}
-            </a>
-            <v-img
-              v-if="button.image"
-              :src="button.image"
-              :width="16"
-              :height="16"
-              class="ml-2"
-            />
-          </v-btn>
+
         </v-col>
         <v-col
-          v-if="rightImage"
+          v-if="Object.keys(rightImage).length"
           cols="12"
           md="6"
           :style="rightImage ? '' : 'display: contents'"
@@ -186,8 +177,13 @@ const props = defineProps({
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .erg-vacancies {
+  &-bg {
+    img {
+      transform: scale(1.5);
+    }
+  }
   .sheet {
     top: 0;
   }
