@@ -1,12 +1,20 @@
 <template>
-  <div class="position-relative text-white">
+  <div class="position-relative text-white overflow-hidden">
+    <v-img
+      v-if="sliderBackgroundImage"
+      class="zoom-background"
+      :src="sliderBackgroundImage"
+      :style="sliderBackgroundImageZoom ? zoomStyle : ''"
+      style="position: absolute; width: 100%; height: 100%; z-index: 1"
+      cover
+    />
     <swiper-container
       v-bind="sliderAttrs"
       ref="slider"
       :slides-per-view="sliderPeeking ? '1.3' : '1'"
-      class="overflow-hidden w-100"
+      class="overflow-hidden w-100 position-relative"
       :class="[`rounded-${rounded}`]"
-      :style="{ height: height }"
+      :style="{height: height}"
       @swiperslidechange="updatePagination"
     >
       <swiper-slide
@@ -32,7 +40,7 @@
         <v-row :style="slide.img ? '' : 'display: contents'">
           <v-col
             cols="12"
-            lg="6"
+            md="6"
             class="px-0"
             :style="slide.img ? '' : 'display: contents'"
           >
@@ -113,20 +121,21 @@
               <!-- Slider buttons END -->
             </div>
           </v-col>
+
           <v-col
             cols="12"
-            lg="6"
+            md="6"
             class="px-0"
             :style="slide.img ? '' : 'display: contents'"
             :class="[{ 'px-4 px-md-8 px-lg-0': !sliderContainer }]"
           >
             <div
               v-if="slide.img"
-              class=""
+              class="px-4"
             >
               <!-- Image -->
               <v-img
-                class="slider-img h-100 w-100"
+                class="slider-img h-100 w-100 py-4"
                 style="z-index: -1"
                 cover
                 :src="slide.img.src"
@@ -136,11 +145,30 @@
             </div>
           </v-col>
         </v-row>
+        <div
+          v-if="controlButtonInSlides"
+          class="control-buttons-left-bottom-container d-none d-md-block"
+          :class="[{ 'px-4 px-md-5 px-lg-9': !sliderContainer }]"
+        >
+          <div class="d-flex px-0">
+            <v-btn
+              v-bind="controlButtonPrevAttrs"
+              icon="mdi-chevron-left"
+              @click="slidePrev"
+            />
+
+            <v-btn
+              v-bind="controlButtonNextAttrs"
+              icon="mdi-chevron-right"
+              @click="slideNext"
+            />
+          </div>
+        </div>
       </swiper-slide>
     </swiper-container>
 
     <div
-      v-if="controlButtonsAlign === 'center'"
+      v-if="controlButtonsAlign === 'center' && controlButtonInSlides === false"
       class="control-buttons-center-container"
     >
       <div class="d-flex justify-space-between px-0">
@@ -159,7 +187,7 @@
     </div>
 
     <div
-      v-if="controlButtonsAlign === 'right'"
+      v-if="controlButtonsAlign === 'right' && controlButtonInSlides === false"
       class="control-buttons-right-container"
     >
       <div
@@ -185,7 +213,7 @@
     </div>
 
     <div
-      v-if="controlButtonsAlign === 'left-bottom'"
+      v-if="controlButtonsAlign === 'left-bottom' && controlButtonInSlides === false"
       class="control-buttons-left-bottom-container"
       :class="[{ 'px-4 px-md-5 px-lg-9': !sliderContainer }]"
     >
@@ -276,7 +304,7 @@
 import { register } from "swiper/element/bundle";
 register();
 
-import { useAttrs, ref, onMounted, onUnmounted, watch } from "vue";
+import { useAttrs, ref, onMounted, onUnmounted, watch, computed } from "vue";
 import { useMainStore } from "../../store/mainStore";
 const mainStore = useMainStore();
 
@@ -316,6 +344,21 @@ const props = defineProps({
   slidesRounded: {
     type: String,
     default: "0",
+  },
+
+  sliderBackgroundImage: {
+    type: String,
+    default: ''
+  },
+
+  sliderBackgroundImageZoom: {
+    type: Boolean,
+    default: false
+  },
+
+  sliderBackgroundImageZoomScale: {
+    type: Number,
+    default: 1.5
   },
 
   sliderContainer: {
@@ -361,10 +404,14 @@ const props = defineProps({
   controlScroll: {
     type: Boolean,
     default: false,
+  },
+
+  controlButtonInSlides: {
+    type: Boolean,
+    default: false,
   }
 });
 
-// Slider ref
 const slider = ref(null);
 
 const activeSlide = ref(0);
@@ -394,16 +441,23 @@ const updatePagination = () => {
       pagination.value[index].active = false;
     });
     pagination.value[slider.value.swiper.realIndex].active = true;
+    activeSlide.value = slider.value.swiper.realIndex;
   }
 };
 
 const handleWheel = (event) => {
-  if (!slider.value) return;
+  if (!slider.value || !props.controlScroll) return;
 
-  if (event.deltaY > 0) {
-    slider.value.swiper.slideNext();
-  } else {
-    slider.value.swiper.slidePrev();
+  const isAtStart = slider.value.swiper.isBeginning;
+  const isAtEnd = slider.value.swiper.isEnd;
+
+  if ((!isAtStart && event.deltaY < 0) || (!isAtEnd && event.deltaY > 0)) {
+    event.preventDefault();
+    if (event.deltaY > 0) {
+      slider.value.swiper.slideNext();
+    } else {
+      slider.value.swiper.slidePrev();
+    }
   }
 };
 
@@ -414,7 +468,7 @@ if(typeof window !== 'undefined') {
 }
 
 const handleScroll = () => {
-  if (!slider.value || typeof window === 'undefined') return;
+  if (!slider.value || typeof window === 'undefined' || !props.controlScroll) return;
 
   const currentScrollPosition = window.pageYOffset;
   const direction = currentScrollPosition > lastScrollPosition ? 'down' : 'up';
@@ -440,6 +494,10 @@ watch(() => props.controlScroll, (newValue) => {
   }
 }, { immediate: true });
 
+const zoomStyle = computed(() => ({
+  transform: activeSlide.value === 1 ? `scale(${props.sliderBackgroundImageZoomScale})` : 'scale(1)',
+  transition: 'transform 0.3s ease-in-out',
+}));
 
 onMounted(() => {
   activeSlide.value = slider.value.swiper.realIndex;
@@ -528,6 +586,21 @@ onUnmounted(() => {
   width: 100%;
   position: absolute;
   bottom: 0%;
+  left: 3px;
   z-index: 1;
 }
+
+.zoom-background {
+  transition: transform .3s ease-in-out;
+
+  img {
+    transform: scale(1); /* Начальное состояние масштаба */
+  }
+
+  &.zoom-background-animation img {
+    transform: scale(1.5); /* Конечное состояние масштаба */
+  }
+}
+
+
 </style>
