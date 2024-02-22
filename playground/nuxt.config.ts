@@ -1,7 +1,8 @@
 export default defineNuxtConfig({
   modules: ['../src/module', '@pinia/nuxt'],
   nuxt3UIKit: {
-    theme: 'green'
+    theme: 'dark',
+    components: ['pagesTestVuetify', 'partsFooterDefault', 'partsCard', 'partsForms', 'partsErgVacancies', 'partsHeaderDefault', 'partsHeaderErg']
   },
   devtools: { enabled: true },
   build: {
