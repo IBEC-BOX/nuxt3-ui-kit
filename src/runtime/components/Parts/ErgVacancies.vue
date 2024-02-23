@@ -73,6 +73,7 @@
                 :width="16"
                 :height="16"
                 class="ml-2"
+                v-bind="button.imageAttrs"
               />
             </v-btn>
           </div>

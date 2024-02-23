@@ -90,7 +90,7 @@
           <v-col
             v-if="logoInBody === true"
             cols="12"
-            :md="menu.length ? '3' : '10'"
+            :md="menu.length ? '3' : '12'"
           >
             <v-img
               v-if="logo.img"

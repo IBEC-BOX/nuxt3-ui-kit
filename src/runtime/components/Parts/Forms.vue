@@ -364,6 +364,7 @@
     v-if="styleForm === 'onlyForm' && (bigImage === '' && smallImage === '')"
     class="mx-auto custom-ui-form w-100"
     :class="bgClass"
+    :max-width="maxWidth"
   >
     <v-form
       ref="form"
@@ -400,7 +401,7 @@
         v-bind="checkboxSetting.attrs"
       >
         <template #label>
-          <span class="text-13">{{ checkboxSetting.label }}</span>
+          <div v-html="checkboxSetting.label"></div>
         </template>
       </v-checkbox>
     </v-form>
@@ -416,6 +417,8 @@ const comValue = ref("")
 const emit = defineEmits(['form-data'])
 
 const props = defineProps({
+  maxWidth: { type: Number, default: 456 },
+
   title: { type: String, default: "" },
   subtitle: { type: String, default: "" },
 
@@ -467,6 +470,17 @@ const dataForm = (validForm) => {
 .custom-ui-form {
 
   .v-checkbox {
+    .v-selection-control {
+      align-items: start;
+      --v-selection-control-size: 26px;
+      .v-selection-control__wrapper {
+        margin-right: 12px;
+      }
+      .v-input--density-default {
+        --v-input-control-height: 26px;
+        --v-input-padding-top: 15px;
+      }
+    }
     &-btn {
       width: 100%;
     }

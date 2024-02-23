@@ -45,9 +45,9 @@
             :style="slide.img ? '' : 'display: contents'"
           >
             <div
-              class="h-100"
+              class="h-100 py-0"
               :class="[
-                { 'px-4 px-md-8 px-lg-12': !sliderContainer },
+                { 'px-12': !sliderContainer },
                 { 'v-container': sliderContainer },
                 {
                   'd-flex flex-column justify-center align-start':
