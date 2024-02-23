@@ -1,5 +1,5 @@
 <template>
-  <div class="position-relative text-white overflow-hidden">
+  <div class="position-relative text-white">
     <v-img
       v-if="sliderBackgroundImage"
       class="zoom-background"
@@ -12,7 +12,7 @@
       v-bind="sliderAttrs"
       ref="slider"
       :slides-per-view="sliderPeeking ? '1.3' : '1'"
-      class="overflow-hidden w-100 position-relative"
+      class="overflow-hidden w-100 position-relative overflow-hidden"
       :class="[`rounded-${rounded}`]"
       :style="{height: height}"
       @swiperslidechange="updatePagination"

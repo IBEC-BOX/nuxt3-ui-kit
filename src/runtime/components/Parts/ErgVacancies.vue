@@ -180,8 +180,10 @@ const props = defineProps({
 <style lang="scss">
 .erg-vacancies {
   &-bg {
-    img {
-      transform: scale(1.5);
+    @media(max-width: 600px) {
+      img {
+        transform: scale(1.5);
+      }
     }
   }
   .sheet {

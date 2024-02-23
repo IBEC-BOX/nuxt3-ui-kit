@@ -64,7 +64,8 @@
           :class="burger === true ? 'd-none d-lg-block' : ''"
           @click="buttonClick"
         >
-          {{ textBtn || 'Связаться' }}
+          <span class="btn-text-full">{{ textBtn || 'Связаться с нами' }}</span>
+          <span class="btn-text-short">{{ getFirstWord(textBtn) || 'Связаться' }}</span>
         </v-btn>
         <v-app-bar-nav-icon
           v-if="burger"
@@ -210,6 +211,10 @@ function toggleBodyScroll(isOpen: boolean) {
   }
 }
 
+function getFirstWord(text = '') {
+  return text.split(' ')[0];
+}
+
 watch(menu_open, (newValue) => {
   toggleBodyScroll(newValue);
 });
@@ -220,6 +225,24 @@ function buttonClick() {
 </script>
 
 <style lang="scss">
+@media (max-width: 600px) {
+  .btn-text-full {
+    display: none;
+  }
+  .btn-text-short {
+    display: block;
+  }
+}
+
+@media (min-width: 601px) {
+  .btn-text-full {
+    display: block;
+  }
+  .btn-text-short {
+    display: none;
+  }
+}
+
 .erg-header {
   ul {
     list-style: none;
