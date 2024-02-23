@@ -11,7 +11,8 @@ export default defineNuxtConfig({
       'partsHeaderDefault',
       'partsHeaderErg',
       'partsSlider',
-      'partsNews'
+      'partsNews',
+      'partsModal',
     ]
   },
   devtools: { enabled: true },
