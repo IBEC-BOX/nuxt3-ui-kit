@@ -106,7 +106,7 @@
       >
         <div :class="galleryHoverEffect ? 'gallery-item' : 'position-relative'">
           <v-img
-            :src="img.src"
+            :src="img.background"
             class="gallery-image rounded-xl"
             width="100%"
             cover
@@ -115,7 +115,7 @@
           <span
             v-if="galleryHoverEffect"
             class="gallery-title text-h5"
-          >{{ img.text }}</span>
+          >{{ img.title }}</span>
           <v-chip
             v-if="!galleryHoverEffect"
             v-bind="img.chip.attrs"
