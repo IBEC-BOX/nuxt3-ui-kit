@@ -362,9 +362,8 @@
   </v-sheet>
   <v-sheet
     v-if="styleForm === 'onlyForm' && (bigImage === '' && smallImage === '')"
-    class="mx-auto custom-ui-form w-100"
-    :class="bgClass"
-    :max-width="maxWidth"
+    class="custom-ui-form w-100 bg-none"
+    v-bind="sheetAttrs"
   >
     <v-form
       ref="form"
@@ -409,7 +408,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useAttrs, ref } from "vue";
+import { useMainStore } from "../../store/mainStore";
+const mainStore = useMainStore();
+
+//Attributes
+const attrs = useAttrs();
+const sheetAttrs = {
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "sheet"),
+};
 
 const checked = ref(false)
 const comboboxValue = ref([])
@@ -417,8 +424,6 @@ const comValue = ref("")
 const emit = defineEmits(['form-data'])
 
 const props = defineProps({
-  maxWidth: { type: Number, default: 456 },
-
   title: { type: String, default: "" },
   subtitle: { type: String, default: "" },
 
@@ -428,7 +433,6 @@ const props = defineProps({
   bigImage: { type: String, default: "" },
   smallImage: { type: String, default: "" },
   altImage: { type: String, default: "" },
-  bgClass: { type: String, default: 'bg-none'},
 
   buttonSetting: { type: Object, default: () => ({ attrs: {color: 'primary-gray', size: 'x-large', text: 'Отправить'}}) },
   checkboxSetting: { type: Object, default: () => ({}) },
