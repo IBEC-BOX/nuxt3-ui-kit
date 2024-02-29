@@ -7,64 +7,18 @@
     <section class="h-100">
       <v-container class=" px-4">
 
-        <partsForms
-          title="Ответим на все ваши вопросы"
-          :style-form="'onlyForm'"
-          :inputs="[
-                  {
-                    rules: [
-                      u => !!u || 'Имя обязательно к заполнению',
-                      u => !u || u.length <= 50 || 'Имя не должно быть длиннее 50 символов'
-                    ],
-                    colsAttrs: {
-                      cols: 12
-                    },
-                    attrs: {
-                      variant: 'solo',
-                      placeholder: 'Укажите ваше имя',
-                      flat: true,
-                      rounded: '16',
-                      clearable: true
-                    },
-                    value: '',
-                  },
-                  {
-                    placeholder: '+7',
-                    colsAttrs: {
-                      cols: 12
-                    },
-                    rules: [
-                      u => !!u || 'Номер обязателен к заполнению',
-                      u => !u || u.length === 18 || 'Такого номера не существует'
-                    ],
-                    maska: {mask: '+7 (###) ### ## ##'},
-                    value: '+7',
-                    attrs: {
-                      variant: 'solo',
-                      placeholder: '+7',
-                      flat: true,
-                      rounded: '16',
-                      clearable: true
-                    },
-                  }
-                ]"
-          :button-setting="{
-                  text: 'Отправить',
-                  attrs: {
-                    block: true,
-                    size: 'x-large',
-                    rounded: 'xl',
-                    color: 'dark-1',
-                    class: 'text-none mb-10',
-                  }
-                }"
-          :checkbox-setting="{
-            attrs: {
-                          class: 'custom-checkbox',
-
-            },
-                  label: '<span>Даю свое согласие на сбор и обработку данных в соответствии с <a href=`/`>Политикой конфедициальности</a></span>'
-                }"
+        <partsSlider
+          :height="'400px'"
+          slider-loop='true'
+          slider-centered-slides='false'
+          control-buttons-size="small"
+          control-buttons-color="white"
+          control-buttons-rounded='lg'
+          control-buttons-class='mr-2'
+          control-buttons-elevation="0"
+          slider-container='false'
+          control-buttons-align='left-bottom'
+          :slides="slides"
         />
 
 
@@ -92,6 +46,103 @@
 </template>
 
 <script setup>
+const slides = [
+  {
+    id: 0,
+    title: 'Кредитная карта\n с целым годом без %',
+    subtitle: 'Подзаголовок маленький, в две строки',
+    titleAttrs: {
+      class: 'text-white w-75'
+    },
+    backgroundImg: 'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    buttons: [
+      {
+        id: 0,
+        text: 'Large button',
+        attrs: {
+          size: 'large',
+          color: 'primary',
+          class: 'text-body-1'
+        }
+      }
+    ],
+    active: true
+  },
+
+  {
+    id: 1,
+    title: 'Страхование работников от несчастных случаев',
+    titleAttrs: {
+      class: 'text-h2 mb-0'
+    },
+    backgroundImg: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    buttons: [
+      {
+        id: 0,
+        text: 'Large button',
+        attrs: {
+          size: 'large',
+          color: 'primary',
+          class: 'text-body-1'
+        }
+      }
+    ],
+    active: true
+  },
+
+  {
+    id: 2,
+    title: 'Кредитная карта с целым годом без %',
+    subtitle: 'Подзаголовок маленький, в две строки',
+    backgroundImg: 'https://images.unsplash.com/photo-1516298773066-c48f8e9bd92b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    active: false
+  },
+
+  {
+    id: 3,
+    title: 'Страхование работников от несчастных случаев',
+    titleAttrs: {
+      class: 'text-h2 mb-0'
+    },
+    backgroundImg: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    buttons: [
+      {
+        id: 0,
+        text: 'Large button',
+        attrs: {
+          size: 'large',
+          color: 'primary',
+          class: 'text-body-1'
+        }
+      }
+    ],
+    active: true
+  },
+
+  {
+    id: 4,
+    title: 'Кредитная карта\n с целым годом без %',
+    subtitle: 'Подзаголовок маленький, в две строки',
+    titleAttrs: {
+      class: 'text-white w-75'
+    },
+    backgroundImg: 'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    buttons: [
+      {
+        id: 0,
+        text: 'Large button',
+        attrs: {
+          size: 'large',
+          color: 'primary',
+          class: 'text-body-1'
+        }
+      }
+    ],
+    active: true
+  },
+]
+
+
 </script>
 
 <style lang="scss">

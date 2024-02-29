@@ -47,7 +47,7 @@
             <div
               class="h-100 py-0"
               :class="[
-                { 'px-12': !sliderContainer },
+                { 'px-9 px-md-12': !sliderContainer },
                 { 'v-container': sliderContainer },
                 {
                   'd-flex flex-column justify-center align-start':
@@ -500,7 +500,8 @@ const zoomStyle = computed(() => ({
 }));
 
 onMounted(() => {
-  activeSlide.value = slider.value.swiper.realIndex;
+  if(!slider.value) return
+  activeSlide.value = slider?.value?.swiper?.realIndex;
   if (pagination.value.length > 0) {
     pagination.value[0].active = true;
   }

@@ -238,10 +238,16 @@ const props = defineProps({
       opacity: 0;
       transition: opacity 0.3s ease;
       color: #fff;
+      @media(max-width: 768px) {
+        opacity: 1;
+      }
     }
 
     &:hover .gallery-image {
       transform: scale(2);
+      @media(max-width: 768px) {
+        transform: scale(1);
+      }
     }
 
     &:hover .gallery-title {

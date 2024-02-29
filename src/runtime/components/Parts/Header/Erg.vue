@@ -55,7 +55,7 @@
           :items="filteredLangs"
           hide-details="true"
           variant="solo"
-          class="mr-0 mr-sm-4 bg-none"
+          class="mr-2 mr-sm-4 bg-none"
           @update:model-value="updateSelectLang"
         />
         <v-btn
