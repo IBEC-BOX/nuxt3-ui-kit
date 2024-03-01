@@ -24,78 +24,11 @@
     <section class="h-100">
       <v-container class=" px-4">
 
-        <partsErgVacancies
-          sheet-color='primary'
-          sheet-rounded='xl'
-          title='Станьте частью команды'
-          sub-title='Мы предлагаем конкурентные зарплаты, социальные гарантии'
-          title-color='#7613da'
-          :gallery="true"
-          :galleryHoverEffect="true"
-          :leftimage="{
-                src: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            attrs: {
-            width: 100 + '%',
-            cover: true,
-            class: 'rounded-s-xl'
-            }
+        <partsSlider
+          :slides="slides2"
+          :static-chips="{
+            text: 'ads'
           }"
-          :chip="{
-          text: 'Вакансии',
-          attrs: {
-          color: 'primary'
-          }
-          }"
-          :galleryImages="[
-          {
-              chip: {
-              attrs: {
-              variant: 'flat',
-            color: 'green'
-            },
-            text: 'asd',
-            },
-                            background: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-
-            title: 'absdffdsfdsfsdfdsds'
-            },
-            {
-            chip: {
-            attrs: {
-            variant: 'flat',
-            color: 'green'
-            },
-            text: 'asd',
-            },
-                                        background: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            title: 'absdffdsfdsfsdfdsds'
-            },
-            {
-            chip: {
-            attrs: {
-            variant: 'flat',
-            color: 'green'
-            },
-            text: 'asd',
-            },
-                                                    background: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-
-            title: 'absdffdsfdsfsdfdsds'
-            },
-            {
-            chip: {
-            attrs: {
-            variant: 'flat',
-            color: 'green'
-            },
-            text: 'asd',
-            },
-                                                                background: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-
-            title: 'absdffdsfdsfsdfdsds'
-            },
-        ]"
-
         />
 
       </v-container>
@@ -122,83 +55,17 @@
 </template>
 
 <script setup>
-const slides = [
+const slides2 = [
   {
     id: 0,
-    title: 'Кредитная карта\n с целым годом без %',
-    subtitle: 'Подзаголовок маленький, в две строки',
-    titleAttrs: {
-      class: 'text-white w-75'
-    },
-    backgroundImg: 'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    buttons: [
-      {
-        id: 0,
-        text: 'Large button',
-        attrs: {
-          size: 'large',
-          color: 'primary',
-          class: 'text-body-1'
-        }
+    chip: {
+      text: 'abvgd',
+      attrs: {
+        color: 'primary'
       }
-    ],
-    active: true
-  },
-
-  {
-    id: 1,
-    title: 'Страхование работников от несчастных случаев',
-    titleAttrs: {
-      class: 'text-h2 mb-0'
     },
-    backgroundImg: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    buttons: [
-      {
-        id: 0,
-        text: 'Large button',
-        attrs: {
-          size: 'large',
-          color: 'primary',
-          class: 'text-body-1'
-        }
-      }
-    ],
-    active: true
-  },
-
-  {
-    id: 2,
     title: 'Кредитная карта с целым годом без %',
     subtitle: 'Подзаголовок маленький, в две строки',
-    backgroundImg: 'https://images.unsplash.com/photo-1516298773066-c48f8e9bd92b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    active: false
-  },
-
-  {
-    id: 3,
-    title: 'Страхование работников от несчастных случаев',
-    titleAttrs: {
-      class: 'text-h2 mb-0'
-    },
-    backgroundImg: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    buttons: [
-      {
-        id: 0,
-        text: 'Large button',
-        attrs: {
-          size: 'large',
-          color: 'primary',
-          class: 'text-body-1'
-        }
-      }
-    ],
-    active: true
-  },
-
-  {
-    id: 4,
-    title: 'Кредитная карта\n с целым годом без %',
-    subtitle: 'Подзаголовок маленький, в две строки',
     titleAttrs: {
       class: 'text-white w-75'
     },
@@ -210,13 +77,72 @@ const slides = [
         attrs: {
           size: 'large',
           color: 'primary',
-          class: 'text-body-1'
+          class: 'text-body-1',
         }
       }
     ],
-    active: true
+    active: true,
+  },
+  {
+    id: 1,
+    chip: {
+      text: 'abvgd',
+      attrs: {
+        color: 'primary'
+      }
+    },
+    title: 'Экологические акции',
+    subtitle: 'Команда АО “ССГПО” активно принимает участие в мероприятиях, направленных на помощь экологии',
+    textBlockAttrs: {
+      class: ''
+    },
+    subTitleAttrs: {
+      class: 'text-primary'
+    },
+    titleAttrs: {
+      class: 'text-primary text-h5 w-75'
+    },
+    img: {
+      src: 'https://s3-alpha-sig.figma.com/img/555c/6876/cb9c4c93facc41f9da4145fa73aca28f?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GuQUtcWbVrWRn1GfwukhEdmCQ9ZxpWBc8-kYGxqc~kInBXYg7QiQUdnC11N6CBJyNYPhZmkMoCyqJLchOvtrizsQiSWQytj96hkeDbtlODJe60UxBq9LQqLWuzCoq8~9-IL~oKeji3ECSklL1VCqbv5NQ-Lxi~ItwX-sunBEXVsx9g9oxZIZrkuIVOfBA9vqYz1PVaG9FrIP7zL5R73ahu0m2V-MLPBe8OUFEQSWbDw9xUPIUKyXOfbm9En80I9oV8k55cLvyNaid-2qCCPtXrm26v7ohCeXQILx1-9j8xBHjy0cLploNutzmGMC0uiPQnr115gYHEhBXaJk2Ez8zA__',
+      attrs: {
+        'max-height': 400,
+        'max-width': '98%',
+        class: 'rounded-xl'
+      }
+    },
+    active: true,
+  },
+  {
+    id: 2,
+    chip: {
+      text: 'abvgd',
+      attrs: {
+        color: 'primary'
+      }
+    },
+    title: 'Экологические акции',
+    subtitle: 'Команда АО “ССГПО” активно принимает участие в мероприятиях, направленных на помощь экологии',
+    textBlockAttrs: {
+      class: ''
+    },
+    subTitleAttrs: {
+      class: 'text-primary'
+    },
+    titleAttrs: {
+      class: 'text-primary text-h5 w-75'
+    },
+    img: {
+      src: 'https://s3-alpha-sig.figma.com/img/555c/6876/cb9c4c93facc41f9da4145fa73aca28f?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GuQUtcWbVrWRn1GfwukhEdmCQ9ZxpWBc8-kYGxqc~kInBXYg7QiQUdnC11N6CBJyNYPhZmkMoCyqJLchOvtrizsQiSWQytj96hkeDbtlODJe60UxBq9LQqLWuzCoq8~9-IL~oKeji3ECSklL1VCqbv5NQ-Lxi~ItwX-sunBEXVsx9g9oxZIZrkuIVOfBA9vqYz1PVaG9FrIP7zL5R73ahu0m2V-MLPBe8OUFEQSWbDw9xUPIUKyXOfbm9En80I9oV8k55cLvyNaid-2qCCPtXrm26v7ohCeXQILx1-9j8xBHjy0cLploNutzmGMC0uiPQnr115gYHEhBXaJk2Ez8zA__',
+      attrs: {
+        'max-height': 400,
+        'max-width': '98%',
+        class: 'rounded-xl'
+      }
+    },
+    active: true,
   },
 ]
+
 
 
 </script>
