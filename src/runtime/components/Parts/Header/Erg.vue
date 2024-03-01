@@ -7,7 +7,7 @@
     <v-container class="d-flex align-center justify-space-between py-0">
       <div class="d-flex flex-grow-1 align-center">
         <nuxt-link
-          to="/"
+          :to="logo.link || '/'"
           class="mr-md-10"
           :style="logoStyle"
         >
@@ -15,6 +15,7 @@
             :src="logo.url"
             :height="logo.height"
             :alt="logo.alt || 'Logo'"
+            v-bind="logo.attrs"
           />
         </nuxt-link>
         <div class="justify-center align-start d-lg-flex d-none flex-column">
@@ -53,6 +54,8 @@
         <v-select
           v-model="selectLang"
           :items="filteredLangs"
+          item-title="name"
+          item-value="code"
           hide-details="true"
           variant="solo"
           class="mr-2 mr-sm-4 bg-none"
@@ -149,11 +152,21 @@ const props = defineProps({
   setLang: {
     type: Array,
     default: () => [
-      'Ru',
-      'Kz',
-      'En'
+      {
+        code: 'ru',
+        name: "Рус"
+      },
+      {
+        code: 'kk',
+        name: "Каз"
+      },
+      {
+        code: 'en',
+        name: "Eng"
+      }
     ]
   },
+  activeLang: { type: String, default: () => '' },
   textBtn: { type: String, default: () => '' },
   bgClassHeader: { type: String, default: () => '' },
   colorClassMenu: { type: String, default: () => '' },
@@ -163,11 +176,11 @@ const props = defineProps({
 const emits = defineEmits(['select-lang', 'button-click'])
 
 const menu_open = ref(false)
-const selectLang = ref('Ru')
+const selectLang = ref(props.activeLang)
 
 const filteredLangs = computed(() => {
   if (!selectLang.value) return props.setLang;
-  return props.setLang.filter(lang => lang !== selectLang.value);
+  return props.setLang.filter(lang => lang.name !== selectLang.value);
 })
 
 const logoStyle = computed(() => {
@@ -191,7 +204,7 @@ const logoStyle = computed(() => {
 
 function updateSelectLang(selectedLang: string) {
   selectLang.value = selectedLang;
-  emits('select-lang', selectedLang);
+  emits('select-lang', selectedLang.code);
 }
 
 const scrollToElement = (selector) => {
@@ -258,7 +271,7 @@ function buttonClick() {
     padding: 8px 10px;
     cursor: pointer;
     &:hover {
-      background: rgba(255, 255, 255, 0.39);
+      background: rgba(255, 255, 255, 0.34);
     }
   }
   .v-field--variant-solo {
@@ -268,7 +281,7 @@ function buttonClick() {
     border-radius: 50px;
     color: #fff;
     &:hover {
-      background: rgba(255, 255, 255, 0.39);
+      background: rgba(255, 255, 255, 0.34);
     }
   }
   .v-field__input {

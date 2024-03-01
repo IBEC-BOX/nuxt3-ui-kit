@@ -8,6 +8,14 @@
       style="position: absolute; width: 100%; height: 100%; z-index: 1"
       cover
     />
+    <v-chip
+      v-if="staticChips"
+      v-bind="staticChips.attrs"
+      class="position-absolute"
+      style="z-index: 10"
+    >
+      {{ staticChips.text }}
+    </v-chip>
     <swiper-container
       v-bind="sliderAttrs"
       ref="slider"
@@ -57,7 +65,7 @@
             >
               <div>
                 <v-chip
-                  v-if="slide.chip"
+                  v-if="slide.chip && !staticChips"
                   v-bind="slide.chip.attrs"
                 >
                   {{ slide.chip.text }}
@@ -329,6 +337,11 @@ const props = defineProps({
   rounded: {
     type: String,
     default: "",
+  },
+
+  staticChips: {
+    type: Object,
+    default: () => ({})
   },
 
   height: {
