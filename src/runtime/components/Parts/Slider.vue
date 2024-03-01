@@ -9,7 +9,7 @@
       cover
     />
     <v-chip
-      v-if="staticChips"
+      v-if="Object.keys(staticChips).length"
       v-bind="staticChips.attrs"
       class="position-absolute"
       style="z-index: 10"
@@ -65,7 +65,7 @@
             >
               <div>
                 <v-chip
-                  v-if="slide.chip && !staticChips"
+                  v-if="slide.chip && !Object.keys(staticChips).length"
                   v-bind="slide.chip.attrs"
                 >
                   {{ slide.chip.text }}

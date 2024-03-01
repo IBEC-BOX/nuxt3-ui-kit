@@ -204,7 +204,8 @@ const logoStyle = computed(() => {
 
 function updateSelectLang(selectedLang: string) {
   selectLang.value = selectedLang;
-  emits('select-lang', selectedLang.code);
+  console.log(selectLang.value)
+  emits('select-lang', selectLang.value);
 }
 
 const scrollToElement = (selector) => {
