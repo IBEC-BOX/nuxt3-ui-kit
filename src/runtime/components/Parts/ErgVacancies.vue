@@ -107,7 +107,7 @@
         <div :class="galleryHoverEffect ? 'gallery-item' : 'position-relative'">
           <v-img
             :src="img.background"
-            class="gallery-image rounded-xl"
+            class="gallery-image"
             width="100%"
             cover
             :height="280"

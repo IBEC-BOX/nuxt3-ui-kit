@@ -2,25 +2,101 @@
   <v-app class="">
     <partsHeaderErg
       :burger="false"
+      :set-lang="[
+        {
+          code: 'ruru',
+          name: 'ru'
+        },
+        {
+          code: 'kakak',
+          name: 'kz'
+        },
+        {
+          code: 'enenen',
+          name: 'eng'
+        }
+      ]
+      "
+      :active-lang="'ru'"
+      @select-lang="asd"
     />
     <NuxtPage />
     <section class="h-100">
       <v-container class=" px-4">
 
-        <partsSlider
-          :height="'400px'"
-          slider-loop='true'
-          slider-centered-slides='false'
-          control-buttons-size="small"
-          control-buttons-color="white"
-          control-buttons-rounded='lg'
-          control-buttons-class='mr-2'
-          control-buttons-elevation="0"
-          slider-container='false'
-          control-buttons-align='left-bottom'
-          :slides="slides"
-        />
+        <partsErgVacancies
+          sheet-color='primary'
+          sheet-rounded='xl'
+          title='Станьте частью команды'
+          sub-title='Мы предлагаем конкурентные зарплаты, социальные гарантии'
+          title-color='#7613da'
+          :gallery="true"
+          :galleryHoverEffect="true"
+          :leftimage="{
+                src: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            attrs: {
+            width: 100 + '%',
+            cover: true,
+            class: 'rounded-s-xl'
+            }
+          }"
+          :chip="{
+          text: 'Вакансии',
+          attrs: {
+          color: 'primary'
+          }
+          }"
+          :galleryImages="[
+          {
+              chip: {
+              attrs: {
+              variant: 'flat',
+            color: 'green'
+            },
+            text: 'asd',
+            },
+                            background: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 
+            title: 'absdffdsfdsfsdfdsds'
+            },
+            {
+            chip: {
+            attrs: {
+            variant: 'flat',
+            color: 'green'
+            },
+            text: 'asd',
+            },
+                                        background: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            title: 'absdffdsfdsfsdfdsds'
+            },
+            {
+            chip: {
+            attrs: {
+            variant: 'flat',
+            color: 'green'
+            },
+            text: 'asd',
+            },
+                                                    background: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+
+            title: 'absdffdsfdsfsdfdsds'
+            },
+            {
+            chip: {
+            attrs: {
+            variant: 'flat',
+            color: 'green'
+            },
+            text: 'asd',
+            },
+                                                                background: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+
+            title: 'absdffdsfdsfsdfdsds'
+            },
+        ]"
+
+        />
 
       </v-container>
     </section>

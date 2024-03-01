@@ -2,7 +2,6 @@
   <v-dialog v-model="value">
     <v-card :rounded="rounded">
       <div
-        v-if="!imgOnly"
         class="w-100 d-flex"
         :class="{'position-absolute pt-5 px-5': imgFluid}"
         style="z-index: 1000"

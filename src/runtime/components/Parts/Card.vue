@@ -39,7 +39,7 @@
         v-bind="textAttrs"
         :class="hoverText ? 'card__text-hover' : ''"
         class="d-flex align-center"
-        @click="openModal = true"
+        @click="openModal = true; event.preventDefault()"
       >
         <v-img
           v-if="textImage"
