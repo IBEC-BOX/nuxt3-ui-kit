@@ -1,5 +1,6 @@
 import type {ThemeDefinition} from "vuetify";
 import {createVuetify} from 'vuetify';
+import 'vuetify/styles'; // pre-build css styles
 
 /* Add all components and directives, for dev & prototyping only. */
 import * as components from 'vuetify/components';
