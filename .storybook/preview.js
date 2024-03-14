@@ -8,7 +8,7 @@ import vuetify from '../src/runtime/plugins/vuetify'
 
 setup((app) => {
   // Registers your app's plugins into Storybook
-  app.use(vuetify)
+  app.use(vuetify(app))
   app.use(pinia)
 });
 

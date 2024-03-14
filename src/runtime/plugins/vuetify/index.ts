@@ -14,7 +14,46 @@ import "@mdi/font/css/materialdesignicons.css"; // Ensure you are using css-load
 import "@fortawesome/fontawesome-free/css/all.css"; // Ensure your project is capable of handling css files
 const aliases = allAliases;
 
+const lightTheme: ThemeDefinition = {
+  dark: false,
+  colors: {
+    primary: "#d35400",
+    'primary-gray': '#74767A',
+    secondary: "#8e44ad",
+    background: "#ecf0f1",
+    error: "#c0392b",
+    'red': "#FB2424",
+    info: "#2980b9",
+    success: "#27ae60",
+    'green': "#44AE76",
+    warning: "#f1c40f",
+  },
+};
+
+const darkTheme: ThemeDefinition = {
+  dark: true,
+  colors: {
+    'black': '#fff',
+    primary: "#d35400",
+    'primary-gray': '#74767A',
+    secondary: "#8e44ad",
+    background: "#2f3640",
+    error: "#c0392b",
+    info: "#2980b9",
+    success: "#27ae60",
+    warning: "#f1c40f",
+  },
+};
+
 const vuetify = (nuxtApp: any) => {
+  const themes = nuxtApp?.$config?.public?.nuxt3UIKitTheme || {
+    defaultTheme: 'light',
+    themes: {
+      light: lightTheme,
+      dark: darkTheme,
+    }
+  };
+
   return createVuetify({
     components,
     directives,
@@ -23,40 +62,11 @@ const vuetify = (nuxtApp: any) => {
       aliases: allAliases,
       sets: {mdi},
     },
-    theme: nuxtApp.$config.public.nuxt3UIKitTheme
+    theme: themes
   });
 };
 
-// const lightTheme: ThemeDefinition = {
-//   dark: false,
-//   colors: {
-//     primary: "#d35400",
-//     'primary-gray': '#74767A',
-//     secondary: "#8e44ad",
-//     background: "#ecf0f1",
-//     error: "#c0392b",
-//     'red': "#FB2424",
-//     info: "#2980b9",
-//     success: "#27ae60",
-//     'green': "#44AE76",
-//     warning: "#f1c40f",
-//   },
-// };
-//
-// const darkTheme: ThemeDefinition = {
-//   dark: true,
-//   colors: {
-//     'black': '#fff',
-//     primary: "#d35400",
-//     'primary-gray': '#74767A',
-//     secondary: "#8e44ad",
-//     background: "#2f3640",
-//     error: "#c0392b",
-//     info: "#2980b9",
-//     success: "#27ae60",
-//     warning: "#f1c40f",
-//   },
-// };
+
 //
 // const vuetify = createVuetify({
 //   components,
