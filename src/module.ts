@@ -9,7 +9,7 @@ import {
 export interface ModuleOptions {
   theme: {
     defaultTheme: string,
-    themes: {
+    themes?: {
       [key: string]: {
         dark: boolean,
         colors: Record<string, string>
@@ -28,22 +28,6 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     theme: {
       defaultTheme: 'light',
-      themes: {
-        dark: {
-          dark: false,
-          colors: {
-            'black': '#fff',
-            primary: "#545151",
-            'primary-gray': '#74767A',
-            secondary: "#8e44ad",
-            background: "#2f3640",
-            error: "#c0392b",
-            info: "#2980b9",
-            success: "#27ae60",
-            warning: "#f1c40f",
-          }
-        },
-      },
     },
     components: []
   },
