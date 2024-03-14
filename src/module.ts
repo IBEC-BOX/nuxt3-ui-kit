@@ -36,6 +36,7 @@ export default defineNuxtModule<ModuleOptions>({
     const resolver = createResolver(import.meta.url);
     const runtimeDir = resolver.resolve("./runtime");
 
+    // @ts-ignore
     nuxt.options.runtimeConfig.public.nuxt3UIKitTheme = options.theme;
 
     const isDevelopment =
