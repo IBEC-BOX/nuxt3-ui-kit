@@ -7,7 +7,15 @@ import {
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
-  theme: string;
+  theme: {
+    defaultTheme: string,
+    themes: {
+      [key: string]: {
+        dark: boolean,
+        colors: Record<string, string>
+      }
+    }
+  };
   components: string[];
 }
 
@@ -18,12 +26,32 @@ export default defineNuxtModule<ModuleOptions>({
   },
   // Default configuration options of the Nuxt module
   defaults: {
-    theme: "light",
+    theme: {
+      defaultTheme: 'light',
+      themes: {
+        dark: {
+          dark: false,
+          colors: {
+            'black': '#fff',
+            primary: "#545151",
+            'primary-gray': '#74767A',
+            secondary: "#8e44ad",
+            background: "#2f3640",
+            error: "#c0392b",
+            info: "#2980b9",
+            success: "#27ae60",
+            warning: "#f1c40f",
+          }
+        },
+      },
+    },
     components: []
   },
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);
     const runtimeDir = resolver.resolve("./runtime");
+
+    nuxt.options.runtimeConfig.public.nuxt3UIKitTheme = options.theme;
 
     const isDevelopment =
       runtimeDir.endsWith("src/runtime") || runtimeDir.endsWith("src\\runtime");
