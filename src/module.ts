@@ -34,22 +34,18 @@ export default defineNuxtModule<ModuleOptions>({
   },
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);
-    const runtimeDir = resolver.resolve("./runtime");
+    // const runtimeDir = resolver.resolve("./runtime");
 
     // @ts-ignore
     nuxt.options.runtimeConfig.public.nuxt3UIKitTheme = options.theme;
 
-    const isDevelopment =
-      runtimeDir.endsWith("src/runtime") || runtimeDir.endsWith("src\\runtime");
-
-    const extension = isDevelopment ? "scss" : "css";
+    // const isDevelopment =
+    //   runtimeDir.endsWith("src/runtime") || runtimeDir.endsWith("src\\runtime");
+    //
+    // const extension = isDevelopment ? "scss" : "css";
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve("./runtime/plugin"));
-
-    nuxt.options.css.push(
-      resolver.resolve(`./runtime/plugins/vuetify/styles.${extension}`)
-    );
 
     // Components
 
