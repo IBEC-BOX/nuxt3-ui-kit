@@ -28,6 +28,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     theme: {
       defaultTheme: 'light',
+      themes: {}
     },
     components: []
   },
