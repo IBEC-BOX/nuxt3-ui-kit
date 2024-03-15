@@ -1,9 +1,30 @@
 <template>
   <v-app class="">
     <partsHeaderErg
+      :burger="false"
+      :bgClassHeader="'bg-primary'"
+      :color-class-menu="'text-white'"
+      :columnGapList="26"
+      :text-btn="'Получить консультацию'"
+      :set-lang="[
+        {
+          code: 'ru',
+          name: 'Ru'
+        },
+        {
+          code: 'kk',
+          name: 'Kz'
+        },
+        {
+          code: 'en',
+          name: 'En'
+        }
+      ]"
+      :active-lang="'Рус'"
+      button-size="large"
     />
-    <NuxtPage />
-    <section class="h-100">
+    <NuxtPage class="bg-primary" />
+    <section class="h-100 bg-primary">
       <v-container class=" px-4">
 
       </v-container>

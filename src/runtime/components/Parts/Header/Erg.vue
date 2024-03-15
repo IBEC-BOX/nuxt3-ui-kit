@@ -1,32 +1,34 @@
 <template>
   <v-app-bar
     class="py-2 erg-header"
-    :class="[menu_open ? 'position-fixed bg-white' : 'position-relative', bgClassHeader || 'bg-none']"
+    :class="[menu_open ? 'position-fixed bg-white' : 'position-relative', bgClassHeader]"
     :elevation="elevation || 0"
   >
     <v-container class="d-flex align-center justify-space-between py-0">
       <div class="d-flex flex-grow-1 align-center">
         <nuxt-link
           :to="logo.link || '/'"
-          class="mr-md-10"
           :style="logoStyle"
+          :class="columnGapList > 28 ? 'mr-md-10' : 'mr-md-6'"
+          class="erg-header-logo-link"
         >
           <v-img
+            class="erg-header-logo"
             :src="logo.url"
             :height="logo.height"
             :alt="logo.alt || 'Logo'"
             v-bind="logo.attrs"
           />
         </nuxt-link>
-        <div class="justify-center align-start d-lg-flex d-none flex-column">
+        <div class="justify-center align-start d-lg-flex d-none flex-column erg-header-wrapper-list">
           <ul
-            class="d-flex align-center"
-            style="column-gap: 32px"
+            class="d-flex align-center erg-header-list"
+            :style="{'column-gap': columnGapList + 'px'}"
           >
             <li
               v-for="menu_item in menu"
               :key="`header-menu-item-${menu_item.id}`"
-              class=""
+              class="erg-header-item"
             >
               <NuxtLink
                 v-if="menu_item.type !== 'anchor'"
@@ -58,17 +60,20 @@
           item-value="code"
           hide-details="true"
           variant="solo"
-          class="mr-2 mr-sm-4 bg-none"
+          class="mr-2 mr-sm-4 bg-none erg-header-select"
           @update:model-value="updateSelectLang"
+          :menu-props="{ class: 'select-lang-header-menu' }"
+          v-bind="selectAttrs"
         />
         <v-btn
-          class="bg-white text-none text-body-1"
+          class="bg-white text-none text-body-1 erg-header-button"
           rounded="xl"
           :class="burger === true ? 'd-none d-lg-block' : ''"
           @click="buttonClick"
+          v-bind="buttonAttrs"
         >
-          <span class="btn-text-full">{{ textBtn || 'Связаться с нами' }}</span>
-          <span class="btn-text-short">{{ getFirstWord(textBtn) || 'Связаться' }}</span>
+          <span class="erg-header-btn-text btn-text-full">{{ textBtn || 'Связаться с нами' }}</span>
+          <span class="erg-header-btn-text btn-text-short">{{ getFirstWord(textBtn) || 'Связаться' }}</span>
         </v-btn>
         <v-app-bar-nav-icon
           v-if="burger"
@@ -115,7 +120,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed } from "vue"
+import { ref, watch, computed, useAttrs } from "vue"
+import { useMainStore } from "../../../store/mainStore";
+const mainStore = useMainStore();
+
+const attrs = useAttrs();
+const selectAttrs = {
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "select"),
+};
+
+const buttonAttrs = {
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "button"),
+};
 
 const props = defineProps({
   logo: {
@@ -170,7 +186,8 @@ const props = defineProps({
   textBtn: { type: String, default: () => '' },
   bgClassHeader: { type: String, default: () => '' },
   colorClassMenu: { type: String, default: () => '' },
-  burger: { type: Boolean, default: true}
+  burger: { type: Boolean, default: true},
+  columnGapList: { type: Number, default: 32 }
 })
 
 const emits = defineEmits(['select-lang', 'button-click'])
@@ -204,7 +221,6 @@ const logoStyle = computed(() => {
 
 function updateSelectLang(selectedLang: string) {
   selectLang.value = selectedLang;
-  console.log(selectLang.value)
   emits('select-lang', selectLang.value);
 }
 
@@ -239,6 +255,29 @@ function buttonClick() {
 </script>
 
 <style lang="scss">
+.select-lang-header-menu {
+  box-shadow: none !important;
+  .v-select__content {
+    box-shadow: none;
+  }
+  .v-list {
+    padding: 0px 0px;
+    background: rgba(255, 255, 255, 0.34) !important;
+    @media(max-width: 600px) {
+      background: rgba(255, 255, 255, 1) !important;
+    }
+    border-radius: 16px !important;
+    margin-top: 10px !important;
+    box-shadow: none !important;
+    .v-list-item {
+      color: #fff !important;
+      @media(max-width: 600px) {
+        color: #000 !important;
+      }
+    }
+  }
+}
+
 @media (max-width: 600px) {
   .btn-text-full {
     display: none;
@@ -258,6 +297,10 @@ function buttonClick() {
 }
 
 .erg-header {
+  .v-select--active-menu {
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.34) !important;
+  }
   ul {
     list-style: none;
   }
