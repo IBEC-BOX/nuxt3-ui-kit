@@ -2,26 +2,29 @@
   <v-app class="">
     <partsHeaderErg
       :burger="false"
+      :bgClassHeader="'bg-primary'"
+      :color-class-menu="'text-white'"
+      :columnGapList="26"
+      :text-btn="'Получить консультацию'"
       :set-lang="[
         {
-          code: 'ruru',
-          name: 'ru'
+          code: 'ru',
+          name: 'Ru'
         },
         {
-          code: 'kakak',
-          name: 'kz'
+          code: 'kk',
+          name: 'Kz'
         },
         {
-          code: 'enenen',
-          name: 'eng'
+          code: 'en',
+          name: 'En'
         }
-      ]
-      "
-      :active-lang="'ru'"
-      @select-lang="asd"
+      ]"
+      :active-lang="'Рус'"
+      button-size="large"
     />
-    <NuxtPage />
-    <section class="h-100">
+    <NuxtPage class="bg-primary" />
+    <section class="h-100 bg-primary">
       <v-container class=" px-4">
 
         <partsForms
@@ -109,7 +112,6 @@
             <p>asdsdfdsf</p>
           </template>
         </partsForms>
-
       </v-container>
     </section>
 
@@ -225,7 +227,6 @@ const slides2 = [
 const formData = (data) => {
   console.log(data)
 }
-
 
 </script>
 

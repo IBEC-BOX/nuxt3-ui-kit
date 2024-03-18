@@ -7,7 +7,15 @@ import {
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
-  theme: string;
+  theme: {
+    defaultTheme: string,
+    themes?: {
+      [key: string]: {
+        dark: boolean,
+        colors: Record<string, string>
+      }
+    }
+  };
   components: string[];
 }
 
@@ -18,24 +26,26 @@ export default defineNuxtModule<ModuleOptions>({
   },
   // Default configuration options of the Nuxt module
   defaults: {
-    theme: "light",
+    theme: {
+      defaultTheme: 'light',
+      themes: {}
+    },
     components: []
   },
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);
-    const runtimeDir = resolver.resolve("./runtime");
+    // const runtimeDir = resolver.resolve("./runtime");
 
-    const isDevelopment =
-      runtimeDir.endsWith("src/runtime") || runtimeDir.endsWith("src\\runtime");
+    // @ts-ignore
+    nuxt.options.runtimeConfig.public.nuxt3UIKitTheme = options.theme;
 
-    const extension = isDevelopment ? "scss" : "css";
+    // const isDevelopment =
+    //   runtimeDir.endsWith("src/runtime") || runtimeDir.endsWith("src\\runtime");
+    //
+    // const extension = isDevelopment ? "scss" : "css";
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve("./runtime/plugin"));
-
-    nuxt.options.css.push(
-      resolver.resolve(`./runtime/plugins/vuetify/styles.${extension}`)
-    );
 
     // Components
 
