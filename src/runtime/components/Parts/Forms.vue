@@ -3,7 +3,7 @@
     v-if="styleForm === 'standard' && (bigImage === '' && smallImage === '')"
     :max-width="Object.keys(commentary).length ? 825 : 1100"
     class="mx-auto custom-ui-form"
-    :class="bgClass"
+    v-bind="sheetAttrs"
   >
     <v-form
       ref="form"
@@ -104,7 +104,7 @@
     v-if="styleForm === 'call' && (bigImage === '' && smallImage === '')"
     :max-width="456"
     class="mx-auto pa-4 custom-ui-form"
-    :class="bgClass"
+    v-bind="sheetAttrs"
   >
     <v-form
       ref="form"
@@ -197,7 +197,7 @@
   <v-sheet
     v-if="bigImage.length || smallImage.length"
     class="mx-auto custom-ui-form"
-    :class="bgClass"
+    v-bind="sheetAttrs"
   >
     <v-form
       ref="form"
@@ -361,6 +361,115 @@
     </v-form>
   </v-sheet>
   <v-sheet
+    v-if="styleForm === 'contacts' && (bigImage === '' && smallImage === '')"
+    class="custom-ui-form w-100 bg-none"
+    v-bind="sheetAttrs"
+  >
+    <v-row>
+      <v-col cols="12" lg="6">
+        <h2 class="mb-10" v-bind="titleAttrs">
+          {{ title }}
+        </h2>
+        <transition name="fade-switch" mode="out-in">
+          <div
+            key="form"
+            v-if="switchContentOnValid ? !confirmForm : true"
+          >
+            <v-form
+              ref="form"
+              @submit.prevent="dataForm($refs.form.isValid)"
+            >
+              <v-row>
+                <v-col
+                  v-for="(input, index) in inputs"
+                  :key="`input-${index}`"
+                  v-bind="input.colsAttrs"
+                  class="mb-1 pa-0 px-3"
+                >
+                  <v-text-field
+                    v-model="inputValues[index]"
+                    v-bind="input.attrs"
+                    v-maska:[input.maska]
+                    class="mb-2"
+                  />
+                </v-col>
+              </v-row>
+              <v-btn
+                type="submit"
+                v-bind="buttonSetting.attrs"
+                class="mt-6"
+              >
+                {{ buttonSetting.text }}
+              </v-btn>
+              <v-checkbox
+                v-if="Object.keys(checkboxSetting).length"
+                v-model="checked"
+                v-bind="checkboxSetting.attrs"
+              >
+                <template #label>
+                  <div v-html="checkboxSetting.label"></div>
+                </template>
+              </v-checkbox>
+            </v-form>
+          </div>
+          <div v-else key="confirmation" v-bind="confirmAttrs" class="d-flex flex-column">
+            <slot name="confirm-form"></slot>
+            <v-btn
+              v-bind="switchContentButton.attrs"
+              @click="confirmForm = !confirmForm"
+            >
+              <v-img :src="switchContentButton.image" width="16" height="16" v-bind="switchContentButton.imageAttrs" v-if="switchContentButton.image" />
+              {{ switchContentButton.text || 'Вернуться обратно' }}
+            </v-btn>
+          </div>
+        </transition>
+
+      </v-col>
+      <v-col cols="12" lg="6">
+        <v-row>
+          <v-col
+            cols="12"
+            sm="6"
+            lg="12"
+            v-for="contact in contacts"
+            :key="contact.title"
+            class="d-flex "
+          >
+            <v-sheet color="none" class="mt-3 form__list-wrapper mb-6 mb-sm-7" :max-width="590">
+              <h2 class="text-dark-1 text-h6 text-sm-h5 font-weight-medium mb-4">{{ contact?.title }}</h2>
+              <ul class="form__list">
+                <li class="d-flex align-start form__list-item" v-if="contact.phone">
+                  <div class="bg-img mr-4">
+                    <v-img :src="contact.imagePhone ? contact.imagePhone : '/phone.svg'" width="20" />
+                  </div>
+                  <div class="d-flex flex-column text-body-1 text-dark-1 font-weight-regular text-sm-h6">
+                    <p v-html="contact?.phone"></p>
+                  </div>
+                </li>
+                <li class="d-flex align-start form__list-item" v-if="contact.mail">
+                  <div class="bg-img mr-4">
+                    <v-img :src="contact.imageMail ? contact.imageMail : '/mail.svg'" width="20" />
+                  </div>
+                  <div class="d-flex flex-column text-body-1 text-dark-1 font-weight-regular text-sm-h6">
+                    <p v-html="contact?.mail"></p>
+                  </div>
+                </li>
+                <li class="d-flex align-start form__list-item" v-if="contact.location">
+                  <div class="bg-img mr-4">
+                    <v-img :src="contact.imageLocation ? contact.imageLocation : '/location.png'" width="20" />
+                  </div>
+                  <div class="d-flex flex-column text-body-1 text-dark-1 font-weight-regular text-sm-h6">
+                    <p v-html="contact?.location"></p>
+                  </div>
+                </li>
+              </ul>
+            </v-sheet>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-sheet>
+  <v-sheet
     v-if="styleForm === 'onlyForm' && (bigImage === '' && smallImage === '')"
     class="custom-ui-form w-100 bg-none"
     v-bind="sheetAttrs"
@@ -417,6 +526,12 @@ const attrs = useAttrs();
 const sheetAttrs = {
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "sheet"),
 };
+const titleAttrs = {
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "title")
+}
+const confirmAttrs = {
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "confirm")
+}
 
 const checked = ref(false)
 const comboboxValue = ref([])
@@ -440,27 +555,35 @@ const props = defineProps({
   combobox: { type: Object, default: () => ({}) },
   socials: { type: Array, default: () => [] },
   infoCompany: { type: Array, default: () => [] },
+  contacts: { type: Array, default: () => [] },
+
+  switchContentOnValid: { type: Boolean, default: () => false},
+  switchContentButton: { type: Object, default: () => ({}) },
 })
 
 const inputValues = ref(props.inputs.map(input => input.value));
-
+const confirmForm = ref(false)
 const dataForm = (validForm) => {
   if(validForm) {
     if(Object.keys(props.combobox).length) {
       if(comboboxValue.value.length && inputValues.value.every(value => value) && checked.value && comValue.value) {
+        confirmForm.value = true
         emit('form-data', [inputValues.value, comboboxValue.value, comValue.value] )
       }
     } else if(Object.keys(props.commentary).length) {
       if(inputValues.value.every(value => value) && checked.value && comValue.value) {
+        confirmForm.value = true
         emit('form-data', [inputValues.value, comValue.value] )
       }
     } else if(!Object.keys(props.checkboxSetting).length) {
       if(inputValues.value.every(value => value)) {
+        confirmForm.value = true
         console.log(inputValues.value)
         emit('form-data', [inputValues.value] )
       }
     } else {
       if(inputValues.value.every(value => value) && checked.value) {
+        confirmForm.value = true
         emit('form-data', [inputValues.value] )
       }
     }
@@ -472,7 +595,29 @@ const dataForm = (validForm) => {
 
 <style lang="scss">
 .custom-ui-form {
+  .fade-switch-enter-active, .fade-switch-leave-active {
+    transition: opacity 0.3s ease;
+  }
 
+  .fade-switch-enter, .fade-switch-leave-to {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+  }
+
+  .fade-switch-enter-to, .fade-switch-leave-from {
+    opacity: 1;
+  }
+  .form__list {
+    &-item {
+      margin-bottom: 14px;
+      .bg-img {
+        background: #fff;
+        padding: 10px;
+        border-radius: 11px;
+      }
+    }
+  }
   .v-checkbox {
     .v-selection-control {
       align-items: start;

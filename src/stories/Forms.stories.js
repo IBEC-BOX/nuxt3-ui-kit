@@ -32,86 +32,100 @@ export default {
   },
 };
 
+const inputs = [
+  {
+    value: '',
+    colsAttrs: {
+      cols: 12,
+    },
+    attrs: {
+      variant: 'outlined',
+      label: "Номер телефона",
+      rules: [
+        v => !!v || 'ФИО обязательно к заполнению',
+        v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+      ],
+      placeholder: "ФИО",
+    },
+    maska: {mask: "###-####-###"},
+  },
+  {
+    value: '',
+    colsAttrs: {
+      cols: 12,
+    },
+    attrs: {
+      variant: 'outlined',
+      label: "Номер телефона",
+      rules: [
+        v => !!v || 'ФИО обязательно к заполнению',
+        v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+      ],
+      placeholder: "ФИО",
+    },
+    maska: {mask: "###-####-###"},
+  },
+  {
+    value: '',
+    colsAttrs: {
+      cols: 12,
+    },
+    attrs: {
+      variant: 'outlined',
+      label: "Номер телефона",
+      rules: [
+        v => !!v || 'ФИО обязательно к заполнению',
+        v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
+      ],
+      placeholder: "ФИО",
+    },
+    maska: {mask: "###-####-###"},
+  },
+]
+const checkbox = {
+  attrs: {
+    color: 'primary',
+    rules: [
+      v => !!v || 'Нажми на флажок!'
+    ],
+  },
+  label: "<span>Нажимая кнопку, я соглашаюсь на обработку <a href='/'>персональных данных</a></span>"
+}
+const button = {
+  attrs: {
+    size: 'x-large',
+    color: 'primary'
+  },
+  text: "Отправить"
+}
+const commentary = {
+  attrs: {
+    variant: 'outlined',
+    label: "комментарий",
+    rules: [
+      v => !!v || 'Комментарий обязателен к заполнению',
+    ],
+    rows: 8,
+  }
+}
+const combobox = {
+  attrs: {
+    variant: 'outlined',
+    label: "выбери пункт",
+    clearable: true,
+    multiple: true,
+    items: ['a', 'b', 'c', 'd', 'e', 'ab', 'bc', 'de']
+  }
+}
+
 // More on writing stories with args: https://storybook.js.org/docs/vue/writing-stories/args
 export const StandardFirst = {
   args: {
     title: "Заполните контактные данные и оставьте заявку на консультацию",
-    inputs: [
-      {
-        value: '',
-        colsAttrs: {
-          cols: 12,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-      {
-        value: '',
-        colsAttrs: {
-          cols: 12,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-      {
-        value: '',
-        colsAttrs: {
-          cols: 12,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-    ],
-    commentary: {
-      attrs: {
-        variant: 'outlined',
-        label: "комментарий",
-        rules: [
-          v => !!v || 'Комментарий обязателен к заполнению',
-        ],
-        rows: 8,
-      }
-    },
-    checkboxSetting: {
-      attrs: {
-        color: 'primary',
-        rules: [
-          v => !!v || 'Нажми на флажок!'
-        ],
-      },
-      label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
-    },
-    buttonSetting: {
-      attrs: {
-        size: 'x-large',
-        color: 'primary'
-      },
-      text: "Отправить"
-    }
+    inputs: inputs,
+    commentary: commentary,
+    checkboxSetting: checkbox,
+    buttonSetting: button
   },
   parameters: {
     design: {
@@ -125,72 +139,9 @@ export const StandardSecond = {
   args: {
     title: "Заполните контактные данные и оставьте заявку на консультацию",
     commentary: false,
-    inputs: [
-      {
-        value: '',
-        colsAttrs: {
-          cols: 12,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-      {
-        value: '',
-        colsAttrs: {
-          cols: 6,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-      {
-        value: '',
-        colsAttrs: {
-          cols: 6,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-    ],
-    checkboxSetting: {
-      attrs: {
-        color: 'primary',
-        rules: [
-          v => !!v || 'Нажми на флажок!'
-        ],
-      },
-      label: "Нажимая кнопку, я соглашаюсь на обработку персональных данных"
-    },
-    buttonSetting: {
-      attrs: {
-        size: 'x-large',
-        color: 'primary'
-      },
-      text: "Отправить"
-    }
+    inputs: inputs,
+    checkboxSetting: checkbox,
+    buttonSetting: button
   }
 }
 
@@ -199,93 +150,11 @@ export const BigImage = {
     title: "Заполните контактные данные и оставьте заявку на консультацию",
     bigImage: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
     altImage: "Kartinka",
-    inputs: [
-      {
-        value: '',
-        colsAttrs: {
-          cols: 12,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-      {
-        value: '',
-        colsAttrs: {
-          cols: 6,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-      {
-        value: '',
-        colsAttrs: {
-          cols: 6,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-    ],
-    checkboxSetting: {
-      attrs: {
-        color: 'primary',
-        rules: [
-          v => !!v || 'Нажми на флажок!'
-        ],
-      },
-      label: "<span>Нажимая кнопку, я соглашаюсь на обработку <a href='/'>персональных данных</a></span>"
-    },
-    buttonSetting: {
-      attrs: {
-        block: true,
-        rounded: 'xl',
-        size: 'x-large',
-        color: 'primary'
-      },
-      text: "Отправить"
-    },
-    commentary: {
-      attrs: {
-        variant: 'outlined',
-        label: "комментарий",
-        rules: [
-          v => !!v || 'Комментарий обязателен к заполнению',
-        ],
-        rows: 4,
-      }
-    },
-    combobox: {
-      attrs: {
-        variant: 'outlined',
-        label: "выбери пункт",
-        clearable: true,
-        multiple: true,
-        items: ['a', 'b', 'c', 'd', 'e', 'ab', 'bc', 'de']
-      }
-    },
+    inputs: inputs,
+    checkboxSetting: checkbox,
+    buttonSetting: button,
+    commentary: commentary,
+    combobox: combobox
   }
 }
 
@@ -294,56 +163,6 @@ export const SmallImage = {
     title: "Заполните контактные данные и оставьте заявку на консультацию",
     smallImage: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
     altImage: "Kartinka",
-    inputs: [
-      {
-        value: '',
-        colsAttrs: {
-          cols: 12,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-      {
-        value: '',
-        colsAttrs: {
-          cols: 6,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-      {
-        value: '',
-        colsAttrs: {
-          cols: 6,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-    ],
     socials: [
       {
         link: '321',
@@ -375,35 +194,10 @@ export const SmallImage = {
         text: "Номер телефона компании"
       },
     ],
-    checkboxSetting: {
-      attrs: {
-        color: 'primary',
-        rules: [
-          v => !!v || 'Нажми на флажок!'
-        ],
-      },
-      label: "<span>Нажимая кнопку, я соглашаюсь на обработку <a href='/'>персональных данных</a></span>"
-
-    },
-    commentary: {
-      attrs: {
-        variant: 'outlined',
-        label: "комментарий",
-        rules: [
-          v => !!v || 'Комментарий обязателен к заполнению',
-        ],
-        rows: 4,
-      }
-    },
-    buttonSetting: {
-      attrs: {
-        block: true,
-        rounded: 'xl',
-        size: 'x-large',
-        color: 'primary'
-      },
-      text: "Отправить"
-    },
+    inputs: inputs,
+    checkboxSetting: checkbox,
+    buttonSetting: button,
+    commentary: commentary,
   }
 }
 
@@ -413,40 +207,6 @@ export const Call = {
     subtitle: "Мы перезывниывкм в течение 30 минут каждый день с 10:00 до 19:00. Если оставите заявку сейчас, то перезвоним уже в рабочее время.",
     commentary: false,
     styleForm: 'call',
-    inputs: [
-      {
-        value: '',
-        colsAttrs: {
-          cols: 12,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-      {
-        value: '',
-        colsAttrs: {
-          cols: 12,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
-      },
-    ],
     socials: [
       {
         link: '321',
@@ -464,22 +224,9 @@ export const Call = {
         alt: '321',
       },
     ],
-    checkboxSetting: {
-      attrs: {
-        color: 'primary',
-        rules: [
-          v => !!v || 'Нажми на флажок!'
-        ],
-      },
-      label: "<span>Нажимая кнопку, я соглашаюсь на обработку <a href='/'>персональных данных</a></span>"
-    },
-    buttonSetting: {
-      attrs: {
-        block: true,
-        size: 'x-large',
-      },
-      text: "Отправить"
-    },
+    inputs: inputs,
+    checkboxSetting: checkbox,
+    buttonSetting: button,
   }
 }
 
@@ -487,46 +234,41 @@ export const OnlyForm = {
   args: {
     title: "Ответим на все ваши вопросы",
     styleForm: 'onlyForm',
-    inputs: [
+    inputs: inputs,
+    buttonSetting: button,
+  }
+}
+
+export const ContactsForm = {
+  components: { Forms },
+
+  args: {
+    title: 'title',
+    styleForm: 'contacts',
+    switchContentOnValid: true,
+    contacts: [
       {
-        value: '',
-        colsAttrs: {
-          cols: 12,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
+        title: 'asd',
+        phone: `<p>+321321321</p><p>+321321321</p>`,
+        mail: 'asdsadasd',
+        mailImage: '/mail.svg'
       },
       {
-        value: '',
-        colsAttrs: {
-          cols: 12,
-        },
-        attrs: {
-          variant: 'outlined',
-          label: "Номер телефона",
-          rules: [
-            v => !!v || 'ФИО обязательно к заполнению',
-            v => (v && v.length <= 10) || 'Имя не должно быть длиннее 10 символов',
-          ],
-          placeholder: "ФИО",
-        },
-        maska: {mask: "###-####-###"},
+        title: 'asd',
+        phone: `<p>+654654654</p><p>+3121231235t4645654</p>`,
+        mail: 'asdsadasd',
+        mailImage: '/mail.svg'
       },
     ],
-    buttonSetting: {
+    inputs: inputs,
+    buttonSetting: button,
+    switchContentButton: {
+      text: 'asdasd',
       attrs: {
-        block: true,
-        size: 'x-large',
-      },
-      text: "Отправить"
+        size: 'large',
+        block: true
+      }
     },
+    'confirm-form': 'slot #confirm-form'
   }
 }

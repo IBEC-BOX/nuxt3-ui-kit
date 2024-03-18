@@ -24,12 +24,91 @@
     <section class="h-100">
       <v-container class=" px-4">
 
-        <partsSlider
-          :slides="slides2"
-          :static-chips="{
-            text: 'ads'
-          }"
-        />
+        <partsForms
+          :style-form="'contacts'"
+          :inputs="[
+                      {
+
+                        colsAttrs: {
+                          cols: 12
+                        },
+                        attrs: {
+                          variant: 'solo',
+                          placeholder: 'asd',
+                          flat: true,
+                          rounded: '16',
+                          clearable: true,
+                          maska: {mask: 'A A'},
+                          rules: [
+                            u => !!u || 'asd',
+                            u => !u || u.length <= 50 || 'Имя не должно быть длиннее 50 символов'
+                          ],
+                        },
+                        value: '',
+                      },
+                      {
+                          placeholder: '+7',
+                          colsAttrs: {
+                            cols: 12
+                          },
+                          maska: {mask: '+7 (###) ###-##-##'},
+                          value: '+7',
+                          attrs: {
+                            variant: 'solo',
+                            placeholder: '+7',
+                            flat: true,
+                            rounded: '16',
+                            clearable: true,
+                            rules: [
+                              u => !!u || 'asd',
+                              u => !u || u.length === 18 || ''
+                            ],
+                          },
+                      }
+                    ]"
+          :button-setting="{
+                      text: 'asd',
+                      attrs: {
+                        block: true,
+                        size: 'x-large',
+                        rounded: 'xl',
+                        color: 'dark-1',
+                        class: 'text-none mb-10',
+                        elevation: 0,
+                      }
+                    }"
+          @form-data="formData"
+          :checkbox-setting="{
+                      attrs: {
+                        class: 'custom-checkbox',
+                        rules: [
+                          u => u || u.length === false || 'asd'
+                        ],
+                      },
+                      label:  `
+                        <span class='text-dark-1 text-body-1'>
+                           'asd'
+                            <a href='/' class='text-dark-1'>
+                                'asd'
+                            </a>
+                        </span>
+                      `
+                    }"
+          title="asdasd"
+          :contacts="[
+            {
+              title: 'asd',
+              phone: `<p>+321321321</p><p>+321321321</p>`,
+              mail: 'asdsadasd'
+            }
+          ]"
+          :switchContentOnValid="true"
+        >
+          <template #confirm-form>
+            <p>asdsdfdsf,</p>
+            <p>asdsdfdsf</p>
+          </template>
+        </partsForms>
 
       </v-container>
     </section>
@@ -143,6 +222,9 @@ const slides2 = [
   },
 ]
 
+const formData = (data) => {
+  console.log(data)
+}
 
 
 </script>
