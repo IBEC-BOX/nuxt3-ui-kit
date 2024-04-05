@@ -61,16 +61,16 @@
           hide-details="true"
           variant="solo"
           class="mr-2 mr-sm-4 bg-none erg-header-select"
-          @update:model-value="updateSelectLang"
           :menu-props="{ class: 'select-lang-header-menu' }"
           v-bind="selectAttrs"
+          @update:model-value="updateSelectLang"
         />
         <v-btn
-          class="bg-white text-none text-body-1 erg-header-button"
+          class="text-none text-body-1 erg-header-button"
           rounded="xl"
-          :class="burger === true ? 'd-none d-lg-block' : ''"
-          @click="buttonClick"
+          :class="burger ? 'd-none d-lg-block' : ''"
           v-bind="buttonAttrs"
+          @click="buttonClick"
         >
           <span class="erg-header-btn-text btn-text-full">{{ textBtn || 'Связаться с нами' }}</span>
           <span class="erg-header-btn-text btn-text-short">{{ getFirstWord(textBtn) || 'Связаться' }}</span>

@@ -142,6 +142,8 @@
                   :href="item.href"
                   class="d-flex align-center"
                   v-bind="navAttrs"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {{ item.text }}
                   <v-img
@@ -182,6 +184,8 @@
                   v-else-if="item.href"
                   class="text-primary"
                   :href="item.href"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {{ item.text }}
                 </a>
@@ -214,6 +218,8 @@
                   v-if="item.img"
                   :href="item.link"
                   v-bind="item.linkAttrs"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <v-img
                     v-if="item.img"
@@ -236,7 +242,7 @@
       <div class="footer-bottom">
         <v-row
           class="d-flex align-center"
-          :class="Object.keys(firstStyleTop).length ? 'pt-7 pb-sm-15' : 'py-3'"
+          :class="[Object.keys(firstStyleTop).length ? 'pt-7 pb-sm-15' : 'py-3', swapCopyrightAndSocials ? 'flex-column-reverse' : '']"
         >
           <v-col
             v-if="logoInBottom === true"
@@ -290,6 +296,8 @@
                 <a
                   v-if="item.href"
                   :href="item.href"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {{ item.text }}
                 </a>
@@ -309,7 +317,11 @@
                 v-for="item in social"
                 :key="item.id"
               >
-                <a :href="item.link">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  :href="item.link"
+                >
                   <v-img
                     aspect-ratio="1/1"
                     class="cursor-pointer mb-4 mb-sm-0"
@@ -352,6 +364,7 @@ const props = defineProps({
   logoInBottom: { type: Boolean, default: false },
   navInBottom: { type: Boolean, default: false },
   storeOnlyMob: { type: Boolean, default: false },
+  swapCopyrightAndSocials: { type: Boolean, default: false },
 
   copyright: { type: Object, default: () => ({
     text: '2023 Untitled UI. All rights reserverd',

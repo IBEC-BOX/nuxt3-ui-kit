@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import Card from "../Parts/Card.vue"
+import Card from "./Card/Default.vue"
 
 const props = defineProps({
   cards: {

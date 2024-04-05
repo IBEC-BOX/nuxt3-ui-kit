@@ -65,10 +65,17 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
-    if (options.components.includes("partsCard")) {
+    if (options.components.includes("partsCardDefault")) {
       addComponent({
-        name: "partsCard", // name of the component to be used in vue templates
-        filePath: resolver.resolve("runtime/components/Parts/Card.vue"),
+        name: "partsCardDefault", // name of the component to be used in vue templates
+        filePath: resolver.resolve("runtime/components/Parts/Card/Default.vue"),
+      });
+    }
+
+    if (options.components.includes("partsCardScale")) {
+      addComponent({
+        name: "partsCardScale", // name of the component to be used in vue templates
+        filePath: resolver.resolve("runtime/components/Parts/Card/Scale.vue"),
       });
     }
 

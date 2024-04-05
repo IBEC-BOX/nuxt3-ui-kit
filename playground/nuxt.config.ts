@@ -38,7 +38,6 @@ export default defineNuxtConfig({
     components: [
       'pagesTestVuetify',
       'partsFooterDefault',
-      'partsCard',
       'partsForms',
       'partsErgVacancies',
       'partsHeaderDefault',
@@ -46,9 +45,11 @@ export default defineNuxtConfig({
       'partsSlider',
       'partsNews',
       'partsModal',
+      'partsCardDefault',
+      'partsCardScale',
     ]
   },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   build: {
     transpile: ['vuetify'],
   }

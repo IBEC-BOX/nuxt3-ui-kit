@@ -366,14 +366,23 @@
     v-bind="sheetAttrs"
   >
     <v-row>
-      <v-col cols="12" lg="6">
-        <h2 class="mb-10" v-bind="titleAttrs">
+      <v-col
+        cols="12"
+        lg="6"
+      >
+        <h2
+          class="mb-10"
+          v-bind="titleAttrs"
+        >
           {{ title }}
         </h2>
-        <transition name="fade-switch" mode="out-in">
+        <transition
+          name="fade-switch"
+          mode="out-in"
+        >
           <div
-            key="form"
             v-if="switchContentOnValid ? !confirmForm : true"
+            key="form"
           >
             <v-form
               ref="form"
@@ -407,59 +416,96 @@
                 v-bind="checkboxSetting.attrs"
               >
                 <template #label>
-                  <div v-html="checkboxSetting.label"></div>
+                  <div v-html="checkboxSetting.label" />
                 </template>
               </v-checkbox>
             </v-form>
           </div>
-          <div v-else key="confirmation" v-bind="confirmAttrs" class="d-flex flex-column">
-            <slot name="confirm-form"></slot>
+          <div
+            v-else
+            key="confirmation"
+            v-bind="confirmAttrs"
+            class="d-flex flex-column"
+          >
+            <slot name="confirm-form" />
             <v-btn
               v-bind="switchContentButton.attrs"
               @click="confirmForm = !confirmForm"
             >
-              <v-img :src="switchContentButton.image" width="16" height="16" v-bind="switchContentButton.imageAttrs" v-if="switchContentButton.image" />
+              <v-img
+                v-if="switchContentButton.image"
+                :src="switchContentButton.image"
+                width="16"
+                height="16"
+                v-bind="switchContentButton.imageAttrs"
+              />
               {{ switchContentButton.text || 'Вернуться обратно' }}
             </v-btn>
           </div>
         </transition>
-
       </v-col>
-      <v-col cols="12" lg="6">
+      <v-col
+        cols="12"
+        lg="6"
+      >
         <v-row>
           <v-col
+            v-for="contact in contacts"
+            :key="contact.title"
             cols="12"
             sm="6"
             lg="12"
-            v-for="contact in contacts"
-            :key="contact.title"
             class="d-flex "
           >
-            <v-sheet color="none" class="mt-3 form__list-wrapper mb-6 mb-sm-7" :max-width="590">
-              <h2 class="text-dark-1 text-h6 text-sm-h5 font-weight-medium mb-4">{{ contact?.title }}</h2>
+            <v-sheet
+              color="none"
+              class="mt-3 form__list-wrapper mb-6 mb-sm-7"
+              :max-width="590"
+            >
+              <h2 class="text-dark-1 text-h6 text-sm-h5 font-weight-medium mb-4">
+                {{ contact?.title }}
+              </h2>
               <ul class="form__list">
-                <li class="d-flex align-start form__list-item" v-if="contact.phone">
+                <li
+                  v-if="contact.phone"
+                  class="d-flex align-start form__list-item"
+                >
                   <div class="bg-img mr-4">
-                    <v-img :src="contact.imagePhone ? contact.imagePhone : '/phone.svg'" width="20" />
+                    <v-img
+                      :src="contact.imagePhone ? contact.imagePhone : '/phone.svg'"
+                      width="20"
+                    />
                   </div>
                   <div class="d-flex flex-column text-body-1 text-dark-1 font-weight-regular text-sm-h6">
-                    <p v-html="contact?.phone"></p>
+                    <p v-html="contact?.phone" />
                   </div>
                 </li>
-                <li class="d-flex align-start form__list-item" v-if="contact.mail">
+                <li
+                  v-if="contact.mail"
+                  class="d-flex align-start form__list-item"
+                >
                   <div class="bg-img mr-4">
-                    <v-img :src="contact.imageMail ? contact.imageMail : '/mail.svg'" width="20" />
+                    <v-img
+                      :src="contact.imageMail ? contact.imageMail : '/mail.svg'"
+                      width="20"
+                    />
                   </div>
                   <div class="d-flex flex-column text-body-1 text-dark-1 font-weight-regular text-sm-h6">
-                    <p v-html="contact?.mail"></p>
+                    <p v-html="contact?.mail" />
                   </div>
                 </li>
-                <li class="d-flex align-start form__list-item" v-if="contact.location">
+                <li
+                  v-if="contact.location"
+                  class="d-flex align-start form__list-item"
+                >
                   <div class="bg-img mr-4">
-                    <v-img :src="contact.imageLocation ? contact.imageLocation : '/location.png'" width="20" />
+                    <v-img
+                      :src="contact.imageLocation ? contact.imageLocation : '/location.png'"
+                      width="20"
+                    />
                   </div>
                   <div class="d-flex flex-column text-body-1 text-dark-1 font-weight-regular text-sm-h6">
-                    <p v-html="contact?.location"></p>
+                    <p v-html="contact?.location" />
                   </div>
                 </li>
               </ul>
@@ -509,7 +555,7 @@
         v-bind="checkboxSetting.attrs"
       >
         <template #label>
-          <div v-html="checkboxSetting.label"></div>
+          <div v-html="checkboxSetting.label" />
         </template>
       </v-checkbox>
     </v-form>
