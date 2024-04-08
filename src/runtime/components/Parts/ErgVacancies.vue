@@ -64,7 +64,7 @@
             <v-btn
               v-bind="button.attrs"
               class="text-none z-index-2 mr-auto"
-              color="white"
+              :color="button.attrs.color || 'white'"
             >
               {{ button.text || 'Связаться с нами' }}
               <v-img
@@ -77,7 +77,6 @@
               />
             </v-btn>
           </div>
-
         </v-col>
         <v-col
           v-if="Object.keys(rightImage).length"

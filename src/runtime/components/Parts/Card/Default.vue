@@ -178,7 +178,7 @@
 </template>
 
 <script setup>
-import { useMainStore } from "../../store/mainStore";
+import { useMainStore } from "../../../store/mainStore";
 import {useAttrs, ref} from "vue";
 const mainStore = useMainStore()
 
