@@ -1,105 +1,110 @@
 <template>
-  <v-container class="erg-vacancies position-relative">
-    <v-img
-      :src="backgroundImage.image"
-      cover
-      class="h-100 w-100 erg-vacancies-bg"
-      v-bind="backgroundImage.attrs"
-      :min-height="536"
-    />
-    <v-sheet
-      v-bind="sheetAttrs"
-      class="sheet position-absolute bg-none"
-      :class="backgroundImage ? 'position-absolute' : ''"
-    >
-      <v-row class="h-100">
-        <v-col
-          v-if="Object.keys(leftImage).length"
-          cols="12"
-          md="6"
-          :style="leftImage ? '' : 'display: contents'"
-        >
-          <v-img
-            :src="leftImage.src"
-            v-bind="leftImage.attrs"
-          />
-        </v-col>
-        <v-col
-          cols="12"
-          :md="Object.keys(leftImage).length || Object.keys(rightImage).length ? 6 : 12"
-          v-bind="bodyAttrs"
-          class="py-0  "
-          :class="Object.keys(leftImage).length || Object.keys(rightImage).length ? 'px-5' : ''"
-        >
-          <v-chip
-            v-if="chip"
-            v-bind="chip.attrs"
-            class="z-index-2"
+  <v-container
+    class="erg-vacancies"
+    :class="positionGallery === 'top' ? 'd-flex flex-column-reverse' : ''"
+  >
+    <div class="position-relative">
+      <v-img
+        :src="backgroundImage.image"
+        cover
+        class="h-100 w-100 erg-vacancies-bg"
+        v-bind="backgroundImage.attrs"
+        :min-height="536"
+      />
+      <v-sheet
+        v-bind="sheetAttrs"
+        class="sheet position-absolute bg-none"
+        :class="backgroundImage ? 'position-absolute' : ''"
+      >
+        <v-row class="h-100">
+          <v-col
+            v-if="Object.keys(leftImage).length"
+            cols="12"
+            md="6"
+            :style="Object.keys(leftImage).length ? '' : 'display: contents'"
           >
-            {{ chip.text }}
-          </v-chip>
-          <div class=" d-flex flex-column justify-end justify-sm-start flex-grow-1 h-100">
-            <div class="vacancies__body position-relative z-index-2">
-              <h2
-                v-if="title"
-                class="mb-2"
-                v-bind="titleAttrs"
-              >
-                {{ title || 'Станьте частью команды' }}
-              </h2>
-              <p
-                v-if="subTitle"
-                class="mb-4"
-                v-bind="subTitleAttrs"
-              >
-                {{ subTitle || 'Мы предлагаем конкурентные зарплаты, социальные гарантии' }}
-              </p>
-              <div
-                v-if="textBody"
-                class="mb-4"
-              >
-                <div v-html="textBody" />
-              </div>
-            </div>
-            <v-btn
-              v-bind="button.attrs"
-              class="text-none z-index-2 mr-auto"
-              :color="button.attrs.color || 'white'"
+            <v-img
+              :src="leftImage.image"
+              v-bind="leftImage.attrs"
+            />
+          </v-col>
+          <v-col
+            cols="12"
+            :md="Object.keys(leftImage).length || Object.keys(rightImage).length ? 6 : 12"
+            v-bind="bodyAttrs"
+            class="py-0  "
+            :class="Object.keys(leftImage).length || Object.keys(rightImage).length ? 'px-5' : ''"
+          >
+            <v-chip
+              v-if="chip"
+              v-bind="chip.attrs"
+              class="z-index-2"
             >
-              {{ button.text || 'Связаться с нами' }}
-              <v-img
-                v-if="button.image"
-                :src="button.image"
-                :width="16"
-                :height="16"
-                class="ml-2"
-                v-bind="button.imageAttrs"
-              />
-            </v-btn>
-          </div>
-        </v-col>
-        <v-col
-          v-if="Object.keys(rightImage).length"
-          cols="12"
-          md="6"
-          :style="rightImage ? '' : 'display: contents'"
-          class="py-0"
-        >
-          <v-img
-            :src="rightImage.src"
-            v-bind="rightImage.attrs"
-          />
-        </v-col>
-      </v-row>
-    </v-sheet>
+              {{ chip.text }}
+            </v-chip>
+            <div class=" d-flex flex-column justify-end justify-sm-start flex-grow-1 h-100">
+              <div class="vacancies__body position-relative z-index-2">
+                <h2
+                  v-if="title"
+                  class="mb-2"
+                  v-bind="titleAttrs"
+                >
+                  {{ title || 'Станьте частью команды' }}
+                </h2>
+                <p
+                  v-if="subTitle"
+                  class="mb-4"
+                  v-bind="subTitleAttrs"
+                >
+                  {{ subTitle || 'Мы предлагаем конкурентные зарплаты, социальные гарантии' }}
+                </p>
+                <div
+                  v-if="textBody"
+                  class="mb-4"
+                >
+                  <div v-html="textBody" />
+                </div>
+              </div>
+              <v-btn
+                v-bind="button.attrs"
+                class="text-none z-index-2 mr-auto"
+                :color="button.attrs?.color ?? 'white'"
+              >
+                {{ button.text || 'Связаться с нами' }}
+                <v-img
+                  v-if="button.image"
+                  :src="button.image"
+                  :width="16"
+                  :height="16"
+                  class="ml-2"
+                  v-bind="button.imageAttrs"
+                />
+              </v-btn>
+            </div>
+          </v-col>
+          <v-col
+            v-if="Object.keys(rightImage).length"
+            cols="12"
+            md="6"
+            :style="rightImage ? '' : 'display: contents'"
+            class="py-0"
+          >
+            <v-img
+              :src="rightImage.image"
+              v-bind="rightImage.attrs"
+            />
+          </v-col>
+        </v-row>
+      </v-sheet>
+    </div>
     <v-row
       v-if="gallery"
       style="flex-wrap: nowrap"
       class="overflow-x-auto"
     >
       <v-col
-        v-for="img in galleryImages"
-        :key="img.src"
+        v-for="(img, index) in galleryImages"
+        :key="`img-col-${index}`"
         cols="3"
         class="gallery-col rounded-xl"
       >
@@ -114,9 +119,11 @@
           <span
             v-if="galleryHoverEffect"
             class="gallery-title text-h5"
-          >{{ img.title }}</span>
+          >
+            {{ img.title }}
+          </span>
           <v-chip
-            v-if="!galleryHoverEffect"
+            v-else
             v-bind="img.chip.attrs"
             class="gallery-chip"
           >
@@ -148,30 +155,21 @@ const bodyAttrs = {
 }
 
 const props = defineProps({
-  backgroundImage: {
-    type: Object,
-    default: () => ({
-      image: ''
-    })
-  },
-  chip: {
-    type: Object,
-    default: () => ({
-      text: 'Вакансии',
-      attrs: {
-        color: 'primary'
-      }
-    })
-  },
-  title: { type: String, default: '' },
-  subTitle: { type: String, default: '' },
+  galleryImages: { type: Array, default: () => ([]) },
+
+  backgroundImage: { type: Object, default: () => ({}) },
   button: { type: Object, default: () => ({}) },
-  textBody: { type: String, default: '' },
   leftImage: { type: Object, default: () => ({}) },
   rightImage: { type: Object, default: () => ({}) },
+  chip: { type: Object, default: () => ({}) },
+
+  title: { type: String, default: '' },
+  subTitle: { type: String, default: '' },
+  textBody: { type: String, default: '' },
+
   gallery: { type: Boolean, default: false },
-  galleryImages: { type: Array, default: () => ([]) },
   galleryHoverEffect: { type: Boolean, default: false },
+  positionGallery: { type: String, default: () => 'bottom' }
 })
 
 
