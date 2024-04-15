@@ -40,6 +40,7 @@ const cards = [
 
 export const Standard = {
   args: {
-    cards: cards
+    cards: cards,
+    'slider-style': 'height: 400px; width: 400px'
   }
 }

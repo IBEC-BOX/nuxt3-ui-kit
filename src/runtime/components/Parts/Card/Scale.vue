@@ -1,8 +1,8 @@
 <template>
-  <div class="products__cards">
+  <div class="products__cards position-relative">
     <div
       v-if="isWideScreen"
-      class="products__cards-scale d-flex"
+      class="products__cards-scale d-flex position-relative"
     >
       <div
         v-for="(card, index) in cards"
