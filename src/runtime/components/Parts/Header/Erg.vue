@@ -61,7 +61,7 @@
           hide-details="true"
           variant="solo"
           class="mr-2 mr-sm-4 bg-none erg-header-select"
-          :menu-props="{ class: 'select-lang-header-menu' }"
+          :menu-props="{ class: classMenuSelect }"
           v-bind="selectAttrs"
           @update:model-value="updateSelectLang"
         />
@@ -73,7 +73,8 @@
           @click="buttonClick"
         >
           <span class="erg-header-btn-text btn-text-full">{{ textBtn || 'Связаться с нами' }}</span>
-          <span class="erg-header-btn-text btn-text-short">{{ getFirstWord(textBtn) || 'Связаться' }}</span>
+          <span v-if="!wordButtonMobile.length" class="erg-header-btn-text btn-text-short">{{ getFirstWord(textBtn) || 'Связаться' }}</span>
+          <span v-else class="erg-header-btn-text btn-text-short">{{ wordButtonMobile }}</span>
         </v-btn>
         <v-app-bar-nav-icon
           v-if="burger"
@@ -187,7 +188,9 @@ const props = defineProps({
   bgClassHeader: { type: String, default: () => '' },
   colorClassMenu: { type: String, default: () => '' },
   burger: { type: Boolean, default: true},
-  columnGapList: { type: Number, default: 32 }
+  columnGapList: { type: Number, default: 32 },
+  classMenuSelect: { type: String, default: () => 'select-lang-header-menu' },
+  wordButtonMobile: { type: String, default: () => '' }
 })
 
 const emits = defineEmits(['select-lang', 'button-click'])

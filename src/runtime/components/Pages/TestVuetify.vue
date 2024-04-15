@@ -6,6 +6,8 @@
       :color-class-menu="'text-white'"
       :column-gap-list="26"
       :text-btn="'Получить консультацию'"
+      :class-menu-select="'asd'"
+      :word-button-mobile="'asdsadsadsa'"
       :set-lang="[
         {
           code: 'ru',
@@ -122,6 +124,7 @@
 </template>
 
 <script setup>
+
 const socialsMedia =  [
   {
     id: 0,
