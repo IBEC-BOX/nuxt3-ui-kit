@@ -65,6 +65,8 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
+    // cards
+
     if (options.components.includes("partsCardDefault")) {
       addComponent({
         name: "partsCardDefault", // name of the component to be used in vue templates
@@ -76,6 +78,20 @@ export default defineNuxtModule<ModuleOptions>({
       addComponent({
         name: "partsCardScale", // name of the component to be used in vue templates
         filePath: resolver.resolve("runtime/components/Parts/Card/Scale.vue"),
+      });
+    }
+
+    if (options.components.includes("partsCardErgNews")) {
+      addComponent({
+        name: "partsCardErgNews", // name of the component to be used in vue templates
+        filePath: resolver.resolve("runtime/components/Parts/Card/ErgNews.vue"),
+      });
+    }
+
+    if (options.components.includes("partsCardErgNewsPagination")) {
+      addComponent({
+        name: "partsCardErgNewsPagination", // name of the component to be used in vue templates
+        filePath: resolver.resolve("runtime/components/Parts/Card/ErgNewsPagination.vue"),
       });
     }
 
@@ -133,11 +149,22 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
+    // files
+
     if (options.components.includes("partsFilesDownloadFiles")) {
       addComponent({
         name: "partsFilesDownloadFiles",
         filePath: resolver.resolve(
           "runtime/components/Parts/Files/DownloadFiles.vue"
+        ),
+      });
+    }
+
+    if (options.components.includes("partsFilesErg")) {
+      addComponent({
+        name: "partsFilesErg",
+        filePath: resolver.resolve(
+          "runtime/components/Parts/Files/Erg.vue"
         ),
       });
     }

@@ -28,76 +28,7 @@
     <NuxtPage class="bg-primary" />
     <section class="h-100 bg-primary">
       <v-container class="px-4">
-        <parts-erg-vacancies
-          sheet-rounded="'xl'"
-          title="'Станьте частью команды'"
-          sub-title="'Мы предлагаем конкурентные зарплаты, социальные гарантии'"
-          title-color="'#7613da'"
-          :gallery="true"
-          :gallery-hover-effect="false"
-          :background-image="
-            {
-              image: '/bg-card.png',
-              attrs: {
-                class: 'my-10 rounded-xl',
-              }
-            }"
-          :gallery-images="[
-            {
-              chip: {
-                attrs: {
-                  variant: 'flat',
-                  color: 'green'
-                },
-                text: 'asd',
-              },
-              background: 'bg-card.png',
-              title: 'absdffdsfdsfsdfdsds'
-            },
-            {
-              chip: {
-                attrs: {
-                  variant: 'flat',
-                  color: 'green'
-                },
-                text: 'asd',
-              },
-              background: 'bg-card.png',
-
-              title: 'absdffdsfdsfsdfdsds'
-            },
-            {
-              chip: {
-                attrs: {
-                  variant: 'flat',
-                  color: 'green'
-                },
-                text: 'asd',
-              },
-              background: 'bg-card.png',
-
-              title: 'absdffdsfdsfsdfdsds'
-            },
-            {
-              chip: {
-                attrs: {
-                  variant: 'flat',
-                  color: 'green'
-                },
-                text: 'asd',
-              },
-              background: 'bg-card.png',
-
-              title: 'absdffdsfdsfsdfdsds'
-            },
-          ]"
-          :chip="{
-            text: 'Вакансии',
-            attrs: {
-              color: 'primary'
-            }
-          }"
-        />
+        <parts-card-erg-news />
       </v-container>
     </section>
 
