@@ -1,7 +1,7 @@
 <template>
   <v-pagination
     v-model="currentPage"
-    :length="pagination?.last_page"
+    :length="paginationLastPage"
     :total-visible="5"
     class="custom-pagination"
     :class="sidesButton ? 'sides-button' : ''"
@@ -55,16 +55,19 @@ const paginationButtonAttrs = ref({
 const currentPage = ref(route.query.page ? parseInt(route.query.page) : 1);
 
 const props = defineProps({
-  pagination: { type: Object, default: () => ({}) },
+  paginationLastPage: { type: Number, default: () => 1 },
   textButtonLeftPagination: { type: String, default: '' },
   textButtonRightPagination: { type: String, default: '' },
   sidesButton: { type: Boolean, default: true, }
 })
 
+defineEmits(['update-pagination'])
+
 function changePage(direction: number) {
   const nextPage = currentPage.value + direction;
-  if (nextPage > 0 && nextPage <= props.pagination.last_page) {
+  if (nextPage > 0 && nextPage <= props.paginationLastPage) {
     currentPage.value = nextPage;
+    emit('update-pagination', currentPage.value)
   }
 }
 </script>
