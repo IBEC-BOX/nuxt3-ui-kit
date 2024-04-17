@@ -61,7 +61,7 @@ const props = defineProps({
   sidesButton: { type: Boolean, default: true, }
 })
 
-defineEmits(['update-pagination'])
+const emit = defineEmits(['update-pagination'])
 
 function changePage(direction: number) {
   const nextPage = currentPage.value + direction;
