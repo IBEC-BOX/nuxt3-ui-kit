@@ -28,7 +28,7 @@
     <NuxtPage class="bg-primary" />
     <section class="h-100 bg-primary">
       <v-container class="px-4">
-        <parts-card-erg-news />
+        <parts-pagination />
       </v-container>
     </section>
 

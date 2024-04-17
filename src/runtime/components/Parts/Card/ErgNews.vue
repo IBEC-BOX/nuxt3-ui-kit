@@ -16,10 +16,16 @@
         class="erg__card__news__wrapper-img"
         v-bind="imageAttrs"
       />
-      <p class="mb-auto erg__card__news__wrapper-title">
+      <p
+        class="mb-auto erg__card__news__wrapper-title"
+        v-bind="titleAttrs"
+      >
         {{ card.title }}
       </p>
-      <span class="erg__card__news__wrapper-date">
+      <span
+        class="erg__card__news__wrapper-date"
+        v-bind="dateAttrs"
+      >
         {{ card.date }}
       </span>
     </div>
@@ -27,6 +33,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue"
 import { useMainStore } from "../../../store/mainStore";
 import { useAttrs } from "vue";
 const mainStore = useMainStore()
@@ -35,9 +42,15 @@ const attrs = useAttrs()
 const wrapperAttrs = {
   ...mainStore.getObjectPropertiesWithPrefix(attrs, 'wrapper')
 }
-const imageAttrs = {
+const titleAttrs = ref({
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title')
+})
+const dateAttrs = ref({
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'date')
+})
+const imageAttrs = ref({
   ...mainStore.getObjectPropertiesWithPrefix(attrs, 'image')
-}
+})
 
 
 const props = defineProps({

@@ -88,13 +88,6 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
-    if (options.components.includes("partsCardErgNewsPagination")) {
-      addComponent({
-        name: "partsCardErgNewsPagination", // name of the component to be used in vue templates
-        filePath: resolver.resolve("runtime/components/Parts/Card/ErgNewsPagination.vue"),
-      });
-    }
-
     if (options.components.includes("partsForms")) {
       addComponent({
         name: "partsForms", // name of the component to be used in vue templates
@@ -165,6 +158,17 @@ export default defineNuxtModule<ModuleOptions>({
         name: "partsFilesErg",
         filePath: resolver.resolve(
           "runtime/components/Parts/Files/Erg.vue"
+        ),
+      });
+    }
+
+    // pagination
+
+    if (options.components.includes("partsPagination")) {
+      addComponent({
+        name: "partsPagination",
+        filePath: resolver.resolve(
+          "runtime/components/Parts/Pagination.vue"
         ),
       });
     }
