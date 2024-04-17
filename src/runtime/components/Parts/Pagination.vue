@@ -4,6 +4,7 @@
     :length="pagination?.last_page"
     :total-visible="5"
     class="custom-pagination"
+    :class="sidesButton ? 'sides-button' : ''"
     v-bind="paginationAttrs"
   >
     <template #prev>
@@ -26,7 +27,7 @@
         v-bind="paginationButtonAttrs"
         @click="changePage(1)"
       >
-        <span class="mr-2 text-18">a{{ textButtonRightPagination }}</span>
+        <span class="mr-2 text-18">{{ textButtonRightPagination }}</span>
         <v-icon size="20">
           mdi-arrow-right
         </v-icon>
@@ -57,6 +58,7 @@ const props = defineProps({
   pagination: { type: Object, default: () => ({}) },
   textButtonLeftPagination: { type: String, default: '' },
   textButtonRightPagination: { type: String, default: '' },
+  sidesButton: { type: Boolean, default: true, }
 })
 
 function changePage(direction: number) {
@@ -68,7 +70,7 @@ function changePage(direction: number) {
 </script>
 
 <style lang="scss">
-.custom-pagination {
+.custom-pagination.sides-button {
   .v-pagination__prev {
     margin-right: auto;
   }
