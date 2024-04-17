@@ -1,16 +1,3 @@
-<script setup lang="ts">
-import { ref } from "vue";
-
-const tabDocs = ref<number | null>(null)
-
-const props = defineProps({
-  contentTabs: { type: Object, default: () => ({}) },
-  theme: { type: String, default: () => 'white' },
-  colorThemeWhite: { type: String, default: () => 'white' },
-  colorThemeBlack: { type: String, default: () => 'black' },
-})
-</script>
-
 <template>
   <v-card
     class="bg-none report__card"
@@ -18,7 +5,7 @@ const props = defineProps({
   >
     <v-tabs
       v-model="tabDocs"
-      :color="theme ? colorThemeWhite : colorThemeBlack"
+      :color="theme === 'white' ? colorThemeWhite : colorThemeBlack"
       class="mb-8"
       show-arrows
     >
@@ -27,7 +14,7 @@ const props = defineProps({
         :key="`tab-${index}`"
         :value="index + 1"
         class="text-h5 px-0"
-        :class="theme ? colorThemeWhite : colorThemeBlack"
+        :class="theme === 'white' ? colorThemeWhite : colorThemeBlack"
       >
         {{ tab.year }}
       </v-tab>
@@ -51,18 +38,19 @@ const props = defineProps({
         >
           <div
             class="pa-2 rounded mr-4 my-1 my-md-2"
-            :class="theme ? colorThemeWhite : colorThemeBlack"
+            :class="theme === 'white' ? colorBackgroundImageWhite : colorBackgroundImageBlack"
           >
             <v-img
               :src="item.file_icon"
               width="28"
               cover
+              v-bind="imageAttrs"
             />
           </div>
           <div class="d-flex flex-column">
             <h6
               class="text-body-1 text-md-h5 mb-1"
-              :class="theme ? colorThemeWhite : colorThemeBlack"
+              :class="theme === 'white' ? colorThemeWhite : colorThemeBlack"
             >
               {{ item.title }}
             </h6>
@@ -81,6 +69,29 @@ const props = defineProps({
     </v-window>
   </v-card>
 </template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { useMainStore } from "../../../store/mainStore";
+import { useAttrs } from "vue";
+
+const mainStore = useMainStore()
+const attrs = useAttrs()
+const imageAttrs = ref({
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'image')
+})
+
+const tabDocs = ref<number | null>(null)
+
+const props = defineProps({
+  contentTabs: { type: Object, default: () => ({}) },
+  theme: { type: String, default: () => 'white' },
+  colorThemeWhite: { type: String, default: () => 'white' },
+  colorThemeBlack: { type: String, default: () => 'black' },
+  colorBackgroundImageWhite: { type: String, default: () => '' },
+  colorBackgroundImageBlack: { type: String, default: () => '' }
+})
+</script>
 
 <style scoped lang="scss">
 .report__card {
