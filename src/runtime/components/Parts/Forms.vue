@@ -420,6 +420,7 @@
                 </template>
               </v-checkbox>
             </v-form>
+            <slot name="form-content" />
           </div>
           <div
             v-else
@@ -453,7 +454,7 @@
             v-for="contact in contacts"
             :key="contact.title"
             cols="12"
-            sm="6"
+            :sm="contacts.length % 2 === 0 ? 6 : 12"
             lg="12"
             class="d-flex "
           >
