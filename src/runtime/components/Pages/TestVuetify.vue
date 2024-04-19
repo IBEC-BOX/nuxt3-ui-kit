@@ -28,7 +28,14 @@
     <NuxtPage class="bg-primary" />
     <section class="h-100 bg-primary">
       <v-container class="px-4">
-        <parts-pagination />
+        <parts-pagination
+          :pagination-total-visible="2"
+          :pagination-last-page="10"
+          :text-button-left-pagination="'asd'"
+          :text-button-right-pagination="'asd'"
+          :word-mobile-pagination="'Страница'"
+          :ellipsis-mobile-pagination="'вп'"
+        />
       </v-container>
     </section>
 
