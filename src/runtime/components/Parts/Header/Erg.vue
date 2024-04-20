@@ -1,7 +1,7 @@
 <template>
   <v-app-bar
-    class="py-2 erg-header"
-    :class="[menu_open ? 'position-fixed bg-white' : 'position-relative', bgClassHeader]"
+    class="py-2 erg-header pt-5"
+    :class="[menu_open ? 'position-fixed bg-white' : 'position-relative', bgClassHeader, burger ? 'erg-header-burger' : '']"
     :elevation="elevation || 0"
   >
     <v-container class="d-flex align-center justify-space-between py-0">
@@ -62,6 +62,7 @@
           hide-details="true"
           variant="solo"
           class="mr-2 mr-sm-4 bg-none erg-header-select"
+          :class="burger ? 'control-select' : ''"
           :menu-props="{ class: classMenuSelect }"
           v-bind="selectAttrs"
           @update:model-value="updateSelectLang"
@@ -86,6 +87,7 @@
         <v-btn
           icon
           @click="menu_open = !menu_open"
+          class="d-block d-lg-none"
         >
           <v-icon>
             {{ menu_open ? 'mdi-close' : 'mdi-menu' }}
@@ -107,11 +109,12 @@
         :class="{'open': menu_open}"
       >
         <li
-          v-for="menu_item in menu"
+          v-for="(menu_item, index) in menuMobile"
           :key="`header-menu-item-${menu_item.id}`"
+          :class="index === menuMobile.length - 1 ? '' : 'mb-6'"
         >
           <NuxtLink
-            class="header-menu-link"
+            class="header-menu-link d-flex align-center"
             active-class="header-menu-link-active"
             :to="menu_item.to"
             :href="menu_item.href"
@@ -122,11 +125,13 @@
             <v-img
               v-if="menu_item.icon"
               :src="menu_item.icon"
+              width="32"
+              height="32"
             />
           </NuxtLink>
         </li>
       </ul>
-      <div class="d-flex justify-center">
+      <div class="d-flex justify-center mb-16">
         <v-btn
           v-for="(lang, index) in setLang"
           :key="`lang-mobile-${index}`"
@@ -144,16 +149,14 @@
       </div>
     </div>
 
-    <v-spacer></v-spacer>
-
     <v-btn
-      class="text-none text-body-1 erg-header-button mb-16"
+      class="text-none text-body-1 erg-header-button mt-10 mb-16"
       rounded="xl"
       block
       v-bind="buttonDrawerAttrs"
-      @click="buttonClick"
-      color="primary"
       size="x-large"
+      @click="buttonClick; menu_open = false"
+      color="primary"
     >
       <span class="erg-header-btn-text btn-text-full">{{ textBtn || 'Связаться с нами' }}</span>
       <span
@@ -179,19 +182,15 @@ const attrs = useAttrs();
 const selectAttrs = ref({
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "select"),
 });
-
 const buttonAttrs = ref({
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "button"),
 });
-
 const buttonDrawerAttrs = ref({
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "button-drawer"),
 });
-
 const selectLangMobileButtonAttrs = ref({
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "select-lang-mobile"),
 });
-
 const navigationDrawerAttrs = ref({
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "navigation-drawer"),
 })
@@ -228,6 +227,10 @@ const props = defineProps({
       }
     ]
   },
+  menuMobile: {
+    type: Array,
+    default: () => ([])
+  },
   setLang: {
     type: Array,
     default: () => [
@@ -249,7 +252,7 @@ const props = defineProps({
   textBtn: { type: String, default: () => '' },
   bgClassHeader: { type: String, default: () => '' },
   colorClassMenu: { type: String, default: () => '' },
-  burger: { type: Boolean, default: true},
+  burger: { type: Boolean, default: true },
   columnGapList: { type: Number, default: 32 },
   classMenuSelect: { type: String, default: () => 'select-lang-header-menu' },
   wordButtonMobile: { type: String, default: () => '' },
@@ -327,6 +330,10 @@ function buttonClick() {
 }
 .custom-navigation-drawer {
   position: relative;
+  .v-navigation-drawer__content {
+    display: flex;
+    flex-direction: column;
+  }
   .v-btn--block {
     flex: 0 0 auto
   }
@@ -386,6 +393,15 @@ function buttonClick() {
     display: none;
   }
 }
+
+.control-select {
+  display: none;
+  @media(min-width: 1280px) {
+    display: grid;
+  }
+}
+
+
 
 .erg-header {
   .v-select--active-menu {
