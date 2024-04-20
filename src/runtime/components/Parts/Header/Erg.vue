@@ -17,6 +17,7 @@
             :src="logo.url"
             :height="logo.height"
             :alt="logo.alt || 'Logo'"
+            :class="{'open-menu-header-logo': menu_open}"
             v-bind="logo.attrs"
           />
         </nuxt-link>
@@ -73,50 +74,99 @@
           @click="buttonClick"
         >
           <span class="erg-header-btn-text btn-text-full">{{ textBtn || 'Связаться с нами' }}</span>
-          <span v-if="!wordButtonMobile.length" class="erg-header-btn-text btn-text-short">{{ getFirstWord(textBtn) || 'Связаться' }}</span>
-          <span v-else class="erg-header-btn-text btn-text-short">{{ wordButtonMobile }}</span>
+          <span
+            v-if="!wordButtonMobile.length"
+            class="erg-header-btn-text btn-text-short"
+          >{{ getFirstWord(textBtn) || 'Связаться' }}</span>
+          <span
+            v-else
+            class="erg-header-btn-text btn-text-short"
+          >{{ wordButtonMobile }}</span>
         </v-btn>
-        <v-app-bar-nav-icon
-          v-if="burger"
-          class="d-block d-lg-none my-auto"
+        <v-btn
+          icon
           @click="menu_open = !menu_open"
-        />
+        >
+          <v-icon>
+            {{ menu_open ? 'mdi-close' : 'mdi-menu' }}
+          </v-icon>
+        </v-btn>
       </div>
     </v-container>
   </v-app-bar>
   <v-navigation-drawer
     v-if="burger"
     v-model="menu_open"
-    class="w-100 h-100 d-flex d-lg-none py-5 px-4"
-    location="left"
+    class="w-100 h-100 d-flex d-lg-none py-5 px-4 pb-16 custom-navigation-drawer"
+    location="top"
+    v-bind="navigationDrawerAttrs"
   >
-    <ul
-      class="header-menu-mobile w-100 d-flex flex-column"
-      :class="{'open': menu_open}"
-    >
-      <li
-        v-for="menu_item in menu"
-        :key="`header-menu-item-${menu_item.id}`"
+    <div class="d-flex flex-column">
+      <ul
+        class="header-menu-mobile w-100 d-flex flex-column mb-10 align-center"
+        :class="{'open': menu_open}"
       >
-        <NuxtLink
-          class="header-menu-link"
-          active-class="header-menu-link-active"
-          :to="menu_item.to"
+        <li
+          v-for="menu_item in menu"
+          :key="`header-menu-item-${menu_item.id}`"
         >
-          {{ menu_item.title }}
-        </NuxtLink>
-      </li>
-    </ul>
+          <NuxtLink
+            class="header-menu-link"
+            active-class="header-menu-link-active"
+            :to="menu_item.to"
+            :href="menu_item.href"
+            rel="noopener noreferrer"
+            :target="menu_item.href ? '_target' : '_parent'"
+          >
+            {{ menu_item.title }}
+            <v-img
+              v-if="menu_item.icon"
+              :src="menu_item.icon"
+            />
+          </NuxtLink>
+        </li>
+      </ul>
+      <div class="d-flex justify-center">
+        <v-btn
+          v-for="(lang, index) in setLang"
+          :key="`lang-mobile-${index}`"
+          v-bind="selectLangMobileButtonAttrs"
+          variant="text"
+          class="text-h6"
+          @click="updateSelectLang(lang.code)"
+        >
+        <span
+          :class="activeLang === lang.name ? colorActiveLangMobile : colorLangMobile"
+        >
+          {{ lang.name }}
+        </span>
+        </v-btn>
+      </div>
+    </div>
+
+    <v-spacer></v-spacer>
 
     <v-btn
-      class="bg-white text-none text-body-1"
-      block
-      size="large"
+      class="text-none text-body-1 erg-header-button mb-16"
       rounded="xl"
+      block
+      v-bind="buttonDrawerAttrs"
       @click="buttonClick"
+      color="primary"
+      size="x-large"
     >
-      {{ textBtn || 'Связаться с нами' }}
+      <span class="erg-header-btn-text btn-text-full">{{ textBtn || 'Связаться с нами' }}</span>
+      <span
+        v-if="!wordButtonMobile.length"
+        class="erg-header-btn-text btn-text-short"
+      >{{ getFirstWord(textBtn) || 'Связаться' }}</span>
+      <span
+        v-else
+        class="erg-header-btn-text btn-text-short"
+      >{{ wordButtonMobile }}</span>
     </v-btn>
+
+
   </v-navigation-drawer>
 </template>
 
@@ -126,13 +176,25 @@ import { useMainStore } from "../../../store/mainStore";
 const mainStore = useMainStore();
 
 const attrs = useAttrs();
-const selectAttrs = {
+const selectAttrs = ref({
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "select"),
-};
+});
 
-const buttonAttrs = {
+const buttonAttrs = ref({
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "button"),
-};
+});
+
+const buttonDrawerAttrs = ref({
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "button-drawer"),
+});
+
+const selectLangMobileButtonAttrs = ref({
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "select-lang-mobile"),
+});
+
+const navigationDrawerAttrs = ref({
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "navigation-drawer"),
+})
 
 const props = defineProps({
   logo: {
@@ -149,7 +211,7 @@ const props = defineProps({
     default: () => [
       {
         title: "О компании",
-        url: "/about"
+        href: "/"
       },
       {
         title: "Продукты и услуги",
@@ -190,7 +252,9 @@ const props = defineProps({
   burger: { type: Boolean, default: true},
   columnGapList: { type: Number, default: 32 },
   classMenuSelect: { type: String, default: () => 'select-lang-header-menu' },
-  wordButtonMobile: { type: String, default: () => '' }
+  wordButtonMobile: { type: String, default: () => '' },
+  colorActiveLangMobile: { type: String, default: () => '' },
+  colorLangMobile: { type: String, default: () => '' },
 })
 
 const emits = defineEmits(['select-lang', 'button-click'])
@@ -258,6 +322,30 @@ function buttonClick() {
 </script>
 
 <style lang="scss">
+.open-menu-header-logo {
+  filter: invert(19%) sepia(10%) saturate(398%) hue-rotate(169deg) brightness(100%) contrast(0%);
+}
+.custom-navigation-drawer {
+  position: relative;
+  .v-btn--block {
+    flex: 0 0 auto
+  }
+  ul {
+    list-style: none;
+  }
+  .header-menu-link {
+    text-decoration: none;
+    font-size: 32px;
+  }
+  .erg-header-logo-link {
+    position: absolute;
+    top: 0px;
+    z-index: 10;
+    img {
+
+    }
+  }
+}
 .select-lang-header-menu {
   box-shadow: none !important;
   .v-select__content {
