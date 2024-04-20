@@ -1,7 +1,7 @@
 <template>
   <v-app class="">
     <partsHeaderErg
-      :burger="false"
+      :burger="true"
       :bg-class-header="'bg-primary'"
       :color-class-menu="'text-white'"
       :column-gap-list="26"
@@ -22,8 +22,9 @@
           name: 'En'
         }
       ]"
-      :active-lang="'Рус'"
+      :active-lang="'Ru'"
       button-size="large"
+      :color-active-lang-mobile="'text-primary'"
     />
     <NuxtPage class="bg-primary" />
     <section class="h-100 bg-primary">
