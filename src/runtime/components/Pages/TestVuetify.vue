@@ -25,6 +25,17 @@
       :active-lang="'Ru'"
       button-size="large"
       :color-active-lang-mobile="'text-primary'"
+      :menu-mobile="[
+        {
+          title: 'asd'
+        },
+        {
+          title: 'asd'
+        },
+        {
+          title: 'asd'
+        },
+      ]"
     />
     <NuxtPage class="bg-primary" />
     <section class="h-100 bg-primary">
