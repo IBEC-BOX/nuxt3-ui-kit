@@ -3,6 +3,7 @@
     class="py-2 erg-header pt-5"
     :class="[menu_open ? 'position-fixed bg-white' : 'position-relative', bgClassHeader, burger ? 'erg-header-burger' : '']"
     :elevation="elevation || 0"
+    :style="{positionFixed: burger}"
   >
     <v-container class="d-flex align-center justify-space-between py-0">
       <div class="d-flex flex-grow-1 align-center">
@@ -89,7 +90,7 @@
           @click="menu_open = !menu_open"
           class="d-block d-lg-none"
         >
-          <v-icon>
+          <v-icon :color="menu_open ? colorBurgerOpen : colorBurger">
             {{ menu_open ? 'mdi-close' : 'mdi-menu' }}
           </v-icon>
         </v-btn>
@@ -125,8 +126,7 @@
             <v-img
               v-if="menu_item.icon"
               :src="menu_item.icon"
-              width="32"
-              height="32"
+              v-bind="menu_item.iconAttrs"
             />
           </NuxtLink>
         </li>
@@ -140,9 +140,7 @@
           class="text-h6"
           @click="updateSelectLang(lang.code)"
         >
-        <span
-          :class="activeLang === lang.name ? colorActiveLangMobile : colorLangMobile"
-        >
+        <span :class="activeLang === lang.code ? colorActiveLangMobile : colorLangMobile">
           {{ lang.name }}
         </span>
         </v-btn>
@@ -258,6 +256,8 @@ const props = defineProps({
   wordButtonMobile: { type: String, default: () => '' },
   colorActiveLangMobile: { type: String, default: () => '' },
   colorLangMobile: { type: String, default: () => '' },
+  colorBurger: { type: String, default: () => '' },
+  colorBurgerOpen: { type: String, default: () => '' }
 })
 
 const emits = defineEmits(['select-lang', 'button-click'])
@@ -333,6 +333,7 @@ function buttonClick() {
   .v-navigation-drawer__content {
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
   .v-btn--block {
     flex: 0 0 auto
