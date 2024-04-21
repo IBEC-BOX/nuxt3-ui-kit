@@ -3,7 +3,7 @@
     class="py-2 erg-header pt-5"
     :class="[menu_open ? 'position-fixed bg-white' : 'position-relative', bgClassHeader, burger ? 'erg-header-burger' : '']"
     :elevation="elevation || 0"
-    :style="{positionFixed: burger}"
+    :style="menu_open ? 'position: fixed !important;' : ''"
   >
     <v-container class="d-flex align-center justify-space-between py-0">
       <div class="d-flex flex-grow-1 align-center">
