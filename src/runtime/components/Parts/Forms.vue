@@ -426,7 +426,7 @@
             v-else
             key="confirmation"
             v-bind="confirmAttrs"
-            class="d-flex flex-column"
+            class="d-flex flex-column align-sm-start"
           >
             <slot name="confirm-form" />
             <v-btn
