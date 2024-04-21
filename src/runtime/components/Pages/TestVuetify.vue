@@ -22,7 +22,7 @@
           name: 'En'
         }
       ]"
-      :active-lang="'Ru'"
+      :active-lang="'kk'"
       button-size="large"
       :color-active-lang-mobile="'text-primary'"
       :menu-mobile="[
@@ -36,6 +36,8 @@
           title: 'asd'
         },
       ]"
+      :color-burger="'black'"
+      :color-burger-open="'secondary'"
     />
     <NuxtPage class="bg-primary" />
     <section class="h-100 bg-primary">
