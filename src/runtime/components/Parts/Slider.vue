@@ -78,6 +78,7 @@
                 >
                   {{ slide.title }}
                 </component>
+                <!-- Slide title -->
 
                 <p
                   v-if="slide.subtitle"
@@ -85,7 +86,12 @@
                 >
                   {{ slide.subtitle }}
                 </p>
-                <!-- Slide title -->
+
+                <div
+                  v-if="slide.subTitleHTML"
+                  v-html="slide.subTitleHTML"
+                  v-bind="slide.subTitleAttrs"
+                />
               </div>
 
 

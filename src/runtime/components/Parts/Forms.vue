@@ -451,17 +451,18 @@
       >
         <v-row>
           <v-col
-            v-for="contact in contacts"
+            v-for="(contact, index) in contacts"
             :key="contact.title"
             cols="12"
             :sm="contacts.length % 2 === 0 ? 6 : 12"
             lg="12"
-            class="d-flex "
+            class="d-flex justify-lg-end"
           >
             <v-sheet
               color="none"
-              class="mt-3 form__list-wrapper mb-6 mb-sm-7"
+              class="mt-3 form__list-wrapper"
               :max-width="590"
+              :class="index === contacts.length - 1 ? '' : 'mb-6 mb-sm-7'"
             >
               <h2 class="text-dark-1 text-h6 text-sm-h5 font-weight-medium mb-4">
                 {{ contact?.title }}

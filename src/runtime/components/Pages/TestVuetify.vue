@@ -42,13 +42,13 @@
     <NuxtPage class="bg-primary" />
     <section class="h-100 bg-primary">
       <v-container class="px-4">
-        <parts-pagination
-          :pagination-total-visible="2"
-          :pagination-last-page="10"
-          :text-button-left-pagination="'asd'"
-          :text-button-right-pagination="'asd'"
-          :word-mobile-pagination="'Страница'"
-          :ellipsis-mobile-pagination="'вп'"
+        <pages-error-erg
+          :error="{
+            statusCode: 404
+          }"
+          :title="'page not found'"
+          :subtitle="'page not foundpage not foundpage not foundpage not foundpage not foundpage not found'"
+          :text-button="'page not found'"
         />
       </v-container>
     </section>

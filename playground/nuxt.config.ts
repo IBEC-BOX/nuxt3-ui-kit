@@ -49,7 +49,8 @@ export default defineNuxtConfig({
       'partsCardScale',
       'partsCardErgNews',
       'partsFilesErg',
-      'partsPagination'
+      'partsPagination',
+      'pagesErrorErg'
     ]
   },
   devtools: { enabled: false },
