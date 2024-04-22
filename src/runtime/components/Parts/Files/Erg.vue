@@ -32,7 +32,7 @@
           v-for="item in content.data"
           :key="item.title"
           ref="noreferrer noopener"
-          :href="item.file || item.link"
+          :href="item.file.url || item.link"
           class="text-decoration-none text-white d-flex align-start align-md-center mb-7"
           target="_blank"
         >
