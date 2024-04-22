@@ -172,5 +172,16 @@ export default defineNuxtModule<ModuleOptions>({
         ),
       });
     }
+
+    // error page
+
+    if (options.components.includes("pagesErrorErg")) {
+      addComponent({
+        name: "pagesErrorErg",
+        filePath: resolver.resolve(
+          "runtime/components/Pages/Error/Erg.vue"
+        ),
+      });
+    }
   },
 });
