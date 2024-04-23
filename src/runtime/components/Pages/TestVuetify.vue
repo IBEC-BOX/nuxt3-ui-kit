@@ -42,13 +42,9 @@
     <NuxtPage class="bg-primary" />
     <section class="h-100 bg-primary">
       <v-container class="px-4">
-        <pages-error-erg
-          :error="{
-            statusCode: 404
-          }"
-          :title="'page not found'"
-          :subtitle="'page not foundpage not foundpage not foundpage not foundpage not foundpage not found'"
-          :text-button="'page not found'"
+        <parts-files-erg
+          display-mode="select"
+          :content-select="Tabs"
         />
       </v-container>
     </section>
@@ -76,6 +72,71 @@
 </template>
 
 <script setup>
+
+const Tabs = [
+  {
+    year: 2024,
+    data: [
+      {
+        extension:"docx",
+        file: {
+          mime:"application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          size:6109,
+          url:"http://backend-ergla.ibec.systems/storage/83/01HVG93VT2DKTKSRPSRTPXAS01.docx",
+        },
+        file_icon:"",
+        file_size_kb:"6 KB",
+        published_at:"2024-04-15 12:04:04",
+        published_file:"15.04.2024",
+        title:"Отчет об исполнении ИП ДГОК тепло за 2021 год",
+      },
+      {
+        extension:"unknown",
+        file_icon:"",
+        link:null,
+        published_at:"2024-04-16 09:55:05",
+        published_file:"16.04.2024",
+        title:"Отчет об исполнении ИП ДГОК тепло за 2021 год",
+      },
+      {
+        extension:"unknown",
+        file_icon:"",
+        link:'http://backend-ergla.ibec.systems/storage/83/01HVG93VT2DKTKSRPSRTPXAS01.docx',
+        published_at:"2024-04-16 09:55:05",
+        published_file:"16.04.2024",
+        title:"Отчет об исполнении ИП ДГОК тепло за 2021 год",
+      }
+    ],
+  },
+  {
+    year: 2023,
+    data: [
+      {
+        extension:"docx",
+        file: {
+          mime:"application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          size:6109,
+          url:"http://backend-ergla.ibec.systems/storage/83/01HVG93VT2DKTKSRPSRTPXAS01.docx",
+        },
+        file_icon:"",
+
+        file_size_kb:"6 KB",
+        published_at:"2024-04-15 12:04:04",
+        published_file:"15.04.2024",
+        title:"Отчет об исполнении ИП ДГОК тепло за 2021 год",
+      },
+      {
+        extension:"unknown",
+        file_icon:"",
+
+        link:'http://backend-ergla.ibec.systems/storage/83/01HVG93VT2DKTKSRPSRTPXAS01.docx',
+        published_at:"2024-04-16 09:55:05",
+        published_file:"16.04.2024",
+        title:"Отчет об исполнении ИП ДГОК тепло за 2021 год",
+      }
+    ],
+  },
+]
 
 const socialsMedia =  [
   {
