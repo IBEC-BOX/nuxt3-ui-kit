@@ -272,6 +272,7 @@
             >
               {{ copyright.text }}
             </p>
+            <slot name="copyright" />
           </v-col>
           <v-col
             v-if="navInBottom === true"
