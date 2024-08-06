@@ -368,7 +368,7 @@
     <v-row>
       <v-col
         cols="12"
-        lg="6"
+        :lg="contacts.length ? 6 : 12"
       >
         <h2
           class="mb-10"
@@ -448,6 +448,7 @@
       <v-col
         cols="12"
         lg="6"
+        v-if="contacts.length"
       >
         <v-row>
           <v-col
