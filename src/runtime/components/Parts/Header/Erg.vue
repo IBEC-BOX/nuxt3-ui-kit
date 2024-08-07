@@ -89,6 +89,7 @@
           icon
           @click="menu_open = !menu_open"
           class="d-block d-lg-none"
+          v-if="burger"
         >
           <v-icon :color="menu_open ? colorBurgerOpen : colorBurger">
             {{ menu_open ? 'mdi-close' : 'mdi-menu' }}
