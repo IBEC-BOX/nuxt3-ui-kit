@@ -443,13 +443,13 @@ const slideTo = (index) => {
 };
 
 const slidePrev = () => {
-  if (slider.value !== null) {
+  if (slider.value && slider.value.swiper) {
     slider.value.swiper.slidePrev(500);
   }
 };
 
 const slideNext = () => {
-  if (slider.value !== null) {
+  if (slider.value && slider.value.swiper) {
     slider.value.swiper.slideNext(500);
   }
 };
