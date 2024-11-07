@@ -10,5 +10,5 @@ export default defineNuxtPlugin(nuxtApp => {
   nuxtApp.vueApp.use(vuetifyInstance);
   nuxtApp.vueApp.directive("maska", vMaska);
 
-  if (!process.server) console.log('❤️ Initialized Vuetify 3', vuetifyInstance);
+  if (!process.server && process.env.NODE_ENV !== 'production') console.log('❤️ Initialized Vuetify 3', vuetifyInstance);
 });

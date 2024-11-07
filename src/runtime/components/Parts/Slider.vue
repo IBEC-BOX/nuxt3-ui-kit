@@ -432,9 +432,8 @@ const props = defineProps({
 });
 
 const slider = ref(null);
-
 const activeSlide = ref(0);
-const pagination = ref(props.slides);
+const pagination = ref(props.slides || []);
 
 const slideTo = (index) => {
   if (slider.value !== null) {
@@ -442,15 +441,15 @@ const slideTo = (index) => {
   }
 };
 
-const slidePrev = () => {
-  if (slider.value && slider.value.swiper) {
-    slider.value.swiper.slidePrev(500);
+const slideNext = () => {
+  if (slider.value?.swiper) {
+    slider.value.swiper.slideNext(500);
   }
 };
 
-const slideNext = () => {
-  if (slider.value && slider.value.swiper) {
-    slider.value.swiper.slideNext(500);
+const slidePrev = () => {
+  if (slider.value?.swiper) {
+    slider.value.swiper.slidePrev(500);
   }
 };
 
@@ -465,70 +464,56 @@ const updatePagination = () => {
 };
 
 const handleWheel = (event) => {
-  if (!slider.value || !props.controlScroll) return;
+  if (!slider.value?.swiper || !props.controlScroll) return;
 
-  const isAtStart = slider.value.swiper.isBeginning;
-  const isAtEnd = slider.value.swiper.isEnd;
-
-  if ((!isAtStart && event.deltaY < 0) || (!isAtEnd && event.deltaY > 0)) {
+  const swiperInstance = slider.value.swiper;
+  if ((!swiperInstance.isBeginning && event.deltaY < 0) || (!swiperInstance.isEnd && event.deltaY > 0)) {
     event.preventDefault();
-    if (event.deltaY > 0) {
-      slider.value.swiper.slideNext();
-    } else {
-      slider.value.swiper.slidePrev();
-    }
+    event.deltaY > 0 ? swiperInstance.slideNext(500) : swiperInstance.slidePrev(500);
   }
 };
-
-let lastScrollPosition = 0;
-
-if(typeof window !== 'undefined') {
-  lastScrollPosition = window.pageYOffset
-}
 
 const handleScroll = () => {
-  if (!slider.value || typeof window === 'undefined' || !props.controlScroll) return;
+  if (!slider.value?.swiper || !props.controlScroll) return;
 
-  const currentScrollPosition = window.pageYOffset;
-  const direction = currentScrollPosition > lastScrollPosition ? 'down' : 'up';
-
-  if (direction === 'down') {
-    slider.value.swiper.slideNext();
-  } else {
-    slider.value.swiper.slidePrev();
-  }
-
-  lastScrollPosition = currentScrollPosition;
+  const direction = window.pageYOffset > lastScrollPosition ? 'down' : 'up';
+  direction === 'down' ? slider.value.swiper.slideNext() : slider.value.swiper.slidePrev();
+  lastScrollPosition = window.pageYOffset;
 };
 
-watch(() => props.controlScroll, (newValue) => {
-  if(props.controlScroll) {
-    if (newValue) {
-      window.addEventListener('wheel', handleWheel, { passive: false });
-      window.addEventListener('scroll', handleScroll, { passive: true });
-    } else {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('scroll', handleScroll);
-    }
+const manageEventListeners = (addListeners) => {
+  if (addListeners) {
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  } else {
+    window.removeEventListener('wheel', handleWheel);
+    window.removeEventListener('scroll', handleScroll);
   }
-}, { immediate: true });
+};
 
-const zoomStyle = computed(() => ({
-  transform: activeSlide.value === 1 ? `scale(${props.sliderBackgroundImageZoomScale})` : 'scale(1)',
-  transition: 'transform 0.3s ease-in-out',
-}));
+let lastScrollPosition = window.pageYOffset;
 
-onMounted(() => {
-  if(!slider.value) return
-  activeSlide.value = slider?.value?.swiper?.realIndex;
-  if (pagination.value.length > 0) {
-    pagination.value[0].active = true;
+watch(
+  () => props.controlScroll,
+  (newValue) => manageEventListeners(newValue),
+  { immediate: true }
+);
+
+watch(() => props.slides, (newSlides) => {
+  if (slider.value?.swiper) {
+    slider.value.swiper.update();
   }
 });
 
+onMounted(async () => {
+  activeSlide.value = slider.value?.swiper?.realIndex;
+  if (pagination.value.length > 0) pagination.value[0].active = true;
+});
+
 onUnmounted(() => {
-  if (props.controlScroll) {
-    window.removeEventListener('wheel', handleScroll);
+  manageEventListeners(false);
+  if (slider.value?.swiper && !slider.value.swiper.destroyed) {
+    slider.value.swiper.destroy();
   }
 });
 </script>
