@@ -42,10 +42,34 @@
     <NuxtPage class="bg-primary" />
     <section class="h-100 bg-primary">
       <v-container class="px-4">
-        <parts-files-erg
-          display-mode="select"
-          :content-select="Tabs"
-        />
+        <client-only>
+          <partsSlider
+            id="slider-about"
+            :slides="slides"
+            slider-allow-touch-move="false"
+            slider-speed="500"
+            :static-chips="{
+              text: 'about',
+              attrs: {
+                class: 'mt-12 mb-8 ml-9 ml-md-13',
+                color: 'white',
+                variant: 'outlined',
+                style: 'margin-top: 123px !important;'
+              }
+            }"
+            :slider-pagination="true"
+            :show-buttons="false"
+            slider-direction="vertical"
+            :slider-pagination-active-variant="'white'"
+            :height="'800px'"
+            :control-scroll="true"
+            :slider-background-image="'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'"
+            :slider-background-image-zoom="true"
+            :slider-background-image-zoom-scale="1.5"
+            class="main__about__slider"
+          />
+
+        </client-only>
       </v-container>
     </section>
 
@@ -72,6 +96,101 @@
 </template>
 
 <script setup>
+const slides = [
+  {
+    id: 0,
+    title: 'Кредитная карта\n с целым годом без %',
+    subtitle: 'Подзаголовок маленький, в две строки',
+    titleAttrs: {
+      class: 'text-white w-75'
+    },
+    backgroundImg: 'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    buttons: [
+      {
+        id: 0,
+        text: 'Large button',
+        attrs: {
+          size: 'large',
+          color: 'primary',
+          class: 'text-body-1'
+        }
+      }
+    ],
+    active: true
+  },
+
+  {
+    id: 1,
+    title: 'Страхование работников от несчастных случаев',
+    titleAttrs: {
+      class: 'text-h2 mb-0'
+    },
+    backgroundImg: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    buttons: [
+      {
+        id: 0,
+        text: 'Large button',
+        attrs: {
+          size: 'large',
+          color: 'primary',
+          class: 'text-body-1'
+        }
+      }
+    ],
+    active: true
+  },
+
+  {
+    id: 2,
+    title: 'Кредитная карта с целым годом без %',
+    subtitle: 'Подзаголовок маленький, в две строки',
+    backgroundImg: 'https://images.unsplash.com/photo-1516298773066-c48f8e9bd92b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    active: false
+  },
+
+  {
+    id: 3,
+    title: 'Страхование работников от несчастных случаев',
+    titleAttrs: {
+      class: 'text-h2 mb-0'
+    },
+    backgroundImg: 'https://images.unsplash.com/photo-1536257104079-aa99c6460a5a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    buttons: [
+      {
+        id: 0,
+        text: 'Large button',
+        attrs: {
+          size: 'large',
+          color: 'primary',
+          class: 'text-body-1'
+        }
+      }
+    ],
+    active: true
+  },
+
+  {
+    id: 4,
+    title: 'Кредитная карта\n с целым годом без %',
+    subtitle: 'Подзаголовок маленький, в две строки',
+    titleAttrs: {
+      class: 'text-white w-75'
+    },
+    backgroundImg: 'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    buttons: [
+      {
+        id: 0,
+        text: 'Large button',
+        attrs: {
+          size: 'large',
+          color: 'primary',
+          class: 'text-body-1'
+        }
+      }
+    ],
+    active: true
+  },
+]
 
 const Tabs = [
   {
