@@ -19,16 +19,16 @@
           <v-sheet
             color="none"
             class="footer-contacts-sheet d-flex w-100"
-            :class="contacts.length === 2 ? 'd-flex flex-column ' : 'justify-space-between'"
+            :class="contacts.length === 2 ? 'd-flex flex-column ' : 'flex-column flex-lg-row justify-space-between'"
           >
-            <h2 class="text-dark-1 text-h6 text-sm-h5 font-weight-medium mb-4">
+            <h2 class="text-dark-1 text-h6 text-md-h5 text-lg-h4 font-weight-medium mb-4">
               {{ contact?.title }}
             </h2>
-            <ul class="footer-contacts-list d-flex" :class="contacts.length === 2 ? 'flex-column' : ''">
+            <ul class="footer-contacts-list d-flex" :class="contacts.length === 2 ? 'flex-column' : 'flex-wrap'">
               <li
                 v-if="contact.phone"
                 class="d-flex align-start footer-contacts-list-item"
-                :class="contacts.length === 2 ? 'mb-4' : ''"
+                :class="contacts.length === 2 ? 'mb-4' : 'mb-4 mb-lg-0'"
               >
                 <div class="d-flex align-center">
                   <div class="bg-img mr-4">
@@ -45,7 +45,7 @@
               <li
                 v-if="contact.mail"
                 class="d-flex align-start footer-contacts-list-item"
-                :class="contacts.length === 2 ? 'mb-4' : ''"
+                :class="contacts.length === 2 ? 'mb-4' : 'mb-4 mb-lg-0'"
               >
                 <div class="d-flex align-center">
                   <div class="bg-img mr-4">
@@ -62,7 +62,7 @@
               <li
                 v-if="contact.location"
                 class="d-flex align-start footer-contacts-list-item"
-                :class="contacts.length === 2 ? 'mb-4' : ''"
+                :class="contacts.length === 2 ? 'mb-4' : 'mb-4 mb-lg-0'"
               >
                 <div class="d-flex align-start">
                   <div class="bg-img mr-4">
