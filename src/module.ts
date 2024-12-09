@@ -65,6 +65,15 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
+    if (options.components.includes("partsFooterErg")) {
+      addComponent({
+        name: "partsFooterErg", // name of the component to be used in vue templates
+        filePath: resolver.resolve(
+          "runtime/components/Parts/Footer/Erg.vue"
+        ),
+      });
+    }
+
     // cards
 
     if (options.components.includes("partsCardDefault")) {
