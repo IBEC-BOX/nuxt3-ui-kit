@@ -110,15 +110,6 @@ const contacts = [
     location: 'Юридический адрес: АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500',
     imageLocation: '/location.png',
   },
-  {
-    title: 'asd',
-    phone: `<p>8 (71837) 9 99 03 (Канцелярия)</p><p>8 (71837) 9 99 00 (Приемная)</p>`,
-    imagePhone: '/phone.svg',
-    mail: 'info.bts@erg.kz',
-    mailImage: '/mail.svg',
-    location: 'Юридический адрес: АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500',
-    imageLocation: '/location.png',
-  },
 ]
 
 const slides = [
