@@ -6,7 +6,7 @@
     <v-container>
       <v-row
         v-if="contacts&&contacts.length"
-        class="mb-10"
+        class="mb-4 mb-md-10"
       >
         <v-col
           v-for="(contact) in contacts"
@@ -80,7 +80,7 @@
           </v-sheet>
         </v-col>
       </v-row>
-      <v-row class="align-center">
+      <v-row class="align-center mt-0">
         <v-col
           cols="12"
           lg="2"
@@ -111,7 +111,7 @@
         <v-col
           cols="12"
           lg="5"
-          class="d-flex ps-0"
+          class="d-flex ps-lg-0"
         >
           <div class="footer-copyright footer-copyright-cert">
             <v-dialog max-width="500">
@@ -138,7 +138,7 @@
         <v-col
           cols="12"
           lg="2"
-          class="d-flex justify-end"
+          class="d-flex justify-lg-end"
         >
           <div class="footer-copyright footer-copyright-made">
             <p v-html="copyrightMade" />
@@ -147,7 +147,7 @@
         <v-col
           cols="12"
           lg="3"
-          class="d-flex justify-end"
+          class="d-flex justify-lg-end"
         >
           <div class="footer-copyright">
             <p v-html="copyright" />
