@@ -73,29 +73,55 @@
       </v-container>
     </section>
 
-    <partsFooterDefault
-      id="footer"
-      :logo-in-body="true"
-      :logo="{ title: 'АО', titleAttrs: {class: 'mb-4 text-h6'} }"
-      nav-class="text-h6 text-black"
-      :nav="[
-        { id: 1, text: 'Overview', to: '/' },
-        { id: 2, text: 'Features', to: '/' },
-        { id: 3, text: 'Pricing', to: '/' },
-        { id: 4, text: 'Careers', to: '/' },
-        { id: 5, text: 'Help centre', to: '/' },
-        { id: 6, text: 'Privacy', to: '/', image: '/arrow.png' },
-      ]"
-      :copyright="{
-        text: '2023 Untitled UI. All rights reserverd'
-      }"
-      :social="socialsMedia"
-      :swap-copyright-and-socials="true"
+
+    <parts-footer-erg
+      :contacts="contacts"
+      :socials="socialsMedia"
     />
+<!--    <partsFooterDefault-->
+<!--      id="footer"-->
+<!--      :logo-in-body="true"-->
+<!--      :logo="{ title: 'АО', titleAttrs: {class: 'mb-4 text-h6'} }"-->
+<!--      nav-class="text-h6 text-black"-->
+<!--      :nav="[-->
+<!--        { id: 1, text: 'Overview', to: '/' },-->
+<!--        { id: 2, text: 'Features', to: '/' },-->
+<!--        { id: 3, text: 'Pricing', to: '/' },-->
+<!--        { id: 4, text: 'Careers', to: '/' },-->
+<!--        { id: 5, text: 'Help centre', to: '/' },-->
+<!--        { id: 6, text: 'Privacy', to: '/', image: '/arrow.png' },-->
+<!--      ]"-->
+<!--      :copyright="{-->
+<!--        text: '2023 Untitled UI. All rights reserverd'-->
+<!--      }"-->
+<!--      :social="socialsMedia"-->
+<!--      :swap-copyright-and-socials="true"-->
+<!--    />-->
   </v-app>
 </template>
 
 <script setup>
+const contacts = [
+  {
+    title: 'asd',
+    phone: `<p>8 (71837) 9 99 03 (Канцелярия)</p><p>8 (71837) 9 99 00 (Приемная)</p>`,
+    imagePhone: '/phone.svg',
+    mail: 'info.bts@erg.kz',
+    mailImage: '/mail.svg',
+    location: 'АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500. Есть филиал в Астане, ул.Кунаева, 2, 010000',
+    imageLocation: '/location.png',
+  },
+  {
+    title: 'asd',
+    phone: `<p>8 (71837) 9 99 03 (Канцелярия)</p><p>8 (71837) 9 99 00 (Приемная)</p>`,
+    imagePhone: '/phone.svg',
+    mail: 'info.bts@erg.kz',
+    mailImage: '/mail.svg',
+    location: 'АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500. Есть филиал в Астане, ул.Кунаева, 2, 010000',
+    imageLocation: '/location.png',
+  },
+]
+
 const slides = [
   {
     id: 0,

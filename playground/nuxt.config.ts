@@ -38,6 +38,7 @@ export default defineNuxtConfig({
     components: [
       'pagesTestVuetify',
       'partsFooterDefault',
+      'partsFooterErg',
       'partsForms',
       'partsErgVacancies',
       'partsHeaderDefault',
