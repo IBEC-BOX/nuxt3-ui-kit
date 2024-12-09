@@ -36,9 +36,7 @@
         </v-btn>
       </template>
     </v-pagination>
-
   </v-sheet>
-
 </template>
 
 <script setup lang="ts">

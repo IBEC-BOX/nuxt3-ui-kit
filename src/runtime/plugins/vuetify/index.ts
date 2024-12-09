@@ -11,7 +11,6 @@ import * as directives from 'vuetify/directives';
 import {aliases as allAliases, mdi} from 'vuetify/iconsets/mdi';
 import "@mdi/font/css/materialdesignicons.css"; // Ensure you are using css-loader
 import "@fortawesome/fontawesome-free/css/all.css"; // Ensure your project is capable of handling css files
-const aliases = allAliases;
 
 const lightTheme: ThemeDefinition = {
   dark: false,

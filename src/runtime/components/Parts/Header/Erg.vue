@@ -86,10 +86,10 @@
           >{{ wordButtonMobile }}</span>
         </v-btn>
         <v-btn
-          icon
-          @click="menu_open = !menu_open"
-          class="d-block d-lg-none"
           v-if="burger"
+          icon
+          class="d-block d-lg-none"
+          @click="menu_open = !menu_open"
         >
           <v-icon :color="menu_open ? colorBurgerOpen : colorBurger">
             {{ menu_open ? 'mdi-close' : 'mdi-menu' }}
@@ -141,9 +141,9 @@
           class="text-h6"
           @click="updateSelectLang(lang.code)"
         >
-        <span :class="activeLang === lang.code ? colorActiveLangMobile : colorLangMobile">
-          {{ lang.name }}
-        </span>
+          <span :class="activeLang === lang.code ? colorActiveLangMobile : colorLangMobile">
+            {{ lang.name }}
+          </span>
         </v-btn>
       </div>
     </div>
@@ -154,8 +154,8 @@
       block
       v-bind="buttonDrawerAttrs"
       size="x-large"
-      @click="buttonClick; menu_open = false"
       color="primary"
+      @click="buttonClick; menu_open = false"
     >
       <span class="erg-header-btn-text btn-text-full">{{ textBtn || 'Связаться с нами' }}</span>
       <span
@@ -167,8 +167,6 @@
         class="erg-header-btn-text btn-text-short"
       >{{ wordButtonMobile }}</span>
     </v-btn>
-
-
   </v-navigation-drawer>
 </template>
 
