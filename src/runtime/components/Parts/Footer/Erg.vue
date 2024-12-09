@@ -12,19 +12,23 @@
           v-for="(contact) in contacts"
           :key="contact.title"
           cols="12"
+          :md="contacts.length === 2 ? 6 : 12"
           class="d-flex footer-contacts"
+          :class="contacts.length === 2 ? 'not-limit-width' : ''"
         >
           <v-sheet
             color="none"
-            class="footer-contacts-sheet d-flex justify-space-between w-100"
+            class="footer-contacts-sheet d-flex w-100"
+            :class="contacts.length === 2 ? 'd-flex flex-column ' : 'justify-space-between'"
           >
             <h2 class="text-dark-1 text-h6 text-sm-h5 font-weight-medium mb-4">
               {{ contact?.title }}
             </h2>
-            <ul class="footer-contacts-list d-flex">
+            <ul class="footer-contacts-list d-flex" :class="contacts.length === 2 ? 'flex-column' : ''">
               <li
                 v-if="contact.phone"
                 class="d-flex align-start footer-contacts-list-item"
+                :class="contacts.length === 2 ? 'mb-4' : ''"
               >
                 <div class="d-flex align-center">
                   <div class="bg-img mr-4">
@@ -41,6 +45,7 @@
               <li
                 v-if="contact.mail"
                 class="d-flex align-start footer-contacts-list-item"
+                :class="contacts.length === 2 ? 'mb-4' : ''"
               >
                 <div class="d-flex align-center">
                   <div class="bg-img mr-4">
@@ -57,6 +62,7 @@
               <li
                 v-if="contact.location"
                 class="d-flex align-start footer-contacts-list-item"
+                :class="contacts.length === 2 ? 'mb-4' : ''"
               >
                 <div class="d-flex align-start">
                   <div class="bg-img mr-4">
@@ -168,9 +174,6 @@ const props = defineProps({
 <style scoped lang="scss">
 .footer {
   &-contacts {
-    &-sheet {
-
-    }
     &-list {
       column-gap: 52.5px;
       &-item {
@@ -190,6 +193,23 @@ const props = defineProps({
         }
       }
     }
+  }
+  &-contacts.not-limit-width {
+    .footer-contacts-list {
+      column-gap: 0;
+      &-item {
+        p {
+          max-width: 412px !important;
+          letter-spacing: 0 !important;
+        }
+        &:nth-child(1) {
+          p {
+            min-width: 0;
+          }
+        }
+      }
+    }
+
   }
   &-copyright {
     color: #A5A7AD;

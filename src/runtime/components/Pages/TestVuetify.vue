@@ -107,7 +107,7 @@ const contacts = [
     imagePhone: '/phone.svg',
     mail: 'info.bts@erg.kz',
     mailImage: '/mail.svg',
-    location: 'АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500. Есть филиал в Астане, ул.Кунаева, 2, 010000',
+    location: 'Юридический адрес: АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500',
     imageLocation: '/location.png',
   },
   {
@@ -116,7 +116,7 @@ const contacts = [
     imagePhone: '/phone.svg',
     mail: 'info.bts@erg.kz',
     mailImage: '/mail.svg',
-    location: 'АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500. Есть филиал в Астане, ул.Кунаева, 2, 010000',
+    location: 'Юридический адрес: АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500',
     imageLocation: '/location.png',
   },
 ]
