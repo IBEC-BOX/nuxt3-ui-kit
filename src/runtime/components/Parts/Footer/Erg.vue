@@ -165,9 +165,9 @@ const props = defineProps({
 
   bgClass: { type: String, default: () => 'bg-none' },
 
-  copyright: { type: String, default: () => "2024 TOO “BTS”. Все права защищены." },
-  copyrightMade: { type: String, default: () => '<span>Сделано в </span><a class="text-decoration-underline">IBEC SYSTEMS</a>' },
-  copyrightCert: { type: Object, default: () => ( { title: 'Сертификат соответствия системы менеджмента требованиям стандартов ISO', cert: '' } ) }
+  copyright: { type: String, default: () => "" },
+  copyrightMade: { type: String, default: () => '' },
+  copyrightCert: { type: Object, default: () => ( { title: '', cert: '' } ) }
 })
 </script>
 
