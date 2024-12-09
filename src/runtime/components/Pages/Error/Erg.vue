@@ -41,7 +41,6 @@
             {{ textButton }}
           </v-btn>
         </div>
-
       </v-container>
     </section>
   </v-main>

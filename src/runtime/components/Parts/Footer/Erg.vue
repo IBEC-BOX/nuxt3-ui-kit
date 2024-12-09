@@ -4,9 +4,12 @@
     :class="bgClass"
   >
     <v-container>
-      <v-row v-if="contacts&&contacts.length" class="mb-10">
+      <v-row
+        v-if="contacts&&contacts.length"
+        class="mb-10"
+      >
         <v-col
-          v-for="(contact, index) in contacts"
+          v-for="(contact) in contacts"
           :key="contact.title"
           cols="12"
           class="d-flex footer-contacts"
@@ -72,7 +75,10 @@
         </v-col>
       </v-row>
       <v-row class="align-center">
-        <v-col cols="12" lg="2">
+        <v-col
+          cols="12"
+          lg="2"
+        >
           <ul
             class="d-flex flex-wrap"
             style="column-gap: 10px"
@@ -96,29 +102,49 @@
             </li>
           </ul>
         </v-col>
-        <v-col cols="12" lg="5" class="d-flex ps-0">
+        <v-col
+          cols="12"
+          lg="5"
+          class="d-flex ps-0"
+        >
           <div class="footer-copyright footer-copyright-cert">
             <v-dialog max-width="500">
-              <template v-slot:activator="{ props: activatorProps }">
+              <template #activator="{ props: activatorProps }">
                 <div>
-                  <p v-bind="activatorProps" v-html="copyrightCert.title" class="text-decoration-underline"></p>
+                  <p
+                    v-bind="activatorProps"
+                    class="text-decoration-underline"
+                    v-html="copyrightCert.title"
+                  />
                 </div>
               </template>
 
-              <template v-slot:default="{ isActive }">
-                <v-img :src="copyrightCert.cert" cover class="rounded-md-32" />
+              <template #default="{ isActive }">
+                <v-img
+                  :src="copyrightCert.cert"
+                  cover
+                  class="rounded-md-32"
+                />
               </template>
             </v-dialog>
           </div>
         </v-col>
-        <v-col cols="12" lg="2" class="d-flex justify-end">
+        <v-col
+          cols="12"
+          lg="2"
+          class="d-flex justify-end"
+        >
           <div class="footer-copyright footer-copyright-made">
-            <p v-html="copyrightMade"></p>
+            <p v-html="copyrightMade" />
           </div>
         </v-col>
-        <v-col cols="12" lg="3" class="d-flex justify-end">
+        <v-col
+          cols="12"
+          lg="3"
+          class="d-flex justify-end"
+        >
           <div class="footer-copyright">
-            <p v-html="copyright"></p>
+            <p v-html="copyright" />
           </div>
         </v-col>
       </v-row>
@@ -127,15 +153,6 @@
 </template>
 
 <script setup lang="ts">
-import { useMainStore } from "../../../store/mainStore";
-import { useAttrs } from "vue";
-const mainStore = useMainStore();
-
-const attrs = useAttrs();
-const navAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "nav"),
-};
-
 const props = defineProps({
   contacts: { type: Array, default: () => [] },
   socials: { type: Array, default: () => [] },

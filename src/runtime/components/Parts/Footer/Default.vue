@@ -310,7 +310,7 @@
             cols="12"
             sm="6"
           >
-            <slot name="additionalLinkAtSocial"></slot>
+            <slot name="additionalLinkAtSocial" />
             <ul
               class="d-flex flex-wrap justify-end"
               style="column-gap: 10px"

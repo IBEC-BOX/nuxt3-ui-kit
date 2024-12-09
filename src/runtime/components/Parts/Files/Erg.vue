@@ -87,11 +87,10 @@
       hide-details
       class="report__card-select mb-5 mb-md-10"
       :menu-props="{ class: 'report__card-menu' }"
-    >
-    </v-select>
+    />
 
 
-    <v-sheet class="mb-9 mb-md-10 bg-transparent" >
+    <v-sheet class="mb-9 mb-md-10 bg-transparent">
       <a
         v-for="item in select.data"
         :key="item.title"

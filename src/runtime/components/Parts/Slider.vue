@@ -89,8 +89,8 @@
 
                 <div
                   v-if="slide.subTitleHTML"
-                  v-html="slide.subTitleHTML"
                   v-bind="slide.subTitleAttrs"
+                  v-html="slide.subTitleHTML"
                 />
               </div>
 
@@ -318,7 +318,7 @@
 import { register } from "swiper/element/bundle";
 register();
 
-import { useAttrs, ref, onMounted, onUnmounted, watch, computed } from "vue";
+import { useAttrs, ref, onMounted, onUnmounted, watch } from "vue";
 import { useMainStore } from "../../store/mainStore";
 const mainStore = useMainStore();
 
@@ -499,7 +499,7 @@ watch(
   { immediate: true }
 );
 
-watch(() => props.slides, (newSlides) => {
+watch(() => props.slides, () => {
   if (slider.value?.swiper) {
     slider.value.swiper.update();
   }

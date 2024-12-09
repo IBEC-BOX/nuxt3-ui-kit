@@ -446,9 +446,9 @@
         </transition>
       </v-col>
       <v-col
+        v-if="contacts.length"
         cols="12"
         lg="6"
-        v-if="contacts.length"
       >
         <v-row>
           <v-col

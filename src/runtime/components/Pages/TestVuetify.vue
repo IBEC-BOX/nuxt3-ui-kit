@@ -68,7 +68,6 @@
             :slider-background-image-zoom-scale="1.5"
             class="main__about__slider"
           />
-
         </client-only>
       </v-container>
     </section>
@@ -78,25 +77,25 @@
       :contacts="contacts"
       :socials="socialsMedia"
     />
-<!--    <partsFooterDefault-->
-<!--      id="footer"-->
-<!--      :logo-in-body="true"-->
-<!--      :logo="{ title: 'АО', titleAttrs: {class: 'mb-4 text-h6'} }"-->
-<!--      nav-class="text-h6 text-black"-->
-<!--      :nav="[-->
-<!--        { id: 1, text: 'Overview', to: '/' },-->
-<!--        { id: 2, text: 'Features', to: '/' },-->
-<!--        { id: 3, text: 'Pricing', to: '/' },-->
-<!--        { id: 4, text: 'Careers', to: '/' },-->
-<!--        { id: 5, text: 'Help centre', to: '/' },-->
-<!--        { id: 6, text: 'Privacy', to: '/', image: '/arrow.png' },-->
-<!--      ]"-->
-<!--      :copyright="{-->
-<!--        text: '2023 Untitled UI. All rights reserverd'-->
-<!--      }"-->
-<!--      :social="socialsMedia"-->
-<!--      :swap-copyright-and-socials="true"-->
-<!--    />-->
+    <!--    <partsFooterDefault-->
+    <!--      id="footer"-->
+    <!--      :logo-in-body="true"-->
+    <!--      :logo="{ title: 'АО', titleAttrs: {class: 'mb-4 text-h6'} }"-->
+    <!--      nav-class="text-h6 text-black"-->
+    <!--      :nav="[-->
+    <!--        { id: 1, text: 'Overview', to: '/' },-->
+    <!--        { id: 2, text: 'Features', to: '/' },-->
+    <!--        { id: 3, text: 'Pricing', to: '/' },-->
+    <!--        { id: 4, text: 'Careers', to: '/' },-->
+    <!--        { id: 5, text: 'Help centre', to: '/' },-->
+    <!--        { id: 6, text: 'Privacy', to: '/', image: '/arrow.png' },-->
+    <!--      ]"-->
+    <!--      :copyright="{-->
+    <!--        text: '2023 Untitled UI. All rights reserverd'-->
+    <!--      }"-->
+    <!--      :social="socialsMedia"-->
+    <!--      :swap-copyright-and-socials="true"-->
+    <!--    />-->
   </v-app>
 </template>
 
