@@ -1,18 +1,27 @@
 <template>
-  <v-overlay v-model="localModelValue" class="bg-background-overlay gallery-view-overlay">
+  <v-overlay
+    v-model="localModelValue"
+    class="bg-background-overlay gallery-view-overlay"
+  >
     <v-container class="pa-md-16 px-0 px-md-16 gallery-view-container">
-      <div class="mb-6 cursor-pointer gallery-view-close px-1 px-md-0" @click="localModelValue = false">
-        <v-icon icon="mdi-close"></v-icon>
+      <div
+        class="mb-6 cursor-pointer gallery-view-close px-1 px-md-0"
+        @click="localModelValue = false"
+      >
+        <v-icon icon="mdi-close" />
       </div>
       <v-row class="d-flex flex-column-reverse flex-md-row">
-        <v-col cols="12" md="2">
+        <v-col
+          cols="12"
+          md="2"
+        >
           <client-only>
             <swiper-container
               ref="thumbsSwiperRef"
               :direction="mdAndUp ? 'vertical' : 'horizontal'"
               class="gallery-view-swiper-blocks d-block"
               :style="{ height: mdAndUp ? '100vh' : '100%', overflow: 'auto' }"
-              centeredSlides
+              centered-slides
               :slides-per-view="mdAndUp ? 6.8 : 4.2"
               space-between="0"
               mousewheel
@@ -22,21 +31,31 @@
               <swiper-slide
                 v-for="(img, index) in localGallery"
                 :key="`gallery-thumb-${index}`"
-                @click="setActiveImage(index)"
                 class="gallery-view-swiper-blocks-slide"
+                @click="setActiveImage(index)"
               >
                 <v-card
                   elevation="0"
                   class="gallery-view-swiper-blocks-slide-card bg-transparent cursor-pointer"
                   :class="{ active: img.active }"
                 >
-                  <v-img :src="img.image" height="120px" width="100%" cover class="rounded-lg gallery-view-swiper-blocks-slide-card-img" />
+                  <v-img
+                    :src="img.image"
+                    height="120px"
+                    width="100%"
+                    cover
+                    class="rounded-lg gallery-view-swiper-blocks-slide-card-img"
+                  />
                 </v-card>
               </swiper-slide>
             </swiper-container>
           </client-only>
         </v-col>
-        <v-col cols="12" md="10" class="position-relative">
+        <v-col
+          cols="12"
+          md="10"
+          class="position-relative"
+        >
           <client-only>
             <swiper-container
               ref="mainSwiperRef"
@@ -62,14 +81,26 @@
                 />
               </swiper-slide>
             </swiper-container>
-
           </client-only>
-          <div class="main-controls mb-2" v-if="mdAndUp">
-            <v-btn icon color="primary" rounded="lg" @click="mainPrev">
-              <v-icon icon="mdi-chevron-left"></v-icon>
+          <div
+            v-if="mdAndUp"
+            class="main-controls mb-2"
+          >
+            <v-btn
+              icon
+              color="primary"
+              rounded="lg"
+              @click="mainPrev"
+            >
+              <v-icon icon="mdi-chevron-left" />
             </v-btn>
-            <v-btn icon color="primary" rounded="lg" @click="mainNext">
-              <v-icon icon="mdi-chevron-right"></v-icon>
+            <v-btn
+              icon
+              color="primary"
+              rounded="lg"
+              @click="mainNext"
+            >
+              <v-icon icon="mdi-chevron-right" />
             </v-btn>
           </div>
         </v-col>
@@ -102,11 +133,11 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "update:gallery"]);
 
 const mainSwiperRef = ref();
 const thumbsSwiperRef = ref();
-const localGallery = ref(Object.values(props.gallery));
+const localGallery = ref(Object.assign({}, props.gallery)); // Копируем объект
 
 function setActiveImage(index) {
   updateActiveImage(index);
@@ -121,10 +152,12 @@ function setActiveImage(index) {
 }
 
 function updateActiveImage(index) {
-  const keys = Object.keys(props.gallery);
+  const keys = Object.keys(localGallery.value);
   keys.forEach((key, idx) => {
-    props.gallery[key].active = idx === index;
+    localGallery.value[key].active = idx === index;
   });
+
+  emit('update:gallery', localGallery.value);
 
   if (thumbsSwiperRef.value?.swiper) {
     thumbsSwiperRef.value.swiper.slideTo(index);
