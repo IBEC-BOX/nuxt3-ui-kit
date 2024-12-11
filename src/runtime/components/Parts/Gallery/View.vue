@@ -21,7 +21,6 @@
               :direction="mdAndUp ? 'vertical' : 'horizontal'"
               class="gallery-view-swiper-blocks d-block"
               :style="{ height: mdAndUp ? '100vh' : '100%', overflow: 'auto' }"
-              centered-slides
               :slides-per-view="mdAndUp ? 6.8 : 4.2"
               space-between="0"
               mousewheel
