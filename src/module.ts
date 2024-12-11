@@ -192,5 +192,25 @@ export default defineNuxtModule<ModuleOptions>({
         ),
       });
     }
+
+    // Gallery
+
+    if (options.components.includes("partsGalleryRow")) {
+      addComponent({
+        name: "partsGalleryRow",
+        filePath: resolver.resolve(
+          "runtime/components/Parts/Gallery/Row.vue"
+        ),
+      });
+    }
+
+    if (options.components.includes("partsGalleryView")) {
+      addComponent({
+        name: "partsGalleryView",
+        filePath: resolver.resolve(
+          "runtime/components/Parts/Gallery/View.vue"
+        ),
+      });
+    }
   },
 });
