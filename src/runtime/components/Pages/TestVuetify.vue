@@ -42,33 +42,43 @@
     <NuxtPage class="bg-primary" />
     <section class="h-100 bg-primary">
       <v-container class="px-4">
-        <client-only>
-          <partsSlider
-            id="slider-about"
-            :slides="slides"
-            slider-allow-touch-move="false"
-            slider-speed="500"
-            :static-chips="{
-              text: 'about',
-              attrs: {
-                class: 'mt-12 mb-8 ml-9 ml-md-13',
-                color: 'white',
-                variant: 'outlined',
-                style: 'margin-top: 123px !important;'
-              }
-            }"
-            :slider-pagination="true"
-            :show-buttons="false"
-            slider-direction="vertical"
-            :slider-pagination-active-variant="'white'"
-            :height="'800px'"
-            :control-scroll="true"
-            :slider-background-image="'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'"
-            :slider-background-image-zoom="true"
-            :slider-background-image-zoom-scale="1.5"
-            class="main__about__slider"
-          />
-        </client-only>
+<!--        <client-only>-->
+<!--          <partsSlider-->
+<!--            id="slider-about"-->
+<!--            :slides="slides"-->
+<!--            slider-allow-touch-move="false"-->
+<!--            slider-speed="500"-->
+<!--            :static-chips="{-->
+<!--              text: 'about',-->
+<!--              attrs: {-->
+<!--                class: 'mt-12 mb-8 ml-9 ml-md-13',-->
+<!--                color: 'white',-->
+<!--                variant: 'outlined',-->
+<!--                style: 'margin-top: 123px !important;'-->
+<!--              }-->
+<!--            }"-->
+<!--            :slider-pagination="true"-->
+<!--            :show-buttons="false"-->
+<!--            slider-direction="vertical"-->
+<!--            :slider-pagination-active-variant="'white'"-->
+<!--            :height="'800px'"-->
+<!--            :control-scroll="true"-->
+<!--            :slider-background-image="'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'"-->
+<!--            :slider-background-image-zoom="true"-->
+<!--            :slider-background-image-zoom-scale="1.5"-->
+<!--            class="main__about__slider"-->
+<!--          />-->
+<!--        </client-only>-->
+        <v-btn @click="model = !model">gfdgfsdgf</v-btn>
+        <parts-gallery-row
+          :blocks="gallery2"
+          :disable-links="false"
+        />
+        <parts-gallery-view
+          v-model="model"
+          :gallery="gallery[0].images"
+          :preview-image="preview"
+        />
       </v-container>
     </section>
 
@@ -100,6 +110,115 @@
 </template>
 
 <script setup>
+import { ref} from "vue"
+const model = ref(false)
+const gallery2 = ref([
+  {
+    category: {
+      id: 1,
+      title: 'asd'
+    },
+    id: 1,
+    title: 'dasdsad',
+    preview: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+  },
+  {
+    category: {
+      id: 1,
+      title: 'asd'
+    },
+    id: 1,
+    title: 'dasdsad',
+    preview: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+  },
+  {
+    category: {
+      id: 1,
+      title: 'asd'
+    },
+    id: 1,
+    title: 'dasdsad',
+    preview: 'https://fastly.picsum.photos/id/523/500/300.jpg?hmac=4pQD_Jbc8uFrr01uI1PtSZM3wIjP-pTu7ZogoeRwVFw',
+  },
+  {
+    category: {
+      id: 1,
+      title: 'asd'
+    },
+    id: 1,
+    title: 'dasdsad',
+    preview: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'
+  },
+])
+const gallery = ref([
+  {
+    category: {
+      id: 1,
+      title: 'asd'
+    },
+    id: 1,
+    title: 'dasdsad',
+    images: [
+      {
+        image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        active: false,
+        id: 1,
+      },
+      {
+        image: 'https://fastly.picsum.photos/id/523/500/300.jpg?hmac=4pQD_Jbc8uFrr01uI1PtSZM3wIjP-pTu7ZogoeRwVFw',
+        active: false,
+        id: 2,
+      },
+      {
+        image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        active: false,
+        id: 3,
+      },
+      {
+        image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        active: false,
+        id: 4,
+      },
+      {
+        image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        active: false,
+        id: 5,
+      },
+      {
+        image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        active: false,
+        id: 6,
+      },
+      {
+        image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        active: false,
+        id: 7,
+      },
+      {
+        image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        active: false,
+        id: 8,
+      },
+      {
+        image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        active: false,
+        id: 9,
+      },
+      {
+        image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        active: false,
+        id: 10,
+      },
+      {
+        image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        active: false,
+        id: 11,
+      },
+
+    ]
+  }
+])
+const preview = ref(gallery.value[0].images[0])
 const contacts = [
   {
     title: 'asd',
