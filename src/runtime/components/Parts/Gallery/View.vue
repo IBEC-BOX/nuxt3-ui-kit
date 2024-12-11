@@ -47,6 +47,10 @@
                   />
                 </v-card>
               </swiper-slide>
+              <swiper-slide
+                v-if="mdAndUp"
+                class="gallery-view-swiper-blocks-slide"
+              />
             </swiper-container>
           </client-only>
         </v-col>
@@ -63,11 +67,13 @@
               navigation
               pagination
               :style="{ 'height': mdAndUp ? '574px' : '100%' }"
+              :allow-touch-move="false"
               @slideChange="onMainSlideChange"
             >
               <swiper-slide
-                v-for="(img, index) in gallery"
+                v-for="(img, index) in localGallery"
                 :key="`gallery-main-${index}`"
+                class="d-flex justify-center"
               >
                 <v-img
                   :src="img.image"
@@ -109,34 +115,29 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, watch } from "vue";
 import { register } from "swiper/element/bundle";
 import { useDisplay } from "vuetify";
 
 register();
-const { mdAndUp } = useDisplay()
+const { mdAndUp } = useDisplay();
 
 const props = defineProps({
-  gallery: {
-    type: Object,
-    required: true,
-    default: () => ({}),
-  },
-  previewImage: {
-    type: Object,
-    default: null,
-  },
-  modelValue: {
-    type: Boolean,
-    default: false,
-  },
+  gallery: { type: Object, required: true },
+  previewImage: { type: Object, default: null },
+  modelValue: { type: Boolean, default: false },
 });
 
 const emit = defineEmits(["update:modelValue", "update:gallery"]);
 
 const mainSwiperRef = ref();
 const thumbsSwiperRef = ref();
-const localGallery = ref(Object.assign({}, props.gallery)); // Копируем объект
+const localGallery = ref(Object.values(props.gallery));
+
+const localModelValue = computed({
+  get: () => props.modelValue,
+  set: (value) => emit("update:modelValue", value),
+});
 
 function setActiveImage(index) {
   updateActiveImage(index);
@@ -156,29 +157,27 @@ function updateActiveImage(index) {
     localGallery.value[key].active = idx === index;
   });
 
-  emit('update:gallery', localGallery.value);
-
   if (thumbsSwiperRef.value?.swiper) {
     thumbsSwiperRef.value.swiper.slideTo(index);
     thumbsSwiperRef.value.swiper.update();
   }
+  emit('update:gallery', localGallery.value);
 }
 
 function mainPrev() {
-  const swiper = mainSwiperRef.value.swiper;
-  swiper.slidePrev();
-  updateActiveImage(swiper.activeIndex);
+  mainSwiperRef.value?.swiper.slidePrev();
+  updateActiveImage(mainSwiperRef.value.swiper.activeIndex);
 }
 
 function mainNext() {
-  const swiper = mainSwiperRef.value.swiper;
-  swiper.slideNext();
-  updateActiveImage(swiper.activeIndex);
+  mainSwiperRef.value?.swiper.slideNext();
+  updateActiveImage(mainSwiperRef.value.swiper.activeIndex);
 }
 
 function onMainSlideChange() {
   const activeIndex = mainSwiperRef.value.swiper.activeIndex;
   updateActiveImage(activeIndex);
+
   if (thumbsSwiperRef.value?.swiper) {
     thumbsSwiperRef.value.swiper.slideTo(activeIndex);
   }
@@ -189,33 +188,17 @@ function onThumbSlideChange() {
   setActiveImage(activeIndex);
 }
 
-const localModelValue = computed({
-  get: () => props.modelValue,
-  set: (value) => emit("update:modelValue", value),
-});
-
-onMounted(() => {
-  localGallery.value = Object.values(props.gallery);
-
-  if (mdAndUp.value) {
-    localGallery.value.push({ id: localGallery.value.length, image: '', active: false });
-  }
-
-  if (props.previewImage) {
+watch(() => props.previewImage, (newValue) => {
+  if (newValue) {
     const previewIndex = localGallery.value.findIndex(
       (img) => img.image === props.previewImage.image
     );
-
-    if (previewIndex !== -1) {
-      updateActiveImage(previewIndex);
-      mainSwiperRef.value?.swiper.slideTo(previewIndex);
-    } else {
-      updateActiveImage(0);
+    if (previewIndex >= 0) {
+      const [previewItem] = localGallery.value.splice(previewIndex, 1);
+      localGallery.value.unshift(previewItem);
     }
-  } else {
-    updateActiveImage(0);
   }
-})
+});
 </script>
 
 <style lang="scss">
@@ -228,20 +211,23 @@ onMounted(() => {
       height: 100%;
     }
   }
+
   .gallery-view-close {
     @media (max-width: 960px) {
       position: absolute;
       top: 40px;
     }
-
   }
+
   .gallery-view-swiper-blocks-slide-card {
     border: 3px solid transparent;
     border-radius: 12px;
+
     &.active {
       border-color: rgb(var(--v-theme-primary));
     }
   }
+
   .gallery-view-main {
     .swiper-pagination {
       bottom: 10px;
@@ -251,7 +237,7 @@ onMounted(() => {
       color: rgb(var(--v-theme-primary));
     }
   }
-  .thumbs-controls,
+
   .main-controls {
     margin-top: 16px;
     display: flex;
