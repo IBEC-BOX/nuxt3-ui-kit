@@ -88,9 +88,9 @@ const { mdAndUp } = useDisplay()
 
 const props = defineProps({
   gallery: {
-    type: Array,
+    type: Object,
     required: true,
-    default: () => [],
+    default: () => ({}),
   },
   previewImage: {
     type: Object,
@@ -106,19 +106,7 @@ const emit = defineEmits(["update:modelValue"]);
 
 const mainSwiperRef = ref();
 const thumbsSwiperRef = ref();
-const localGallery = ref([...props.gallery]);
-
-function mainPrev() {
-  const swiper = mainSwiperRef.value.swiper;
-  swiper.slidePrev();
-  updateActiveImage(swiper.activeIndex);
-}
-
-function mainNext() {
-  const swiper = mainSwiperRef.value.swiper;
-  swiper.slideNext();
-  updateActiveImage(swiper.activeIndex);
-}
+const localGallery = ref(Object.values(props.gallery));
 
 function setActiveImage(index) {
   updateActiveImage(index);
@@ -133,14 +121,27 @@ function setActiveImage(index) {
 }
 
 function updateActiveImage(index) {
-  localGallery.value.forEach((img, idx) => {
-    img.active = idx === index;
+  const keys = Object.keys(props.gallery);
+  keys.forEach((key, idx) => {
+    props.gallery[key].active = idx === index;
   });
 
   if (thumbsSwiperRef.value?.swiper) {
     thumbsSwiperRef.value.swiper.slideTo(index);
     thumbsSwiperRef.value.swiper.update();
   }
+}
+
+function mainPrev() {
+  const swiper = mainSwiperRef.value.swiper;
+  swiper.slidePrev();
+  updateActiveImage(swiper.activeIndex);
+}
+
+function mainNext() {
+  const swiper = mainSwiperRef.value.swiper;
+  swiper.slideNext();
+  updateActiveImage(swiper.activeIndex);
 }
 
 function onMainSlideChange() {
@@ -162,8 +163,10 @@ const localModelValue = computed({
 });
 
 onMounted(() => {
-  if(mdAndUp.value) {
-    localGallery.value.push({id: localGallery.value.length, image: '', active: false})
+  localGallery.value = Object.values(props.gallery);
+
+  if (mdAndUp.value) {
+    localGallery.value.push({ id: localGallery.value.length, image: '', active: false });
   }
 
   if (props.previewImage) {
