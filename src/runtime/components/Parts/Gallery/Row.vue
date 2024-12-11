@@ -14,8 +14,18 @@
     >
       <template v-if="!disableLinks">
         <nuxt-link :to="`/gallery/${block.id}`">
-          <v-card elevation="0" height="290px" class="row-gallery-blocks-card bg-transparent">
-            <v-img :src="block.preview" height="290px" width="100%" cover class="row-gallery-blocks-card-image" />
+          <v-card
+            elevation="0"
+            height="290px"
+            class="row-gallery-blocks-card bg-transparent"
+          >
+            <v-img
+              :src="block.preview"
+              height="290px"
+              width="100%"
+              cover
+              class="row-gallery-blocks-card-image"
+            />
             <div class="row-gallery-blocks-card-title py-3 px-4">
               <span>{{ block.category.title }}</span>
             </div>
@@ -23,14 +33,23 @@
         </nuxt-link>
       </template>
       <template v-else>
-        <v-card elevation="0" height="290px" class="row-gallery-blocks-card bg-transparent">
-          <v-img :src="block.preview" height="290px" width="100%" cover class="row-gallery-blocks-card-image" />
+        <v-card
+          elevation="0"
+          height="290px"
+          class="row-gallery-blocks-card bg-transparent"
+        >
+          <v-img
+            :src="block.preview"
+            height="290px"
+            width="100%"
+            cover
+            class="row-gallery-blocks-card-image"
+          />
           <div class="row-gallery-blocks-card-title py-3 px-4">
             <span>{{ block.category.title }}</span>
           </div>
         </v-card>
       </template>
-
     </swiper-slide>
   </swiper-container>
 </template>

@@ -24,7 +24,10 @@
             <h2 class="text-dark-1 text-h6 text-md-h5 text-lg-h4 font-weight-medium mb-4">
               {{ contact?.title }}
             </h2>
-            <ul class="footer-contacts-list d-flex" :class="contacts.length === 2 ? 'flex-column' : 'flex-wrap'">
+            <ul
+              class="footer-contacts-list d-flex"
+              :class="contacts.length === 2 ? 'flex-column' : 'flex-wrap'"
+            >
               <li
                 v-if="contact.phone"
                 class="d-flex align-start footer-contacts-list-item"
