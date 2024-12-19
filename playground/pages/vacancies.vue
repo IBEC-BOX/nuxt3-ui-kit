@@ -157,7 +157,6 @@
   ]
 
   const formData = (data) => {
-    console.log(data)
   }
   const socials = [
     {

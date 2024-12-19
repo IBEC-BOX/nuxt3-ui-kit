@@ -179,12 +179,8 @@ const props = defineProps({
 
 const isMultiParagraph = (html: string): boolean => {
   if (!html || process.server) return false;
-
-  console.log('Checking HTML content:', html);
-
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
-
   const paragraphs = doc.querySelectorAll('p, a, br');
   return paragraphs.length > 2;
 };

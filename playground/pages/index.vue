@@ -21,7 +21,6 @@
 
 <script setup>
 
-const testButtonNews = () => console.log(cards[1].id)
 const cards = [
   {
     id: 1,
