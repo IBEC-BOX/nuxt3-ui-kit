@@ -149,6 +149,7 @@
     </div>
 
     <v-btn
+      v-if="showButton"
       class="text-none text-body-1 erg-header-button mt-10 mb-16"
       rounded="xl"
       block
