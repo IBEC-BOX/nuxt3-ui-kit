@@ -46,38 +46,33 @@
   </v-main>
 </template>
 
-<script setup>
-import { useAttrs, ref } from "vue";
-import { useMainStore } from "../../../store/mainStore";
+<script setup lang="ts">
+import { defineProps, useAttrs, ref } from "vue";
+import { getProperties } from "../../../utils/getAttrs";
 import { clearError } from "#app";
-const mainStore = useMainStore();
+import type { IErrorErg } from "./errorTypes.d.ts";
+import type { Attrs } from "../../../types/global";
 
-//Attributes
+// Получение атрибутов
 const attrs = useAttrs();
-const titleAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "title"),
+const titleAttrs = ref<Attrs>({
+  ...getProperties(attrs, "title"),
 })
-const errorAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "error")
+const errorAttrs = ref<Attrs>({
+  ...getProperties(attrs, "error"),
 })
-const subtitleAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "subtitle")
+const subtitleAttrs = ref<Attrs>({
+  ...getProperties(attrs, "subtitle"),
 })
-const buttonAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "button")
-})
-
-const props = defineProps({
-  error: { type: Object, default: () => {} },
-  title: { type: String, default: () => '' },
-  subtitle: { type: String, default: () => '' },
-  otherTitle: { type: String, default: () => '' },
-  textButton: { type: String, default: () => '' },
+const buttonAttrs = ref<Attrs>({
+  ...getProperties(attrs, "button"),
 })
 
-const handleError = () => clearError({ redirect: '/' })
+const props = defineProps<IErrorErg>();
 
+const handleError = () => clearError({ redirect: "/" });
 </script>
+
 
 <style lang="scss">
 .page__error {

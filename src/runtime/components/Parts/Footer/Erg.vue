@@ -112,6 +112,7 @@
                   class="cursor-pointer mb-4 mb-sm-0"
                   :width="32"
                   :src="item.img"
+                  :alt="item.alt ? item.alt : 'image alt'"
                 />
               </a>
             </li>
@@ -121,6 +122,7 @@
           cols="12"
           lg="5"
           class="d-flex ps-lg-0"
+          v-if="copyrightCert"
         >
           <div class="footer-copyright footer-copyright-cert">
             <v-dialog max-width="500">
@@ -148,6 +150,7 @@
           cols="12"
           lg="2"
           class="d-flex justify-lg-end"
+          v-if="copyrightMade?.length"
         >
           <div class="footer-copyright footer-copyright-made">
             <p v-html="copyrightMade" />
@@ -168,17 +171,15 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  contacts: { type: Array, default: () => [] },
-  socials: { type: Array, default: () => [] },
-  bgClass: { type: String, default: () => 'bg-none' },
-  copyright: { type: String, default: () => "" },
-  copyrightMade: { type: String, default: () => '' },
-  copyrightCert: { type: Object, default: () => ({ title: '', cert: '' }) }
+import { withDefaults, defineProps } from "vue"
+import type { IFooterErg } from "./footerTypes";
+
+const props = withDefaults(defineProps<IFooterErg>(), {
+  bgClass: 'bg-none',
 })
 
 const isMultiParagraph = (html: string): boolean => {
-  if (!html || import.meta.env.SSR) return false; // Проверяем серверную среду через Vite
+  if (!html || import.meta.env.SSR) return false;
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
   const paragraphs = doc.querySelectorAll('p, a, br');

@@ -11,19 +11,19 @@
     >
       <v-row class="px-sm-10 pb-sm-8 pa-6">
         <v-col
-          v-if="title.length"
+          v-if="title"
           cols="12"
           :sm="Object.keys(commentary).length ? 12 : 6"
         >
           <h5
-            v-if="title.length"
+            v-if="title"
             class="text-sm-32 text-h5"
             :class="subtitle === '' ? 'mb-sm-5' : 'mb-sm-3'"
           >
             {{ title }}
           </h5>
           <p
-            v-if="subtitle.length"
+            v-if="subtitle"
             class="text-sm-18 text-15 mb-4"
           >
             {{ subtitle }}
@@ -67,10 +67,10 @@
           <v-checkbox
             v-if="Object.keys(commentary).length"
             v-model="checked"
-            v-bind="checkboxSetting.attrs"
+            v-bind="checkbox.attrs"
           >
             <template #label>
-              <span class="text-13">{{ checkboxSetting.label }}</span>
+              <span class="text-13">{{ checkbox.label }}</span>
             </template>
           </v-checkbox>
         </v-col>
@@ -82,18 +82,18 @@
         >
           <v-btn
             type="submit"
-            v-bind="buttonSetting.attrs"
+            v-bind="button.attrs"
             class=""
           >
-            {{ buttonSetting.text }}
+            {{ button.text }}
           </v-btn>
           <v-checkbox
             v-if="!Object.keys(commentary).length"
             v-model="checked"
-            v-bind="checkboxSetting.attrs"
+            v-bind="checkbox.attrs"
           >
             <template #label>
-              <span class="text-13">{{ checkboxSetting.label }}</span>
+              <span class="text-13">{{ checkbox.label }}</span>
             </template>
           </v-checkbox>
         </v-col>
@@ -112,7 +112,7 @@
     >
       <v-row>
         <v-col
-          v-if="title.length || subtitle.length"
+          v-if="title || subtitle"
           cols="12"
           class="text-center mb-3"
         >
@@ -149,10 +149,10 @@
           <v-checkbox
             v-if="Object.keys(commentary).length"
             v-model="checked"
-            v-bind="checkboxSetting.attrs"
+            v-bind="checkbox.attrs"
           >
             <template #label>
-              <span class="text-13">{{ checkboxSetting.label }}</span>
+              <span class="text-13">{{ checkbox.label }}</span>
             </template>
           </v-checkbox>
         </v-col>
@@ -162,10 +162,10 @@
         >
           <v-btn
             type="submit"
-            v-bind="buttonSetting.attrs"
+            v-bind="button.attrs"
             class="mt-6"
           >
-            {{ buttonSetting.text }}
+            {{ button.text }}
           </v-btn>
         </v-col>
         <v-col cols="12">
@@ -184,7 +184,7 @@
               >
                 <v-img
                   :src="social.img"
-                  :alt="social.alt"
+                  :alt="social.alt ? social.alt : 'alt image'"
                   width="32"
                 />
               </a>
@@ -195,7 +195,7 @@
     </v-form>
   </v-sheet>
   <v-sheet
-    v-if="bigImage.length || smallImage.length"
+    v-if="bigImage || smallImage"
     class="mx-auto custom-ui-form"
     v-bind="sheetAttrs"
   >
@@ -206,7 +206,7 @@
     >
       <v-row>
         <v-col
-          v-if="smallImage.length"
+          v-if="smallImage"
           cols="12"
           class="text-center mb-7"
         >
@@ -215,13 +215,13 @@
           </h5>
         </v-col>
         <v-col
-          v-if="bigImage.length"
+          v-if="bigImage"
           cols="6"
           class="d-none d-sm-block"
         >
           <v-img
-            :src="bigImage"
-            :alt="altImage"
+            :src="bigImage ? bigImage : ''"
+            :alt="altImage ? altImage : ''"
             cover
           />
         </v-col>
@@ -231,7 +231,7 @@
         >
           <v-row>
             <v-col
-              v-if="bigImage.length"
+              v-if="bigImage"
               cols="12"
             >
               <h5 class="text-sm-32 text-h5 mb-5">
@@ -277,10 +277,10 @@
             >
               <v-btn
                 type="submit"
-                v-bind="buttonSetting.attrs"
+                v-bind="button.attrs"
                 class="mt-6"
               >
-                {{ buttonSetting.text }}
+                {{ button.text }}
               </v-btn>
             </v-col>
             <v-col
@@ -289,17 +289,17 @@
             >
               <v-checkbox
                 v-model="checked"
-                v-bind="checkboxSetting.attrs"
+                v-bind="checkbox.attrs"
               >
                 <template #label>
-                  <span class="text-13">{{ checkboxSetting.label }}</span>
+                  <span class="text-13">{{ checkbox.label }}</span>
                 </template>
               </v-checkbox>
             </v-col>
           </v-row>
         </v-col>
         <v-col
-          v-if="smallImage.length"
+          v-if="smallImage&&infoCompany.length"
           cols="12"
           sm="6"
         >
@@ -313,8 +313,7 @@
             >
               <v-icon
                 :icon="info.icon"
-                :color="info.colorIcon"
-                :size="info.sizeIcon"
+                v-bind="info.attrs"
               />
               <span>{{ info.text }}</span>
             </v-col>
@@ -337,7 +336,7 @@
                   >
                     <v-img
                       :src="social.img"
-                      :alt="social.alt"
+                      :alt="social.alt ? social.alt : 'alt image'"
                       :width="35"
                     />
                   </a>
@@ -350,7 +349,7 @@
             >
               <v-img
                 :src="smallImage"
-                :alt="altImage"
+                :alt="altImage ? altImage : 'alt image'"
                 style="width: 100%"
                 cover
               />
@@ -405,18 +404,18 @@
               </v-row>
               <v-btn
                 type="submit"
-                v-bind="buttonSetting.attrs"
+                v-bind="button.attrs"
                 class="mt-6"
               >
-                {{ buttonSetting.text }}
+                {{ button.text }}
               </v-btn>
               <v-checkbox
-                v-if="Object.keys(checkboxSetting).length"
+                v-if="Object.keys(checkbox).length"
                 v-model="checked"
-                v-bind="checkboxSetting.attrs"
+                v-bind="checkbox.attrs"
               >
                 <template #label>
-                  <div v-html="checkboxSetting.label" />
+                  <div v-html="checkbox.label" />
                 </template>
               </v-checkbox>
             </v-form>
@@ -436,6 +435,7 @@
               <v-img
                 v-if="switchContentButton.image"
                 :src="switchContentButton.image"
+                :alt="switchContentButton.alt ? switchContentButton.alt : 'alt image'"
                 width="16"
                 height="16"
                 v-bind="switchContentButton.imageAttrs"
@@ -547,93 +547,86 @@
       </v-row>
       <v-btn
         type="submit"
-        v-bind="buttonSetting.attrs"
+        v-bind="button.attrs"
         class="mt-6"
       >
-        {{ buttonSetting.text }}
+        {{ button.text }}
       </v-btn>
       <v-checkbox
-        v-if="Object.keys(checkboxSetting).length"
+        v-if="Object.keys(checkbox).length"
         v-model="checked"
-        v-bind="checkboxSetting.attrs"
+        v-bind="checkbox.attrs"
       >
         <template #label>
-          <div v-html="checkboxSetting.label" />
+          <div v-html="checkbox.label" />
         </template>
       </v-checkbox>
     </v-form>
   </v-sheet>
 </template>
 
-<script setup>
-import { useAttrs, ref } from "vue";
-import { useMainStore } from "../../store/mainStore";
-const mainStore = useMainStore();
+<script setup lang="ts">
+import { useAttrs, ref, withDefaults, defineProps, defineEmits } from "vue";
+import { getProperties } from "../../../utils/getAttrs";
+import type { IFormsDefault } from "./formsTypes.js";
+import type { Attrs } from "../../../types/global";
 
 //Attributes
 const attrs = useAttrs();
-const sheetAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "sheet"),
-};
-const titleAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "title")
-}
-const confirmAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "confirm")
-}
+const sheetAttrs = ref<Attrs>({
+  ...getProperties(attrs, "sheet"),
+})
+const titleAttrs = ref<Attrs>({
+  ...getProperties(attrs, "title")
+})
+const confirmAttrs = ref<Attrs>({
+  ...getProperties(attrs, "confirm")
+})
 
-const checked = ref(false)
-const comboboxValue = ref([])
-const comValue = ref("")
-const emit = defineEmits(['form-data'])
-
-const props = defineProps({
-  title: { type: String, default: "" },
-  subtitle: { type: String, default: "" },
-
-  commentary: { type: Object, default: () => ({}) },
-
-  styleForm: { type: String, default: 'standard' },
-  bigImage: { type: String, default: "" },
-  smallImage: { type: String, default: "" },
-  altImage: { type: String, default: "" },
-
-  buttonSetting: { type: Object, default: () => ({ attrs: {color: 'primary-gray', size: 'x-large', text: 'Отправить'}}) },
-  checkboxSetting: { type: Object, default: () => ({}) },
-  inputs: { type: Array, default: () => [] },
-  combobox: { type: Object, default: () => ({}) },
-  socials: { type: Array, default: () => [] },
-  infoCompany: { type: Array, default: () => [] },
-  contacts: { type: Array, default: () => [] },
-
-  switchContentOnValid: { type: Boolean, default: () => false},
+const props = withDefaults(defineProps<IFormsDefault>(), {
+  styleForm: 'standard',
+  switchContentOnValid: false,
   switchContentButton: { type: Object, default: () => ({}) },
 })
 
-const inputValues = ref(props.inputs.map(input => input.value));
-const confirmForm = ref(false)
+const emit = defineEmits(['form-data'])
+
+const checked = ref<boolean>(false)
+const comboboxValue = ref<any[]>([])
+const comValue = ref<string>("")
+const inputValues = ref<string[]>(props.inputs.map(input => input.value));
+const confirmForm = ref<boolean>(false)
+
 const dataForm = (validForm) => {
   if(validForm) {
     if(Object.keys(props.combobox).length) {
+
       if(comboboxValue.value.length && inputValues.value.every(value => value) && checked.value && comValue.value) {
         confirmForm.value = true
         emit('form-data', [inputValues.value, comboboxValue.value, comValue.value] )
       }
+
     } else if(Object.keys(props.commentary).length) {
+
       if(inputValues.value.every(value => value) && checked.value && comValue.value) {
         confirmForm.value = true
         emit('form-data', [inputValues.value, comValue.value] )
       }
+
     } else if(!Object.keys(props.checkboxSetting).length) {
+
       if(inputValues.value.every(value => value)) {
         confirmForm.value = true
         emit('form-data', [inputValues.value] )
       }
+
     } else {
+
       if(inputValues.value.every(value => value) && checked.value) {
         confirmForm.value = true
         emit('form-data', [inputValues.value] )
       }
+
     }
   } else {
     console.log('validate not confirm')

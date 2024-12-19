@@ -1,8 +1,5 @@
 <template>
-  <v-container
-    class="erg-vacancies"
-    :class="positionGallery === 'top' ? 'd-flex flex-column-reverse' : ''"
-  >
+  <v-container class="erg-vacancies">
     <div class="position-relative">
       <v-img
         :src="backgroundImage.image"
@@ -68,7 +65,7 @@
               <v-btn
                 v-bind="button.attrs"
                 class="text-none z-index-2 mr-auto"
-                :color="button.attrs?.color ?? 'white'"
+                :color="button.attrs?.color ? button.attrs.color : 'white'"
               >
                 {{ button.text || 'Связаться с нами' }}
                 <v-img
@@ -97,82 +94,30 @@
         </v-row>
       </v-sheet>
     </div>
-    <v-row
-      v-if="gallery"
-      style="flex-wrap: nowrap"
-      class="overflow-x-auto"
-    >
-      <v-col
-        v-for="(img, index) in galleryImages"
-        :key="`img-col-${index}`"
-        cols="3"
-        class="gallery-col rounded-xl"
-      >
-        <div :class="galleryHoverEffect ? 'gallery-item' : 'position-relative'">
-          <v-img
-            :src="img.background"
-            class="gallery-image"
-            width="100%"
-            cover
-            :height="280"
-          />
-          <span
-            v-if="galleryHoverEffect"
-            class="gallery-title text-h5"
-          >
-            {{ img.title }}
-          </span>
-          <v-chip
-            v-else
-            v-bind="img.chip.attrs"
-            class="gallery-chip"
-          >
-            {{ img.chip.text }}
-          </v-chip>
-        </div>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 
-<script setup>
-import {useAttrs} from "vue";
-import {useMainStore} from "../../store/mainStore";
+<script setup lang="ts">
+import { useAttrs, defineProps, ref } from "vue";
+import { getProperties } from "../../../utils/getAttrs";
+import type { IVacanciesErg } from "./vacanciesTypes";
+import type { Attrs } from "../../../types/global";
 
 const attrs = useAttrs()
-const mainStore = useMainStore()
-const sheetAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'sheet')
-}
-const titleAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title')
-}
-const subTitleAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'sub-title')
-}
-const bodyAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'body')
-}
-
-const props = defineProps({
-  galleryImages: { type: Array, default: () => ([]) },
-
-  backgroundImage: { type: Object, default: () => ({}) },
-  button: { type: Object, default: () => ({}) },
-  leftImage: { type: Object, default: () => ({}) },
-  rightImage: { type: Object, default: () => ({}) },
-  chip: { type: Object, default: () => ({}) },
-
-  title: { type: String, default: '' },
-  subTitle: { type: String, default: '' },
-  textBody: { type: String, default: '' },
-
-  gallery: { type: Boolean, default: false },
-  galleryHoverEffect: { type: Boolean, default: false },
-  positionGallery: { type: String, default: () => 'bottom' }
+const sheetAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'sheet')
+})
+const titleAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'title')
+})
+const subTitleAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'sub-title')
+})
+const bodyAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'body')
 })
 
-
+const props = defineProps<IVacanciesErg>()
 </script>
 
 <style lang="scss">
@@ -190,20 +135,6 @@ const props = defineProps({
   .z-index-2 {
     z-index: 2;
   }
-  @media (max-width: 1280px) {
-    .gallery-col {
-      width: 330px !important;
-      flex: 0 0 auto;
-      max-width: 100%;
-    }
-  }
-  @media (max-width: 330px) {
-    .gallery-col {
-      width: 295px !important;
-      flex: 0 0 auto;
-      max-width: 100%;
-    }
-  }
   .sheet-img-bg {
     position: absolute;
     top: 0;
@@ -212,44 +143,6 @@ const props = defineProps({
     bottom: 0;
     width: 100%;
     z-index: 1;
-  }
-  .gallery-chip {
-    position: absolute;
-    bottom: 5%;
-    left: 5%;
-  }
-  .gallery-item {
-    overflow: hidden;
-    max-width: 100%;
-    border-radius: 24px;
-    position: relative;
-
-    .gallery-image {
-      transition: transform 0.2s ease;
-    }
-
-    .gallery-title {
-      position: absolute;
-      bottom: 20px;
-      left: 5%;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      color: #fff;
-      @media(max-width: 768px) {
-        opacity: 1;
-      }
-    }
-
-    &:hover .gallery-image {
-      transform: scale(2);
-      @media(max-width: 768px) {
-        transform: scale(1);
-      }
-    }
-
-    &:hover .gallery-title {
-      opacity: 1;
-    }
   }
 }
 </style>

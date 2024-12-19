@@ -47,143 +47,16 @@ export default defineNuxtModule<ModuleOptions>({
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve("./runtime/plugin"));
 
-    // Components
+    // ============= Pages =============
 
     if (options.components.includes("pagesTestVuetify")) {
       addComponent({
-        name: "pagesTestVuetify", // name of the component to be used in vue templates
+        name: "pagesTestVuetify",
         filePath: resolver.resolve("runtime/components/Pages/TestVuetify.vue"),
       });
     }
 
-    if (options.components.includes("partsFooterDefault")) {
-      addComponent({
-        name: "partsFooterDefault", // name of the component to be used in vue templates
-        filePath: resolver.resolve(
-          "runtime/components/Parts/Footer/Default.vue"
-        ),
-      });
-    }
-
-    if (options.components.includes("partsFooterErg")) {
-      addComponent({
-        name: "partsFooterErg", // name of the component to be used in vue templates
-        filePath: resolver.resolve(
-          "runtime/components/Parts/Footer/Erg.vue"
-        ),
-      });
-    }
-
-    // cards
-
-    if (options.components.includes("partsCardDefault")) {
-      addComponent({
-        name: "partsCardDefault", // name of the component to be used in vue templates
-        filePath: resolver.resolve("runtime/components/Parts/Card/Default.vue"),
-      });
-    }
-
-    if (options.components.includes("partsCardScale")) {
-      addComponent({
-        name: "partsCardScale", // name of the component to be used in vue templates
-        filePath: resolver.resolve("runtime/components/Parts/Card/Scale.vue"),
-      });
-    }
-
-    if (options.components.includes("partsCardErgNews")) {
-      addComponent({
-        name: "partsCardErgNews", // name of the component to be used in vue templates
-        filePath: resolver.resolve("runtime/components/Parts/Card/ErgNews.vue"),
-      });
-    }
-
-    if (options.components.includes("partsForms")) {
-      addComponent({
-        name: "partsForms", // name of the component to be used in vue templates
-        filePath: resolver.resolve("runtime/components/Parts/Forms.vue"),
-      });
-    }
-
-    if (options.components.includes("partsErgVacancies")) {
-      addComponent({
-        name: "partsErgVacancies", // name of the component to be used in vue templates
-        filePath: resolver.resolve("runtime/components/Parts/ErgVacancies.vue"),
-      });
-    }
-
-    // Header
-    if (options.components.includes("partsHeaderDefault")) {
-      addComponent({
-        name: "partsHeaderDefault",
-        filePath: resolver.resolve(
-          "runtime/components/Parts/Header/Default.vue"
-        ),
-      });
-    }
-
-    if (options.components.includes("partsHeaderErg")) {
-      addComponent({
-        name: "partsHeaderErg",
-        filePath: resolver.resolve("runtime/components/Parts/Header/Erg.vue"),
-      });
-    }
-
-    // Modal
-    if (options.components.includes("partsModal")) {
-      addComponent({
-        name: "partsModal",
-        filePath: resolver.resolve("runtime/components/Parts/Modal.vue"),
-      });
-    }
-
-    //Slider
-    if (options.components.includes("partsSlider")) {
-      addComponent({
-        name: "partsSlider",
-        filePath: resolver.resolve("runtime/components/Parts/Slider.vue"),
-      });
-    }
-
-    if (options.components.includes("partsNews")) {
-      addComponent({
-        name: "partsNews",
-        filePath: resolver.resolve("runtime/components/Parts/News.vue"),
-      });
-    }
-
-    // files
-
-    if (options.components.includes("partsFilesDownloadFiles")) {
-      addComponent({
-        name: "partsFilesDownloadFiles",
-        filePath: resolver.resolve(
-          "runtime/components/Parts/Files/DownloadFiles.vue"
-        ),
-      });
-    }
-
-    if (options.components.includes("partsFilesErg")) {
-      addComponent({
-        name: "partsFilesErg",
-        filePath: resolver.resolve(
-          "runtime/components/Parts/Files/Erg.vue"
-        ),
-      });
-    }
-
-    // pagination
-
-    if (options.components.includes("partsPagination")) {
-      addComponent({
-        name: "partsPagination",
-        filePath: resolver.resolve(
-          "runtime/components/Parts/Pagination.vue"
-        ),
-      });
-    }
-
-    // error page
-
+    // ======= Error =======
     if (options.components.includes("pagesErrorErg")) {
       addComponent({
         name: "pagesErrorErg",
@@ -193,8 +66,101 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
-    // Gallery
+    // ============= Components =============
 
+    // ======= Footers =======
+    if (options.components.includes("partsFooterErg")) {
+      addComponent({
+        name: "partsFooterErg",
+        filePath: resolver.resolve(
+          "runtime/components/Parts/Footer/Erg.vue"
+        ),
+      });
+    }
+
+    // ======= Cards =======
+    if (options.components.includes("partsCardDefault")) {
+      addComponent({
+        name: "partsCardDefault",
+        filePath: resolver.resolve("runtime/components/Parts/Card/Default.vue"),
+      });
+    }
+
+    if (options.components.includes("partsCardScale")) {
+      addComponent({
+        name: "partsCardScale",
+        filePath: resolver.resolve("runtime/components/Parts/Card/Scale.vue"),
+      });
+    }
+
+    if (options.components.includes("partsCardErgNews")) {
+      addComponent({
+        name: "partsCardErgNews",
+        filePath: resolver.resolve("runtime/components/Parts/Card/ErgNews.vue"),
+      });
+    }
+
+    // ======= Forms =======
+    if (options.components.includes("partsFormsDefault")) {
+      addComponent({
+        name: "partsFormsDefault",
+        filePath: resolver.resolve("runtime/components/Parts/Forms/Default.vue"),
+      });
+    }
+
+    // ======= Vacancies =======
+    if (options.components.includes("partsVacanciesErg")) {
+      addComponent({
+        name: "partsVacanciesErg",
+        filePath: resolver.resolve("runtime/components/Parts/Vacancies/Erg.vue"),
+      });
+    }
+
+    // ======= Headers =======
+    if (options.components.includes("partsHeaderErg")) {
+      addComponent({
+        name: "partsHeaderErg",
+        filePath: resolver.resolve("runtime/components/Parts/Header/Erg.vue"),
+      });
+    }
+
+    // ======= Modals =======
+    if (options.components.includes("partsModalDefault")) {
+      addComponent({
+        name: "partsModalDefault",
+        filePath: resolver.resolve("runtime/components/Parts/Modal/Default.vue"),
+      });
+    }
+
+    // ======= Sliders =======
+    if (options.components.includes("partsSliderDefault")) {
+      addComponent({
+        name: "partsSliderDefault",
+        filePath: resolver.resolve("runtime/components/Parts/Slider/Default.vue"),
+      });
+    }
+
+    // ======= Files =======
+    if (options.components.includes("partsFilesErg")) {
+      addComponent({
+        name: "partsFilesErg",
+        filePath: resolver.resolve(
+          "runtime/components/Parts/Files/Erg.vue"
+        ),
+      });
+    }
+
+    // ======= Pagination =======
+    if (options.components.includes("partsPagination")) {
+      addComponent({
+        name: "partsPagination",
+        filePath: resolver.resolve(
+          "runtime/components/Parts/Default.vue"
+        ),
+      });
+    }
+
+    // ======= Galleries =======
     if (options.components.includes("partsGalleryRow")) {
       addComponent({
         name: "partsGalleryRow",

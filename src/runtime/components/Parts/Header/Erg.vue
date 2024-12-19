@@ -172,157 +172,107 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, useAttrs } from "vue"
-import { useMainStore } from "../../../store/mainStore";
-const mainStore = useMainStore();
+import { ref, watch, computed, useAttrs, defineProps, withDefaults, defineEmits } from "vue"
+import { getProperties } from "../../../utils/getAttrs";
+import type { IHeaderErg } from "./headerTypes";
+import type { Attrs } from "../../../types/global";
 
 const attrs = useAttrs();
-const selectAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "select"),
-});
-const buttonAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "button"),
-});
-const buttonDrawerAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "button-drawer"),
-});
-const selectLangMobileButtonAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "select-lang-mobile"),
-});
-const navigationDrawerAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "navigation-drawer"),
+const selectAttrs = ref<Attrs>({
+  ...getProperties(attrs, "select"),
+})
+const buttonAttrs = ref<Attrs>({
+  ...getProperties(attrs, "button"),
+})
+const buttonDrawerAttrs = ref<Attrs>({
+  ...getProperties(attrs, "button-drawer"),
+})
+const selectLangMobileButtonAttrs = ref<Attrs>({
+  ...getProperties(attrs, "select-lang-mobile"),
+})
+const navigationDrawerAttrs = ref<Attrs>({
+  ...getProperties(attrs, "navigation-drawer"),
 })
 
-const props = defineProps({
+const props = withDefaults(defineProps<IHeaderErg>(), {
   logo: {
-    type: Object,
-    default: () => ({
-      url: '/logoerg.svg',
-      maxWidth: 125,
-      height: 78,
-    })
+    url: '/logoerg.svg',
+    maxWidth: 125,
+    height: 78,
   },
-  elevation: { type: Number, default: 0},
-  menu: {
-    type: Array,
-    default: () => [
-      {
-        title: "О компании",
-        href: "/"
-      },
-      {
-        title: "Продукты и услуги",
-        url: '#footer'
-      },
-      {
-        title: "Преимущества"
-      },
-      {
-        title: "Вакансии"
-      },
-      {
-        title: "Контакты"
-      }
-    ]
-  },
-  menuMobile: {
-    type: Array,
-    default: () => ([])
-  },
-  setLang: {
-    type: Array,
-    default: () => [
-      {
-        code: 'ru',
-        name: "Рус"
-      },
-      {
-        code: 'kk',
-        name: "Каз"
-      },
-      {
-        code: 'en',
-        name: "Eng"
-      }
-    ]
-  },
-  activeLang: { type: String, default: () => '' },
-  textBtn: { type: String, default: () => '' },
-  bgClassHeader: { type: String, default: () => '' },
-  colorClassMenu: { type: String, default: () => '' },
-  burger: { type: Boolean, default: true },
-  showButton: { type: Boolean, default: true },
-  columnGapList: { type: Number, default: 32 },
-  classMenuSelect: { type: String, default: () => 'select-lang-header-menu' },
-  wordButtonMobile: { type: String, default: () => '' },
-  colorActiveLangMobile: { type: String, default: () => '' },
-  colorLangMobile: { type: String, default: () => '' },
-  colorBurger: { type: String, default: () => '' },
-  colorBurgerOpen: { type: String, default: () => '' }
+  elevation: 0,
+  burger: true,
+  showButton: true,
+  columnGapList: 32,
+  classMenuSelect: 'select-lang-header-menu',
 })
 
-const emits = defineEmits(['select-lang', 'button-click'])
+const emits = defineEmits<{
+  "select-lang": (lang: string) => void;
+  "button-click": () => void;
+}>();
 
-const menu_open = ref(false)
-const selectLang = ref(props.activeLang)
+const menu_open = ref<boolean>(false)
+const selectLang = ref<string>(props.activeLang)
 
-const filteredLangs = computed(() => {
+const filteredLangs = computed((): { code: string; name: string }[] => {
   if (!selectLang.value) return props.setLang;
-  return props.setLang.filter(lang => lang.name !== selectLang.value);
-})
+  return props.setLang.filter((lang) => lang.code !== selectLang.value);
+});
 
-const logoStyle = computed(() => {
-  if (typeof window === 'undefined') return;
-
+const logoStyle = computed((): Record<string, string> => {
+  if (typeof window === "undefined") return {};
   const isMobile = window.innerWidth <= 600;
+
   const maxWidth = isMobile
-    ? `${parseInt(props.logo.maxWidth) - 15}px`
+    ? `${parseInt(props.logo.maxWidth.toString()) - 15}px`
     : `${props.logo.maxWidth}px`;
 
   const height = isMobile
-    ? `${parseInt(props.logo.height) - 29}px`
+    ? `${parseInt(props.logo.height.toString()) - 29}px`
     : `${props.logo.height}px`;
 
   return {
-    width: '100%',
+    width: "100%",
     maxWidth: maxWidth,
-    height: height
+    height: height,
   };
-})
-
-function updateSelectLang(selectedLang: string) {
-  selectLang.value = selectedLang;
-  emits('select-lang', selectLang.value);
-}
-
-const scrollToElement = (selector) => {
-  const element = document.querySelector( selector);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
-  }
-}
-
-function toggleBodyScroll(isOpen: boolean) {
-  if (isOpen) {
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-  } else {
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-  }
-}
-
-function getFirstWord(text = '') {
-  return text.split(' ')[0];
-}
-
-watch(menu_open, (newValue) => {
-  toggleBodyScroll(newValue);
 });
 
-function buttonClick() {
-  emits('button-click')
+function updateSelectLang(selectedLang: string): void {
+  selectLang.value = selectedLang;
+  emits("select-lang", selectLang.value);
 }
+
+function scrollToElement(selector: string): void {
+  const element = document.querySelector(selector);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+function toggleBodyScroll(isOpen: boolean): void {
+  if (isOpen) {
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+  } else {
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+  }
+}
+
+function getFirstWord(text: string = ""): string {
+  return text.split(" ")[0];
+}
+
+function buttonClick(): void {
+  emits("button-click");
+}
+
+watch(menu_open, (newValue: boolean) => {
+    toggleBodyScroll(newValue);
+  }
+);
 </script>
 
 <style lang="scss">

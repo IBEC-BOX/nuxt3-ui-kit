@@ -4,13 +4,12 @@
       v-if="sliderBackgroundImage"
       class="zoom-background"
       :src="sliderBackgroundImage"
-      :style="sliderBackgroundImageZoom ? zoomStyle : ''"
       style="position: absolute; width: 100%; height: 100%; z-index: 1"
       cover
     />
     <v-chip
       v-if="Object.keys(staticChips).length"
-      v-bind="staticChips.attrs"
+      v-bind="staticChips?.attrs"
       class="position-absolute"
       style="z-index: 10"
     >
@@ -42,6 +41,7 @@
             style="z-index: -1"
             cover
             :src="slide.backgroundImg"
+            :alt="slide.backgroundImgAlt ? slide.backgroundImgAlt : 'alt image'"
           />
           <!-- Image END -->
         </div>
@@ -153,6 +153,7 @@
                 style="z-index: -1"
                 cover
                 :src="slide.img.src"
+                :alt="slide.img.alt ? slide.img.alt : 'alt image'"
                 v-bind="slide.img.attrs"
               />
               <!-- Image END -->
@@ -182,7 +183,7 @@
     </swiper-container>
 
     <div
-      v-if="controlButtonsAlign === 'center' && controlButtonInSlides === false"
+      v-if="controlButtonsAlign === 'center' && !controlButtonInSlides"
       class="control-buttons-center-container"
     >
       <div class="d-flex justify-space-between px-0">
@@ -201,7 +202,7 @@
     </div>
 
     <div
-      v-if="controlButtonsAlign === 'right' && controlButtonInSlides === false"
+      v-if="controlButtonsAlign === 'right' && !controlButtonInSlides"
       class="control-buttons-right-container"
     >
       <div
@@ -227,7 +228,7 @@
     </div>
 
     <div
-      v-if="controlButtonsAlign === 'left-bottom' && controlButtonInSlides === false"
+      v-if="controlButtonsAlign === 'left-bottom' && !controlButtonInSlides"
       class="control-buttons-left-bottom-container"
       :class="[{ 'px-4 px-md-5 px-lg-9': !sliderContainer }]"
     >
@@ -313,149 +314,91 @@
   </div>
 </template>
 
-<script setup>
-
+<script setup lang="ts">
 import { register } from "swiper/element/bundle";
+import { useAttrs, ref, onMounted, onUnmounted, watch, defineProps, withDefaults } from "vue";
+import { getProperties } from "../../../utils/getAttrs";
+import type { ISliderDefault } from "./sliderTypes";
+import type { Attrs } from "../../../types/global";
+
 register();
 
-import { useAttrs, ref, onMounted, onUnmounted, watch } from "vue";
-import { useMainStore } from "../../store/mainStore";
-const mainStore = useMainStore();
+interface Swiper {
+  slideTo: (index: number) => void;
+  slideNext: (speed?: number) => void;
+  slidePrev: (speed?: number) => void;
+  realIndex: number;
+  isBeginning: boolean;
+  isEnd: boolean;
+  update: () => void;
+  destroyed: boolean;
+  destroy: () => void;
+}
 
 //Attributes
 const attrs = useAttrs();
-const sliderAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "slider"),
-};
-const slidesAttrs = mainStore.getObjectPropertiesWithPrefix(attrs, "slides");
-const controlButtonsAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "control-buttons"),
-};
-const controlButtonPrevAttrs = {
+const sliderAttrs = ref<Attrs>({
+  ...getProperties(attrs, "slider"),
+})
+const slidesAttrs = ref<Attrs>({
+  ...getProperties(attrs, "slides"),
+})
+const controlButtonsAttrs = ref<Attrs>({
+  ...getProperties(attrs, "control-buttons"),
+})
+const controlButtonPrevAttrs = ref<Attrs>({
   ...controlButtonsAttrs,
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "control-button-prev"),
-};
-const controlButtonNextAttrs = {
+  ...getProperties(attrs, "control-button-prev"),
+})
+const controlButtonNextAttrs = ref<Attrs>({
   ...controlButtonsAttrs,
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "control-button-next"),
-};
-const props = defineProps({
-  rounded: {
-    type: String,
-    default: "",
-  },
+  ...getProperties(attrs, "control-button-next"),
+})
 
-  staticChips: {
-    type: Object,
-    default: () => ({})
-  },
-
-  height: {
-    type: String,
-    default: "534px",
-  },
-
-  slides: {
-    type: Array,
-    default: () => [],
-  },
-
-  slidesRounded: {
-    type: String,
-    default: "0",
-  },
-
-  sliderBackgroundImage: {
-    type: String,
-    default: ''
-  },
-
-  sliderBackgroundImageZoom: {
-    type: Boolean,
-    default: false
-  },
-
-  sliderBackgroundImageZoomScale: {
-    type: Number,
-    default: 1.5
-  },
-
-  sliderContainer: {
-    type: Boolean,
-    default: false,
-  },
-
-  sliderPagination: {
-    type: Boolean,
-    default: false,
-  },
-
-  sliderPaginationCenter: {
-    type: Boolean,
-    default: false,
-  },
-
-  sliderPaginationType: {
-    type: String,
-    default: "bullet",
-  },
-
-  sliderPaginationActiveVariant: {
-    type: String,
-    default: "primary",
-  },
-
-  sliderPeeking: {
-    type: Boolean,
-    default: false,
-  },
-
-  controlButtonsAlign: {
-    type: String,
-    default: "bottom",
-  },
-
-  showButtons: {
-    type: Boolean,
-    default: true
-  },
-
-  controlScroll: {
-    type: Boolean,
-    default: false,
-  },
-
-  controlButtonInSlides: {
-    type: Boolean,
-    default: false,
-  }
+const props = withDefaults(defineProps<ISliderDefault>(), {
+  height: "534px",
+  slidesRounded: "0",
+  sliderBackgroundImageZoom: false,
+  sliderBackgroundImageZoomScale: 1.5,
+  sliderContainer: false,
+  sliderPagination: false,
+  sliderPaginationCenter: false,
+  sliderPaginationType: "bullet",
+  sliderPaginationActiveVariant: "primary",
+  sliderPeeking: false,
+  controlButtonsAlign: "bottom",
+  showButtons: true,
+  controlScroll: false,
+  controlButtonInSlides: false
 });
 
-const slider = ref(null);
-const activeSlide = ref(0);
-const pagination = ref(props.slides || []);
+const slider = ref<null | { swiper: Swiper }>(null);
+const activeSlide = ref<number>(0);
+const pagination = ref<Slide[]>(props.slides || []);
 
-const slideTo = (index) => {
-  if (slider.value !== null) {
+let lastScrollPosition = window.pageYOffset;
+
+const slideTo = (index: number): void => {
+  if (slider.value?.swiper) {
     slider.value.swiper.slideTo(index);
   }
 };
 
-const slideNext = () => {
+const slideNext = (): void => {
   if (slider.value?.swiper) {
     slider.value.swiper.slideNext(500);
   }
 };
 
-const slidePrev = () => {
+const slidePrev = (): void => {
   if (slider.value?.swiper) {
     slider.value.swiper.slidePrev(500);
   }
 };
 
-const updatePagination = () => {
-  if (slider.value !== null) {
-    props.slides.forEach((slide, index) => {
+const updatePagination = (): void => {
+  if (slider.value?.swiper) {
+    props.slides.forEach((_, index) => {
       pagination.value[index].active = false;
     });
     pagination.value[slider.value.swiper.realIndex].active = true;
@@ -463,7 +406,7 @@ const updatePagination = () => {
   }
 };
 
-const handleWheel = (event) => {
+const handleWheel = (event: WheelEvent): void => {
   if (!slider.value?.swiper || !props.controlScroll) return;
 
   const swiperInstance = slider.value.swiper;
@@ -473,29 +416,28 @@ const handleWheel = (event) => {
   }
 };
 
-const handleScroll = () => {
+const handleScroll = (): void => {
   if (!slider.value?.swiper || !props.controlScroll) return;
 
-  const direction = window.pageYOffset > lastScrollPosition ? 'down' : 'up';
-  direction === 'down' ? slider.value.swiper.slideNext() : slider.value.swiper.slidePrev();
+  const direction = window.pageYOffset > lastScrollPosition ? "down" : "up";
+  direction === "down" ? slider.value.swiper.slideNext() : slider.value.swiper.slidePrev();
   lastScrollPosition = window.pageYOffset;
 };
 
-const manageEventListeners = (addListeners) => {
+const manageEventListeners = (addListeners: boolean): void => {
   if (addListeners) {
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("scroll", handleScroll, { passive: true });
   } else {
-    window.removeEventListener('wheel', handleWheel);
-    window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener("wheel", handleWheel);
+    window.removeEventListener("scroll", handleScroll);
   }
 };
 
-let lastScrollPosition = window.pageYOffset;
 
 watch(
   () => props.controlScroll,
-  (newValue) => manageEventListeners(newValue),
+  (newValue: boolean) => manageEventListeners(newValue),
   { immediate: true }
 );
 
@@ -505,8 +447,8 @@ watch(() => props.slides, () => {
   }
 });
 
-onMounted(async () => {
-  activeSlide.value = slider.value?.swiper?.realIndex;
+onMounted(() => {
+  activeSlide.value = slider.value?.swiper?.realIndex || 0;
   if (pagination.value.length > 0) pagination.value[0].active = true;
 });
 

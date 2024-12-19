@@ -33,29 +33,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
-import { useMainStore } from "../../../store/mainStore";
+import { ref, defineProps } from "vue"
 import { useAttrs } from "vue";
-const mainStore = useMainStore()
+import { getProperties } from "../../../utils/getAttrs.js";
+import type { ICardErgNews } from "./cardTypes";
+import type { Attrs } from "../../../types/global";
 
 const attrs = useAttrs()
-const wrapperAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'wrapper')
-}
-const titleAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title')
+const wrapperAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'wrapper')
 })
-const dateAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'date')
+const titleAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'title')
 })
-const imageAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'image')
+const dateAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'date')
+})
+const imageAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'image')
 })
 
-
-const props = defineProps({
-  card: { type: Object, default: () => ({}) },
-})
+const props = defineProps<ICardErgNews>()
 </script>
 
 <style lang="scss">

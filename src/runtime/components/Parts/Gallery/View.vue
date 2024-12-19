@@ -114,32 +114,31 @@
   </v-overlay>
 </template>
 
-<script setup>
-import { ref, computed, watch } from "vue";
+<script setup lang="ts">
+import { ref, computed, watch, withDefaults, defineEmits, defineProps } from "vue";
 import { register } from "swiper/element/bundle";
 import { useDisplay } from "vuetify";
+import type { IGalleryView, IGalleryItem } from "./galleryTypes";
 
 register();
-const { mdAndUp } = useDisplay();
 
-const props = defineProps({
-  gallery: { type: Object, required: true },
-  previewImage: { type: Object, default: null },
-  modelValue: { type: Boolean, default: false },
+const props = withDefaults(defineProps<IGalleryView>(), {
+  modelValue: false,
 });
 
 const emit = defineEmits(["update:modelValue", "update:gallery"]);
+const { mdAndUp } = useDisplay();
 
-const mainSwiperRef = ref();
-const thumbsSwiperRef = ref();
-const localGallery = ref(Object.values(props.gallery));
+const mainSwiperRef = ref<any>(null);
+const thumbsSwiperRef = ref<any>(null);
+const localGallery = ref<IGalleryItem[]>([...props.gallery]);
 
-const localModelValue = computed({
+const localModelValue = computed<boolean>({
   get: () => props.modelValue,
-  set: (value) => emit("update:modelValue", value),
+  set: (value: boolean) => emit("update:modelValue", value),
 });
 
-function setActiveImage(index) {
+function setActiveImage(index: number): void {
   updateActiveImage(index);
 
   if (mainSwiperRef.value?.swiper) {
@@ -151,54 +150,64 @@ function setActiveImage(index) {
   }
 }
 
-function updateActiveImage(index) {
-  const keys = Object.keys(localGallery.value);
-  keys.forEach((key, idx) => {
-    localGallery.value[key].active = idx === index;
+function updateActiveImage(index: number): void {
+  localGallery.value.forEach((img, idx) => {
+    img.active = idx === index;
   });
 
   if (thumbsSwiperRef.value?.swiper) {
     thumbsSwiperRef.value.swiper.slideTo(index);
     thumbsSwiperRef.value.swiper.update();
   }
-  emit('update:gallery', localGallery.value);
+  emit("update:gallery", localGallery.value);
 }
 
-function mainPrev() {
-  mainSwiperRef.value?.swiper.slidePrev();
-  updateActiveImage(mainSwiperRef.value.swiper.activeIndex);
-}
-
-function mainNext() {
-  mainSwiperRef.value?.swiper.slideNext();
-  updateActiveImage(mainSwiperRef.value.swiper.activeIndex);
-}
-
-function onMainSlideChange() {
-  const activeIndex = mainSwiperRef.value.swiper.activeIndex;
-  updateActiveImage(activeIndex);
-
-  if (thumbsSwiperRef.value?.swiper) {
-    thumbsSwiperRef.value.swiper.slideTo(activeIndex);
+function mainPrev(): void {
+  if (mainSwiperRef.value?.swiper) {
+    mainSwiperRef.value.swiper.slidePrev();
+    updateActiveImage(mainSwiperRef.value.swiper.activeIndex);
   }
 }
 
-function onThumbSlideChange() {
-  const activeIndex = thumbsSwiperRef.value.swiper.activeIndex;
-  setActiveImage(activeIndex);
+function mainNext(): void {
+  if (mainSwiperRef.value?.swiper) {
+    mainSwiperRef.value.swiper.slideNext();
+    updateActiveImage(mainSwiperRef.value.swiper.activeIndex);
+  }
 }
 
-watch(() => props.previewImage, (newValue) => {
-  if (newValue) {
-    const previewIndex = localGallery.value.findIndex(
-      (img) => img.image === props.previewImage.image
-    );
-    if (previewIndex >= 0) {
-      const [previewItem] = localGallery.value.splice(previewIndex, 1);
-      localGallery.value.unshift(previewItem);
+function onMainSlideChange(): void {
+  if (mainSwiperRef.value?.swiper) {
+    const activeIndex = mainSwiperRef.value.swiper.activeIndex;
+    updateActiveImage(activeIndex);
+
+    if (thumbsSwiperRef.value?.swiper) {
+      thumbsSwiperRef.value.swiper.slideTo(activeIndex);
     }
   }
-});
+}
+
+function onThumbSlideChange(): void {
+  if (thumbsSwiperRef.value?.swiper) {
+    const activeIndex = thumbsSwiperRef.value.swiper.activeIndex;
+    setActiveImage(activeIndex);
+  }
+}
+
+watch(
+  () => props.previewImage,
+  (newValue: IGalleryItem | null | undefined) => {
+    if (newValue) {
+      const previewIndex = localGallery.value.findIndex(
+        (img) => img.image === newValue.image
+      );
+      if (previewIndex >= 0) {
+        const [previewItem] = localGallery.value.splice(previewIndex, 1);
+        localGallery.value.unshift(previewItem);
+      }
+    }
+  }
+);
 </script>
 
 <style lang="scss">

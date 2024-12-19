@@ -81,30 +81,29 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, useAttrs } from "vue";
+import { defineProps, ref, onMounted, onUnmounted, useAttrs } from "vue";
 import { register } from "swiper/element/bundle";
-import { useMainStore } from "../../../store/mainStore";
-const mainStore = useMainStore()
+import { getProperties } from "../../../utils/getAttrs.js";
+import type { ICardScale } from "./cardTypes";
+import type { Attrs } from "../../../types/global";
 
 const attrs = useAttrs()
-const titleTextAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title-text')
-}
-const titleIconAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title-icon')
-}
-const chipAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'chip')
-}
-const sliderAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'slider')
-}
+const titleTextAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'title-text')
+})
+const titleIconAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'title-icon')
+})
+const chipAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'chip')
+})
+const sliderAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'slider')
+})
 
 register();
 
-const props = defineProps({
-  cards: { type: Array, default: () => [] },
-})
+const props = defineProps<ICardScale>()
 
 const activeCardIndex = ref<number>(0);
 const isWideScreen = ref<boolean>(false);

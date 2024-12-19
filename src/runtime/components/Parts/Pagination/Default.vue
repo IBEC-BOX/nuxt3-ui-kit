@@ -40,38 +40,36 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, defineEmits, defineProps, withDefaults } from "vue"
 import { useRoute } from 'nuxt/app';
-import { useMainStore } from "../../store/mainStore";
 import { useAttrs } from "vue";
+import { getProperties } from "../../../utils/getAttrs";
+import type { IPaginationDefault } from "./paginationTypes";
+import type { Attrs } from "../../../types/global";
 
-const mainStore = useMainStore()
 const route = useRoute();
 
 const attrs = useAttrs()
-const paginationAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'pagination')
+const paginationAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'pagination')
 })
-const paginationButtonAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'button-pagination')
+const paginationButtonAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'button-pagination')
 })
-const currentPage = ref(route.query.page ? parseInt(route.query.page) : 1);
 
-const props = defineProps({
-  paginationLastPage: { type: Number, default: () => 1 },
-  paginationTotalVisible: { type: Number, default: () => 5 },
-  textButtonLeftPagination: { type: String, default: '' },
-  textButtonRightPagination: { type: String, default: '' },
-  iconButtonLeftPagination: { type: String, default: 'mdi-arrow-left' },
-  iconButtonRightPagination: { type: String, default: 'mdi-arrow-right' },
-  sidesButton: { type: Boolean, default: true, },
-  wordMobilePagination: { type: String, default: '' },
-  ellipsisMobilePagination: { type: String, default: '' },
+const props = withDefaults(defineProps<IPaginationDefault>(), {
+  paginationLastPage: 1,
+  paginationTotalVisible: 5,
+  iconButtonLeftPagination: 'mdi-arrow-left',
+  iconButtonRightPagination: 'mdi-arrow-right',
+  sidesButton: true,
 })
 
 const emit = defineEmits(['update-pagination'])
 
-function changePage(direction: number) {
+const currentPage = ref<number>(route.query.page ? parseInt(route.query.page) : 1);
+
+function changePage(direction: number): void {
   const nextPage = currentPage.value + direction;
   if (nextPage > 0 && nextPage <= props.paginationLastPage) {
     currentPage.value = nextPage;

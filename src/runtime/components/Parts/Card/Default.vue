@@ -3,7 +3,7 @@
     v-if="styleCard === 'standard'"
     class="card-standard"
     :variant="variantCard"
-    :class="[`${horizontalCard === true ? 'd-flex align-center' : 'd-block'} ${!image ? 'px-0 pt-4 pb-2' : ''}`]"
+    :class="[`${horizontalCard ? 'd-flex align-center' : 'd-block'} ${!image ? 'px-0 pt-4 pb-2' : ''}`]"
     :style="{'column-gap': gap + 'px' }"
     v-bind="cardAttrs"
   >
@@ -69,7 +69,7 @@
       <v-card-subtitle
         v-if="date || author"
         class="mb-4 d-flex align-center"
-        :class="dateAuthorRight === true ? 'justify-end': 'justify-start'"
+        :class="dateAuthorRight ? 'justify-end': 'justify-start'"
       >
         <span class="text-15">{{ date }}</span>
         <svg
@@ -177,49 +177,37 @@
   />
 </template>
 
-<script setup>
-import { useMainStore } from "../../../store/mainStore";
-import {useAttrs, ref} from "vue";
-const mainStore = useMainStore()
+<script setup lang="ts">
+import { useAttrs, ref, defineProps, withDefaults } from "vue";
+import { getProperties } from "../../../utils/getAttrs.js";
+import type { ICardDefault } from "./cardTypes"
+import type { Attrs } from "../../../types/global";
 
 const attrs = useAttrs()
-const cardAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'card')
-}
-const titleAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title')
-}
-const textAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'text')
-}
-
-const openModal = ref(false)
-
-const props = defineProps({
-  styleCard: { type: String, default: "standard" },
-  variantCard: { type: String, default: "elevated"},
-  horizontalCard: { type: Boolean, default: false },
-  dateAuthorRight: { type: Boolean, default: false },
-  positionImageVacancy: { type: String, default: "start" },
-
-  image: { type: Object, default: () => ({}) },
-  gap: { type: Number, default: 0 },
-  title: { type: String, default: "" },
-  subtitle: { type: String, default: "" },
-  price: { type: String, default: "" },
-  text: { type: String, default: "" },
-  textBody: { type: String, default: "" },
-  textImage: { type: Object, default: () => ({}) },
-  hoverText: { type: Boolean, default: false },
-  date: { type: String, default: "" },
-  author:{ type: String, default: "" },
-  city: { type: String, default: "" },
-  statusVacancy: { type: Array, default: () => [] },
-
-  modal: { type: Boolean, default: false },
-  modalImg: { type: String, default: '' },
-  modalWidth: { type: Number, default: 583 }
+const cardAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'card')
 })
+const titleAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'title')
+})
+const textAttrs = ref<Attrs>({
+  ...getProperties(attrs, 'text')
+})
+
+const props = withDefaults(defineProps<ICardDefault>(), {
+    styleCard: "standard",
+    variantCard: "elevated",
+    horizontalCard: false,
+    dateAuthorRight: false,
+    positionImageVacancy: "start",
+    gap: 0,
+    hoverText: false,
+    modal: false,
+    modalWidth: 583,
+  }
+);
+
+const openModal = ref<boolean>(false)
 </script>
 
 <style lang="scss" scoped>

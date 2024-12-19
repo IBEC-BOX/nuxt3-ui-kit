@@ -8,7 +8,8 @@
       :text-btn="'Получить консультацию'"
       :class-menu-select="'asd'"
       :word-button-mobile="'asdsadsadsa'"
-      :show-button="false"
+      :show-button="true"
+      button-class="text-black"
       :set-lang="[
         {
           code: 'ru',
@@ -43,33 +44,33 @@
     <NuxtPage class="bg-primary" />
     <section class="h-100 bg-primary">
       <v-container class="px-4">
-        <!--        <client-only>-->
-        <!--          <partsSlider-->
-        <!--            id="slider-about"-->
-        <!--            :slides="slides"-->
-        <!--            slider-allow-touch-move="false"-->
-        <!--            slider-speed="500"-->
-        <!--            :static-chips="{-->
-        <!--              text: 'about',-->
-        <!--              attrs: {-->
-        <!--                class: 'mt-12 mb-8 ml-9 ml-md-13',-->
-        <!--                color: 'white',-->
-        <!--                variant: 'outlined',-->
-        <!--                style: 'margin-top: 123px !important;'-->
-        <!--              }-->
-        <!--            }"-->
-        <!--            :slider-pagination="true"-->
-        <!--            :show-buttons="false"-->
-        <!--            slider-direction="vertical"-->
-        <!--            :slider-pagination-active-variant="'white'"-->
-        <!--            :height="'800px'"-->
-        <!--            :control-scroll="true"-->
-        <!--            :slider-background-image="'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'"-->
-        <!--            :slider-background-image-zoom="true"-->
-        <!--            :slider-background-image-zoom-scale="1.5"-->
-        <!--            class="main__about__slider"-->
-        <!--          />-->
-        <!--        </client-only>-->
+        <client-only>
+          <partsSliderDefault
+            id="slider-about"
+            :slides="slides"
+            slider-allow-touch-move="false"
+            slider-speed="500"
+            :static-chips="{
+              text: 'about',
+              attrs: {
+                class: 'mt-12 mb-8 ml-9 ml-md-13',
+                color: 'white',
+                variant: 'outlined',
+                style: 'margin-top: 123px !important;'
+              }
+            }"
+            :slider-pagination="true"
+            :show-buttons="false"
+            slider-direction="vertical"
+            :slider-pagination-active-variant="'white'"
+            :height="'800px'"
+            :control-scroll="true"
+            :slider-background-image="'https://images.unsplash.com/photo-1562043236-559c3b65a6e2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'"
+            :slider-background-image-zoom="true"
+            :slider-background-image-zoom-scale="1.5"
+            class="main__about__slider"
+          />
+        </client-only>
         <v-btn @click="model = !model">
           gfdgfsdgf
         </v-btn>

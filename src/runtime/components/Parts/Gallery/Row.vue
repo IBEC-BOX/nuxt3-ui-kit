@@ -55,28 +55,22 @@
 </template>
 
 <script setup lang="ts">
-import { useAttrs } from "vue";
+import { useAttrs, withDefaults, defineProps, ref } from "vue";
 import { register } from "swiper/element/bundle";
 import { useDisplay } from "vuetify";
-import { useMainStore } from "../../../store/mainStore";
-
-const mainStore = useMainStore();
-
-const attrs = useAttrs();
-const swiperAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "swiper"),
-};
+import { getProperties } from "../../../utils/getAttrs.js";
+import type { IGalleryRow } from "./galleryTypes";
+import type { Attrs } from "../../../types/global";
 
 register()
 
-const props = defineProps({
-  blocks: {
-    type: Array,
-  },
-  disableLinks: {
-    type: Boolean,
-    default: false,
-  },
+const attrs = useAttrs();
+const swiperAttrs = ref<Attrs>({
+  ...getProperties(attrs, "swiper"),
+});
+
+const props = withDefaults(defineProps<IGalleryRow>(),{
+  disableLinks: false,
 })
 
 const { mdAndUp, lgAndUp } = useDisplay()

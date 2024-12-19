@@ -74,7 +74,7 @@
         >
           <v-btn
             v-for="button in buttons"
-            v-bind="button.attributes"
+            v-bind="button.attrs"
             :key="button.id"
             class="flex-grow-1"
           >
@@ -86,95 +86,49 @@
   </v-dialog>
 </template>
 
-<script setup>
-  import { useAttrs, computed, ref } from 'vue'
-  import { useMainStore } from "../../store/mainStore"
+<script setup lang="ts">
+import { useAttrs, computed, ref, defineEmits, defineProps, withDefaults } from 'vue'
+import { getProperties } from "../../../utils/getAttrs";
+import type { IModalDefault } from "./modalTypes";
+import type { Attrs } from "../../../types/global";
 
-  const mainStore  = useMainStore()
-  const props = defineProps({
-    modelValue: {
-      type: Boolean,
-      default: false
-    },
-    heading: {
-      type: String,
-      default: '',
-    },
-    text: {
-      type: String,
-      default: '',
-    },
-    icon: {
-      type: String,
-      default: '',
-    },
-    rounded: {
-      type: String,
-      default: '',
-    },
-    buttons: {
-      type: Array,
-      default: () => []
-    },
-    buttonsDirection: {
-      type: String,
-      default: 'row'
-    },
-    iconCenter: {
-      type: Boolean,
-      default: false
-    },
-    iconBg: {
-      type: String,
-      default: 'grey-lighten-2'
-    },
-    img: {
-      type: String,
-      default: ''
-    },
-    imgOnly: {
-      type: Boolean,
-      default: false,
-    },
-    imgRounded: {
-      type: String,
-      default: 'md',
-    },
-    imgFluid: {
-      type: Boolean,
-      default: false,
-    },
-  })
-  const attrs = useAttrs()
+const attrs = useAttrs()
+const iconAttrs = ref<Attrs>({
+  size: 'large',
+  color: 'white',
+  ...getProperties(attrs, 'icon')
+})
+const imageAttrs = ref<Attrs>({
+  height: 199,
+  ...getProperties(attrs, 'img')
+})
+const closeButtonAttrs = ref<Attrs>({
+  elevation: 0,
+  size: 'small',
+  icon: 'mdi-window-close',
+  ...getProperties(attrs, 'close-button')
+})
 
-  const iconAttrs = ref({
-    size: 'large',
-    color: 'white',
-    ...mainStore.getObjectPropertiesWithPrefix(attrs, 'icon')
-  })
+const props = withDefaults(defineProps<IModalDefault>(),{
+  modelValue: false,
+  buttonsDirection: 'row',
+  iconCenter: false,
+  iconBg: 'grey-lighten-2',
+  imgOnly: false,
+  imgRounded: 'md',
+  imgFluid: false
+})
 
-  const imageAttrs = ref({
-    height: 199,
-    ...mainStore.getObjectPropertiesWithPrefix(attrs, 'img')
-  })
+const emit = defineEmits(['update:modelValue'])
 
-  const closeButtonAttrs = ref({
-    elevation: 0,
-    size: 'small',
-    icon: 'mdi-window-close',
-    ...mainStore.getObjectPropertiesWithPrefix(attrs, 'close-button')
-  })
-
-  // Init v-model
-  const emit = defineEmits(['update:modelValue'])
-  const value = computed({
-    get() {
-      return props.modelValue
-    },
-    set(value) {
-      emit('update:modelValue', value)
-    }
-  })
+const value = computed({
+  get() {
+    return props.modelValue
+  },
+  set(value) {
+    emit('update:modelValue', value)
+  }
+})
 </script>
 
 <style scoped>
