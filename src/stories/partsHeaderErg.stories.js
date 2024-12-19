@@ -1,7 +1,7 @@
 import Header from '../runtime/components/Parts/Header/Erg.vue';
 
 export default {
-  title: 'Parts/HeaderERG',
+  title: 'Parts/Header ERG',
   component: Header,
   tags: ['autodocs'],
   argTypes: {
