@@ -2,7 +2,7 @@ import downloadFile from '../runtime/components/Parts/Files/DownloadFiles.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  title: 'Parts/files/downloadFiles',
+  title: 'Parts/Files/Download Files',
   component: downloadFile,
   tags: ['autodocs'],
   argTypes: {

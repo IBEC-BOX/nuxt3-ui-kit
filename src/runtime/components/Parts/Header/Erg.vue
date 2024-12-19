@@ -62,8 +62,8 @@
           item-value="code"
           hide-details="true"
           variant="solo"
-          class="mr-2 mr-sm-4 bg-none erg-header-select"
-          :class="burger ? 'control-select' : ''"
+          class="bg-none erg-header-select"
+          :class="[showButton ? 'mr-2 mr-sm-4' : '', burger ? 'control-select' : '']"
           :menu-props="{ class: classMenuSelect }"
           v-bind="selectAttrs"
           @update:model-value="updateSelectLang"
@@ -71,7 +71,7 @@
         <v-btn
           class="text-none text-body-1 erg-header-button"
           rounded="xl"
-          :class="burger ? 'd-none d-lg-block' : ''"
+          :class="showButton ? burger ?  'd-none d-lg-block' : '' : 'd-none'"
           v-bind="buttonAttrs"
           @click="buttonClick"
         >
@@ -250,6 +250,7 @@ const props = defineProps({
   bgClassHeader: { type: String, default: () => '' },
   colorClassMenu: { type: String, default: () => '' },
   burger: { type: Boolean, default: true },
+  showButton: { type: Boolean, default: true },
   columnGapList: { type: Number, default: 32 },
   classMenuSelect: { type: String, default: () => 'select-lang-header-menu' },
   wordButtonMobile: { type: String, default: () => '' },
@@ -416,7 +417,7 @@ function buttonClick() {
     color: inherit;
   }
 
-  .erg-header-link {
+  &-item {
     transition: background 0.3s ease;
     border-radius: 50px;
     padding: 8px 10px;
