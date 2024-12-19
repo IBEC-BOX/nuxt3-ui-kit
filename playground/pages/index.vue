@@ -55,7 +55,6 @@ const cards = [
     text: "A “card” is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.",
     date: "02.04.2023",
     author: "by Tyler, The Creator",
-    functionButton: testButtonNews,
     textButton: "Читать",
   },
   {
