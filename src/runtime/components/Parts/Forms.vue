@@ -627,7 +627,6 @@ const dataForm = (validForm) => {
     } else if(!Object.keys(props.checkboxSetting).length) {
       if(inputValues.value.every(value => value)) {
         confirmForm.value = true
-        console.log(inputValues.value)
         emit('form-data', [inputValues.value] )
       }
     } else {

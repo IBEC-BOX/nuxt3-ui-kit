@@ -178,13 +178,9 @@ const props = defineProps({
 })
 
 const isMultiParagraph = (html: string): boolean => {
-  if (!html || process.server) return false;
-
-  console.log('Checking HTML content:', html);
-
+  if (!html || import.meta.env.SSR) return false; // Проверяем серверную среду через Vite
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
-
   const paragraphs = doc.querySelectorAll('p, a, br');
   return paragraphs.length > 2;
 };
