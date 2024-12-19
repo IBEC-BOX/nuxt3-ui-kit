@@ -224,12 +224,39 @@ const gallery = ref([
 const preview = ref(gallery.value[0].images[0])
 const contacts = [
   {
-    title: 'asd',
-    phone: `<p>8 (71837) 9 99 03 (Канцелярия)</p><p>8 (71837) 9 99 00 (Приемная)</p>`,
+    title: 'АО «Алюминий Казахстана»',
+    phone: `<p data-v-bca74727=""><p>(Приемная)</p><p><a href="tel:8%20(7182)%2037%2001%2011">8 (7182) 37 01 11</a><br> <a href="tel:8%20(7182)%2037%2007%2045">8 (7182) 37 07 45</a><br> <a href="tel:8%20(7182)%2037%2004%2026">8 (7182) 37 04 26</a><br> <a href="tel:8%20701%20029%2081%2099">8 701 029 81 99</a>&nbsp;</p><p><br></p></p>`,
     imagePhone: '/phone.svg',
-    mail: 'info.bts@erg.kz',
+    mail: '<p>info.bts@erg.kz</p><p>info.bts@erg.kz</p>',
     mailImage: '/mail.svg',
     location: 'Юридический адрес: АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500',
+    imageLocation: '/location.png',
+  },
+  {
+    title: 'Электростанция',
+    phone: `<p>8 (7182) 37-00-47 (Приемная)</p>`,
+    imagePhone: '/phone.svg',
+    mail: '<p>aok.energy@erg.kz&nbsp;</p><p>aok.energy@erg.kz&nbsp;</p>',
+    mailImage: '/mail.svg',
+    location: '<p>Республика Казахстан, 140013, Павлодарская область, г. Павлодар, Восточная промышленная зона, строение 59&nbsp;</p>',
+    imageLocation: '/location.png',
+  },
+  {
+    title: 'Известняковый рудник «Керегетас»',
+    phone: `<p>Приёмная<br><a href="tel:8%20(71840)%2069%20301">8 (71840) 69 301</a><br> <a href="tel:8%20(71840)%2069%20300">8 (71840) 69 300</a></p>`,
+    imagePhone: '/phone.svg',
+    mail: '<p>aok.energy@erg.kz&nbsp;</p>',
+    mailImage: '/mail.svg',
+    location: '<p>Республика Казахстан, 140308, Павлодарская область, Баянаульский район, пос. Майкаин, село Ушкулун, ул. Ушкулун, здание 15А&nbsp;</p>',
+    imageLocation: '/location.png',
+  },
+  {
+    title: 'Краснооктябрьское бокситовое рудоуправление',
+    phone: `<p>Приёмная<br><a href="tel:8%20(71433)%206-44-31">8 (71433) 6-44-31</a>&nbsp;</p>`,
+    imagePhone: '/phone.svg',
+    mail: '<p>aok.energy@erg.kz&nbsp;</p>',
+    mailImage: '/mail.svg',
+    location: '<p>Республика Казахстан, 111203, Костанайская область, г. Лисаковск, поселок Октябрьский, ул.Уральская 42 Республика Казахстан&nbsp;</p>',
     imageLocation: '/location.png',
   },
 ]

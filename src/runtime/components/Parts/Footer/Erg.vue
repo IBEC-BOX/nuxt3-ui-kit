@@ -21,7 +21,7 @@
             class="footer-contacts-sheet d-flex w-100"
             :class="contacts.length === 2 ? 'd-flex flex-column ' : 'flex-column flex-lg-row justify-space-between'"
           >
-            <h2 class="text-dark-1 text-h6 text-md-h5 text-lg-h4 font-weight-medium mb-4">
+            <h2 class="text-dark-1 footer-contacts-sheet-title font-weight-medium mb-6 mb-lg-4">
               {{ contact?.title }}
             </h2>
             <ul
@@ -33,7 +33,10 @@
                 class="d-flex align-start footer-contacts-list-item"
                 :class="contacts.length === 2 ? 'mb-4' : 'mb-4 mb-lg-0'"
               >
-                <div class="d-flex align-center">
+                <div
+                  class="d-flex"
+                  :class="isMultiParagraph(contact.phone) ? 'align-start' : 'align-center'"
+                >
                   <div class="bg-img mr-4">
                     <v-img
                       :src="contact.imagePhone ? contact.imagePhone : '/phone.svg'"
@@ -47,10 +50,13 @@
               </li>
               <li
                 v-if="contact.mail"
-                class="d-flex align-start footer-contacts-list-item"
+                class="d-flex align-start footer-contacts-list-item footer-contacts-list-item-mail"
                 :class="contacts.length === 2 ? 'mb-4' : 'mb-4 mb-lg-0'"
               >
-                <div class="d-flex align-center">
+                <div
+                  class="d-flex"
+                  :class="isMultiParagraph(contact.mail) ? 'align-start' : 'align-center'"
+                >
                   <div class="bg-img mr-4">
                     <v-img
                       :src="contact.imageMail ? contact.imageMail : '/mail.svg'"
@@ -165,20 +171,54 @@
 const props = defineProps({
   contacts: { type: Array, default: () => [] },
   socials: { type: Array, default: () => [] },
-
   bgClass: { type: String, default: () => 'bg-none' },
-
   copyright: { type: String, default: () => "" },
   copyrightMade: { type: String, default: () => '' },
-  copyrightCert: { type: Object, default: () => ( { title: '', cert: '' } ) }
+  copyrightCert: { type: Object, default: () => ({ title: '', cert: '' }) }
 })
+
+const isMultiParagraph = (html: string): boolean => {
+  if (!html || process.server) return false;
+
+  console.log('Checking HTML content:', html);
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+
+  const paragraphs = doc.querySelectorAll('p, a, br');
+  return paragraphs.length > 2;
+};
 </script>
 
 <style scoped lang="scss">
 .footer {
   &-contacts {
+    &-sheet {
+      &-title {
+        max-width: 300px;
+        width: 100%;
+        font-size: 28px;
+        line-height: normal;
+        font-family: "Roboto", sans-serif;
+        @media (max-width: 1280px) {
+          font-size: 32px;
+        }
+        @media (max-width: 960px) {
+          font-size: 24px;
+        }
+        @media (max-width: 600px) {
+          font-size: 24px;
+        }
+      }
+    }
     &-list {
-      column-gap: 52.5px;
+      column-gap: 25.5px;
+      max-width: 836px;
+      width: 100%;
+      &-item-mail {
+        max-width: 200px;
+        width: 100%;
+      }
       &-item {
         p {
           max-width: 240px;
@@ -214,6 +254,7 @@ const props = defineProps({
     }
 
   }
+
   &-copyright {
     color: #A5A7AD;
     font-size: 13px;
