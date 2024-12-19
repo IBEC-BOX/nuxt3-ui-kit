@@ -19,7 +19,7 @@
             <swiper-container
               ref="thumbsSwiperRef"
               :direction="mdAndUp ? 'vertical' : 'horizontal'"
-              class="gallery-view-swiper-blocks d-block"
+              class="gallery-view-swiper-blocks w-100 d-block"
               :style="{ height: mdAndUp ? '100vh' : '100%', overflow: 'auto' }"
               :slides-per-view="mdAndUp ? 6.8 : 4.2"
               space-between="0"
