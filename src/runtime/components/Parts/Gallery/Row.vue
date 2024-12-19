@@ -4,7 +4,7 @@
     :slides-per-view="blocks.length === 4 ? (lgAndUp ? 4 : (mdAndUp ? 3.2 : 1.2)) : (lgAndUp ? 4.2 : (mdAndUp ? 3.2 : 1.2))"
     :space-between="lgAndUp ? 20 : 8"
     direction="horizontal"
-    class="row-gallery-blocks d-block"
+    class="row-gallery-blocks d-block w-100"
     height="290px"
     v-bind="swiperAttrs"
   >
