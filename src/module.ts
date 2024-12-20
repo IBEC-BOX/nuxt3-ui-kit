@@ -151,11 +151,11 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     // ======= Pagination =======
-    if (options.components.includes("partsPagination")) {
+    if (options.components.includes("partsPaginationDefault")) {
       addComponent({
-        name: "partsPagination",
+        name: "partsPaginationDefault",
         filePath: resolver.resolve(
-          "runtime/components/Parts/Default.vue"
+          "runtime/components/Parts/Pagination/Default.vue"
         ),
       });
     }
