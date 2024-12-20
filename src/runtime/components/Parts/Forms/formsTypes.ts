@@ -11,35 +11,35 @@ export interface IFormsDefault extends IBaseProps {
   bigImage?: string
   smallImage?: string
   altImage?: string
-  button: {
+  button?: {
     attrs?: Attrs
-    text: string
+    text?: string
   }
-  checkbox: {
+  checkbox?: {
     label: string
     attrs?: Attrs
   }
-  inputs: {
+  inputs?: {
     colsAttrs?: Breakpoints,
     attrs?: Attrs
     maska: Maska
   }[]
-  combobox: {
+  combobox?: {
     attrs?: Attrs
   }
-  socials: ISocials[]
-  infoCompany: {
+  socials?: ISocials[]
+  infoCompany?: {
     icon: string
     attrs?: Attrs
-    text: string
+    text?: string
   }[]
-  contacts: IContacts[]
-  switchContentOnValid: boolean
-  switchContentButton: {
+  contacts?: IContacts[]
+  switchContentOnValid?: boolean
+  switchContentButton?: {
     attrs?: Attrs
     image: string
     alt?: string
     imageAttrs?: Attrs
-    text: string
+    text?: string
   }
 }

@@ -15,10 +15,10 @@
       >
         <v-row class="h-100">
           <v-col
-            v-if="Object.keys(leftImage).length"
+            v-if="leftImage.image"
             cols="12"
             md="6"
-            :style="Object.keys(leftImage).length ? '' : 'display: contents'"
+            :style="leftImage.image ? '' : 'display: contents'"
           >
             <v-img
               :src="leftImage.image"
@@ -27,10 +27,10 @@
           </v-col>
           <v-col
             cols="12"
-            :md="Object.keys(leftImage).length || Object.keys(rightImage).length ? 6 : 12"
+            :md="leftImage.image || rightImage.image ? 6 : 12"
             v-bind="bodyAttrs"
             class="py-0  "
-            :class="Object.keys(leftImage).length || Object.keys(rightImage).length ? 'px-5' : ''"
+            :class="leftImage.image || rightImage.image ? 'px-5' : ''"
           >
             <v-chip
               v-if="chip"
@@ -80,7 +80,7 @@
             </div>
           </v-col>
           <v-col
-            v-if="Object.keys(rightImage).length"
+            v-if="rightImage.image"
             cols="12"
             md="6"
             :style="rightImage ? '' : 'display: contents'"
@@ -117,7 +117,16 @@ const bodyAttrs = ref<Attrs>({
   ...getProperties(attrs, 'body')
 })
 
-const props = defineProps<IVacanciesErg>()
+const props = withDefaults(defineProps<IVacanciesErg>(), {
+  backgroundImage: { image: "", attrs: {} },
+  leftImage: { image: "", attrs: {} },
+  rightImage: { image: "", attrs: {} },
+  chip: { text: "", attrs: {} },
+  button: { text: "", image: "", imageAttrs: {}, attrs: {}, to: "" },
+  title: "",
+  subTitle: "",
+  textBody: "",
+});
 </script>
 
 <style lang="scss">

@@ -8,7 +8,7 @@
       cover
     />
     <v-chip
-      v-if="Object.keys(staticChips).length"
+      v-if="staticChips && Object.keys(staticChips).length"
       v-bind="staticChips?.attrs"
       class="position-absolute"
       style="z-index: 10"

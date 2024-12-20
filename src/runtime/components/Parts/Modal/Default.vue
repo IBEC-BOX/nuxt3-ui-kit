@@ -109,15 +109,17 @@ const closeButtonAttrs = ref<Attrs>({
   ...getProperties(attrs, 'close-button')
 })
 
-const props = withDefaults(defineProps<IModalDefault>(),{
+const props = withDefaults(defineProps<IModalDefault>(), {
   modelValue: false,
+  buttons: [],
+  img: '',
   buttonsDirection: 'row',
   iconCenter: false,
   iconBg: 'grey-lighten-2',
   imgOnly: false,
   imgRounded: 'md',
-  imgFluid: false
-})
+  imgFluid: false,
+});
 
 const emit = defineEmits(['update:modelValue'])
 

@@ -83,6 +83,7 @@
           :gallery="gallery[0].images"
           :preview-image="preview"
         />
+        <parts-forms-default />
       </v-container>
     </section>
 

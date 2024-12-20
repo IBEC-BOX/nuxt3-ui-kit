@@ -1,7 +1,7 @@
 <template>
   <v-sheet
-    v-if="styleForm === 'standard' && (bigImage === '' && smallImage === '')"
-    :max-width="Object.keys(commentary).length ? 825 : 1100"
+    v-if="styleForm === 'standard' && (!bigImage && (!smallImage || smallImage.trim() === ''))"
+    :max-width="commentary && Object.keys(commentary).length ? 825 : 1100"
     class="mx-auto custom-ui-form"
     v-bind="sheetAttrs"
   >
@@ -13,7 +13,7 @@
         <v-col
           v-if="title"
           cols="12"
-          :sm="Object.keys(commentary).length ? 12 : 6"
+          :sm="commentary && Object.keys(commentary).length ? 12 : 6"
         >
           <h5
             v-if="title"
@@ -33,7 +33,7 @@
           cols="12"
           sm="6"
         >
-          <v-row :class="Object.keys(commentary).length ? 'pa-0' : 'pt-4'">
+          <v-row :class="commentary && Object.keys(commentary).length ? 'pa-0' : 'pt-4'">
             <v-col
               v-for="(input, index) in inputs"
               :key="`input-${index}`"
@@ -49,14 +49,14 @@
           </v-row>
         </v-col>
         <v-col
-          v-if="Object.keys(commentary).length"
+          v-if="commentary && Object.keys(commentary).length"
           cols="12"
           sm="6"
           class="pt-3 pb-0 py-sm-0"
         >
           <v-textarea
             v-model="comValue"
-            v-bind="commentary.attrs"
+            v-bind="commentary?.attrs"
           />
         </v-col>
         <v-col
@@ -65,7 +65,7 @@
           class="pl-1 py-0"
         >
           <v-checkbox
-            v-if="Object.keys(commentary).length"
+            v-if="commentary && Object.keys(commentary).length"
             v-model="checked"
             v-bind="checkbox.attrs"
           >
@@ -78,17 +78,17 @@
           cols="12"
           sm="6"
           class="d-flex flex-column justify-start"
-          :class="!Object.keys(commentary).length ? 'py-0' : ''"
+          :class="!commentary && Object.keys(commentary).length ? 'py-0' : ''"
         >
           <v-btn
             type="submit"
-            v-bind="button.attrs"
+            v-bind="button?.attrs"
             class=""
           >
             {{ button.text }}
           </v-btn>
           <v-checkbox
-            v-if="!Object.keys(commentary).length"
+            v-if="!commentary && Object.keys(commentary).length"
             v-model="checked"
             v-bind="checkbox.attrs"
           >
@@ -147,7 +147,7 @@
           class="py-0 pl-1"
         >
           <v-checkbox
-            v-if="Object.keys(commentary).length"
+            v-if="commentary && Object.keys(commentary).length"
             v-model="checked"
             v-bind="checkbox.attrs"
           >
@@ -162,7 +162,7 @@
         >
           <v-btn
             type="submit"
-            v-bind="button.attrs"
+            v-bind="button?.attrs"
             class="mt-6"
           >
             {{ button.text }}
@@ -195,7 +195,7 @@
     </v-form>
   </v-sheet>
   <v-sheet
-    v-if="bigImage || smallImage"
+    v-if="bigImage || (smallImage && smallImage.trim() !== '')"
     class="mx-auto custom-ui-form"
     v-bind="sheetAttrs"
   >
@@ -252,17 +252,17 @@
               />
             </v-col>
             <v-col
-              v-if="Object.keys(combobox).length"
+              v-if="combobox && Object.keys(combobox).length"
               cols="12"
               class="pb-2 pt-0"
             >
               <v-combobox
                 v-model="comboboxValue"
-                v-bind="combobox.attrs"
+                v-bind="combobox?.attrs"
               />
             </v-col>
             <v-col
-              v-if="Object.keys(commentary).length"
+              v-if="commentary && Object.keys(commentary).length"
               cols="12"
               class="py-0"
             >
@@ -277,7 +277,7 @@
             >
               <v-btn
                 type="submit"
-                v-bind="button.attrs"
+                v-bind="button?.attrs"
                 class="mt-6"
               >
                 {{ button.text }}
@@ -299,7 +299,7 @@
           </v-row>
         </v-col>
         <v-col
-          v-if="smallImage&&infoCompany.length"
+          v-if="smallImage&&Array.isArray(infoCompany)"
           cols="12"
           sm="6"
         >
@@ -313,12 +313,12 @@
             >
               <v-icon
                 :icon="info.icon"
-                v-bind="info.attrs"
+                v-bind="info?.attrs"
               />
               <span>{{ info.text }}</span>
             </v-col>
             <v-col
-              v-if="socials.length"
+              v-if="Array.isArray(socials)"
               cols="12"
             >
               <ul
@@ -344,7 +344,7 @@
               </ul>
             </v-col>
             <v-col
-              v-if="smallImage.length"
+              v-if="smallImage"
               cols="12"
             >
               <v-img
@@ -367,7 +367,7 @@
     <v-row>
       <v-col
         cols="12"
-        :lg="contacts.length ? 6 : 12"
+        :lg="Array.isArray(contacts) ? 6 : 12"
       >
         <h2
           class="mb-10"
@@ -404,13 +404,13 @@
               </v-row>
               <v-btn
                 type="submit"
-                v-bind="button.attrs"
+                v-bind="button?.attrs"
                 class="mt-6"
               >
                 {{ button.text }}
               </v-btn>
               <v-checkbox
-                v-if="Object.keys(checkbox).length"
+                v-if="checkbox && Object.keys(checkbox).length"
                 v-model="checked"
                 v-bind="checkbox.attrs"
               >
@@ -446,7 +446,7 @@
         </transition>
       </v-col>
       <v-col
-        v-if="contacts.length"
+        v-if="Array.isArray(contacts)"
         cols="12"
         lg="6"
       >
@@ -547,18 +547,18 @@
       </v-row>
       <v-btn
         type="submit"
-        v-bind="button.attrs"
+        v-bind="button?.attrs"
         class="mt-6"
       >
         {{ button.text }}
       </v-btn>
       <v-checkbox
-        v-if="Object.keys(checkbox).length"
+        v-if="checkbox && Object.keys(checkbox).length"
         v-model="checked"
-        v-bind="checkbox.attrs"
+        v-bind="checkbox?.attrs"
       >
         <template #label>
-          <div v-html="checkbox.label" />
+          <div v-html="checkbox?.label" />
         </template>
       </v-checkbox>
     </v-form>
@@ -585,8 +585,12 @@ const confirmAttrs = ref<Attrs>({
 
 const props = withDefaults(defineProps<IFormsDefault>(), {
   styleForm: 'standard',
+  inputs: [],
+  commentary: { attrs: {} },
+  checkbox: { attrs: {}, label: '' },
   switchContentOnValid: false,
   switchContentButton: { type: Object, default: () => ({}) },
+  button: { text: '', attrs: {} }
 })
 
 const emit = defineEmits(['form-data'])
@@ -594,23 +598,23 @@ const emit = defineEmits(['form-data'])
 const checked = ref<boolean>(false)
 const comboboxValue = ref<any[]>([])
 const comValue = ref<string>("")
-const inputValues = ref<string[]>(props.inputs.map(input => input.value));
+const inputValues = ref<string[]>(props.inputs.map(input => input.value || ''));
 const confirmForm = ref<boolean>(false)
 
 const dataForm = (validForm) => {
   if(validForm) {
-    if(Object.keys(props.combobox).length) {
+    if (props.combobox && Object.keys(props.combobox).length) {
 
-      if(comboboxValue.value.length && inputValues.value.every(value => value) && checked.value && comValue.value) {
-        confirmForm.value = true
-        emit('form-data', [inputValues.value, comboboxValue.value, comValue.value] )
+      if (comboboxValue.value.length && inputValues.value.every(value => value) && checked.value && comValue.value) {
+        confirmForm.value = true;
+        emit('form-data', [inputValues.value, comboboxValue.value, comValue.value]);
       }
 
-    } else if(Object.keys(props.commentary).length) {
+    } else if (props.commentary && Object.keys(props.commentary).length) {
 
-      if(inputValues.value.every(value => value) && checked.value && comValue.value) {
-        confirmForm.value = true
-        emit('form-data', [inputValues.value, comValue.value] )
+      if (inputValues.value.every(value => value) && checked.value && comValue.value) {
+        confirmForm.value = true;
+        emit('form-data', [inputValues.value, comValue.value]);
       }
 
     } else if(!Object.keys(props.checkboxSetting).length) {
