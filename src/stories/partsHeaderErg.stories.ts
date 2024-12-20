@@ -1,6 +1,6 @@
 import Header from '../runtime/components/Parts/Header/Erg.vue';
-import type { Meta, Story } from '@storybook/vue3';
-import type { IHeaderErg } from '../runtime/components/Parts/Header/types';
+import type { Meta, StoryFn } from '@storybook/vue3';
+import type { IHeaderErg } from '../runtime/components/Parts/Header/headerTypes';
 
 export default {
   title: 'Parts/Header/ERG',
@@ -27,15 +27,15 @@ export default {
   },
 } as Meta<typeof Header>;
 
-const Template: Story<IHeaderErg> = (args) => ({
+const Template: StoryFn<IHeaderErg> = (args: IHeaderErg) => ({
   components: { Header },
-  setup() {
+  setup(): { args: IHeaderErg } {
     return { args };
   },
   template: '<Header v-bind="args" />',
 });
 
-export const Default = Template.bind({});
+export const Default: StoryFn<IHeaderErg> = Template.bind({});
 Default.args = {
   logo: {
     link: '/',
@@ -69,15 +69,15 @@ Default.args = {
   textBtn: 'Свяжитесь с нами',
   bgClassHeader: '',
   colorClassMenu: 'text-black',
-  burger: false,
+  burger: true,
   showButton: true,
   columnGapList: 10,
   classMenuSelect: '',
   wordButtonMobile: 'Menu',
   colorActiveLangMobile: 'text-success',
   colorLangMobile: 'text-secondary',
-  colorBurger: 'text-dark',
-  colorBurgerOpen: 'text-light',
+  colorBurger: 'text-primary',
+  colorBurgerOpen: 'text-accent',
   menuMobile: [
     {
       id: 1,
@@ -95,9 +95,5 @@ Default.args = {
       to: '/contact',
     },
   ],
-  burger: true,
-  wordButtonMobile: 'Открыть меню',
-  colorBurger: 'text-primary',
-  colorBurgerOpen: 'text-accent',
 };
 

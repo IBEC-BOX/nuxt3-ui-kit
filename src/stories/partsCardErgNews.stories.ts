@@ -1,6 +1,6 @@
-import { Meta, Story } from '@storybook/vue3';
-import type { ICardErgNews } from '../runtime/components/Parts/Card/cardTypes';
 import ErgNews from '../runtime/components/Parts/Card/ErgNews.vue';
+import type { Meta, StoryFn } from '@storybook/vue3';
+import type { ICardErgNews } from '../runtime/components/Parts/Card/cardTypes';
 
 export default {
   title: 'Parts/Card/Erg News',
@@ -10,9 +10,9 @@ export default {
 
 interface ErgNewsArgs extends Partial<ICardErgNews> {}
 
-const Template: Story<ErgNewsArgs> = (args) => ({
+const Template: StoryFn<ErgNewsArgs> = (args: ErgNewsArgs) => ({
   components: { ErgNews },
-  setup() {
+  setup(): { args: ErgNewsArgs } {
     return { args };
   },
   template: `
@@ -26,7 +26,7 @@ const Template: Story<ErgNewsArgs> = (args) => ({
   `,
 });
 
-export const Standard = Template.bind({});
+export const Standard: StoryFn<ErgNewsArgs> = Template.bind({});
 Standard.args = {
   card: {
     link: 'https://example.com/news',

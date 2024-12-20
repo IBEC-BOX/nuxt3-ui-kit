@@ -1,6 +1,6 @@
-import type { Meta, Story } from '@storybook/vue3';
-import type { IGalleryView } from '../runtime/components/Parts/Gallery/galleryTypes';
 import View from '../runtime/components/Parts/Gallery/View.vue';
+import type { Meta, StoryFn } from '@storybook/vue3';
+import type { IGalleryView } from '../runtime/components/Parts/Gallery/galleryTypes';
 
 export default {
   title: 'Parts/Gallery/View',
@@ -9,15 +9,15 @@ export default {
   argTypes: {},
 } as Meta<typeof View>;
 
-const Template: Story<IGalleryView> = (args) => ({
+const Template: StoryFn<IGalleryView> = (args: IGalleryView) => ({
   components: { View },
-  setup() {
+  setup(): { args: IGalleryView } {
     return { args };
   },
   template: '<View v-bind="args" />',
 });
 
-export const Standard = Template.bind({});
+export const Standard: StoryFn<IGalleryView> = Template.bind({});
 Standard.args = {
   gallery: [
     {

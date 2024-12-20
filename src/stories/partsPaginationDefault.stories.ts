@@ -1,5 +1,5 @@
 import Pagination from "../runtime/components/Parts/Pagination/Default.vue";
-import type { Meta, Story } from "@storybook/vue3";
+import type { Meta, StoryFn } from "@storybook/vue3";
 import type { IPaginationDefault } from "../runtime/components/Parts/Pagination/paginationTypes";
 
 export default {
@@ -8,16 +8,19 @@ export default {
   tags: ["autodocs"],
 } as Meta<typeof Pagination>;
 
-
-const Template: Story<IPaginationDefault> = (args) => ({
+const Template: StoryFn<IPaginationDefault> = (args: IPaginationDefault) => ({
   components: { Pagination },
-  setup() {
+  setup(): { args: IPaginationDefault } {
     return { args };
   },
-  template: `<Pagination v-bind="args" />`,
+  template: `
+    <v-container>
+      <Pagination v-bind="args" />
+    </v-container>
+  `,
 });
 
-export const Default = Template.bind({});
+export const Default: StoryFn<IPaginationDefault> = Template.bind({});
 Default.args = {
   paginationLastPage: 15,
   paginationTotalVisible: 5,
@@ -30,7 +33,7 @@ Default.args = {
   ellipsisMobilePagination: "...",
 };
 
-export const WithoutSidesButton = Template.bind({});
+export const WithoutSidesButton: StoryFn<IPaginationDefault> = Template.bind({});
 WithoutSidesButton.args = {
   paginationLastPage: 10,
   paginationTotalVisible: 3,

@@ -1,6 +1,6 @@
-import { Meta, Story } from '@storybook/vue3';
-import type { IFooterErg } from '../../../types/global';
 import Footer from '../runtime/components/Parts/Footer/Erg.vue';
+import type { Meta, StoryFn } from '@storybook/vue3';
+import type { IFooterErg } from '../runtime/components/Parts/Footer/footerTypes';
 
 export default {
   title: 'Parts/Footer/Erg',
@@ -11,9 +11,9 @@ export default {
 
 interface FooterArgs extends Partial<IFooterErg> {}
 
-const Template: Story<FooterArgs> = (args) => ({
+const Template: StoryFn<FooterArgs> = (args: FooterArgs) => ({
   components: { Footer },
-  setup() {
+  setup(): { args: FooterArgs } {
     return { args };
   },
   template: `
@@ -21,7 +21,7 @@ const Template: Story<FooterArgs> = (args) => ({
   `,
 });
 
-export const Standard = Template.bind({});
+export const Standard: StoryFn<FooterArgs> = Template.bind({});
 Standard.args = {
   contacts: [
     {
@@ -29,7 +29,7 @@ Standard.args = {
       phone: `<p>8 (71837) 9 99 03 (Канцелярия)</p><p>8 (71837) 9 99 00 (Приемная)</p>`,
       imagePhone: '/phone.svg',
       mail: 'info.bts@erg.kz',
-      mailImage: '/mail.svg',
+      imageMail: '/mail.svg',
       location: 'АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500. Есть филиал в Астане, ул.Кунаева, 2, 010000',
       imageLocation: '/location.png',
     },
@@ -60,7 +60,7 @@ Standard.args = {
   },
 };
 
-export const TwoContacts = Template.bind({});
+export const TwoContacts: StoryFn<FooterArgs> = Template.bind({});
 TwoContacts.args = {
   contacts: [
     {
@@ -68,7 +68,7 @@ TwoContacts.args = {
       phone: `<p>8 (71837) 9 99 03 (Канцелярия)</p><p>8 (71837) 9 99 00 (Приемная)</p>`,
       imagePhone: '/phone.svg',
       mail: 'info.bts@erg.kz',
-      mailImage: '/mail.svg',
+      imageMail: '/mail.svg',
       location: 'АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500. Есть филиал в Астане, ул.Кунаева, 2, 010000',
       imageLocation: '/location.png',
     },
@@ -77,7 +77,7 @@ TwoContacts.args = {
       phone: `<p>8 (71837) 9 99 03 (Канцелярия)</p><p>8 (71837) 9 99 00 (Приемная)</p>`,
       imagePhone: '/phone.svg',
       mail: 'info.bts@erg.kz',
-      mailImage: '/mail.svg',
+      imageMail: '/mail.svg',
       location: 'АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500. Есть филиал в Астане, ул.Кунаева, 2, 010000',
       imageLocation: '/location.png',
     },

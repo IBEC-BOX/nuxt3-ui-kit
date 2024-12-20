@@ -1,6 +1,6 @@
-import { Meta, Story } from '@storybook/vue3';
-import type { IFormsDefault } from '../runtime/components/Parts/Forms/formsTypes';
 import Forms from "../runtime/components/Parts/Forms/Default.vue";
+import type { Meta, StoryFn } from '@storybook/vue3';
+import type { IFormsDefault } from '../runtime/components/Parts/Forms/formsTypes';
 
 export default {
   title: 'Parts/Forms/Default',
@@ -35,9 +35,9 @@ export default {
 
 interface FormsArgs extends Partial<IFormsDefault> {}
 
-const Template: Story<FormsArgs> = (args) => ({
+const Template: StoryFn<FormsArgs> = (args: FormsArgs) => ({
   components: { Forms },
-  setup() {
+  setup(): { args: FormsArgs } {
     return { args };
   },
   template: `
@@ -96,8 +96,7 @@ const combobox: IFormsDefault['combobox'] = {
   },
 };
 
-// Истории
-export const StandardFirst = Template.bind({});
+export const StandardFirst: StoryFn<FormsArgs> = Template.bind({});
 StandardFirst.args = {
   title: "Заполните контактные данные и оставьте заявку на консультацию",
   styleForm: 'standard',
@@ -107,16 +106,18 @@ StandardFirst.args = {
   button,
 };
 
-export const StandardSecond = Template.bind({});
+export const StandardSecond: StoryFn<FormsArgs> = Template.bind({});
 StandardSecond.args = {
   title: "Заполните контактные данные и оставьте заявку на консультацию",
-  commentary: false,
+  commentary: {
+    id: 1,
+  },
   inputs,
   checkbox,
   button,
 };
 
-export const BigImage = Template.bind({});
+export const BigImage: StoryFn<FormsArgs> = Template.bind({});
 BigImage.args = {
   title: "Заполните контактные данные и оставьте заявку на консультацию",
   bigImage: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
@@ -128,7 +129,7 @@ BigImage.args = {
   combobox,
 };
 
-export const SmallImage = Template.bind({});
+export const SmallImage: StoryFn<FormsArgs> = Template.bind({});
 SmallImage.args = {
   title: "Заполните контактные данные и оставьте заявку на консультацию",
   smallImage: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
@@ -143,13 +144,15 @@ SmallImage.args = {
   commentary,
 };
 
-export const Call = Template.bind({});
+export const Call: StoryFn<FormsArgs> = Template.bind({});
 Call.args = {
   title: "Заполните контактные данные и оставьте заявку на консультацию",
   subtitle: "Мы перезвоним в течение 30 минут каждый день с 10:00 до 19:00. Если оставите заявку сейчас, то перезвоним уже в рабочее время.",
   bigImage: '',
   smallImage: '',
-  commentary: false,
+  commentary: {
+    id: 1,
+  },
   styleForm: 'call',
   socials: [
     { link: '321', img: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', alt: '321' },
@@ -160,7 +163,7 @@ Call.args = {
   button,
 };
 
-export const OnlyForm = Template.bind({});
+export const OnlyForm: StoryFn<FormsArgs> = Template.bind({});
 OnlyForm.args = {
   title: "Ответим на все ваши вопросы",
   styleForm: 'onlyForm',
@@ -170,7 +173,7 @@ OnlyForm.args = {
   button,
 };
 
-export const ContactsForm = Template.bind({});
+export const ContactsForm: StoryFn<FormsArgs> = Template.bind({});
 ContactsForm.args = {
   title: 'Контактная форма',
   bigImage: '',
@@ -181,14 +184,20 @@ ContactsForm.args = {
     {
       title: 'Контакт 1',
       phone: `<p>+123456789</p>`,
+      imagePhone: '/phone.svg',
       mail: 'example@mail.com',
-      mailImage: '/mail.svg',
+      imageMail: '/mail.svg',
+      location: 'адрес 1',
+      imageLocation: '/location.svg'
     },
     {
       title: 'Контакт 2',
       phone: `<p>+987654321</p>`,
+      imagePhone: '/phone.svg',
       mail: 'example2@mail.com',
-      mailImage: '/mail.svg',
+      imageMail: '/mail.svg',
+      location: 'адрес 2',
+      imageLocation: '/location.svg',
     },
   ],
   inputs,

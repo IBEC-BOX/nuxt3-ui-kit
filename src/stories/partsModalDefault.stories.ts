@@ -1,6 +1,6 @@
-import type { Meta, Story } from '@storybook/vue3';
 import Modal from '../runtime/components/Parts/Modal/Default.vue';
 import type { IModalDefault } from '../runtime/components/Parts/Modal/modalTypes';
+import type { Meta, StoryFn } from '@storybook/vue3';
 
 export default {
   title: 'Parts/Modal/Default',
@@ -22,15 +22,15 @@ export default {
   },
 } as Meta<typeof Modal>;
 
-const Template: Story<IModalDefault> = (args) => ({
+const Template: StoryFn<IModalDefault> = (args: IModalDefault) => ({
   components: { Modal },
-  setup() {
+  setup(): { args: IModalDefault } {
     return { args };
   },
   template: `<Modal v-bind="args" />`,
 });
 
-export const Standard = Template.bind({});
+export const Standard: StoryFn<IModalDefault> = Template.bind({});
 Standard.args = {
   modelValue: true,
   heading: 'Sure you want to accept?',
@@ -64,7 +64,7 @@ Standard.args = {
   'icon-size': '34',
 };
 
-export const WithBodySlot = Template.bind({});
+export const WithBodySlot: StoryFn<IModalDefault> = Template.bind({});
 WithBodySlot.args = {
   ...Standard.args,
   bodySlot: `
@@ -73,13 +73,13 @@ WithBodySlot.args = {
   `,
 };
 
-export const WithoutIcon = Template.bind({});
+export const WithoutIcon: StoryFn<IModalDefault> = Template.bind({});
 WithoutIcon.args = {
   ...Standard.args,
   icon: '',
 };
 
-export const CenteredIcon = Template.bind({});
+export const CenteredIcon: StoryFn<IModalDefault> = Template.bind({});
 CenteredIcon.args = {
   ...Standard.args,
   buttonsDirection: 'column-reverse',
@@ -88,7 +88,7 @@ CenteredIcon.args = {
   'icon-size': '52',
 };
 
-export const WithImage = Template.bind({});
+export const WithImage: StoryFn<IModalDefault> = Template.bind({});
 WithImage.args = {
   ...Standard.args,
   img: 'https://images.unsplash.com/photo-1684252408280-737200626f2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2788&q=80',
@@ -96,7 +96,7 @@ WithImage.args = {
   imgRounded: 'lg',
 };
 
-export const FluidImage = Template.bind({});
+export const FluidImage: StoryFn<IModalDefault> = Template.bind({});
 FluidImage.args = {
   ...Standard.args,
   img: 'https://images.unsplash.com/photo-1684252408280-737200626f2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2788&q=80',

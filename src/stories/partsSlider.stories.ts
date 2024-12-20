@@ -1,5 +1,5 @@
 import Slider from '../runtime/components/Parts/Slider/Default.vue';
-import type { Meta, Story } from '@storybook/vue3';
+import type { Meta, StoryFn } from '@storybook/vue3';
 import type { ISliderDefault } from '../runtime/components/Parts/Slider/sliderTypes';
 
 export default {
@@ -26,9 +26,9 @@ export default {
   },
 } as Meta<ISliderDefault>;
 
-const Template: Story<ISliderDefault> = (args) => ({
+const Template: StoryFn<ISliderDefault> = (args: ISliderDefault) => ({
   components: { Slider },
-  setup() {
+  setup(): { args: ISliderDefault } {
     return { args };
   },
   template: `
@@ -38,7 +38,7 @@ const Template: Story<ISliderDefault> = (args) => ({
   `,
 });
 
-export const Standard = Template.bind({});
+export const Standard: StoryFn<ISliderDefault> = Template.bind({});
 Standard.args = {
   slides: [
     {
@@ -85,7 +85,7 @@ Standard.args = {
   sliderPaginationType: 'dot',
 };
 
-export const FillButtonsCenter = Template.bind({});
+export const FillButtonsCenter: StoryFn<ISliderDefault> = Template.bind({});
 FillButtonsCenter.args = {
   slides: [
     {
@@ -115,7 +115,7 @@ FillButtonsCenter.args = {
   controlButtonsSize: 'medium',
 };
 
-export const FillButtonsRight = Template.bind({});
+export const FillButtonsRight: StoryFn<ISliderDefault> = Template.bind({});
 FillButtonsRight.args = {
   slides: [
     {
@@ -139,7 +139,7 @@ FillButtonsRight.args = {
   controlButtonsSize: 'small',
 };
 
-export const Peeking = Template.bind({});
+export const Peeking: StoryFn<ISliderDefault> = Template.bind({});
 Peeking.args = {
   slides: [
     {
@@ -157,7 +157,7 @@ Peeking.args = {
   controlButtonsSize: 'medium',
 };
 
-export const ButtonsLeftBottom = Template.bind({});
+export const ButtonsLeftBottom: StoryFn<ISliderDefault> = Template.bind({});
 ButtonsLeftBottom.args = {
   slides: [
     {

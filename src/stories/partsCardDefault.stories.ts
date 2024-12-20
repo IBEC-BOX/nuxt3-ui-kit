@@ -1,6 +1,6 @@
-import { Meta, Story } from '@storybook/vue3';
-import type { ICardDefault } from '../runtime/components/Parts/Card/cardTypes';
 import Card from '../runtime/components/Parts/Card/Default.vue';
+import type { Meta, StoryFn } from '@storybook/vue3';
+import type { ICardDefault } from '../runtime/components/Parts/Card/cardTypes';
 
 export default {
   title: 'Parts/Card/Default',
@@ -12,10 +12,9 @@ interface CardArgs extends Partial<ICardDefault> {
   buttonSlot?: string;
 }
 
-const Template: Story<CardArgs> = (args) => ({
+const Template: StoryFn<CardArgs> = (args: CardArgs) => ({
   components: { Card },
-  setup() {
-    console.log(args);
+  setup(): { args: CardArgs } {
     return { args };
   },
   template: `
@@ -33,12 +32,11 @@ const Template: Story<CardArgs> = (args) => ({
   `,
 });
 
-export const Standard = Template.bind({});
+export const Standard: StoryFn<CardArgs> = Template.bind({});
 Standard.args = {
   buttonSlot: `<v-btn size="large">MEDIUM BUTTON</v-btn>`,
   dateAuthorRight: false,
   horizontalCard: false,
-  maxWidth: 349,
   variantCard: 'elevated',
   styleCard: 'standard',
   image: {
@@ -53,11 +51,10 @@ Standard.args = {
   author: 'by Tyler, The Creator',
 };
 
-export const StandardHorizontal = Template.bind({});
+export const StandardHorizontal: StoryFn<CardArgs> = Template.bind({});
 StandardHorizontal.args = {
   dateAuthorRight: true,
   horizontalCard: true,
-  maxWidth: '100%',
   horizontalWidthImage: 300,
   variantCard: 'elevated',
   styleCard: 'standard',
@@ -73,14 +70,13 @@ StandardHorizontal.args = {
   author: 'by Tyler, The Creator',
 };
 
-export const VacancyError = Template.bind({});
+export const VacancyError: StoryFn<CardArgs> = Template.bind({});
 VacancyError.args = {
   buttonSlot: `
     <div class="d-flex justify-space-between align-center">
       <span class="text-15 text-primary">Almaty, KZ</span>
       <v-btn size="large" color="primary">MEDIUM BUTTON</v-btn>
     </div>`,
-  maxWidth: 349,
   variantCard: 'elevated',
   styleCard: 'vacancy',
   image: {
@@ -103,14 +99,13 @@ VacancyError.args = {
   ],
 };
 
-export const VacancySuccess = Template.bind({});
+export const VacancySuccess: StoryFn<CardArgs> = Template.bind({});
 VacancySuccess.args = {
   buttonSlot: `
     <div>
       <p class="text-15 mb-5 text-primary">Almaty, KZ</p>
       <v-btn block size="large" color="primary">MEDIUM BUTTON</v-btn>
     </div>`,
-  maxWidth: 349,
   variantCard: 'elevated',
   styleCard: 'vacancy',
   image: {
@@ -137,7 +132,7 @@ VacancySuccess.args = {
   ],
 };
 
-export const ModalAndCard = Template.bind({});
+export const ModalAndCard: StoryFn<CardArgs> = Template.bind({});
 ModalAndCard.args = {
   'card-width': 700,
   horizontalCard: true,

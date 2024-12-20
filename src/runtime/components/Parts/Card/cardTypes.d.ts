@@ -32,7 +32,6 @@ export interface ICardDefault extends IBaseProps {
   modal?: boolean
   modalImg?: string
   modalWidth?: number
-  maxWidth?: number
   horizontalWidthImage?: number
 }
 

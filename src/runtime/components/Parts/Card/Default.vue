@@ -148,7 +148,7 @@
       {{ text }}
     </v-card-text>
     <div
-      v-if="statusVacancy.length"
+      v-if="statusVacancy&&statusVacancy.length"
       class="px-4 pb-4 d-flex"
       style="column-gap: 8px"
     >

@@ -4,13 +4,13 @@ export type Maska = string | string[] | ((value: string) => string) | {
   tokens?: Record<string, { pattern: RegExp; transform?: (char: string) => string; }>;
 };
 export type Breakpoints = {
-  cols: string | number
-  xs: string | number
-  sm: string | number
-  md: string | number
-  lg: string | number
-  xl: string | number
-  xxl: string | number
+  cols?: string | number
+  xs?: string | number
+  sm?: string | number
+  md?: string | number
+  lg?: string | number
+  xl?: string | number
+  xxl?: string | number
 }
 
 export interface IChips {
@@ -23,7 +23,7 @@ export interface IBaseProps {
 }
 
 export interface ISocials {
-  id: number
+  id?: number
   img: string
   link: string
   alt?: string

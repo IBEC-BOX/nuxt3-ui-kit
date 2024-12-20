@@ -37,7 +37,7 @@ export interface IFormsDefault extends IBaseProps {
   switchContentOnValid?: boolean
   switchContentButton?: {
     attrs?: Attrs
-    image: string
+    image?: string
     alt?: string
     imageAttrs?: Attrs
     text?: string

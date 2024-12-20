@@ -16,6 +16,6 @@ export interface IModalDefault extends IBaseProps {
   iconBg: string
   img: string
   imgOnly: boolean
-  imgRounded: Breakpoints
+  imgRounded: string
   imgFluid: boolean
 }

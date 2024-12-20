@@ -1,6 +1,6 @@
-import type { Meta, Story } from '@storybook/vue3';
-import type { IGalleryRow } from '../runtime/components/Parts/Gallery/galleryTypes';
 import Row from '../runtime/components/Parts/Gallery/Row.vue';
+import type { Meta, StoryFn } from '@storybook/vue3';
+import type { IGalleryRow } from '../runtime/components/Parts/Gallery/galleryTypes';
 
 export default {
   title: 'Parts/Gallery/Row',
@@ -9,9 +9,9 @@ export default {
   argTypes: {},
 } as Meta<typeof Row>;
 
-const Template: Story<IGalleryRow> = (args) => ({
+const Template: StoryFn<IGalleryRow> = (args: IGalleryRow) => ({
   components: { Row },
-  setup() {
+  setup(): { args: IGalleryRow } {
     return { args };
   },
   template: `
@@ -21,7 +21,7 @@ const Template: Story<IGalleryRow> = (args) => ({
   `,
 });
 
-export const StandardWithLinks = Template.bind({});
+export const StandardWithLinks: StoryFn<IGalleryRow> = Template.bind({});
 StandardWithLinks.args = {
   blocks: [
     {
@@ -72,7 +72,7 @@ StandardWithLinks.args = {
   disableLinks: false,
 };
 
-export const StandardWithoutLinks = Template.bind({});
+export const StandardWithoutLinks: StoryFn<IGalleryRow> = Template.bind({});
 StandardWithoutLinks.args = {
   blocks: [
     {

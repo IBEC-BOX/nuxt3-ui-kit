@@ -1,6 +1,6 @@
-import type { Meta, Story } from '@storybook/vue3';
-import type { IVacanciesErg } from '../runtime/components/Parts/Vacancies/vacanciesTypes';
 import Vacancies from '../runtime/components/Parts/Vacancies/Erg.vue';
+import type { IVacanciesErg } from '../runtime/components/Parts/Vacancies/vacanciesTypes';
+import type { Meta, StoryFn } from '@storybook/vue3';
 
 export default {
   title: 'Parts/Vacancies/Erg',
@@ -8,9 +8,9 @@ export default {
   tags: ['autodocs'],
 } as Meta<typeof Vacancies>;
 
-const Template: Story<IVacanciesErg> = (args) => ({
+const Template: StoryFn<IVacanciesErg> = (args: IVacanciesErg) => ({
   components: { Vacancies },
-  setup() {
+  setup(): { args: IVacanciesErg} {
     return { args };
   },
   template: `
@@ -20,7 +20,7 @@ const Template: Story<IVacanciesErg> = (args) => ({
   `,
 });
 
-export const BackgroundImage = Template.bind({});
+export const BackgroundImage: StoryFn<IVacanciesErg> = Template.bind({});
 BackgroundImage.args = {
   backgroundImage: {
     image: 'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb',
@@ -47,7 +47,7 @@ BackgroundImage.args = {
   textBody: 'Мы ищем талантливых сотрудников для работы в нашей компании.',
 };
 
-export const LeftImage = Template.bind({});
+export const LeftImage: StoryFn<IVacanciesErg> = Template.bind({});
 LeftImage.args = {
   leftImage: {
     image: 'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb',
@@ -69,7 +69,7 @@ LeftImage.args = {
   textBody: 'Присоединяйтесь к нам и развивайтесь вместе с нами.',
 };
 
-export const RightImage = Template.bind({});
+export const RightImage: StoryFn<IVacanciesErg> = Template.bind({});
 RightImage.args = {
   rightImage: {
     image: 'https://s3-alpha-sig.figma.com/img/e589/51dd/87467ea8ed3307f2aa67a4fff16d45cb',

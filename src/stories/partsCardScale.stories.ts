@@ -1,6 +1,6 @@
-import { Meta, Story } from '@storybook/vue3';
-import type { ICardScale } from '../runtime/components/Parts/Card/cardTypes';
 import CardScale from '../runtime/components/Parts/Card/Scale.vue';
+import type { Meta, StoryFn } from '@storybook/vue3';
+import type { ICardScale } from '../runtime/components/Parts/Card/cardTypes';
 
 export default {
   title: 'Parts/Card/Scale',
@@ -43,9 +43,9 @@ interface CardScaleArgs extends Partial<ICardScale> {
   'slider-style'?: string;
 }
 
-const Template: Story<CardScaleArgs> = (args) => ({
+const Template: StoryFn<CardScaleArgs> = (args: CardScaleArgs) => ({
   components: { CardScale },
-  setup() {
+  setup(): { args: CardScaleArgs } {
     return { args };
   },
   template: `
@@ -55,7 +55,7 @@ const Template: Story<CardScaleArgs> = (args) => ({
   `,
 });
 
-export const Standard = Template.bind({});
+export const Standard: StoryFn<CardScaleArgs> = Template.bind({});
 Standard.args = {
   cards: cards,
   'slider-style': 'height: 400px; width: 400px',

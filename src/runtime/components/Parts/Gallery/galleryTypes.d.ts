@@ -1,4 +1,4 @@
-import type { Attrs, IBaseProps } from "../../../types/global";
+import type { IBaseProps } from "../../../types/global";
 
 export interface IGalleryRow extends IBaseProps {
   blocks: {
@@ -21,6 +21,6 @@ interface IGalleryItem {
 
 export interface IGalleryView extends IBaseProps {
   gallery: IGalleryItem[];
-  modelValue: string;
+  modelValue: boolean;
   previewImage: IGalleryItem;
 }
