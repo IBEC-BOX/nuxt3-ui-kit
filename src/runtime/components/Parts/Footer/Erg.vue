@@ -211,6 +211,9 @@ const isMultiParagraph = (html: string): boolean => {
       column-gap: 25.5px;
       width: 100%;
       justify-content: flex-end;
+      @media(max-width: 1280px) {
+        justify-content: flex-start;
+      }
       &-item-mail {
         max-width: 200px;
         width: 100%;
