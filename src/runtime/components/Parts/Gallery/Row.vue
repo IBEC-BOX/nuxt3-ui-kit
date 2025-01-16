@@ -27,7 +27,7 @@
               class="row-gallery-blocks-card-image"
             />
             <div class="row-gallery-blocks-card-title py-3 px-4">
-              <span>{{ block.category.title }}</span>
+              <span>{{ block.title }}</span>
             </div>
           </v-card>
         </nuxt-link>
@@ -46,7 +46,7 @@
             class="row-gallery-blocks-card-image"
           />
           <div class="row-gallery-blocks-card-title py-3 px-4">
-            <span>{{ block.category.title }}</span>
+            <span>{{ block.title }}</span>
           </div>
         </v-card>
       </template>
