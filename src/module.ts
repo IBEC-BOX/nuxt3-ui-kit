@@ -212,5 +212,15 @@ export default defineNuxtModule<ModuleOptions>({
         ),
       });
     }
+
+    // cookie
+    if (options.components.includes("partsCookieErg")) {
+      addComponent({
+        name: "partsCookieErg",
+        filePath: resolver.resolve(
+          "runtime/components/Parts/Cookie/Erg.vue"
+        ),
+      });
+    }
   },
 });
