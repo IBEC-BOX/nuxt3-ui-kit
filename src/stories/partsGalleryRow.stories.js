@@ -64,6 +64,8 @@ export const StandardWithLinks = {
       },
     ],
     disableLinks: false,
+    showButtons: false,
+
   }
 }
 
@@ -97,5 +99,8 @@ export const StandardWithoutLinks = {
       },
     ],
     disableLinks: true,
+    showButton: true,
+    leftButtonIcon: "mdi-arrow-left",
+    rightButtonText: "Вперед"
   }
 }

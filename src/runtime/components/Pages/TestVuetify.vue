@@ -70,12 +70,12 @@
         <!--            class="main__about__slider"-->
         <!--          />-->
         <!--        </client-only>-->
-        <v-btn @click="model = !model">
-          gfdgfsdgf
-        </v-btn>
         <parts-gallery-row
           :blocks="gallery2"
           :disable-links="false"
+          :show-button="true"
+          :left-button-icon="'mdi-arrow-left'"
+          :right-button-icon="'mdi-arrow-right'"
         />
         <parts-gallery-view
           v-model="model"
@@ -142,6 +142,15 @@ const gallery2 = ref([
     id: 1,
     title: 'dasdsad',
     preview: 'https://fastly.picsum.photos/id/523/500/300.jpg?hmac=4pQD_Jbc8uFrr01uI1PtSZM3wIjP-pTu7ZogoeRwVFw',
+  },
+  {
+    category: {
+      id: 1,
+      title: 'asd'
+    },
+    id: 1,
+    title: 'dasdsad',
+    preview: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'
   },
   {
     category: {
@@ -222,6 +231,14 @@ const gallery = ref([
   }
 ])
 const preview = ref(gallery.value[0].images[0])
+const gallery3 = [
+  { id: 2, title: "Команда", category: { id: 3, title: "Фото" }, preview: "https://backend-bts.erg.kz/storage/34/01JFSKFCC0AN0FV6QSA3HGZ48X.webp" },
+  { id: 7, title: "Офис BTS - место силы IT-команды", category: { id: 2, title: "Видео" }, preview: "https://backend-bts.erg.kz/storage/37/01JFSMFFDBKTKQXXJSNGZ54YF3.webp"},
+  { id: 1, title: "Мероприятия", category: { id: 3, title: "Фото" }, preview: "https://example.com/3" },
+  { id: 3, title: "Наш офис", category: { id: 2, title: "Видео" }, preview: "https://example.com/4" },
+  { id: 6, title: "Как прошел кейс-чемпионат промышленного IT", category: { id: 5, title: "События" }, preview: "https://example.com/5" },
+  { id: 4, title: "Как пройти регистрацию в Sales market", category: { id: 4, title: "Обучение" }, preview: "https://example.com/6" },
+];
 const contacts = [
   {
     title: 'АО «Алюминий Казахстана»',
