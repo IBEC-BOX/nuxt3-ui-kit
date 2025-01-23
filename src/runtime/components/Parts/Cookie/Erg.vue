@@ -1,13 +1,25 @@
 <template>
-  <div v-if="isCookieBannerOpen" class="cookie-banner bg-secondary rounded-t-16">
+  <div
+    v-if="isCookieBannerOpen"
+    class="cookie-banner bg-secondary rounded-t-16"
+  >
     <v-container class="pt-0">
       <header class="d-flex justify-end">
-        <v-btn variant="text" class="px-0" @click="acceptCookies" min-width="20px" min-height="20px" height="20px">
-          <v-icon icon="mdi-close"></v-icon>
+        <v-btn
+          variant="text"
+          class="px-0"
+          min-width="20px"
+          min-height="20px"
+          height="20px"
+          @click="acceptCookies"
+        >
+          <v-icon icon="mdi-close" />
         </v-btn>
       </header>
-      <div class="mb-0" v-html="text">
-      </div>
+      <div
+        class="mb-0"
+        v-html="text"
+      />
     </v-container>
   </div>
 </template>

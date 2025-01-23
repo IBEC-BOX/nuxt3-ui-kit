@@ -71,7 +71,7 @@
         <v-btn
           class="text-none text-body-1 erg-header-button"
           rounded="xl"
-          :class="showButton ? burger ?  'd-none d-lg-block' : '' : 'd-none'"
+          :class="showButton ? burger ? 'd-none d-lg-block' : '' : 'd-none'"
           v-bind="buttonAttrs"
           @click="buttonClick"
         >
