@@ -59,7 +59,10 @@
         class="h-auto"
       >
         <template v-if="!disableLinks">
-          <nuxt-link :to="`/gallery/${block.id}`" class="text-decoration-none h-100 d-flex flex-column">
+          <nuxt-link
+            :to="variant === 'card'? `/gallery/video/${block.id}` : `/gallery/${block.id}`"
+            class="text-decoration-none h-100 d-flex flex-column"
+          >
             <v-card
               elevation="0"
               :height="variant === 'card' ? '100%' : '290px'"
@@ -77,17 +80,23 @@
                   :class="variant === 'card' ? 'mb-4' : ''"
                 />
                 <v-img
-                  class="row-gallery-blocks-card-image-play"
                   v-if="typeCard === 'video'"
+                  class="row-gallery-blocks-card-image-play"
                   :src="imagePlayVideo || ''"
                   height="32"
                   width="32"
                 />
               </div>
-              <div class="row-gallery-blocks-card-title py-3 px-4" v-if="variant === 'image'">
+              <div
+                v-if="variant === 'image'"
+                class="row-gallery-blocks-card-title py-3 px-4"
+              >
                 <span>{{ block.title }}</span>
               </div>
-              <div class="row-gallery-blocks-card-title" v-else-if="variant === 'card'">
+              <div
+                v-else-if="variant === 'card'"
+                class="row-gallery-blocks-card-title"
+              >
                 <span>{{ block.title }}</span>
               </div>
             </v-card>
@@ -112,10 +121,16 @@
                   :class="variant === 'card' ? 'mb-4' : ''"
                 />
               </div>
-              <div class="row-gallery-blocks-card-title py-3 px-4" v-if="variant === 'image'">
+              <div
+                v-if="variant === 'image'"
+                class="row-gallery-blocks-card-title py-3 px-4"
+              >
                 <span>{{ block.title }}</span>
               </div>
-              <div class="row-gallery-blocks-card-title" v-else-if="variant === 'card'">
+              <div
+                v-else-if="variant === 'card'"
+                class="row-gallery-blocks-card-title"
+              >
                 <span>{{ block.title }}</span>
               </div>
             </v-card>

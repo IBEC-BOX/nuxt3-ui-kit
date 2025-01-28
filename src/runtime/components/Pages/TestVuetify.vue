@@ -85,6 +85,11 @@
           :gallery="gallery[0].images"
           :preview-image="preview"
         />
+
+        <partsPlayerYoutube
+          video="https://youtu.be/7uJNuyt_1AM?si=216YDRT97n2wMYaH"
+          :mute="false"
+        />
       </v-container>
     </section>
 

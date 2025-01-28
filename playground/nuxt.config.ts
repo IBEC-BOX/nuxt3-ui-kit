@@ -53,7 +53,8 @@ export default defineNuxtConfig({
       'partsPagination',
       'pagesErrorErg',
       'partsGalleryRow',
-      'partsGalleryView'
+      'partsGalleryView',
+      'partsPlayerYoutube'
     ]
   },
   devtools: { enabled: false },
