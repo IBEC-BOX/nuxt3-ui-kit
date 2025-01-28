@@ -76,6 +76,9 @@
           :show-button="true"
           :left-button-icon="'mdi-arrow-left'"
           :right-button-icon="'mdi-arrow-right'"
+          variant="card"
+          type-card="video"
+          :image-play-video="'/playVideo.svg'"
         />
         <parts-gallery-view
           v-model="model"
@@ -122,7 +125,7 @@ const gallery2 = ref([
       title: 'asd'
     },
     id: 1,
-    title: 'dasdsad',
+    title: 'Как пройти регистрацию в SalesMarket.kz?',
     preview: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
   },
   {
@@ -140,7 +143,7 @@ const gallery2 = ref([
       title: 'asd'
     },
     id: 1,
-    title: 'dasdsad',
+    title: 'Первый международный форум промышленного IT в Казахстане',
     preview: 'https://fastly.picsum.photos/id/523/500/300.jpg?hmac=4pQD_Jbc8uFrr01uI1PtSZM3wIjP-pTu7ZogoeRwVFw',
   },
   {
@@ -149,7 +152,7 @@ const gallery2 = ref([
       title: 'asd'
     },
     id: 1,
-    title: 'dasdsad',
+    title: 'Как прошёл кейс-чемпионат промышленного IT',
     preview: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'
   },
   {
@@ -158,7 +161,7 @@ const gallery2 = ref([
       title: 'asd'
     },
     id: 1,
-    title: 'dasdsad',
+    title: 'Офис BTS — место силы IT-команды',
     preview: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'
   },
 ])

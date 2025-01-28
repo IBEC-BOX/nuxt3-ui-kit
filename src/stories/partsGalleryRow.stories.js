@@ -7,13 +7,17 @@ export default {
   argTypes: {},
 };
 
-export const StandardWithLinks = {
+export const ImageWithLinks = {
   render: (args) => ({
     components: { Row },
     setup() {
       return { args };
     },
-    template: '<Row v-bind="args" />',
+    template: `
+      <v-container>
+        <Row v-bind="args" />
+      </v-container>
+    `,
   }),
   args: {
     blocks: [
@@ -64,18 +68,23 @@ export const StandardWithLinks = {
       },
     ],
     disableLinks: false,
-    showButtons: false,
-
+    showButton: false,
+    variant: "image",
+    typeCard: "image"
   }
 }
 
-export const StandardWithoutLinks = {
+export const CardWithoutLinks = {
   render: (args) => ({
     components: { Row },
     setup() {
       return { args };
     },
-    template: '<Row v-bind="args" />',
+    template: `
+      <v-container>
+        <Row v-bind="args" />
+      </v-container>
+    `,
   }),
   args: {
     blocks: [
@@ -101,6 +110,9 @@ export const StandardWithoutLinks = {
     disableLinks: true,
     showButton: true,
     leftButtonIcon: "mdi-arrow-left",
-    rightButtonText: "Вперед"
+    rightButtonText: "Вперед",
+    variant: "card",
+    typeCard: "video",
+    imagePlayVideo: "/playVideo.svg"
   }
 }
