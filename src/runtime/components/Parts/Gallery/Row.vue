@@ -48,52 +48,78 @@
       :slides-per-view="blocks.length === 4 ? (lgAndUp ? 4 : (mdAndUp ? 3.2 : 1.2)) : (lgAndUp ? 4.2 : (mdAndUp ? 3.2 : 1.2))"
       :space-between="lgAndUp ? 20 : 8"
       direction="horizontal"
-      class="row-gallery-blocks d-block w-100"
-      height="290px"
+      class="row-gallery-blocks w-100"
+      :height="variant === 'card' ? '100%' : '290px'"
       v-bind="swiperAttrs"
     >
       <swiper-slide
         v-for="(block, index) in blocks"
         :key="`gallery-block-${index}`"
         v-bind="slideAttrs"
+        class="h-auto"
       >
         <template v-if="!disableLinks">
-          <nuxt-link :to="`/gallery/${block.id}`">
+          <nuxt-link :to="`/gallery/${block.id}`" class="text-decoration-none h-100 d-flex flex-column">
             <v-card
               elevation="0"
-              height="290px"
-              class="row-gallery-blocks-card bg-transparent"
+              :height="variant === 'card' ? '100%' : '290px'"
+              class=""
+              v-bind="cardAttrs"
+              :class="variant === 'card' ? 'pa-6 row-gallery-blocks-card card' : 'row-gallery-blocks-card image bg-transparent'"
             >
-              <v-img
-                :src="block.preview"
-                height="290px"
-                width="100%"
-                cover
-                class="row-gallery-blocks-card-image"
-              />
-              <div class="row-gallery-blocks-card-title py-3 px-4">
+              <div class="position-relative">
+                <v-img
+                  :src="block.preview"
+                  :height="variant === 'card' ? '194px' : '290px'"
+                  width="100%"
+                  cover
+                  class="row-gallery-blocks-card-image"
+                  :class="variant === 'card' ? 'mb-4' : ''"
+                />
+                <v-img
+                  class="row-gallery-blocks-card-image-play"
+                  v-if="typeCard === 'video'"
+                  :src="imagePlayVideo || ''"
+                  height="32"
+                  width="32"
+                />
+              </div>
+              <div class="row-gallery-blocks-card-title py-3 px-4" v-if="variant === 'image'">
+                <span>{{ block.title }}</span>
+              </div>
+              <div class="row-gallery-blocks-card-title" v-else-if="variant === 'card'">
                 <span>{{ block.title }}</span>
               </div>
             </v-card>
           </nuxt-link>
         </template>
         <template v-else>
-          <v-card
-            elevation="0"
-            height="290px"
-            class="row-gallery-blocks-card bg-transparent"
-          >
-            <v-img
-              :src="block.preview"
-              height="290px"
-              width="100%"
-              cover
-              class="row-gallery-blocks-card-image"
-            />
-            <div class="row-gallery-blocks-card-title py-3 px-4">
-              <span>{{ block.title }}</span>
-            </div>
-          </v-card>
+          <div class="h-100 d-flex flex-column">
+            <v-card
+              elevation="0"
+              :height="variant === 'card' ? '100%' : '290px'"
+              class=""
+              v-bind="cardAttrs"
+              :class="variant === 'card' ? 'pa-6 row-gallery-blocks-card card' : 'row-gallery-blocks-card image bg-transparent'"
+            >
+              <div class="position-relative">
+                <v-img
+                  :src="block.preview"
+                  :height="variant === 'card' ? '194px' : '290px'"
+                  width="100%"
+                  cover
+                  class="row-gallery-blocks-card-image"
+                  :class="variant === 'card' ? 'mb-4' : ''"
+                />
+              </div>
+              <div class="row-gallery-blocks-card-title py-3 px-4" v-if="variant === 'image'">
+                <span>{{ block.title }}</span>
+              </div>
+              <div class="row-gallery-blocks-card-title" v-else-if="variant === 'card'">
+                <span>{{ block.title }}</span>
+              </div>
+            </v-card>
+          </div>
         </template>
       </swiper-slide>
     </swiper-container>
@@ -117,6 +143,9 @@ const slideAttrs = {
 }
 const btnAttrs = {
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "btn"),
+}
+const cardAttrs = {
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "card"),
 }
 
 register()
@@ -144,6 +173,17 @@ const props = defineProps({
   },
   rightButtonIcon: {
     type: String
+  },
+  variant: {
+    type: String,
+    default: "image"
+  },
+  typeCard: {
+    type: String,
+    default: "image"
+  },
+  imagePlayVideo: {
+    type: String,
   }
 })
 
@@ -201,23 +241,42 @@ onMounted(() => {
   }
 }
 .row-gallery-blocks {
-  &-card {
-    position: relative;
-    &-image {
-      border-radius: 32px;
-      @media(max-width: 960px) {
-        border-radius: 16px;
+  .image {
+    .row-gallery-blocks-card {
+      position: relative;
+      &-image {
+        border-radius: 32px;
+        @media(max-width: 960px) {
+          border-radius: 16px;
+        }
+      }
+      &-title {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        background: rgba(163, 163, 163, 0.60);
+        border-radius: 32px;
+        max-width: 185px;
+        span {
+          color: #fff;
+        }
       }
     }
-    &-title {
-      position: absolute;
-      bottom: 24px;
-      left: 24px;
-      background: rgba(163, 163, 163, 0.60);
-      border-radius: 32px;
-      span {
-        color: #fff;
+  }
+  .row-gallery-blocks-card.card {
+    border-radius: 32px !important;
+    .row-gallery-blocks-card-image {
+      border-radius: 16px;
+      &-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
+    }
+    .row-gallery-blocks-card-title {
+      font-size: 20px;
+      font-family: "Roboto", sans-serif;
     }
   }
 }
