@@ -78,6 +78,7 @@
                   cover
                   class="row-gallery-blocks-card-image"
                   :class="variant === 'card' ? 'mb-4' : ''"
+                  :gradient="typeCard === 'video' ? 'rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)' : ''"
                 />
                 <v-img
                   v-if="typeCard === 'video'"
