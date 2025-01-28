@@ -123,7 +123,7 @@
           class="d-flex ps-lg-0"
         >
           <div class="footer-copyright footer-copyright-cert">
-            <v-dialog max-width="500">
+            <v-dialog content-class="footer-copyright-cert">
               <template #activator="{ props: activatorProps }">
                 <div>
                   <p
@@ -178,7 +178,7 @@ const props = defineProps({
 })
 
 const isMultiParagraph = (html: string): boolean => {
-  if (!html || import.meta.env.SSR) return false; // Проверяем серверную среду через Vite
+  if (!html || import.meta.env.SSR) return false;
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
   const paragraphs = doc.querySelectorAll('p, a, br');
