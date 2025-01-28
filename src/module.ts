@@ -222,5 +222,15 @@ export default defineNuxtModule<ModuleOptions>({
         ),
       });
     }
+
+    // player
+    if (options.components.includes("partsPlayerYoutube")) {
+      addComponent({
+        name: "partsPlayerYoutube",
+        filePath: resolver.resolve(
+          "runtime/components/Parts/Player/Youtube.vue"
+        ),
+      });
+    }
   },
 });
