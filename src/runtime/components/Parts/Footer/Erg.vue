@@ -123,10 +123,14 @@
           class="d-flex ps-lg-0"
         >
           <div>
-            <div v-for="cert in copyrightCert" :key="cert.title" class="footer-copyright footer-copyright-cert">
+            <div
+              v-for="cert in copyrightCert"
+              :key="cert.title"
+              class="footer-copyright footer-copyright-cert"
+            >
               <v-dialog
-                content-class="footer-copyright-cert-modal"
                 v-if="cert.type === 'image'"
+                content-class="footer-copyright-cert-modal"
               >
                 <template #activator="{ props: activatorProps }">
                   <div>
@@ -156,7 +160,6 @@
                 {{ cert.title }}
               </a>
             </div>
-
           </div>
         </v-col>
         <v-col
