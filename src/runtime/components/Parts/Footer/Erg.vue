@@ -122,26 +122,41 @@
           lg="5"
           class="d-flex ps-lg-0"
         >
-          <div class="footer-copyright footer-copyright-cert">
-            <v-dialog content-class="footer-copyright-cert-modal">
-              <template #activator="{ props: activatorProps }">
-                <div>
-                  <p
-                    v-bind="activatorProps"
-                    class="text-decoration-underline cursor-pointer"
-                    v-html="copyrightCert.title"
-                  />
-                </div>
-              </template>
+          <div>
+            <div v-for="cert in copyrightCert" :key="cert.title" class="footer-copyright footer-copyright-cert">
+              <v-dialog
+                content-class="footer-copyright-cert-modal"
+                v-if="cert.type === 'image'"
+              >
+                <template #activator="{ props: activatorProps }">
+                  <div>
+                    <p
+                      v-bind="activatorProps"
+                      class="text-decoration-underline cursor-pointer"
+                      v-html="cert.title"
+                    />
+                  </div>
+                </template>
 
-              <template #default="{ isActive }">
-                <v-img
-                  :src="copyrightCert.cert"
-                  cover
-                  class="rounded-md-32"
-                />
-              </template>
-            </v-dialog>
+                <template #default="{ isActive }">
+                  <v-img
+                    :src="cert.cert"
+                    cover
+                    class="rounded-md-32"
+                  />
+                </template>
+              </v-dialog>
+              <a
+                v-else-if="cert.type === 'link'"
+                :href="cert.cert"
+                class="footer-copyright-cert-link text-decoration-underline cursor-pointer footer-copyright"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                {{ cert.title }}
+              </a>
+            </div>
+
           </div>
         </v-col>
         <v-col
@@ -174,7 +189,7 @@ const props = defineProps({
   bgClass: { type: String, default: () => 'bg-none' },
   copyright: { type: String, default: () => "" },
   copyrightMade: { type: String, default: () => '' },
-  copyrightCert: { type: Object, default: () => ({ title: '', cert: '' }) }
+  copyrightCert: { type: Array, default: () => ([]) }
 })
 
 const isMultiParagraph = (html: string): boolean => {
