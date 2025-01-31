@@ -42,6 +42,7 @@ export const Standard = {
     copyrightMade: '<span>Сделано в </span><a class="text-decoration-underline">IBEC SYSTEMS</a>',
     copyrightCert: {
       title: 'Сертификат соответствия системы менеджмента требованиям стандартов ISO',
+      type: 'image',
       cert: ''
     }
   }
@@ -91,6 +92,7 @@ export const TwoContacts = {
     copyrightMade: '<span>Сделано в </span><a class="text-decoration-underline">IBEC SYSTEMS</a>',
     copyrightCert: {
       title: 'Сертификат соответствия системы менеджмента требованиям стандартов ISO',
+      type: 'link',
       cert: ''
     }
   }

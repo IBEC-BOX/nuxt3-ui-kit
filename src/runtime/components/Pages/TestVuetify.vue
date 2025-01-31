@@ -97,6 +97,10 @@
     <parts-footer-erg
       :contacts="contacts"
       :socials="socialsMedia"
+      :copyright-cert="[
+        {title: 'copyright-certificate', type: 'image', cert: '/certificate.png'},
+        {title: 'ibecsystems.com', type: 'link', cert: 'https://ibecsystems.com'}
+      ]"
     />
     <!--    <partsFooterDefault-->
     <!--      id="footer"-->
