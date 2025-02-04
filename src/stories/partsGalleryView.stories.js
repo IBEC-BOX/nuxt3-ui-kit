@@ -1,7 +1,7 @@
 import View from '../runtime/components/Parts/Gallery/View.vue';
 
 export default {
-  title: 'Parts/Gallery/View',
+  title: 'Parts/Galleries/View',
   component: View,
   tags: ['autodocs'],
   argTypes: {},

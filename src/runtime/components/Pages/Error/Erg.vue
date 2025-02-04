@@ -48,23 +48,21 @@
 
 <script setup>
 import { useAttrs, ref } from "vue";
-import { useMainStore } from "../../../store/mainStore";
+import { getObjectPropertiesWithPrefix } from "../../../utils/attrs.ts";
 import { clearError } from "#app";
-const mainStore = useMainStore();
 
-//Attributes
 const attrs = useAttrs();
 const titleAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "title"),
+  ...getObjectPropertiesWithPrefix(attrs, "title"),
 })
 const errorAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "error")
+  ...getObjectPropertiesWithPrefix(attrs, "error")
 })
 const subtitleAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "subtitle")
+  ...getObjectPropertiesWithPrefix(attrs, "subtitle")
 })
 const buttonAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "button")
+  ...getObjectPropertiesWithPrefix(attrs, "button")
 })
 
 const props = defineProps({

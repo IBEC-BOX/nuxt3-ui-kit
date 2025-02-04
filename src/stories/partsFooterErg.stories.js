@@ -1,7 +1,7 @@
 import Footer from '../runtime/components/Parts/Footer/Erg.vue';
 
 export default {
-  title: 'Parts/Footer',
+  title: 'Parts/Footer/Erg',
   component: Footer,
   tags: ['autodocs'],
   argTypes: {},

@@ -134,13 +134,12 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { useMainStore } from "../../../store/mainStore";
 import { useAttrs } from "vue";
+import { getObjectPropertiesWithPrefix } from "../../../utils/attrs.ts";
 
-const mainStore = useMainStore()
 const attrs = useAttrs()
 const imageAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'image')
+  ...getObjectPropertiesWithPrefix(attrs, 'image')
 })
 
 const props = defineProps({

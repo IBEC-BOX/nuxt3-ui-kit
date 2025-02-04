@@ -1,8 +1,8 @@
-import Forms from "../runtime/components/Parts/Forms.vue"
+import Forms from "../runtime/components/Parts/Form/Default.vue"
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  title: 'Parts/Forms',
+  title: 'Parts/Forms/Default',
   component: Forms,
   tags: ['autodocs'],
   argTypes: {

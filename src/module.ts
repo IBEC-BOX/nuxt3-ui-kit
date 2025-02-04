@@ -33,6 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
     components: []
   },
   setup(options, nuxt) {
+    // @ts-ignore
     const resolver = createResolver(import.meta.url);
     // const runtimeDir = resolver.resolve("./runtime");
 
@@ -49,12 +50,31 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Components
 
+    // ========== PAGES ==========
+
+    // ===== TEST =====
+
     if (options.components.includes("pagesTestVuetify")) {
       addComponent({
         name: "pagesTestVuetify", // name of the component to be used in vue templates
         filePath: resolver.resolve("runtime/components/Pages/TestVuetify.vue"),
       });
     }
+
+    // ===== ERROR =====
+
+    if (options.components.includes("pagesErrorErg")) {
+      addComponent({
+        name: "pagesErrorErg",
+        filePath: resolver.resolve(
+          "runtime/components/Pages/Error/Erg.vue"
+        ),
+      });
+    }
+
+    // ========== COMPONENTS ==========
+
+    // ===== FOOTER =====
 
     if (options.components.includes("partsFooterDefault")) {
       addComponent({
@@ -74,7 +94,7 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
-    // cards
+    // ===== CARDS =====
 
     if (options.components.includes("partsCardDefault")) {
       addComponent({
@@ -97,21 +117,26 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
-    if (options.components.includes("partsForms")) {
+    // ===== FORMS =====
+
+    if (options.components.includes("partsFormDefault")) {
       addComponent({
-        name: "partsForms", // name of the component to be used in vue templates
-        filePath: resolver.resolve("runtime/components/Parts/Forms.vue"),
+        name: "partsFormDefault", // name of the component to be used in vue templates
+        filePath: resolver.resolve("runtime/components/Parts/Form/Default.vue"),
       });
     }
 
-    if (options.components.includes("partsErgVacancies")) {
+    // ===== VACANCY =====
+
+    if (options.components.includes("partsVacanciesErg")) {
       addComponent({
-        name: "partsErgVacancies", // name of the component to be used in vue templates
-        filePath: resolver.resolve("runtime/components/Parts/ErgVacancies.vue"),
+        name: "partsVacanciesErg", // name of the component to be used in vue templates
+        filePath: resolver.resolve("runtime/components/Parts/Vacancies/Erg.vue"),
       });
     }
 
-    // Header
+    // ===== HEADER =====
+
     if (options.components.includes("partsHeaderDefault")) {
       addComponent({
         name: "partsHeaderDefault",
@@ -128,39 +153,25 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
-    // Modal
-    if (options.components.includes("partsModal")) {
+    // ===== MODALS =====
+
+    if (options.components.includes("partsModalDefault")) {
       addComponent({
-        name: "partsModal",
-        filePath: resolver.resolve("runtime/components/Parts/Modal.vue"),
+        name: "partsModalDefault",
+        filePath: resolver.resolve("runtime/components/Parts/Modal/Default.vue"),
       });
     }
 
-    //Slider
-    if (options.components.includes("partsSlider")) {
+    // ===== SLIDER =====
+
+    if (options.components.includes("partsSliderDefault")) {
       addComponent({
-        name: "partsSlider",
-        filePath: resolver.resolve("runtime/components/Parts/Slider.vue"),
+        name: "partsSliderDefault",
+        filePath: resolver.resolve("runtime/components/Parts/Slider/Default.vue"),
       });
     }
 
-    if (options.components.includes("partsNews")) {
-      addComponent({
-        name: "partsNews",
-        filePath: resolver.resolve("runtime/components/Parts/News.vue"),
-      });
-    }
-
-    // files
-
-    if (options.components.includes("partsFilesDownloadFiles")) {
-      addComponent({
-        name: "partsFilesDownloadFiles",
-        filePath: resolver.resolve(
-          "runtime/components/Parts/Files/DownloadFiles.vue"
-        ),
-      });
-    }
+    // ===== FILES =====
 
     if (options.components.includes("partsFilesErg")) {
       addComponent({
@@ -171,29 +182,18 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
-    // pagination
+    // ===== PAGINATION =====
 
-    if (options.components.includes("partsPagination")) {
+    if (options.components.includes("partsPaginationDefault")) {
       addComponent({
-        name: "partsPagination",
+        name: "partsPaginationDefault",
         filePath: resolver.resolve(
-          "runtime/components/Parts/Pagination.vue"
+          "runtime/components/Parts/Pagination/Default.vue"
         ),
       });
     }
 
-    // error page
-
-    if (options.components.includes("pagesErrorErg")) {
-      addComponent({
-        name: "pagesErrorErg",
-        filePath: resolver.resolve(
-          "runtime/components/Pages/Error/Erg.vue"
-        ),
-      });
-    }
-
-    // Gallery
+    // ===== GALLERY =====
 
     if (options.components.includes("partsGalleryRow")) {
       addComponent({
@@ -213,7 +213,8 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
-    // cookie
+    // ===== COOKIE =====
+
     if (options.components.includes("partsCookieErg")) {
       addComponent({
         name: "partsCookieErg",
@@ -223,7 +224,8 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
-    // player
+    // ===== PLAYER =====
+
     if (options.components.includes("partsPlayerYoutube")) {
       addComponent({
         name: "partsPlayerYoutube",
