@@ -137,20 +137,21 @@
 
 <script setup>
 import {useAttrs} from "vue";
-import { getObjectPropertiesWithPrefix } from "../../../utils/attrs.ts";
+import {useMainStore} from "../../store/mainStore";
 
 const attrs = useAttrs()
+const mainStore = useMainStore()
 const sheetAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, 'sheet')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'sheet')
 }
 const titleAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, 'title')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title')
 }
 const subTitleAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, 'sub-title')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'sub-title')
 }
 const bodyAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, 'body')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'body')
 }
 
 const props = defineProps({

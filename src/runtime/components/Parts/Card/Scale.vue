@@ -83,20 +83,21 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, useAttrs } from "vue";
 import { register } from "swiper/element/bundle";
-import { getObjectPropertiesWithPrefix } from "../../../utils/attrs";
+import { useMainStore } from "../../../store/mainStore";
+const mainStore = useMainStore()
 
 const attrs = useAttrs()
 const titleTextAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, 'title-text')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title-text')
 }
 const titleIconAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, 'title-icon')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title-icon')
 }
 const chipAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, 'chip')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'chip')
 }
 const sliderAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, 'slider')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'slider')
 }
 
 register();

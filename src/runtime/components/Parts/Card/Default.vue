@@ -178,18 +178,19 @@
 </template>
 
 <script setup>
-import { useAttrs, ref } from "vue";
-import { getObjectPropertiesWithPrefix } from "../../../utils/attrs.ts";
+import { useMainStore } from "../../../store/mainStore";
+import {useAttrs, ref} from "vue";
+const mainStore = useMainStore()
 
 const attrs = useAttrs()
 const cardAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, 'card')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'card')
 }
 const titleAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, 'title')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title')
 }
 const textAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, 'text')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'text')
 }
 
 const openModal = ref(false)

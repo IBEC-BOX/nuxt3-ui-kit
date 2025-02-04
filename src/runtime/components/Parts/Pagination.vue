@@ -42,18 +42,20 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import { useRoute } from 'nuxt/app';
+import { useMainStore } from "../../store/mainStore";
 import { useAttrs } from "vue";
-import { getObjectPropertiesWithPrefix } from "../../../utils/attrs";
 
+const mainStore = useMainStore()
 const route = useRoute();
 
 const attrs = useAttrs()
 const paginationAttrs = ref({
-  ...getObjectPropertiesWithPrefix(attrs, 'pagination')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'pagination')
 })
 const paginationButtonAttrs = ref({
-  ...getObjectPropertiesWithPrefix(attrs, 'button-pagination')
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'button-pagination')
 })
+const currentPage = ref(route.query.page ? parseInt(route.query.page) : 1);
 
 const props = defineProps({
   paginationLastPage: { type: Number, default: () => 1 },
@@ -68,8 +70,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update-pagination'])
-
-const currentPage = ref(route.query.page ? parseInt(route.query.page) : 1);
 
 function changePage(direction: number) {
   const nextPage = currentPage.value + direction;

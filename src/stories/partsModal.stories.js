@@ -1,4 +1,4 @@
-import Modal from '../runtime/components/Parts/Modal/Default.vue'
+import Modal from '../runtime/components/Parts/Modal.vue'
 
 const modal_buttons = [
   {
@@ -28,7 +28,7 @@ const modal_buttons = [
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  title: 'Parts/Modal/Default',
+  title: 'Parts/Modal',
   component: Modal,
   tags: ['autodocs'],
   argTypes: {

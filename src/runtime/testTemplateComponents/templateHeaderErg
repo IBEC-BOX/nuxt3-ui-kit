@@ -1,0 +1,23 @@
+    <partsHeaderErg
+      :burger="false"
+      :bg-class-header="'bg-primary'"
+      :color-class-menu="'text-white'"
+      :column-gap-list="26"
+      :text-btn="'Получить консультацию'"
+      :set-lang="[
+        {
+          code: 'ru',
+          name: 'Ru'
+        },
+        {
+          code: 'kk',
+          name: 'Kz'
+        },
+        {
+          code: 'en',
+          name: 'En'
+        }
+      ]"
+      :active-lang="'Рус'"
+      button-size="large"
+    />

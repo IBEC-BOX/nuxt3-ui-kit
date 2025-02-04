@@ -3,7 +3,7 @@
     <partsHeaderErg
       :burger="true"
       :bg-class-header="'bg-primary'"
-      :color-class-menu="'text-black'"
+      :color-class-menu="'text-white'"
       :column-gap-list="26"
       :text-btn="'Получить консультацию'"
       :class-menu-select="'asd'"
@@ -85,8 +85,6 @@
           :gallery="gallery[0].images"
           :preview-image="preview"
         />
-
-        <pages-error-erg />
 
         <partsPlayerYoutube
           video="https://youtu.be/7uJNuyt_1AM?si=216YDRT97n2wMYaH"
