@@ -31,7 +31,7 @@
     </v-container>
 
     <!-- Standart -->
-    <parts-modal-default
+    <partsModal
       v-model="modal1"
       width="580"
       heading="Sure you want to accept?"
@@ -49,11 +49,11 @@
           placeholder="Text"
         />
       </template>
-    </parts-modal-default>
+    </partsModal>
     <!-- Standart END -->
 
     <!-- No icon -->
-    <parts-modal-default
+    <partsModal
       v-model="modal2"
       width="580"
       heading="Sure you want to accept?"
@@ -65,7 +65,7 @@
     <!-- No icon END -->
 
     <!-- Icon center -->
-    <parts-modal-default
+    <partsModal
       v-model="modal3"
       width="580"
       heading="Successfully accepted !"
@@ -82,7 +82,7 @@
     <!-- Icon center -->
 
     <!-- Image -->
-    <parts-modal-default
+    <partsModal
       v-model="modal4"
       width="580"
       heading="Subscribe to our newsletter"
@@ -104,11 +104,11 @@
           hide-details
         />
       </template>
-    </parts-modal-default>
+    </partsModal>
     <!-- Image END -->
 
     <!-- Image fluid -->
-    <parts-modal-default
+    <partsModal
       v-model="modal5"
       width="580"
       heading="Subscribe to our newsletter"

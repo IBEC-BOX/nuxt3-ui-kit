@@ -567,17 +567,19 @@
 
 <script setup>
 import { useAttrs, ref } from "vue";
-import { getObjectPropertiesWithPrefix } from "../../../utils/attrs.ts";
+import { useMainStore } from "../../store/mainStore";
+const mainStore = useMainStore();
 
+//Attributes
 const attrs = useAttrs();
 const sheetAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, "sheet"),
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "sheet"),
 };
 const titleAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, "title")
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "title")
 }
 const confirmAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, "confirm")
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "confirm")
 }
 
 const checked = ref(false)

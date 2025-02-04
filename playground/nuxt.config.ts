@@ -1,6 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['../src/module'],
-
+  modules: ['../src/module', '@pinia/nuxt'],
   nuxt3UIKit: {
     theme: {
       defaultTheme: 'light',
@@ -38,30 +37,28 @@ export default defineNuxtConfig({
     },
     components: [
       'pagesTestVuetify',
-      'pagesErrorErg',
       'partsFooterDefault',
       'partsFooterErg',
-      'partsCardDefault',
-      'partsFormDefault',
-      'partsVacanciesErg',
+      'partsForms',
+      'partsErgVacancies',
       'partsHeaderDefault',
       'partsHeaderErg',
-      'partsModalDefault',
-      'partsSliderDefault',
+      'partsSlider',
+      'partsNews',
+      'partsModal',
+      'partsCardDefault',
+      'partsCardScale',
+      'partsCardErgNews',
       'partsFilesErg',
-      'partsPaginationDefault',
+      'partsPagination',
+      'pagesErrorErg',
       'partsGalleryRow',
       'partsGalleryView',
-      'partsCookieErg',
       'partsPlayerYoutube'
     ]
   },
-
   devtools: { enabled: false },
-
   build: {
     transpile: ['vuetify'],
-  },
-
-  compatibilityDate: '2025-02-04',
+  }
 })

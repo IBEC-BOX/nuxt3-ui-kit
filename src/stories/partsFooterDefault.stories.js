@@ -2,7 +2,7 @@ import Footer from '../runtime/components/Parts/Footer/Default.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  title: 'Parts/Footer/Default',
+  title: 'Parts/Footer',
   component: Footer,
   tags: ['autodocs'],
   argTypes: {

@@ -2,7 +2,7 @@ import CardScale from '../runtime/components/Parts/Card/Scale.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  title: 'Parts/Card/Scale',
+  title: 'Parts/Card Scale',
   component: CardScale,
   tags: ['autodocs'],
 };

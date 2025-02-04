@@ -1,4 +1,4 @@
-import Slider from '../runtime/components/Parts/Slider/Default.vue'
+import Slider from '../runtime/components/Parts/Slider.vue'
 const slides = [
   {
     id: 0,
@@ -183,7 +183,7 @@ const slides2 = [
   ]
 
   export default {
-  title: 'Parts/Slider/Default',
+  title: 'Parts/Slider',
   component: Slider,
   tags: ['autodocs'],
 };

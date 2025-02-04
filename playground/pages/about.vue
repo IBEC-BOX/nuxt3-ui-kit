@@ -1,7 +1,7 @@
 <template>
   <v-main class="d-flex flex-column">
     <v-container>
-      <parts-slider-default
+      <partSlider
         slider-loop
         :slides="slides"
         slider-direction="vertical"
@@ -13,7 +13,7 @@
       />
     </v-container>
 
-    <parts-slider-default
+    <partSlider
       class="text-white mb-5"
       slider-loop
       slider-container
@@ -23,7 +23,7 @@
       control-buttons-size="small"
     />
 
-    <parts-slider-default
+    <partSlider
       class="text-white"
       slider-loop
       slider-container
@@ -34,7 +34,7 @@
       control-buttons-size="small"
     />
 
-    <parts-slider-default
+    <partSlider
       class="text-white mb-5 mt-4"
       slider-loop
       slider-container

@@ -314,31 +314,31 @@
 </template>
 
 <script setup>
-import { useAttrs, ref, onMounted, onUnmounted, watch } from "vue";
-import { getObjectPropertiesWithPrefix } from "../../../utils/attrs.ts";
-import { register } from "swiper/element/bundle";
 
+import { register } from "swiper/element/bundle";
 register();
 
+import { useAttrs, ref, onMounted, onUnmounted, watch } from "vue";
+import { useMainStore } from "../../store/mainStore";
+const mainStore = useMainStore();
+
+//Attributes
 const attrs = useAttrs();
 const sliderAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, "slider"),
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "slider"),
 };
-const slidesAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, "slides")
-};
+const slidesAttrs = mainStore.getObjectPropertiesWithPrefix(attrs, "slides");
 const controlButtonsAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, "control-buttons"),
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "control-buttons"),
 };
 const controlButtonPrevAttrs = {
   ...controlButtonsAttrs,
-  ...getObjectPropertiesWithPrefix(attrs, "control-button-prev"),
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "control-button-prev"),
 };
 const controlButtonNextAttrs = {
   ...controlButtonsAttrs,
-  ...getObjectPropertiesWithPrefix(attrs, "control-button-next"),
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "control-button-next"),
 };
-
 const props = defineProps({
   rounded: {
     type: String,

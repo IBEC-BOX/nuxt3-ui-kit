@@ -146,20 +146,22 @@
 import { reactive, useAttrs, ref, onMounted } from "vue";
 import { register } from "swiper/element/bundle";
 import { useDisplay } from "vuetify";
-import { getObjectPropertiesWithPrefix } from "../../../utils/attrs.ts";
+import { useMainStore } from "../../../store/mainStore";
+
+const mainStore = useMainStore();
 
 const attrs = useAttrs();
 const swiperAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, "swiper"),
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "swiper"),
 };
 const slideAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, "slide"),
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "slide"),
 }
 const btnAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, "btn"),
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "btn"),
 }
 const cardAttrs = {
-  ...getObjectPropertiesWithPrefix(attrs, "card"),
+  ...mainStore.getObjectPropertiesWithPrefix(attrs, "card"),
 }
 
 register()
