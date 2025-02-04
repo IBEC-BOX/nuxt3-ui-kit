@@ -86,6 +86,8 @@
           :preview-image="preview"
         />
 
+        <pages-error-erg />
+
         <partsPlayerYoutube
           video="https://youtu.be/7uJNuyt_1AM?si=216YDRT97n2wMYaH"
           :mute="false"
