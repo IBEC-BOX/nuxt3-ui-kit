@@ -3,7 +3,7 @@
     <partsHeaderErg
       :burger="true"
       :bg-class-header="'bg-primary'"
-      :color-class-menu="'text-white'"
+      :color-class-menu="'text-black'"
       :column-gap-list="26"
       :text-btn="'Получить консультацию'"
       :class-menu-select="'asd'"

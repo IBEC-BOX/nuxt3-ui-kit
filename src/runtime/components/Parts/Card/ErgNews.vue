@@ -34,22 +34,21 @@
 
 <script setup lang="ts">
 import { ref } from "vue"
-import { useMainStore } from "../../../store/mainStore";
+import { getObjectPropertiesWithPrefix } from "../../../utils/attrs";
 import { useAttrs } from "vue";
-const mainStore = useMainStore()
 
 const attrs = useAttrs()
 const wrapperAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'wrapper')
+  ...getObjectPropertiesWithPrefix(attrs, 'wrapper')
 }
 const titleAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'title')
+  ...getObjectPropertiesWithPrefix(attrs, 'title')
 })
 const dateAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'date')
+  ...getObjectPropertiesWithPrefix(attrs, 'date')
 })
 const imageAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, 'image')
+  ...getObjectPropertiesWithPrefix(attrs, 'image')
 })
 
 

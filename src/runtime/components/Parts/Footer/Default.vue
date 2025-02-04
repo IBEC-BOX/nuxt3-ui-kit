@@ -341,13 +341,12 @@
 </template>
 
 <script setup>
-import { useMainStore } from "../../../store/mainStore";
 import { useAttrs } from "vue";
-const mainStore = useMainStore();
+import { getObjectPropertiesWithPrefix } from "../../../utils/attrs.ts";
 
 const attrs = useAttrs();
 const navAttrs = {
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "nav"),
+  ...getObjectPropertiesWithPrefix(attrs, "nav"),
 };
 
 const props = defineProps({

@@ -173,24 +173,23 @@
 
 <script setup lang="ts">
 import { ref, watch, computed, useAttrs } from "vue"
-import { useMainStore } from "../../../store/mainStore";
-const mainStore = useMainStore();
+import { getObjectPropertiesWithPrefix } from "../../../utils/attrs";
 
 const attrs = useAttrs();
 const selectAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "select"),
+  ...getObjectPropertiesWithPrefix(attrs, "select"),
 });
 const buttonAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "button"),
+  ...getObjectPropertiesWithPrefix(attrs, "button"),
 });
 const buttonDrawerAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "button-drawer"),
+  ...getObjectPropertiesWithPrefix(attrs, "button-drawer"),
 });
 const selectLangMobileButtonAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "select-lang-mobile"),
+  ...getObjectPropertiesWithPrefix(attrs, "select-lang-mobile"),
 });
 const navigationDrawerAttrs = ref({
-  ...mainStore.getObjectPropertiesWithPrefix(attrs, "navigation-drawer"),
+  ...getObjectPropertiesWithPrefix(attrs, "navigation-drawer"),
 })
 
 const props = defineProps({
@@ -363,12 +362,12 @@ function buttonClick() {
   .v-list {
     padding: 0px 0px;
     background: rgba(255, 255, 255, 0.34) !important;
-    @media(max-width: 600px) {
-      background: rgba(255, 255, 255, 1) !important;
-    }
     border-radius: 16px !important;
     margin-top: 10px !important;
     box-shadow: none !important;
+    @media(max-width: 600px) {
+      background: rgba(255, 255, 255, 1) !important;
+    }
     .v-list-item {
       color: #fff !important;
       @media(max-width: 600px) {
@@ -402,8 +401,6 @@ function buttonClick() {
     display: grid;
   }
 }
-
-
 
 .erg-header {
   .v-select--active-menu {

@@ -1,7 +1,7 @@
 import Cookie from '../runtime/components/Parts/Cookie/Erg.vue'
 
 export default {
-  title: 'Parts/Cookie erg',
+  title: 'Parts/Cookie/Erg',
   component: Cookie,
   tags: ['autodocs'],
 };

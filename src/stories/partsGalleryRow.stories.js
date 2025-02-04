@@ -1,7 +1,7 @@
 import Row from '../runtime/components/Parts/Gallery/Row.vue';
 
 export default {
-  title: 'Parts/Gallery/Row',
+  title: 'Parts/Galleries/Row',
   component: Row,
   tags: ['autodocs'],
   argTypes: {},
