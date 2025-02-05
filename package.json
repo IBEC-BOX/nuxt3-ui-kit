@@ -35,7 +35,9 @@
   "dependencies": {
     "@mdi/font": "^7.2.96",
     "@nuxt/kit": "^3.7.2",
+    "@pinia/nuxt": "0.5.1",
     "maska": "^2.1.11",
+    "pinia": "2.1.7",
     "swiper": "^11.0.3",
     "vuetify": "3.3.16"
   },
