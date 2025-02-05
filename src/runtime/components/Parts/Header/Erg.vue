@@ -363,12 +363,13 @@ function buttonClick() {
   .v-list {
     padding: 0px 0px;
     background: rgba(255, 255, 255, 0.34) !important;
-    @media(max-width: 600px) {
-      background: rgba(255, 255, 255, 1) !important;
-    }
     border-radius: 16px !important;
     margin-top: 10px !important;
     box-shadow: none !important;
+    @media(max-width: 600px) {
+      background: rgba(255, 255, 255, 1) !important;
+    }
+
     .v-list-item {
       color: #fff !important;
       @media(max-width: 600px) {
