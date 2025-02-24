@@ -288,6 +288,15 @@ const contacts = [
     location: '<p>Республика Казахстан, 111203, Костанайская область, г. Лисаковск, поселок Октябрьский, ул.Уральская 42 Республика Казахстан&nbsp;</p>',
     imageLocation: '/location.png',
   },
+  {
+    title: 'По вопросам приобретения продукции:',
+    phone: `<p>Приёмная<br><a href="tel:8 701 071-94-48">8 701 071-94-48</a>&nbsp;</p>`,
+    imagePhone: '/phone.svg',
+    mail: '<p>По вопросам поставок переходить на портал закупок:</p>',
+    mailImage: '/mail.svg',
+    location: '<p>torgi.erg.kz</p>',
+    imageLocation: '/location.png',
+  }
 ]
 
 const slides = [

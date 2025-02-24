@@ -73,14 +73,17 @@
                 class="d-flex align-start footer-contacts-list-item"
                 :class="contacts.length === 2 ? 'mb-4' : 'mb-4 mb-lg-0'"
               >
-                <div class="d-flex align-start">
+                <div
+                  class="d-flex"
+                  :class="isMultiParagraph(contact.location) ? 'align-start' : 'align-center'"
+                >
                   <div class="bg-img mr-4">
                     <v-img
                       :src="contact.imageLocation ? contact.imageLocation : '/location.png'"
                       width="20"
                     />
                   </div>
-                  <div class="d-flex flex-column text-dark-1 font-weight-regular text-body-1">
+                  <div class="d-flex flex-column text-dark-1 font-weight-regular text-body-1 footer-contacts-list-item-text geo">
                     <p v-html="contact?.location" />
                   </div>
                 </div>
@@ -197,6 +200,7 @@ const props = defineProps({
 
 const isMultiParagraph = (html: string): boolean => {
   if (!html || import.meta.env.SSR) return false;
+  if (html.length >= 57) return true;
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
   const paragraphs = doc.querySelectorAll('p, a, br');
@@ -250,6 +254,11 @@ const isMultiParagraph = (html: string): boolean => {
           background: #fff;
           padding: 10px;
           border-radius: 11px;
+        }
+        &-text {
+          &.geo {
+            min-width: 240px;
+          }
         }
       }
     }
