@@ -92,6 +92,9 @@
           </v-sheet>
         </v-col>
       </v-row>
+      <div>
+        <slot name="otherContent"></slot>
+      </div>
       <v-row class="align-center mt-0">
         <v-col
           cols="12"

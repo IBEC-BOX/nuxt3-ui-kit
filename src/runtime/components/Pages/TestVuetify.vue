@@ -101,7 +101,24 @@
         {title: 'copyright-certificate', type: 'image', cert: '/certificate.png'},
         {title: 'ibecsystems.com', type: 'link', cert: 'https://ibecsystems.com'}
       ]"
-    />
+    >
+      <template #otherContent>
+        <v-row>
+          <v-col cols="12" md="6">
+            <div class="d-flex align-center">
+              <h3 class="text-body-1 font-weight-regular mr-2">По вопросам приобретения продукции:</h3>
+              <a href="tel:8 701 071-94-48" class="text-black font-weight-regular text-body-1">8 701 071-94-48</a>
+            </div>
+          </v-col>
+          <v-col cols="12" md="6">
+            <div class="d-flex align-center">
+              <h3 class="text-body-1 font-weight-regular mr-2">По вопросам поставок переходить на портал закупок:</h3>
+              <a href="https://torgi.erg.kz" class="text-black font-weight-regular text-body-1">torgi.erg.kz</a>
+            </div>
+          </v-col>
+        </v-row>
+      </template>
+    </parts-footer-erg>
     <!--    <partsFooterDefault-->
     <!--      id="footer"-->
     <!--      :logo-in-body="true"-->
@@ -288,15 +305,6 @@ const contacts = [
     location: '<p>Республика Казахстан, 111203, Костанайская область, г. Лисаковск, поселок Октябрьский, ул.Уральская 42 Республика Казахстан&nbsp;</p>',
     imageLocation: '/location.png',
   },
-  {
-    title: 'По вопросам приобретения продукции:',
-    phone: `<p>Приёмная<br><a href="tel:8 701 071-94-48">8 701 071-94-48</a>&nbsp;</p>`,
-    imagePhone: '/phone.svg',
-    mail: '<p>По вопросам поставок переходить на портал закупок:</p>',
-    mailImage: '/mail.svg',
-    location: '<p>torgi.erg.kz</p>',
-    imageLocation: '/location.png',
-  }
 ]
 
 const slides = [

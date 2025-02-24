@@ -25,7 +25,7 @@
               space-between="0"
               mousewheel
               free-mode
-              @slideChange="onThumbSlideChange"
+              @slide-change="onThumbSlideChange"
             >
               <swiper-slide
                 v-for="(img, index) in localGallery"
@@ -68,7 +68,7 @@
               pagination
               :style="{ 'height': mdAndUp ? '574px' : '100%' }"
               :allow-touch-move="false"
-              @slideChange="onMainSlideChange"
+              @slide-change="onMainSlideChange"
             >
               <swiper-slide
                 v-for="(img, index) in localGallery"
