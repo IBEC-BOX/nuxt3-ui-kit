@@ -166,9 +166,10 @@ const cardAttrs = {
 
 register()
 
-const props = defineProps({
+const _props = defineProps({
   blocks: {
     type: Array,
+    default: () => []
   },
   disableLinks: {
     type: Boolean,
@@ -179,16 +180,20 @@ const props = defineProps({
     default: true
   },
   leftButtonText: {
-    type: String
+    type: String,
+    default: ""
   },
   rightButtonText: {
-    type: String
+    type: String,
+    default: ""
   },
   leftButtonIcon: {
-    type: String
+    type: String,
+    default: ""
   },
   rightButtonIcon: {
-    type: String
+    type: String,
+    default: ""
   },
   variant: {
     type: String,
@@ -200,6 +205,7 @@ const props = defineProps({
   },
   imagePlayVideo: {
     type: String,
+    default: ""
   }
 })
 

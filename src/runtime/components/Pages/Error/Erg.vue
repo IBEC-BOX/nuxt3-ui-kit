@@ -67,7 +67,7 @@ const buttonAttrs = ref({
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "button")
 })
 
-const props = defineProps({
+const _props = defineProps({
   error: { type: Object, default: () => {} },
   title: { type: String, default: () => '' },
   subtitle: { type: String, default: () => '' },

@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+const _props = defineProps({
   title: { type: String, default: 'О нас' },
   positionTitle: { type: String, default: 'center'},
   files: { type: Array, default: () => [] }

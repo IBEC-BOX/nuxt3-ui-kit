@@ -39,7 +39,7 @@
   </v-sheet>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from "vue"
 import { useRoute } from 'nuxt/app';
 import { useMainStore } from "../../store/mainStore";
@@ -57,7 +57,7 @@ const paginationButtonAttrs = ref({
 })
 const currentPage = ref(route.query.page ? parseInt(route.query.page) : 1);
 
-const props = defineProps({
+const _props = defineProps({
   paginationLastPage: { type: Number, default: () => 1 },
   paginationTotalVisible: { type: Number, default: () => 5 },
   textButtonLeftPagination: { type: String, default: '' },
@@ -71,9 +71,9 @@ const props = defineProps({
 
 const emit = defineEmits(['update-pagination'])
 
-function changePage(direction: number) {
+function changePage(direction) {
   const nextPage = currentPage.value + direction;
-  if (nextPage > 0 && nextPage <= props.paginationLastPage) {
+  if (nextPage > 0 && nextPage <= _props.paginationLastPage) {
     currentPage.value = nextPage;
     emit('update-pagination', currentPage.value)
   }

@@ -78,7 +78,6 @@ onMounted(() => {
   videoUrl.value = extractVideoId(props.video);
 
   if (!videoUrl.value) {
-    console.error('Invalid YouTube URL');
     return;
   }
 

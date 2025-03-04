@@ -350,7 +350,7 @@ const navAttrs = {
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "nav"),
 };
 
-const props = defineProps({
+const _props = defineProps({
   logo: { type: Object, default: () => ({}) },
   firstStyleTop: { type: Object, default: () => ({}) },
   secondStyleTop: { type: Object, default: () => ({}) },
