@@ -1,3 +1,6 @@
+import { mergeConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+
 /** @type { import('@storybook/vue3-vite').StorybookConfig } */
 const config = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -14,7 +17,12 @@ const config = {
   docs: {
     autodocs: "tag",
   },
-  // Добавьте следующую строку для указания папки static
   staticDirs: [{ from: '../playground/public/', to: '/' }],
+  viteFinal: async (config) => {
+    return mergeConfig(config, {
+      plugins: [vue()],
+    });
+  },
 };
+
 export default config;
