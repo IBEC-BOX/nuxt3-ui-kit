@@ -8,7 +8,7 @@
       :text-btn="'Получить консультацию'"
       :class-menu-select="'asd'"
       :word-button-mobile="'asdsadsadsa'"
-      :show-button="false"
+      :show-button="true"
       :set-lang="[
         {
           code: 'ru',
