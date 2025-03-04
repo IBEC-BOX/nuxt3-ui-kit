@@ -29,7 +29,6 @@ export default [
         window: "readonly",
         document: "readonly",
         localStorage: "readonly",
-        process: "readonly",
         DOMParser: "readonly",
         YT: "readonly"
       },
