@@ -154,7 +154,7 @@ const bodyAttrs = {
   ...mainStore.getObjectPropertiesWithPrefix(attrs, 'body')
 }
 
-const props = defineProps({
+const _props = defineProps({
   galleryImages: { type: Array, default: () => ([]) },
 
   backgroundImage: { type: Object, default: () => ({}) },

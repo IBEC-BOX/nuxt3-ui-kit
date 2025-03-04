@@ -56,7 +56,7 @@
 <script setup>
 import Card from "./Card/Default.vue"
 
-const props = defineProps({
+const _props = defineProps({
   cards: {
     type: Array,
     default: () => ([

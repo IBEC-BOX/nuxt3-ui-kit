@@ -53,7 +53,7 @@ const imageAttrs = ref({
 })
 
 
-const props = defineProps({
+const _props = defineProps({
   card: { type: Object, default: () => ({}) },
 })
 </script>

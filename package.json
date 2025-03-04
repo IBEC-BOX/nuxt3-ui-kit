@@ -42,9 +42,9 @@
     "vuetify": "3.7.14"
   },
   "devDependencies": {
+    "@eslint/js": "^9.21.0",
     "@fortawesome/fontawesome-free": "^6.4.2",
     "@nuxt/devtools": "2.1.3",
-    "@nuxt/eslint-config": "^1.1.0",
     "@nuxt/module-builder": "^0.8.4",
     "@nuxt/schema": "^3.15.4",
     "@nuxt/test-utils": "^3.15.4",
@@ -61,18 +61,15 @@
     "chromatic": "^11.27.0",
     "eslint": "^9.21.0",
     "eslint-plugin-storybook": "^0.11.3",
+    "eslint-plugin-vue": "^9.32.0",
     "my-module": "^1.0.0",
     "nuxt": "^3.15.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sass": "^1.85.1",
     "storybook": "^8.6.3",
-    "vitest": "^3.0.7"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
+    "vitest": "^3.0.7",
+    "vue-eslint-parser": "^9.4.3"
   },
   "bugs": {
     "url": "https://github.com/IBEC-BOX/nuxt3-ui-kit/issues"

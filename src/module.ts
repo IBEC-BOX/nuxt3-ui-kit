@@ -33,6 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
     components: []
   },
   setup(options, nuxt) {
+    // @ts-ignore
     const resolver = createResolver(import.meta.url);
     // const runtimeDir = resolver.resolve("./runtime");
 

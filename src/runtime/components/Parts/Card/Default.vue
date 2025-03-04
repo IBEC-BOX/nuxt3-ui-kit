@@ -195,7 +195,7 @@ const textAttrs = {
 
 const openModal = ref(false)
 
-const props = defineProps({
+const _props = defineProps({
   styleCard: { type: String, default: "standard" },
   variantCard: { type: String, default: "elevated"},
   horizontalCard: { type: Boolean, default: false },

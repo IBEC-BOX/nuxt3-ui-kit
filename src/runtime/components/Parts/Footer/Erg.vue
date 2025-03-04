@@ -93,7 +93,7 @@
         </v-col>
       </v-row>
       <div>
-        <slot name="otherContent"></slot>
+        <slot name="otherContent" />
       </div>
       <v-row class="align-center mt-0">
         <v-col
@@ -148,7 +148,7 @@
                   </div>
                 </template>
 
-                <template #default="{ isActive }">
+                <template #default>
                   <v-img
                     :src="cert.cert"
                     cover
@@ -191,8 +191,8 @@
   </v-footer>
 </template>
 
-<script setup lang="ts">
-const props = defineProps({
+<script setup>
+const _props = defineProps({
   contacts: { type: Array, default: () => [] },
   socials: { type: Array, default: () => [] },
   bgClass: { type: String, default: () => 'bg-none' },
@@ -201,7 +201,7 @@ const props = defineProps({
   copyrightCert: { type: Array, default: () => ([]) }
 })
 
-const isMultiParagraph = (html: string): boolean => {
+const isMultiParagraph = (html) => {
   if (!html || import.meta.env.SSR) return false;
   if (html.length >= 57) return true;
   const parser = new DOMParser();

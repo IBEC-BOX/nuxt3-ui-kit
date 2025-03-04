@@ -635,8 +635,6 @@ const dataForm = (validForm) => {
         emit('form-data', [inputValues.value] )
       }
     }
-  } else {
-    console.log('validate not confirm')
   }
 }
 </script>

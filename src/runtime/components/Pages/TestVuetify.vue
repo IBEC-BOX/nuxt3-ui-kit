@@ -104,16 +104,32 @@
     >
       <template #otherContent>
         <v-row>
-          <v-col cols="12" md="6">
+          <v-col
+            cols="12"
+            md="6"
+          >
             <div class="d-flex align-center">
-              <h3 class="text-body-1 font-weight-regular mr-2">По вопросам приобретения продукции:</h3>
-              <a href="tel:8 701 071-94-48" class="text-black font-weight-regular text-body-1">8 701 071-94-48</a>
+              <h3 class="text-body-1 font-weight-regular mr-2">
+                По вопросам приобретения продукции:
+              </h3>
+              <a
+                href="tel:8 701 071-94-48"
+                class="text-black font-weight-regular text-body-1"
+              >8 701 071-94-48</a>
             </div>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col
+            cols="12"
+            md="6"
+          >
             <div class="d-flex align-center">
-              <h3 class="text-body-1 font-weight-regular mr-2">По вопросам поставок переходить на портал закупок:</h3>
-              <a href="https://torgi.erg.kz" class="text-black font-weight-regular text-body-1">torgi.erg.kz</a>
+              <h3 class="text-body-1 font-weight-regular mr-2">
+                По вопросам поставок переходить на портал закупок:
+              </h3>
+              <a
+                href="https://torgi.erg.kz"
+                class="text-black font-weight-regular text-body-1"
+              >torgi.erg.kz</a>
             </div>
           </v-col>
         </v-row>

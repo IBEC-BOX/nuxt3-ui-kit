@@ -171,7 +171,7 @@
   </v-navigation-drawer>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, watch, computed, useAttrs } from "vue"
 import { useMainStore } from "../../../store/mainStore";
 const mainStore = useMainStore();
@@ -193,7 +193,7 @@ const navigationDrawerAttrs = ref({
   ...mainStore.getObjectPropertiesWithPrefix(attrs, "navigation-drawer"),
 })
 
-const props = defineProps({
+const _props = defineProps({
   logo: {
     type: Object,
     default: () => ({
@@ -264,11 +264,11 @@ const props = defineProps({
 const emits = defineEmits(['select-lang', 'button-click'])
 
 const menu_open = ref(false)
-const selectLang = ref(props.activeLang)
+const selectLang = ref(_props.activeLang)
 
 const filteredLangs = computed(() => {
-  if (!selectLang.value) return props.setLang;
-  return props.setLang.filter(lang => lang.name !== selectLang.value);
+  if (!selectLang.value) return _props.setLang;
+  return _props.setLang.filter(lang => lang.name !== selectLang.value);
 })
 
 const logoStyle = computed(() => {
@@ -276,12 +276,12 @@ const logoStyle = computed(() => {
 
   const isMobile = window.innerWidth <= 600;
   const maxWidth = isMobile
-    ? `${parseInt(props.logo.maxWidth) - 15}px`
-    : `${props.logo.maxWidth}px`;
+    ? `${parseInt(_props.logo.maxWidth) - 15}px`
+    : `${_props.logo.maxWidth}px`;
 
   const height = isMobile
-    ? `${parseInt(props.logo.height) - 29}px`
-    : `${props.logo.height}px`;
+    ? `${parseInt(_props.logo.height) - 29}px`
+    : `${_props.logo.height}px`;
 
   return {
     width: '100%',
@@ -290,7 +290,7 @@ const logoStyle = computed(() => {
   };
 })
 
-function updateSelectLang(selectedLang: string) {
+function updateSelectLang(selectedLang) {
   selectLang.value = selectedLang;
   emits('select-lang', selectLang.value);
 }
@@ -302,7 +302,7 @@ const scrollToElement = (selector) => {
   }
 }
 
-function toggleBodyScroll(isOpen: boolean) {
+function toggleBodyScroll(isOpen) {
   if (isOpen) {
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';

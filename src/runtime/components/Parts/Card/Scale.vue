@@ -102,14 +102,14 @@ const sliderAttrs = {
 
 register();
 
-const props = defineProps({
+const _props = defineProps({
   cards: { type: Array, default: () => [] },
 })
 
-const activeCardIndex = ref<number>(0);
-const isWideScreen = ref<boolean>(false);
+const activeCardIndex = ref(0);
+const isWideScreen = ref(false);
 
-const updateScreenSize = (): void => {
+const updateScreenSize = () => {
   if(typeof window !== 'undefined') {
     isWideScreen.value = window.innerWidth > 1280;
   }

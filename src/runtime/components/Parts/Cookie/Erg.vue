@@ -27,19 +27,24 @@
 <script setup lang="ts">
 import { onMounted, ref, defineProps } from 'vue';
 
-const props = defineProps({
-  text: String
+const _props = defineProps({
+  text: {
+    type: String,
+    default: ""
+  }
 })
 
-const isCookieBannerOpen = ref<boolean>(true);
+const isCookieBannerOpen = ref(true);
 
 const acceptCookies = () => {
   isCookieBannerOpen.value = false;
-  localStorage.setItem('cookiesAccepted', 'true');
+  if (process.client) {
+    localStorage.setItem('cookiesAccepted', 'true');
+  }
 };
 
 const checkCookiesAccepted = () => {
-  const accepted = localStorage.getItem('cookiesAccepted');
+  const accepted = process.client ? localStorage.getItem('cookiesAccepted') : false;
   isCookieBannerOpen.value = accepted !== 'true';
 };
 
