@@ -38,19 +38,21 @@ const isCookieBannerOpen = ref(true);
 
 const acceptCookies = () => {
   isCookieBannerOpen.value = false;
-  if (process.client) {
-    localStorage.setItem('cookiesAccepted', 'true');
+  if (typeof window !== "undefined") {
+    localStorage.setItem("cookiesAccepted", "true");
   }
 };
 
 const checkCookiesAccepted = () => {
-  const accepted = process.client ? localStorage.getItem('cookiesAccepted') : false;
-  isCookieBannerOpen.value = accepted !== 'true';
+  if (typeof window !== "undefined") {
+    const accepted = localStorage.getItem("cookiesAccepted");
+    isCookieBannerOpen.value = accepted !== "true";
+  }
 };
 
 onMounted(() => {
-  checkCookiesAccepted()
-})
+  checkCookiesAccepted();
+});
 </script>
 
 <style scoped lang="scss">
