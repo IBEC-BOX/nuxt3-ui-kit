@@ -99,16 +99,18 @@
     </v-container>
   </v-app-bar>
   <v-navigation-drawer
-    v-if="burger"
+    v-if="burger && menu_open"
     v-model="menu_open"
-    class="w-100 h-100 d-flex d-lg-none py-5 px-4 pb-16 custom-navigation-drawer"
+    class="py-5 px-4 pb-16 custom-navigation-drawer"
     location="top"
+    :class="menu_open ? 'h-100' : ''"
     v-bind="navigationDrawerAttrs"
+    :mobile="true"
   >
     <div class="d-flex flex-column">
       <ul
         class="header-menu-mobile w-100 d-flex flex-column mb-10 align-center"
-        :class="{'open': menu_open}"
+        :class="{ 'open': menu_open }"
       >
         <li
           v-for="(menu_item, index) in menuMobile"
@@ -148,26 +150,30 @@
       </div>
     </div>
 
-    <v-btn
-      v-if="showButton"
-      class="text-none text-body-1 erg-header-button mt-10 mb-16"
-      rounded="xl"
-      block
-      v-bind="buttonDrawerAttrs"
-      size="x-large"
-      color="primary"
-      @click="buttonClick; menu_open = false"
-    >
-      <span class="erg-header-btn-text btn-text-full">{{ textBtn || 'Связаться с нами' }}</span>
-      <span
-        v-if="!wordButtonMobile.length"
-        class="erg-header-btn-text btn-text-short"
-      >{{ getFirstWord(textBtn) || 'Связаться' }}</span>
-      <span
-        v-else
-        class="erg-header-btn-text btn-text-short"
-      >{{ wordButtonMobile }}</span>
-    </v-btn>
+    <div class="d-flex justify-center">
+      <v-btn
+        v-if="showButton"
+        class="text-none text-body-1 erg-header-button mt-10"
+        rounded="xl"
+        v-bind="buttonDrawerAttrs"
+        size="x-large"
+        color="primary"
+        @click="buttonClick; menu_open = false"
+        max-width="400px"
+        width="100%"
+        min-width="200px"
+      >
+        <span class="erg-header-btn-text btn-text-full">{{ textBtn || 'Связаться с нами' }}</span>
+        <span
+          v-if="!wordButtonMobile.length"
+          class="erg-header-btn-text btn-text-short"
+        >{{ getFirstWord(textBtn) || 'Связаться' }}</span>
+        <span
+          v-else
+          class="erg-header-btn-text btn-text-short"
+        >{{ wordButtonMobile }}</span>
+      </v-btn>
+    </div>
   </v-navigation-drawer>
 </template>
 
@@ -403,8 +409,6 @@ function buttonClick() {
     display: grid;
   }
 }
-
-
 
 .erg-header {
   .v-select--active-menu {
