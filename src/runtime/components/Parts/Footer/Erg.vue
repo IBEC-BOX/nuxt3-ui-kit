@@ -18,20 +18,19 @@
         >
           <v-sheet
             color="none"
-            class="footer-contacts-sheet d-flex w-100"
+            class="footer-contacts-sheet d-flex w-100 ga-lg-16"
             :class="contacts.length === 2 ? 'd-flex flex-column ' : 'flex-column flex-lg-row justify-space-between'"
           >
             <h2 class="text-dark-1 footer-contacts-sheet-title font-weight-medium mb-6 mb-lg-4">
               {{ contact?.title }}
             </h2>
-            <ul
-              class="footer-contacts-list d-flex"
-              :class="contacts.length === 2 ? 'flex-column' : 'flex-wrap'"
-            >
-              <li
+            <v-row class="footer-contacts-list d-flex">
+              <v-col
+                cols="12"
+                sm="6"
+                :md="getContactColSize(contact)"
                 v-if="contact.phone"
                 class="d-flex align-start footer-contacts-list-item"
-                :class="contacts.length === 2 ? 'mb-4' : 'mb-4 mb-lg-0'"
               >
                 <div
                   class="d-flex"
@@ -47,11 +46,13 @@
                     <p v-html="contact?.phone" />
                   </div>
                 </div>
-              </li>
-              <li
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                :md="getContactColSize(contact)"
                 v-if="contact.mail"
                 class="d-flex align-start footer-contacts-list-item footer-contacts-list-item-mail"
-                :class="contacts.length === 2 ? 'mb-4' : 'mb-4 mb-lg-0'"
               >
                 <div
                   class="d-flex"
@@ -67,11 +68,13 @@
                     <p v-html="contact?.mail" />
                   </div>
                 </div>
-              </li>
-              <li
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                :md="getContactColSize(contact)"
                 v-if="contact.location"
                 class="d-flex align-start footer-contacts-list-item"
-                :class="contacts.length === 2 ? 'mb-4' : 'mb-4 mb-lg-0'"
               >
                 <div
                   class="d-flex"
@@ -87,8 +90,8 @@
                     <p v-html="contact?.location" />
                   </div>
                 </div>
-              </li>
-            </ul>
+              </v-col>
+            </v-row>
           </v-sheet>
         </v-col>
       </v-row>
@@ -209,6 +212,17 @@ const isMultiParagraph = (html) => {
   const paragraphs = doc.querySelectorAll('p, a, br');
   return paragraphs.length > 2;
 };
+
+const getContactColSize = (contact) => {
+  let count = 0;
+  if (contact.phone) count++;
+  if (contact.mail) count++;
+  if (contact.location) count++;
+
+  if (count === 1) return 12;
+  if (count === 2) return 6;
+  return 4;
+};
 </script>
 
 <style scoped lang="scss">
@@ -233,25 +247,9 @@ const isMultiParagraph = (html) => {
       }
     }
     &-list {
-      column-gap: 25.5px;
-      width: 100%;
-      justify-content: flex-end;
-      @media(max-width: 1280px) {
-        justify-content: flex-start;
-      }
-      &-item-mail {
-        max-width: 200px;
-        width: 100%;
-      }
       &-item {
         p {
-          max-width: 240px;
           letter-spacing: 0 !important;
-        }
-        &:nth-child(1) {
-          p {
-            min-width: 233px;
-          }
         }
         .bg-img {
           background: #fff;
@@ -266,24 +264,6 @@ const isMultiParagraph = (html) => {
       }
     }
   }
-  &-contacts.not-limit-width {
-    .footer-contacts-list {
-      column-gap: 0;
-      &-item {
-        p {
-          max-width: 412px !important;
-          letter-spacing: 0 !important;
-        }
-        &:nth-child(1) {
-          p {
-            min-width: 0;
-          }
-        }
-      }
-    }
-
-  }
-
   &-copyright {
     color: #A5A7AD;
     font-size: 13px;
