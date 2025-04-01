@@ -289,10 +289,22 @@ const contacts = [
     title: 'АО «Алюминий Казахстана»',
     phone: `<p data-v-bca74727=""><p>(Приемная)</p><p><a href="tel:8%20(7182)%2037%2001%2011">8 (7182) 37 01 11</a><br> <a href="tel:8%20(7182)%2037%2007%2045">8 (7182) 37 07 45</a><br> <a href="tel:8%20(7182)%2037%2004%2026">8 (7182) 37 04 26</a><br> <a href="tel:8%20701%20029%2081%2099">8 701 029 81 99</a>&nbsp;</p><p><br></p></p>`,
     imagePhone: '/phone.svg',
-    mail: '<p>info.bts@erg.kz</p><p>info.bts@erg.kz</p>',
+    mail: 'Дивизион «Железо» - ssgpo_sales@erg.kz\n' +
+      '\n' +
+      '\n' +
+      'Дивизион «Алюминий»\n' +
+      '\n' +
+      'Глинозём - aok.paz@erg.kz\n' +
+      '\n' +
+      'Алюминий - kas@erg.kz\n' +
+      '\n' +
+      '\n' +
+      'Дивизион «Уголь» \n' +
+      '\n' +
+      'shk@erg.kz\n' +
+      '\n' +
+      'eec@erg.kz Дивизион «Хром» - kazchrome@erg.kz',
     mailImage: '/mail.svg',
-    location: 'Юридический адрес: АО «ССГПО» улица Ленина, 26, г. Рудный, Костанайская область, 111500',
-    imageLocation: '/location.png',
   },
   {
     title: 'Электростанция',
@@ -300,8 +312,6 @@ const contacts = [
     imagePhone: '/phone.svg',
     mail: '<p>aok.energy@erg.kz&nbsp;</p><p>aok.energy@erg.kz&nbsp;</p>',
     mailImage: '/mail.svg',
-    location: '<p>Республика Казахстан, 140013, Павлодарская область, г. Павлодар, Восточная промышленная зона, строение 59&nbsp;</p>',
-    imageLocation: '/location.png',
   },
   {
     title: 'Известняковый рудник «Керегетас»',
