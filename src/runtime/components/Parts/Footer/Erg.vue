@@ -18,8 +18,8 @@
         >
           <v-sheet
             color="none"
-            class="footer-contacts-sheet d-flex w-100 ga-lg-16"
-            :class="contacts.length === 2 ? 'd-flex flex-column ' : 'flex-column flex-lg-row justify-space-between'"
+            class="footer-contacts-sheet d-flex w-100 "
+            :class="contacts.length === 2 ? 'd-flex flex-column ga-lg-4' : 'flex-column flex-lg-row justify-space-between ga-lg-16'"
           >
             <h2 class="text-dark-1 footer-contacts-sheet-title font-weight-medium mb-6 mb-lg-4">
               {{ contact?.title }}
@@ -221,6 +221,7 @@ const getContactColSize = (contact) => {
 
   if (count === 1) return 12;
   if (count === 2) return 6;
+  if (count === 3 && _props.contacts.length === 2) return 12
   return 4;
 };
 </script>

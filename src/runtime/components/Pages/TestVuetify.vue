@@ -320,7 +320,7 @@ const contacts = [
     mail: '<p>aok.energy@erg.kz&nbsp;</p>',
     mailImage: '/mail.svg',
     location: '<p>Республика Казахстан, 140308, Павлодарская область, Баянаульский район, пос. Майкаин, село Ушкулун, ул. Ушкулун, здание 15А&nbsp;</p>',
-    imageLocation: '/location.png',
+    imageLocation: '/location.png'
   },
   {
     title: 'Краснооктябрьское бокситовое рудоуправление',
