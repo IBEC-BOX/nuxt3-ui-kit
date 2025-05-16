@@ -30,12 +30,12 @@
             <li
               v-for="menu_item in menu"
               :key="`header-menu-item-${menu_item.id}`"
-              class="erg-header-item"
+              class=""
             >
               <NuxtLink
                 v-if="menu_item.type !== 'anchor'"
                 :to="menu_item.to"
-                class="erg-header-link"
+                class="erg-header-item erg-header-link"
                 :class="colorClassMenu || 'text-primary'"
               >
                 {{ menu_item.title }}
