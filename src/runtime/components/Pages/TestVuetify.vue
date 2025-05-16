@@ -9,6 +9,13 @@
       :class-menu-select="'asd'"
       :word-button-mobile="'asdsadsadsa'"
       :show-button="true"
+      :menu="[
+        {
+          title: 'test',
+          to: '/#test',
+          anchor: '#test'
+        }
+      ]"
       :set-lang="[
         {
           code: 'ru',
@@ -41,7 +48,7 @@
       :color-burger-open="'secondary'"
     />
     <NuxtPage class="bg-primary" />
-    <section class="h-100 bg-primary">
+    <section class="h-100 bg-primary" id="test">
       <v-container class="px-4">
         <!--        <client-only>-->
         <!--          <partsSlider-->
@@ -92,7 +99,6 @@
         />
       </v-container>
     </section>
-
 
     <parts-footer-erg
       :contacts="contacts"
