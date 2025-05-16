@@ -11,10 +11,30 @@
       :show-button="true"
       :menu="[
         {
-          title: 'test',
+          title: 'test test testtesttest',
           to: '/#test',
           anchor: '#test'
-        }
+        },
+        {
+          title: 'test testtesttest',
+          to: '/#test',
+          anchor: '#test'
+        },
+        {
+          title: 'testtesttesttest',
+          to: '/#test',
+          anchor: '#test'
+        },
+        {
+          title: 'testtesttesttest',
+          to: '/#test',
+          anchor: '#test'
+        },
+        {
+          title: 'testtesttesttest',
+          to: '/#test',
+          anchor: '#test'
+        },
       ]"
       :set-lang="[
         {

@@ -35,10 +35,12 @@
               <NuxtLink
                 v-if="menu_item.type !== 'anchor'"
                 :to="menu_item.to"
-                class="erg-header-item erg-header-link"
+                class=" erg-header-link"
                 :class="colorClassMenu || 'text-primary'"
               >
-                {{ menu_item.title }}
+                <div class="erg-header-item">
+                  {{ menu_item.title }}
+                </div>
               </NuxtLink>
               <NuxtLink
                 v-else
