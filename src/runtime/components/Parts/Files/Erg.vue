@@ -40,6 +40,7 @@
           <div
             class="pa-2 rounded mr-4 my-1 my-md-2"
             :class="theme === 'white' ? colorBackgroundImageWhite : colorBackgroundImageBlack"
+            style="width: 44px; height: 44px;"
           >
             <v-img
               :src="item.file_icon"
